@@ -1,0 +1,33 @@
+name: Inspect portrait metadata formats
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/portrait-metadata-check.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Inspect eight public metadata objects without changing the website
+        run: |
+          node --input-type=module <<'NODE'
+          const get=async(host,q)=>{const u='https://'+host+'/w/api.php?'+new URLSearchParams({format:'json',formatversion:2,maxlag:5,...q});const r=await fetch(u,{headers:{'User-Agent':'CourtsidePhotoReview/1.0 (https://github.com/styleke/courtside)'},signal:AbortSignal.timeout(15000)});if(!r.ok)throw Error('HTTP '+r.status);return r.json();};
+          const wiki=await get('en.wikipedia.org',{action:'query',prop:'pageprops',ppprop:'wikibase_item',titles:'Roger Federer|Novak Djokovic|Karolína Muchová|Justine Henin|Carlos Alcaraz'});
+          const ids=wiki.query.pages.map(x=>x.pageprops?.wikibase_item).filter(Boolean);
+          const wd=await get('www.wikidata.org',{action:'wbgetentities',ids:ids.join('|'),props:'labels|aliases|descriptions|claims',languages:'en'});
+          const files=['File:Carlos Alcaraz US Open 2025 (cropped).jpg'];
+          for(const [id,e] of Object.entries(wd.entities)){
+            const c=(prop)=>(e.claims?.[prop]||[]).map(x=>x.mainsnak?.datavalue?.value);
+            console.log('ENTITY',JSON.stringify({id,labels:e.labels,aliases:e.aliases,descriptions:e.descriptions,P31:c('P31'),P106:c('P106'),P18:c('P18')}));
+            if(c('P18')[0])files.push('File:'+c('P18')[0]);
+          }
+          const commons=await get('commons.wikimedia.org',{action:'query',prop:'imageinfo',titles:files.join('|'),iiprop:'url|extmetadata|mime|size',iiurlwidth:240,iiurlheight:360});
+          for(const p of commons.query.pages){const x=p.imageinfo?.[0];console.log('PHOTO',JSON.stringify({title:p.title,imagerepository:p.imagerepository,...x}));}
+          NODE
