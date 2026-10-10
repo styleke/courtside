@@ -1,0 +1,72 @@
+name: Publish player portrait interface
+on:
+  workflow_run:
+    workflows: ['Import licensed player photos']
+    types: [completed]
+    branches: [main]
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-photo-interface
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.event.repository.private == false && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Require real locally stored portraits
+        run: |
+          node --input-type=module -e "import fs from 'node:fs';const m=JSON.parse(fs.readFileSync('public/player-photos.json'));if(Object.keys(m.photos||{}).length<1)throw Error('No verified portraits');console.log('Verified portrait records:',Object.keys(m.photos).length);"
+      - name: Integrate portraits into the existing interface
+        run: node scripts/apply-player-photos.mjs
+      - run: npm test
+      - run: npm run build
+      - name: Commit only interface and packaging changes
+        run: |
+          git diff --exit-code -- data/content.json data/automation-status.json config/sources.json package.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/app.js public/index.html scripts/build.mjs scripts/public-release.mjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'ui: show real player photos beside names with attribution'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+  publish:
+    needs: integrate
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+  verify:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Verify the deployed interface, attribution and local photos
+        run: |
+          node --input-type=module <<'NODE'
+          const base='https://styleke.github.io/courtside/';
+          const get=async(path)=>{for(let n=0;n<8;n++){const r=await fetch(base+path+'?portraits='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(12000)});if(r.ok)return r;if(n===7)throw Error(path+': '+r.status);await new Promise(r=>setTimeout(r,10000));}};
+          const html=await(await get('')).text();if(!html.includes('photos.js')||!html.includes('photos.css'))throw Error('Portrait interface not deployed');
+          const manifest=await(await get('player-photos.json')).json();
+          const required=['carlos-alcaraz','karolina-muchova','marat-safin','justine-henin','roger-federer','novak-djokovic','nikola-bartunkova','mirra-andreeva','daniil-medvedev','jan-lennard-struff'];
+          const checks=[];for(const id of required){const p=manifest.photos[id];if(!p){checks.push({id,photo:false});continue;}const r=await get(p.src);checks.push({id,status:r.status,bytes:(await r.arrayBuffer()).byteLength,license:p.license});}
+          const credits=await(await get('photo-credits.html')).text();if(!credits.includes('Wikimedia Commons'))throw Error('Missing photo attribution');
+          const status=await(await get('data/status.json')).json();
+          console.log(JSON.stringify({url:base,portraitCount:Object.keys(manifest.photos).length,checks,credits:true,automaticTennisCollection:status.automaticSourceSync,verifiedAt:new Date().toISOString()},null,2));
+          NODE
