@@ -1,0 +1,27 @@
+/* Player portraits stay secondary to the player's name. */
+.photo-avatar{--portrait-size:40px;position:relative;display:inline-flex!important;width:var(--portrait-size)!important;height:var(--portrait-size)!important;min-width:var(--portrait-size);max-width:var(--portrait-size);flex:0 0 var(--portrait-size);overflow:hidden;border-radius:50%;background:#e7eee7;vertical-align:middle;isolation:isolate;border:1px solid #d9e4dc;color:#456457}
+.photo-avatar .photo-fallback{display:flex;align-items:center;justify-content:center;position:absolute;inset:0;font-size:12px;font-weight:650;line-height:1}
+.photo-avatar img{display:block;position:absolute;inset:0;width:100%;height:100%;object-fit:cover;background:transparent}
+.identity-person>.photo-avatar{--portrait-size:60px;align-self:center;margin-right:2px}
+.identity-person{min-width:0;align-items:center;gap:12px}
+.identity-text{min-width:0;flex:1}
+.profile-heading>.photo-avatar,.route-player>.photo-avatar{--portrait-size:80px}
+.table-player>.photo-avatar,.rank-player>.photo-avatar{--portrait-size:40px}
+.score-person{position:relative;min-height:42px;padding-left:48px}
+.score-person>.photo-avatar{--portrait-size:36px;position:absolute;top:50%;left:0;transform:translateY(-50%)}
+.scoreboard-primary .score-person{min-height:52px;padding-left:62px}
+.scoreboard-primary .score-person>.photo-avatar{--portrait-size:50px}
+.photo-credit{font-size:11px;color:var(--muted);margin-top:8px;line-height:1.6}
+.photo-credit a{text-decoration:underline;text-underline-offset:2px}
+.footer-photo-link{font-size:10px;color:inherit;white-space:nowrap}
+.photo-avatar.large{--portrait-size:68px}
+.legend>.photo-avatar{--portrait-size:62px;margin-bottom:14px}
+@media(max-width:760px){
+ .identity-person{gap:8px}.identity-person>.photo-avatar{--portrait-size:42px}
+ .profile-heading>.photo-avatar,.route-player>.photo-avatar{--portrait-size:64px}
+ .scoreboard-primary .score-person{padding-left:43px;min-height:40px}.scoreboard-primary .score-person>.photo-avatar{--portrait-size:36px}
+ .score-person{padding-left:33px;min-height:32px}.score-person>.photo-avatar{--portrait-size:28px}
+ .ranking-table .table-player>.photo-avatar,.ranking-table .rank-player>.photo-avatar{--portrait-size:34px}
+ .legend>.photo-avatar{--portrait-size:52px;grid-row:1/5;margin:0;align-self:center}
+}
+@media(max-width:390px){.identity-person>.photo-avatar{--portrait-size:36px}.identity-person{gap:7px}.scoreboard-primary .score-person{padding-left:37px}.scoreboard-primary .score-person>.photo-avatar{--portrait-size:30px}}
