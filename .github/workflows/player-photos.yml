@@ -1,0 +1,47 @@
+name: Import licensed player photos
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/player-photos.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-portrait-import
+  cancel-in-progress: false
+jobs:
+  import:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Read openly licensed metadata and thumbnails
+        run: node scripts/import-player-portraits.mjs
+      - name: Preserve tennis data and publish only portrait assets
+        run: |
+          git diff --exit-code -- data/content.json data/automation-status.json config/sources.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/images/players public/player-photos.json public/player-photos-data.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'assets: add verified, openly licensed player portraits'
+            git pull --rebase origin main
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: player-photo-import
+          path: |
+            phase1/photo-import.json
+            public/player-photos.json
+            public/images/players
+          retention-days: 1
