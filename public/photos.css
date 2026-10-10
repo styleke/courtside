@@ -25,3 +25,7 @@
  .legend>.photo-avatar{--portrait-size:52px;grid-row:1/5;margin:0;align-self:center}
 }
 @media(max-width:390px){.identity-person>.photo-avatar{--portrait-size:36px}.identity-person{gap:7px}.scoreboard-primary .score-person{padding-left:37px}.scoreboard-primary .score-person>.photo-avatar{--portrait-size:30px}}
+/* Public cards have no edit star: give that space back to names. */
+html[data-edition="public"] .identity-text{padding-right:0}
+@media(max-width:760px){.identity-person>.photo-avatar{--portrait-size:32px}.identity-person{gap:7px}}
+@media(max-width:390px){.compare-player .compare-name{font-size:16px;line-height:1.5}.identity-person>.photo-avatar{--portrait-size:30px}}
