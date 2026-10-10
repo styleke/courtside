@@ -1,11 +1,90 @@
 name: Phase-one source diagnostics
 on:
   workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - '.github/workflows/phase1-probe.yml'
 permissions:
   contents: read
+concurrency:
+  group: courtside-phase1-diagnostics
+  cancel-in-progress: false
 jobs:
+  verify-site:
+    if: github.repository == 'styleke/courtside' && github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Build expected public files
+        run: npm run build
+      - name: Verify deployed website and data without changing them
+        env:
+          COURTSIDE_SITE_URL: https://styleke.github.io/courtside/
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile, writeFile, mkdir, appendFile} from 'node:fs/promises';
+          import {createHash} from 'node:crypto';
+          const base = new URL(process.env.COURTSIDE_SITE_URL);
+          if (base.origin !== 'https://styleke.github.io' || base.pathname !== '/courtside/') throw new Error('Unexpected deployment target');
+          const hash = bytes => createHash('sha256').update(bytes).digest('hex');
+          const report = {kind:'read-only-deployment-verification',startedAt:new Date().toISOString(),url:base.href,runId:process.env.GITHUB_RUN_ID,commit:process.env.GITHUB_SHA,productionDataWritten:false,automaticCollectionEnabledByThisJob:false,checks:[]};
+          const paths = ['index.html','styles.css','core.js','domain-v06.js','runtime.js','app.js','site-config.js','data.js','data/content.json','data/status.json'];
+          for (const file of paths) {
+            const url = new URL(file === 'index.html' ? './' : file, base);
+            url.searchParams.set('verify',process.env.GITHUB_SHA);
+            const row = {file,url:new URL(file === 'index.html' ? './' : file,base).href,ok:false};
+            try {
+              let response, bytes;
+              for (let attempt=1;attempt<=3;attempt++) {
+                row.attempts=attempt;
+                try {
+                  response=await fetch(url,{redirect:'error',headers:{'User-Agent':'Courtside-deployment-check/1.0','Cache-Control':'no-cache'},signal:AbortSignal.timeout(12000)});
+                  if (!response.ok) {await response.body?.cancel();throw new Error('HTTP '+response.status);}
+                  bytes=Buffer.from(await response.arrayBuffer());
+                  if (bytes.length>5000000) throw new Error('Unexpected resource size');
+                  break;
+                } catch(error) {
+                  if(attempt===3) throw error;
+                  await new Promise(resolve=>setTimeout(resolve,1500));
+                }
+              }
+              const expected=await readFile('dist/site/'+file);
+              Object.assign(row,{status:response.status,bytes:bytes.length,sha256:hash(bytes),matchesBuild:hash(bytes)===hash(expected)});
+              row.ok=row.matchesBuild;
+              if(file==='index.html') report.title=bytes.toString('utf8').match(/<title>(.*?)<\/title>/s)?.[1]||null;
+              if(file==='data/content.json') {
+                const data=JSON.parse(bytes.toString('utf8'));
+                report.data={revision:data.meta?.revision,mode:data.meta?.mode,updatedAt:data.meta?.updatedAt,counts:Object.fromEntries(Object.entries(data).filter(([,value])=>Array.isArray(value)).map(([key,value])=>[key,value.length]))};
+              }
+              if(file==='data/status.json') {
+                const status=JSON.parse(bytes.toString('utf8'));
+                report.collectionStatus={automaticSourceSync:status.automaticSourceSync??null,generatedAt:status.generatedAt??null,hasJobs:Array.isArray(status.jobs),jobCount:Array.isArray(status.jobs)?status.jobs.length:null};
+              }
+            } catch(error) {row.error=String(error.message);row.errorCode=error.cause?.code||error.code||null;}
+            report.checks.push(row);
+          }
+          report.finishedAt=new Date().toISOString();
+          report.httpAndContentVerified=report.checks.every(row=>row.ok);
+          report.browserInteractionVerified=false;
+          await mkdir('phase1',{recursive:true});
+          await writeFile('phase1/site-verification.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify(report,null,2));
+          if(process.env.GITHUB_STEP_SUMMARY) await appendFile(process.env.GITHUB_STEP_SUMMARY,'## Deployed website check\n\n'+base.href+'\n\n| Resource | HTTP | Matches current public build |\n|---|---|---|\n'+report.checks.map(row=>`| ${row.file} | ${row.status??row.error} | ${row.matchesBuild?'Yes':'No'} |`).join('\n')+'\n\nThis is an HTTP/content check, not a visual or live-data certification. No production data or collection settings were changed.\n');
+          if(!report.httpAndContentVerified) process.exitCode=1;
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: site-verification
+          path: phase1/site-verification.json
+          retention-days: 1
   probe:
-    if: github.event.repository.private == false
+    if: github.repository == 'styleke/courtside' && github.event.repository.private == false
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
