@@ -1,0 +1,25 @@
+/** One-time, exact edits on the existing UI. Aborts rather than altering an unknown template. */
+import {readFile,writeFile} from 'node:fs/promises';
+import path from 'node:path';import {fileURLToPath} from 'node:url';
+const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+const exact=(s,a,b)=>{if(s.includes(b))return s;const i=s.indexOf(a);if(i<0||s.indexOf(a,i+a.length)>=0)throw Error('Expected unique UI anchor: '+a.slice(0,90));return s.slice(0,i)+b+s.slice(i+a.length);};
+let s=await readFile(path.join(root,'public/app.js'),'utf8');
+const old=s.split('\n').find(l=>l.startsWith('function avatar(player,'));
+if(!old)throw Error('Missing avatar helper');
+s=s.replace(old,"function avatar(player,cl=''){return window.CourtPhotos.avatar(player,cl);}");
+s=exact(s,'<div class="score-person"><div class="score-name-line">','<div class="score-person">${avatar(q,\'score-avatar\')}<div class="score-name-line">');
+s=exact(s,'<details class="detail-accordion provenance"><summary>${ic(\'info\')} 来源与资料日期</summary>','<details class="detail-accordion provenance"><summary>${ic(\'info\')} 来源与资料日期</summary>${window.CourtPhotos.credit(x)}');
+s=exact(s,'<span class="legend-initials">${l.initials}</span>','${q?avatar(q,\'large\'):`<span class="legend-initials">${l.initials}</span>`}');
+let html=await readFile(path.join(root,'public/index.html'),'utf8');
+html=exact(html,'<link rel="stylesheet" href="styles.css">','<link rel="stylesheet" href="styles.css"><link rel="stylesheet" href="photos.css">');
+html=exact(html,'<script src="app.js"></script>','<script src="player-photos-data.js"></script><script src="photos.js"></script><script src="app.js"></script>');
+html=exact(html,'<button data-action="sources">来源与更新 ↗</button>','<a class="footer-photo-link" href="photo-credits.html" target="_blank" rel="noopener noreferrer">图片署名</a><button data-action="sources">来源与更新 ↗</button>');
+let build=await readFile(path.join(root,'scripts/build.mjs'),'utf8');
+build=exact(build,"import Runtime from '../public/runtime.js';","import Runtime from '../public/runtime.js';\nimport {buildPortraits} from './build-portraits.mjs';");
+build=exact(build,"let html=await readFile(path.join(root,'public/index.html'),'utf8');","await buildPortraits(root,site);\nlet html=await readFile(path.join(root,'public/index.html'),'utf8');");
+build=exact(build,"for(const file of ['core.js','domain-v06.js','runtime.js','site-config.js','data.js','app.js']){","html=html.replace('<link rel=\"stylesheet\" href=\"photos.css\">',`<style>${await readFile(path.join(root,'public/photos.css'),'utf8')}</style>`);\nfor(const file of ['core.js','domain-v06.js','runtime.js','site-config.js','data.js','player-photos-data.js','photos.js','app.js']){");
+let release=await readFile(path.join(root,'scripts/public-release.mjs'),'utf8');
+release=exact(release,"if(!trees.has(parts[0]))return false;","if(/^public\\/images\\/players\\/[a-z0-9_-]+\\.(?:jpg|png|webp)$/.test(p))return true;\n if(!trees.has(parts[0]))return false;");
+await writeFile(path.join(root,'scripts/public-release.mjs'),release);
+await writeFile(path.join(root,'public/app.js'),s);await writeFile(path.join(root,'public/index.html'),html);await writeFile(path.join(root,'scripts/build.mjs'),build);
+console.log('Player photos integrated without modifying tennis data or follow preferences.');
