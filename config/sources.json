@@ -1,0 +1,40 @@
+{
+  "scores": {
+    "url": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+    "automationPermitted": false,
+    "allowedHosts": [
+      "en.rolexshanghaimasters.com"
+    ],
+    "adapter": "shanghai-schedule-html",
+    "tournamentId": "shanghai-2026",
+    "scope": "上海大师赛：已建立身份关联的出场安排及明确标为完赛的赛果；不包含中网，不自动创建新球员或对阵"
+  },
+  "rankings": {
+    "url": "https://tenniscompanion.org/rankings/mens/",
+    "automationPermitted": false,
+    "allowedHosts": [
+      "tenniscompanion.org"
+    ],
+    "adapter": "rankings-html",
+    "pages": {
+      "ATP": "https://tenniscompanion.org/rankings/mens/",
+      "WTA": "https://tenniscompanion.org/rankings/womens/"
+    },
+    "scope": "ATP/WTA 单打前100周榜；发布需完整校验"
+  },
+  "broadcasts": {
+    "url": null,
+    "automationPermitted": false,
+    "allowedHosts": []
+  },
+  "tickets": {
+    "url": null,
+    "automationPermitted": false,
+    "allowedHosts": []
+  },
+  "profiles": {
+    "url": null,
+    "automationPermitted": false,
+    "allowedHosts": []
+  }
+}

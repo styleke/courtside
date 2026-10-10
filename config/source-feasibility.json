@@ -1,0 +1,546 @@
+{
+  "schemaVersion": 1,
+  "reviewedAt": "2026-10-10T09:02:40Z",
+  "sources": [
+    {
+      "id": "shanghai-schedule",
+      "category": "赛程",
+      "url": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "fields": [
+        "赛事日期",
+        "球场",
+        "顺序",
+        "精确/不早于/前场后",
+        "双方",
+        "完赛标识"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "readable_dated_content",
+        "sourceDate": "2026-10-10"
+      },
+      "usage": {
+        "status": "pending",
+        "notes": "日期正文可读；仅一次连通诊断，不启用持续抓取。页脚指向ATP条款，本次条款无法读取。",
+        "referenceUrls": [
+          "https://www.atptour.com/en/terms-and-conditions"
+        ]
+      },
+      "decision": "待确认",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "shanghai-results",
+      "category": "赛果",
+      "url": "https://en.rolexshanghaimasters.com/en/scores/results",
+      "fields": [
+        "双方",
+        "逐盘比分",
+        "抢七小分",
+        "明确胜者",
+        "比赛日期"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "readable_dated_content",
+        "sourceDate": "2026-10-10"
+      },
+      "usage": {
+        "status": "pending",
+        "notes": "明确完赛页与Schedule交叉核对；不要依赖最后一条赛点解说。",
+        "referenceUrls": []
+      },
+      "decision": "待确认",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "shanghai-draw",
+      "category": "晋级",
+      "url": "https://en.rolexshanghaimasters.com/en/scores/draw",
+      "fields": [
+        "轮次",
+        "签位",
+        "对阵",
+        "结果"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "readable_content",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "pending",
+        "notes": "签表内容可读，尚未完成完整原始HTML解析与许可确认。",
+        "referenceUrls": []
+      },
+      "decision": "待确认",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "china-schedule",
+      "category": "赛程",
+      "url": "https://www.chinaopen.com/cn/channels/294.html",
+      "fields": [
+        "赛程"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "empty_extraction",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "pending",
+        "notes": "本次网页解析正文为空，不将返回页面视作取得赛程。",
+        "referenceUrls": []
+      },
+      "decision": "待确认",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "china-news",
+      "category": "赛果补证",
+      "url": "https://www.chinaopen.com/cn/contents/281/1656.html",
+      "fields": [
+        "比赛结果",
+        "晋级背景"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "readable_dated_content",
+        "sourceDate": "2026-10-10"
+      },
+      "usage": {
+        "status": "editorial_review",
+        "notes": "10/10赛后文章可作单场核验；新闻不覆盖所有比赛，也不承诺按时发布。",
+        "referenceUrls": []
+      },
+      "decision": "人工",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "wta-china-oop",
+      "category": "赛程",
+      "url": "https://www.wtatennis.com/tournaments/china-open/order-of-play",
+      "fields": [
+        "赛事日期"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "loading_shell",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "restricted",
+        "notes": "正文仅有Loading Order Of Play。已查条款明确限制未经许可自动访问及批量采集，不探测私人接口。",
+        "referenceUrls": [
+          "https://www.wtatennis.com/terms-and-conditions"
+        ]
+      },
+      "decision": "不可用（当前自动方案）",
+      "programProbeMode": "skip",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "wta-china-draw",
+      "category": "晋级与比分",
+      "url": "https://www.wtatennis.com/tournaments/china-open/draws",
+      "fields": [
+        "单打签位",
+        "比分",
+        "球员链接"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "readable_content",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "restricted",
+        "notes": "仅作为人工查证及官方跳转入口。抽取文本同时出现Upcoming/Suspended/Finished，不可直接按包含某状态词判断完赛。",
+        "referenceUrls": [
+          "https://www.wtatennis.com/terms-and-conditions"
+        ]
+      },
+      "decision": "人工/官方跳转",
+      "programProbeMode": "skip",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "atp-ranking",
+      "category": "ATP前100",
+      "url": "https://www.atptour.com/en/rankings/singles",
+      "fields": [
+        "排名",
+        "积分",
+        "榜期"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "web_fetch_error",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "pending",
+        "notes": "网页工具未成功读取；程序连通性独立验证，不能据此认定ATP网站宕机。",
+        "referenceUrls": []
+      },
+      "decision": "待确认",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "wta-ranking",
+      "category": "WTA前100",
+      "url": "https://www.wtatennis.com/rankings/singles",
+      "fields": [
+        "排名",
+        "英文姓名",
+        "国别",
+        "积分"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "readable_content",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "restricted",
+        "notes": "公开排行可用于对照；不启用禁止的自动采集。页面正文可读不等于获得批量使用权。",
+        "referenceUrls": [
+          "https://www.wtatennis.com/terms-and-conditions"
+        ]
+      },
+      "decision": "人工/官方跳转",
+      "programProbeMode": "skip",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "tc-mens",
+      "category": "ATP前100",
+      "url": "https://tenniscompanion.org/rankings/mens/",
+      "fields": [
+        "榜期",
+        "完整名次",
+        "英文姓名",
+        "国别",
+        "积分"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "readable_dated_content",
+        "sourceDate": "2026-10-05"
+      },
+      "usage": {
+        "status": "pending",
+        "notes": "第三方完整周榜；无独立自动API授权声明。Terms限制特定用途的再利用，本次不据此作全面法律结论；需确认实际使用范围。",
+        "referenceUrls": [
+          "https://tenniscompanion.org/terms/"
+        ]
+      },
+      "decision": "待确认",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "tc-womens",
+      "category": "WTA前100",
+      "url": "https://tenniscompanion.org/rankings/womens/",
+      "fields": [
+        "榜期",
+        "完整名次",
+        "英文姓名",
+        "国别",
+        "积分"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "readable_dated_content",
+        "sourceDate": "2026-10-05"
+      },
+      "usage": {
+        "status": "pending",
+        "notes": "第三方完整周榜；无独立自动API授权声明。Terms限制特定用途的再利用，本次不据此作全面法律结论；需确认实际使用范围。",
+        "referenceUrls": [
+          "https://tenniscompanion.org/terms/"
+        ]
+      },
+      "decision": "待确认",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "itf-calendar",
+      "category": "ITF赛事发现",
+      "url": "https://www.itftennis.com/en/tournament-calendar/mens-world-tennis-tour-calendar/",
+      "fields": [
+        "赛事入口"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "navigation_only",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "pending",
+        "notes": "仅取得导航和页脚；未取得赛事列表，不算已接入ITF。",
+        "referenceUrls": [
+          "https://www.itftennis.com/en/about-us/terms-conditions/"
+        ]
+      },
+      "decision": "官方跳转",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "shanghai-tickets",
+      "category": "票务",
+      "url": "https://en.rolexshanghaimasters.com/en/tickets/tickets",
+      "fields": [
+        "本届票务说明",
+        "官方入口"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "readable_content",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "editorial_review",
+        "notes": "维护官方入口和公布节点，不采库存，不把200当作有票。",
+        "referenceUrls": []
+      },
+      "decision": "人工",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "china-tickets",
+      "category": "票务",
+      "url": "https://tickets.chinaopen.com/",
+      "fields": [
+        "官方入口"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "not_rechecked",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "pending",
+        "notes": "保留原项目入口，未把旧核验时间改为本轮，不声称完成小程序或库存验证。",
+        "referenceUrls": []
+      },
+      "decision": "待确认",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "youku-channel",
+      "category": "播放",
+      "url": "https://www.youku.com/ku/tiyu",
+      "fields": [
+        "平台入口"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "not_rechecked",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "editorial_review",
+        "notes": "本阶段不重新验证每场实际播放和地区权限；平台证据沿用待复核清单。",
+        "referenceUrls": []
+      },
+      "decision": "人工",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "migu-channel",
+      "category": "播放",
+      "url": "https://www.miguvideo.com/",
+      "fields": [
+        "平台入口"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "not_rechecked",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "editorial_review",
+        "notes": "不把入口连通当作对应比赛可播放；赛事/届次/地区与单场链接单独核验。",
+        "referenceUrls": []
+      },
+      "decision": "人工",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "thesportsdb",
+      "category": "辅助数据API",
+      "url": "https://www.thesportsdb.com/api/v1/json/123/searchplayers.php?p=Carlos%20Alcaraz",
+      "fields": [
+        "候选球员元数据"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "documentation_verified",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "free_api_documented",
+        "notes": "官方文档提供公开测试键123和免费V1；免费层不解决完整网球实时比分，不能用宣传语代替覆盖验证。",
+        "referenceUrls": [
+          "https://www.thesportsdb.com/documentation",
+          "https://api.thesportsdb.com/pricing"
+        ]
+      },
+      "decision": "候选（需云端内容验证）",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "wikidata",
+      "category": "球员身份辅助",
+      "url": "https://www.wikidata.org/wiki/Wikidata:Licensing",
+      "fields": [
+        "实体ID",
+        "姓名",
+        "国籍候选"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "license_verified",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "cc0_structured_data",
+        "notes": "结构化实体数据CC0；本次只核对许可说明和连通性，没有取得球员实体样本。国籍仍需防止公民身份与体育代表地区混淆；不能用于最新赛程。",
+        "referenceUrls": [
+          "https://www.wikidata.org/wiki/Wikidata:Licensing"
+        ]
+      },
+      "decision": "候选（非赛程源）",
+      "programProbeMode": "http",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "tennisapi-free",
+      "category": "备用API评估",
+      "url": "https://tennisapi.dev/",
+      "fields": [
+        "供应商声称的最近30天数据"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "pricing_reviewed",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "quota_and_scope_insufficient",
+        "notes": "免费500次/月；单一路径全天每30分钟按30天计算需1440次，还未计排名等；仅个人/评估用途范围需进一步确认，不注册付费或试用。",
+        "referenceUrls": [
+          "https://tennisapi.dev/"
+        ]
+      },
+      "decision": "不采用为半小时主源",
+      "programProbeMode": "skip",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "sackmann-atp",
+      "category": "历史资料候选",
+      "url": "https://github.com/JeffSackmann/tennis_atp",
+      "fields": [
+        "历史比赛候选"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "web_404",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "unverified",
+        "notes": "连接工具和网页工具均未取得仓库，不能沿用记忆中的许可或认定当前数据存在。",
+        "referenceUrls": []
+      },
+      "decision": "本次不可用",
+      "programProbeMode": "skip",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    },
+    {
+      "id": "sackmann-wta",
+      "category": "历史资料候选",
+      "url": "https://github.com/JeffSackmann/tennis_wta",
+      "fields": [
+        "历史比赛候选"
+      ],
+      "webReading": {
+        "checkedAt": "2026-10-10T09:02:40Z",
+        "method": "web-tool manual inspection",
+        "result": "web_404",
+        "sourceDate": null
+      },
+      "usage": {
+        "status": "unverified",
+        "notes": "网页工具未取得仓库，未读取许可；不将历史开源印象当作本次验证。",
+        "referenceUrls": []
+      },
+      "decision": "本次不可用",
+      "programProbeMode": "skip",
+      "cloudVerification": "not_run",
+      "automationEnabled": false
+    }
+  ],
+  "notes": [
+    "这是一份一阶段来源登记，不是生产采集配置。",
+    "网页读取、程序HTTP、解析校验、使用条件和云端运行分别记账。",
+    "不保存或公开上游完整原始页面。"
+  ]
+}

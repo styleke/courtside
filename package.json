@@ -1,0 +1,22 @@
+{
+  "name": "courtside-tennis",
+  "version": "0.9.0",
+  "private": true,
+  "description": "场边：北京时间优先的网球观赛与发现网站。无第三方运行依赖。",
+  "engines": {
+    "node": ">=22"
+  },
+  "scripts": {
+    "start": "node server.mjs",
+    "test": "node --test tests/*.test.cjs",
+    "build": "node scripts/build.mjs",
+    "brief": "node scripts/brief.mjs",
+    "import": "node scripts/import.mjs",
+    "check:sources": "node scripts/check-sources.mjs",
+    "audit": "node scripts/audit.mjs",
+    "refresh:once": "node scripts/refresh-once.mjs",
+    "publish:github": "node scripts/publish-github.mjs",
+    "probe:phase1": "node scripts/probe-feasibility.mjs",
+    "package:public": "node scripts/public-release.mjs"
+  }
+}

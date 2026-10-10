@@ -1,0 +1,27 @@
+const test=require('node:test'),assert=require('node:assert/strict'),fs=require('node:fs'),path=require('node:path');
+const root=path.resolve(__dirname,'..');
+const release=()=>import('../scripts/public-release.mjs');
+const probe=()=>import('../scripts/probe-feasibility.mjs');
+const Core=require('../public/core.js');
+for(const p of ['docs/WORKBUDDY_NEXT.md','docs/SOURCE_AUDIT.md','phase1/source-probe.json','.env','public/.env.local','data/snapshots/private.json','../secrets.json','/etc/passwd','public/admin.key'])test('not public: '+p,async()=>assert.equal((await release()).isPublicPath(p),false));
+for(const p of ['public/app.js','data/content.json','docs/PUBLIC_STATUS.md','.github/workflows/pages.yml'])test('public allowlist: '+p,async()=>assert.equal((await release()).isPublicPath(p),true));
+test('secret scan rejects real-looking credential',async()=>assert.equal((await release()).findSecret('ghp_'+'A'.repeat(38)),'github-token'));
+test('ordinary key mention is not a secret',async()=>assert.equal((await release()).findSecret('Never set a GITHUB_TOKEN in the browser'),null));
+test('HTTP 200 does not satisfy permission or parser gate',async()=>{const a=(await probe()).assessSource({usage:{status:'pending'}},{httpStatus:200,bodyValid:true,parsed:true,cloud:true});assert.equal(a.automationEligible,false)});
+test('manual read cannot satisfy cloud acceptance',async()=>{const a=(await probe()).assessSource({usage:{status:'permission_confirmed'}},{httpStatus:200,bodyValid:true,parsed:true,cloud:false});assert.equal(a.automationEligible,false)});
+test('loading shell is not usable body',async()=>assert.equal((await probe()).summarizeBody('<h1>Loading Order Of Play</h1>','text/html').bodyValid,false));
+test('empty API result is not coverage proof',async()=>assert.equal((await probe()).summarizeBody('{"player":null}','application/json').bodyValid,false));
+test('invalid JSON is rejected',async()=>assert.equal((await probe()).summarizeBody('{','application/json').bodyValid,false));
+test('DNS failure is not an HTTP status',async()=>{const a=(await probe()).networkFailure({message:'fetch failed',cause:{code:'EAI_AGAIN'}});assert.equal(a.kind,'dns_failure');assert.equal(a.code,'EAI_AGAIN')});
+test('restricted source is never fetched',async()=>{const result=await (await probe()).runProbe({sources:[{id:'wta',url:'https://example.test',programProbeMode:'skip',usage:{status:'restricted'}}]},{dnsLookup:()=>assert.fail('must not lookup'),fetcher:()=>assert.fail('must not fetch')});assert.equal(result.summary.skipped,1);assert.equal(result.productionDataWritten,false)});
+test('calendar highlights use actual Beijing date, not stored snapshot date',()=>{const js=fs.readFileSync(path.join(root,'public/app.js'),'utf8');assert.ok(!js.includes("date===data.meta.demoDate?'today'"));assert.ok(!js.includes("month===data.meta.demoDate.slice(0,7)?'current'"));assert.ok(js.includes("date===C.day(new Date().toISOString())?'today'"))});
+test('Beijing day rolls forward independent of browser timezone',()=>{assert.equal(Core.day('2026-10-10T15:59:59Z'),'2026-10-10');assert.equal(Core.day('2026-10-10T16:00:00Z'),'2026-10-11')});
+test('collector remains gated during phase one',()=>{const y=fs.readFileSync(path.join(root,'.github/workflows/refresh.yml'),'utf8');assert.ok(y.includes("vars.COURTSIDE_COLLECTION_ENABLED == 'true'"));const s=JSON.parse(fs.readFileSync(path.join(root,'config/sources.json')));assert.ok(Object.values(s).every(s=>s.automationPermitted===false))});
+test('diagnostic workflow is manual-only and read-only',()=>{const y=fs.readFileSync(path.join(root,'.github/workflows/phase1-probe.yml'),'utf8');assert.ok(y.includes('workflow_dispatch:'));assert.ok(!y.includes('schedule:'));assert.ok(!y.includes('contents: write'));assert.ok(y.includes('retention-days: 1'))});
+
+test('private root README is excluded even if it looks harmless',async()=>{const os=require('node:os');const dir=fs.mkdtempSync(path.join(os.tmpdir(),'court-private-'));try{fs.mkdirSync(path.join(dir,'docs'));fs.writeFileSync(path.join(dir,'README.md'),'private project discussion');fs.writeFileSync(path.join(dir,'docs/PUBLIC_README.md'),'public introduction');const files=await (await release()).collectPublicPaths(dir);assert.ok(!files.some(f=>f.path==='README.md'));}finally{fs.rmSync(dir,{recursive:true,force:true})}});
+test('sanitized root README is staged in standalone release',async()=>{const os=require('node:os');const dir=fs.mkdtempSync(path.join(os.tmpdir(),'court-public-'));try{fs.mkdirSync(path.join(dir,'docs'));fs.writeFileSync(path.join(dir,'README.md'),'public introduction');fs.writeFileSync(path.join(dir,'docs/PUBLIC_README.md'),'public introduction');const files=await (await release()).collectPublicPaths(dir);assert.ok(files.some(f=>f.path==='README.md'));}finally{fs.rmSync(dir,{recursive:true,force:true})}});
+
+test('disabled collector does not start a false-failure verification job',()=>{const y=fs.readFileSync(path.join(root,'.github/workflows/refresh.yml'),'utf8');assert.ok(y.includes("needs.collect.result != 'skipped'"))});
+
+test('documented free API does not imply approved production reuse',async()=>{const a=(await probe()).assessSource({usage:{status:'free_api_documented'}},{httpStatus:200,bodyValid:true,parsed:true,cloud:true});assert.equal(a.documentedFreeAccess,true);assert.equal(a.usageReady,false);assert.equal(a.automationEligible,false)});
