@@ -23,6 +23,8 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
+      - name: Check identity, attribution and fallback logic
+        run: node --test tests/photos.test.cjs
       - name: Read openly licensed metadata and thumbnails
         run: node scripts/import-player-portraits.mjs
       - name: Preserve tennis data and publish only portrait assets
