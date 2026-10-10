@@ -6,7 +6,7 @@ import {fileURLToPath} from 'node:url';
 const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const ua='CourtsidePhotoImport/1.0 (https://github.com/styleke/courtside; non-commercial tennis guide)';
-const norm=s=>String(s||'').replace(/[Đđ]/g,'d').replace(/[Łł]/g,'l').normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const norm=s=>String(s||'').replace(/[Đđ]/g,'dj').replace(/[Łł]/g,'l').normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[^a-z0-9]/g,'');
 export const plain=s=>String(s||'').replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/\s+/g,' ').trim();
 export function photoLicense(info){
  const x=info.extmetadata||{},v=k=>plain(x[k]?.value),name=v('LicenseShortName');

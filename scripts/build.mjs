@@ -2,6 +2,7 @@
 import {readFile,writeFile,mkdir,rm,copyFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';import path from 'node:path';
 import Runtime from '../public/runtime.js';
+import {buildPortraits} from './build-portraits.mjs';
 const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const original=JSON.parse(await readFile(path.join(root,'data/content.json'),'utf8'));
 const errors=Runtime.validate(original);if(errors.length)throw new Error(errors.join('\n'));
@@ -14,9 +15,11 @@ const files=['index.html','styles.css','core.js','domain-v06.js','runtime.js','a
 for(const f of files)await copyFile(path.join(root,'public',f),path.join(site,f));
 await writeFile(path.join(site,'site-config.js'),config);await writeFile(path.join(site,'data.js'),seed);
 await writeFile(path.join(site,'data/content.json'),JSON.stringify(data));await writeFile(path.join(site,'data/status.json'),JSON.stringify(status));await writeFile(path.join(site,'.nojekyll'),'');
+await buildPortraits(root,site);
 let html=await readFile(path.join(root,'public/index.html'),'utf8');
 html=html.replace('<link rel="stylesheet" href="styles.css">',`<style>${await readFile(path.join(root,'public/styles.css'),'utf8')}</style>`);
-for(const file of ['core.js','domain-v06.js','runtime.js','site-config.js','data.js','app.js']){
+html=html.replace('<link rel="stylesheet" href="photos.css">',`<style>${await readFile(path.join(root,'public/photos.css'),'utf8')}</style>`);
+for(const file of ['core.js','domain-v06.js','runtime.js','site-config.js','data.js','player-photos-data.js','photos.js','app.js']){
  const text=file==='site-config.js'?"window.COURTSIDE_CONFIG = {mode:'snapshot',pollMs:60000};":await readFile(path.join(root,'public',file),'utf8');
  html=html.replace(`<script src="${file}"></script>`,`<script>${text.replace(/<\/script/gi,'<\\/script')}</script>`);
 }

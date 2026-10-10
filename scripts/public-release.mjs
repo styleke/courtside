@@ -14,6 +14,7 @@ export function isPublicPath(relative){
  if(/\.(?:pem|p12|key|log|tmp)$/i.test(p))return false;
  if(p==='docs/PUBLIC_STATUS.md'||p==='docs/PUBLIC_README.md')return true;
  if(rootFiles.has(p))return true;
+ if(/^public\/images\/players\/[a-z0-9_-]+\.(?:jpg|png|webp)$/.test(p))return true;
  if(!trees.has(parts[0]))return false;
  return /\.(?:js|mjs|cjs|json|css|html|yml|yaml|md|cmd|command)$/.test(p);
 }
