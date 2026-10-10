@@ -6,17 +6,18 @@ import {fileURLToPath} from 'node:url';
 const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 const sleep=ms=>new Promise(r=>setTimeout(r,ms));
 const ua='CourtsidePhotoImport/1.0 (https://github.com/styleke/courtside; non-commercial tennis guide)';
-const norm=s=>String(s||'').normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[^a-z0-9]/g,'');
+const norm=s=>String(s||'').replace(/[Đđ]/g,'d').replace(/[Łł]/g,'l').normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[^a-z0-9]/g,'');
 export const plain=s=>String(s||'').replace(/<[^>]*>/g,' ').replace(/&amp;/g,'&').replace(/&quot;/g,'"').replace(/&#39;/g,"'").replace(/\s+/g,' ').trim();
 export function photoLicense(info){
- const x=info.extmetadata||{},v=k=>plain(x[k]?.value),name=v('LicenseShortName'),licenseUrl=v('LicenseUrl').replace(/^http:/,'https:');
- const ok=/^(?:CC BY(?:-SA)? [1-4]\.0|CC0(?: 1\.0)?|Public domain)$/i.test(name);
- if(!ok||v('Restrictions')||v('AttributionRequired')==='true'&&!v('Artist'))return null;
- if(!/^CC0|^Public domain/i.test(name)&&!/^https:\/\/creativecommons\.org\/licenses\/by(?:-sa)?\/[1-4]\.0\//.test(licenseUrl))return null;
+ const x=info.extmetadata||{},v=k=>plain(x[k]?.value),name=v('LicenseShortName');
+ const raw=v('LicenseUrl');let licenseUrl=raw.startsWith('//')?'https:'+raw:raw.replace(/^http:/,'https:');
+ const cc=name.match(/^CC (BY(?:-SA)?) (1\.0|2\.0|2\.5|3\.0|4\.0)$/i),pd=/^(?:CC0(?: 1\.0)?|Public domain)$/i.test(name);
+ if((!cc&&!pd)||v('Restrictions')||v('AttributionRequired')==='true'&&!v('Artist'))return null;
+ if(cc){let u;try{u=new URL(licenseUrl);}catch{return null;}const required='/licenses/'+cc[1].toLowerCase()+'/'+cc[2];if(u.protocol!=='https:'||u.hostname!=='creativecommons.org'||u.pathname.replace(/\/$/,'')!==required||u.search||u.hash)return null;licenseUrl='https://creativecommons.org'+required+'/';}
  return {license:name,licenseUrl:licenseUrl||'https://creativecommons.org/publicdomain/mark/1.0/',author:v('Artist')||'Public domain',credit:v('Credit'),fileTitle:info.canonicaltitle||'',imageDate:v('DateTimeOriginal')};
 }
 export function isPlayerEntity(entity,player){
- const labels=[entity.labels?.en?.value,...(entity.aliases?.en||[]).map(x=>x.value)].filter(Boolean);
+ const labels=[entity.labels?.en?.value,entity.labels?.mul?.value,...(entity.aliases?.en||[]).map(x=>x.value),...(entity.aliases?.mul||[]).map(x=>x.value)].filter(Boolean);
  const profession=(entity.claims?.P106||[]).map(c=>c.mainsnak?.datavalue?.value?.id);
  const tennis=profession.includes('Q10833314')||/\btennis player\b/i.test(entity.descriptions?.en?.value||'');
  const human=(entity.claims?.P31||[]).some(c=>c.mainsnak?.datavalue?.value?.id==='Q5');
@@ -24,7 +25,7 @@ export function isPlayerEntity(entity,player){
 }
 async function json(url){
  for(let n=0;n<3;n++){
-  await sleep(300);
+  await sleep(400);
   const r=await fetch(url,{headers:{'User-Agent':ua,'Accept':'application/json'},signal:AbortSignal.timeout(15000)});
   if([429,503].includes(r.status)){
    await r.body?.cancel();if(n===2)throw Error('Rate limited '+r.status);
@@ -32,7 +33,7 @@ async function json(url){
   }
   if(!r.ok)throw Error('HTTP '+r.status+' '+new URL(url).hostname);
   const raw=await r.text();if(raw.length>10000000)throw Error('Metadata size limit');
-  const d=JSON.parse(raw);if(d.error)throw Error(d.error.code+': '+d.error.info);return d;
+  const d=JSON.parse(raw);if(d.error?.code==='maxlag'&&n<2){await sleep(5000);continue;}if(d.error)throw Error(d.error.code+': '+d.error.info);return d;
  }
  throw Error('No API response');
 }
@@ -43,9 +44,11 @@ const titleOverrides={
  'marat-safin':'Marat Safin','justine-henin':'Justine Henin','roger-federer':'Roger Federer','novak-djokovic':'Novak Djokovic','mirra-andreeva':'Mirra Andreeva',
  'rafael-jodar':'Rafael Jódar','alexander-zverev':'Alexander Zverev','daniil-medvedev':'Daniil Medvedev',
  'zhang-shuai':'Zhang Shuai (tennis)','zheng-qinwen':'Zheng Qinwen','wang-xinyu':'Wang Xinyu',
- 'carlos-alcaraz-garfia':'Carlos Alcaraz','rafael-nadal':'Rafael Nadal','naomi-osaka':'Naomi Osaka'
+ 'carlos-alcaraz-garfia':'Carlos Alcaraz','rafael-nadal':'Rafael Nadal','naomi-osaka':'Naomi Osaka',
+ 'ann-li':'Ann Li (tennis)','tommy-paul':'Tommy Paul (tennis)','nuno-borges':'Nuno Borges (tennis)','joao-fonseca':'João Fonseca (tennis)','james-duckworth':'James Duckworth (tennis)','luke-johnson':'Luke Johnson (tennis)','santiago-gonzalez':'Santiago González (tennis)','robert-galloway':'Robert Galloway (tennis)','francisco-cabral':'Francisco Cabral (tennis)','aleksandar-kovacevic':'Aleksandar Kovacevic (tennis)'
 };
-const fileOverrides={'carlos-alcaraz':'Carlos Alcaraz US Open 2025 (cropped).jpg'};
+// Explicit photographs were checked on their Commons description pages, then verified again below.
+const fileOverrides={'carlos-alcaraz':'Carlos Alcaraz US Open 2025 (cropped).jpg','justine-henin':'Justine Henin in 2005.jpg'};
 async function main(){
  const data=JSON.parse(await readFile(path.join(root,'data/content.json'),'utf8'));
  let previous={schemaVersion:1,photos:{}};try{previous=JSON.parse(await readFile(path.join(root,'public/player-photos.json'),'utf8'));}catch{}
@@ -69,7 +72,7 @@ async function main(){
  }
  const entities={};
  for(const ids of chunks([...entityIds],40)){
-  try{const d=await json(api('www.wikidata.org',{action:'wbgetentities',ids:ids.join('|'),props:'labels|aliases|descriptions|claims',languages:'en'}));Object.assign(entities,d.entities||{});}catch(e){report.records.push({stage:'entities',error:String(e.message)});}
+  try{const d=await json(api('www.wikidata.org',{action:'wbgetentities',ids:ids.join('|'),props:'labels|aliases|descriptions|claims',languages:'en|mul'}));Object.assign(entities,d.entities||{});}catch(e){report.records.push({stage:'entities',error:String(e.message)});}
  }
  const candidates=[];
  for(const player of selected){
@@ -93,10 +96,10 @@ async function main(){
   const rights=photoLicense(info);if(!rights){report.records.push({id:c.id,state:'license_not_approved',license:plain(info.extmetadata?.LicenseShortName?.value)});continue;}
   const remote=info.thumburl||info.url,sourcePage=info.descriptionurl;
   const ext=({'image/jpeg':'jpg','image/png':'png','image/webp':'webp'})[info.thumbmime||info.mime];
-  if(!ext||!remote||new URL(remote).hostname!=='upload.wikimedia.org'||!/^https:\/\/commons\.wikimedia\.org\//.test(sourcePage||'')){report.records.push({id:c.id,state:'unsupported_image'});continue;}
+  if(!ext||!remote||!['upload.wikimedia.org','thumb.wikimedia.org'].includes(new URL(remote).hostname)||!/^https:\/\/commons\.wikimedia\.org\//.test(sourcePage||'')){report.records.push({id:c.id,state:'unsupported_image'});continue;}
   const local='images/players/'+c.id+'.'+ext;
   try{
-   await sleep(400);
+   await sleep(500);
    const r=await fetch(remote,{headers:{'User-Agent':ua},signal:AbortSignal.timeout(15000),redirect:'error'});
    if(!r.ok){await r.body?.cancel();throw Error('HTTP '+r.status);}
    const declared=Number(r.headers.get('content-length'));if(declared>1500000)throw Error('Image too large');
