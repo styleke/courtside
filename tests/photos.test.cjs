@@ -1,0 +1,13 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');
+const P=require('../public/photos.js');
+const q={id:'demo-person',name:'测试球员',enName:'Test Player'};
+const good={photos:{'demo-person':{playerId:'demo-person',src:'images/players/demo-person.jpg',sourcePage:'https://commons.wikimedia.org/wiki/File:Example.jpg',author:'An author',license:'CC BY-SA 4.0'}}};
+test('portraits do not guess an unknown player image',()=>assert.equal(P.get({id:'unknown'},good),null));
+test('portraits reject remote tracking and traversal URLs',()=>{for(const src of ['https://example.com/a.jpg','../a.jpg','images/players/../a.jpg','javascript:alert(1)'])assert.equal(P.get(q,{photos:{[q.id]:{...good.photos[q.id],src}}}),null);});
+test('portraits require individual attribution and verified source',()=>{for(const k of ['author','license','sourcePage'])assert.equal(P.get(q,{photos:{[q.id]:{...good.photos[q.id],[k]:''}}}),null);});
+test('portrait avatar keeps initials fallback, reserves size and lazy loads',()=>{const html=P.avatar(q,'large',good);assert.match(html,/loading="lazy"/);assert.match(html,/width="72" height="72"/);assert.match(html,/photo-fallback/);assert.match(html,/>TP</);});
+test('portrait cannot inject HTML through names or author',()=>{const html=P.avatar({...q,id:'"><script>x</script>'},'',{});assert.doesNotMatch(html,/<script>/);assert.match(html,/&lt;script&gt;/);});
+test('portrait does not alter name, nationality or sporting data',()=>{const before=JSON.stringify(q);P.avatar(q,'',good);assert.equal(JSON.stringify(q),before);});
+test('photo credits are next to profile source metadata',()=>{assert.match(P.credit(q,good),/photo-credits.html#demo-person/);assert.equal(P.credit(q,{}),'');});
+test('image license whitelist excludes noncommercial, non-derivative or unspecified terms',async()=>{const {photoLicense}=await import('../scripts/import-player-portraits.mjs');for(const l of ['All rights reserved','CC BY-NC 4.0','CC BY-ND 4.0','GFDL'])assert.equal(photoLicense({extmetadata:{LicenseShortName:{value:l}}}),null);});
+test('identity requires exact player name plus human and tennis metadata',async()=>{const {isPlayerEntity}=await import('../scripts/import-player-portraits.mjs');const e={labels:{en:{value:'Test Player'}},descriptions:{en:{value:'tennis player'}},claims:{P31:[{mainsnak:{datavalue:{value:{id:'Q5'}}}}]}};assert.equal(isPlayerEntity(e,q),true);assert.equal(isPlayerEntity(e,{enName:'Different Person'}),false);assert.equal(isPlayerEntity({...e,descriptions:{en:{value:'actor'}}},q),false);});
