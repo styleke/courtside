@@ -1,5 +1,8 @@
 name: Publish player portrait interface
 on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/activate-player-photos.yml']
   workflow_run:
     workflows: ['Import licensed player photos']
     types: [completed]
@@ -12,7 +15,7 @@ concurrency:
   cancel-in-progress: false
 jobs:
   integrate:
-    if: github.event.repository.private == false && (github.event_name == 'workflow_dispatch' || github.event.workflow_run.conclusion == 'success')
+    if: github.event.repository.private == false && (github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success')
     runs-on: ubuntu-latest
     timeout-minutes: 6
     permissions:
