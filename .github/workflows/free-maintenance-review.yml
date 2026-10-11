@@ -1,0 +1,78 @@
+name: Free maintenance review
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/free-maintenance-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-maintenance-review
+  cancel-in-progress: false
+jobs:
+  review:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Snapshot tracked public source
+        run: |
+          mkdir -p /tmp/courtside-review
+          git archive --format=zip HEAD > /tmp/courtside-review/source.zip
+      - name: Review a bounded set of openly licensed photo candidates
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile,writeFile,mkdir} from 'node:fs/promises';
+          import {photoLicense} from './scripts/import-player-portraits.mjs';
+          const out='/tmp/courtside-review';await mkdir(out+'/candidates',{recursive:true});
+          const data=JSON.parse(await readFile('data/content.json','utf8'));
+          const current=JSON.parse(await readFile('public/player-photos.json','utf8'));
+          const players=data.players.filter(p=>p.followed).slice(0,8);
+          const records=[],ua='CourtsidePortraitReview/1.1 (https://github.com/styleke/courtside)';
+          const sleep=ms=>new Promise(r=>setTimeout(r,ms));
+          for(const p of players){
+            const queries=['intitle:"'+p.enName+'" (portrait OR "press conference" OR "media day")', 'intitle:"'+p.enName+'" cropped'];
+            const seen=new Set();let n=0;
+            for(const query of queries){
+              await sleep(700);
+              const u='https://commons.wikimedia.org/w/api.php?'+new URLSearchParams({action:'query',format:'json',formatversion:'2',maxlag:'5',generator:'search',gsrsearch:query,gsrnamespace:'6',gsrlimit:'8',prop:'imageinfo',iiprop:'url|extmetadata|mime|size',iiurlwidth:'400',iiurlheight:'600'});
+              try{
+                const r=await fetch(u,{headers:{'User-Agent':ua},signal:AbortSignal.timeout(15000)});
+                if(!r.ok)throw Error('HTTP '+r.status);const result=await r.json();if(result.error)throw Error(result.error.code);
+                for(const page of result.query?.pages||[]){
+                  if(seen.has(page.title))continue;seen.add(page.title);
+                  const info=page.imageinfo?.[0],rights=info&&photoLicense(info);
+                  if(!rights||!['image/jpeg','image/png','image/webp'].includes(info.thumbmime||info.mime))continue;
+                  const imgUrl=info.thumburl; if(!imgUrl||!['thumb.wikimedia.org','upload.wikimedia.org'].includes(new URL(imgUrl).hostname))continue;
+                  await sleep(500);
+                  const image=await fetch(imgUrl,{headers:{'User-Agent':ua},redirect:'error',signal:AbortSignal.timeout(12000)});
+                  if(!image.ok){await image.body?.cancel();continue;}
+                  const bytes=Buffer.from(await image.arrayBuffer());if(bytes.length>1500000)continue;
+                  const ext=({'image/jpeg':'jpg','image/png':'png','image/webp':'webp'})[info.thumbmime||info.mime];
+                  const file='candidates/'+p.id+'-'+String(n++).padStart(2,'0')+'.'+ext;await writeFile(out+'/'+file,bytes);
+                  records.push({playerId:p.id,enName:p.enName,file,title:page.title,sourcePage:info.descriptionurl,sourceImage:imgUrl,width:info.thumbwidth,height:info.thumbheight,description:info.extmetadata?.ImageDescription?.value,...rights});
+                }
+              }catch(e){records.push({playerId:p.id,query,error:String(e.message)});}
+            }
+          }
+          const network=[];
+          for(const url of ['https://courtside-tennis.pages.dev/data/content.json','https://courtside-tennis.pages.dev/data/status.json','https://styleke.github.io/courtside/data/content.json']){
+            try{const r=await fetch(url,{signal:AbortSignal.timeout(12000)});const j=await r.json();network.push({url,status:r.status,cors:r.headers.get('access-control-allow-origin'),cache:r.headers.get('cache-control'),revision:j.meta?.revision,automaticSourceSync:j.automaticSourceSync,bytes:JSON.stringify(j).length});}catch(e){network.push({url,error:e.message});}
+          }
+          const report={at:new Date().toISOString(),commit:process.env.GITHUB_SHA,productionModified:false,network,records};
+          await writeFile(out+'/review.json',JSON.stringify(report,null,2));console.log(JSON.stringify({network,candidates:records.filter(x=>x.file).length,errors:records.filter(x=>x.error)},null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: free-maintenance-review
+          path: /tmp/courtside-review/
+          retention-days: 1
+          compression-level: 6
