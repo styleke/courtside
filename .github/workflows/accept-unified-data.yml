@@ -1,0 +1,70 @@
+name: Accept unified data operation
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/accept-unified-data.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: read
+      actions: read
+      issues: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Full regression suite
+        run: |
+          mkdir -p phase2/unified-acceptance
+          npm test > phase2/unified-acceptance/tests.txt
+          tail -n 12 phase2/unified-acceptance/tests.txt
+      - name: Inspect true triggering events and child-job results; never trigger recovery here
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ALLOW_BOUNDED_RECOVERY: 'false'
+          ALLOW_OPERATION_ISSUE: 'true'
+        run: node scripts/check-operation-health.mjs
+      - name: Save compact current workflow evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          for file in refresh.yml scheduler-source-audit.yml free-rankings-review.yml; do
+            gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/${file}/runs?per_page=10" --jq '{total_count,runs:[.workflow_runs[]|{id,event,status,conclusion,created_at,head_sha,html_url}]}' > "phase2/unified-acceptance/${file}.runs.json"
+          done
+      - name: Compare the actual served shared data with the source snapshot
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile,writeFile} from 'node:fs/promises';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+          const expected=JSON.parse(await readFile('data/content.json','utf8'));
+          const r=await fetch('https://styleke.github.io/courtside/data/content.json?accept='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(15000)});assert.ok(r.ok);const bytes=await r.text(),data=JSON.parse(bytes);assert.ok(data.meta.revision>=expected.meta.revision);
+          for(const key of ['rankings','players'])assert.deepEqual(data[key],expected[key],key+' unexpectedly changed');
+          const sr=await fetch('https://styleke.github.io/courtside/data/status.json?accept='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(15000)});assert.ok(sr.ok);const status=await sr.json();assert.equal(status.automaticSourceSync,false);const channel=status.jobs.find(j=>j.channel==='knownSinglesResults');assert.ok(channel?.execution?.event);assert.equal(channel.execution.workflow,'Check tennis data');
+          await writeFile('phase2/unified-acceptance/network.json',JSON.stringify({at:new Date().toISOString(),revision:data.meta.revision,dataHash:createHash('sha256').update(bytes).digest('hex'),httpStatus:r.status,rankingsPreserved:true,playersPreserved:true,sourceChannel:channel,automaticFullCoverage:false},null,2));
+          NODE
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - name: Confirm existing user features still work on the branded site
+        run: REPORT_DIR=phase2/unified-acceptance/browser node scripts/browser-profile-acceptance.mjs
+      - name: Acceptance must not rewrite data, UI or admission switches
+        if: always()
+        run: git diff --exit-code -- data public config
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: unified-data-acceptance
+          path: |
+            phase2/unified-acceptance
+            phase2/operation-watch
+          retention-days: 1
