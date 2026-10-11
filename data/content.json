@@ -1,11 +1,11 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "revision": 16,
+    "revision": 17,
     "mode": "reviewed",
     "demoDate": "2026-10-10",
     "asOfDate": "2026-10-11",
-    "updatedAt": "2026-10-11T11:52:28.279Z",
+    "updatedAt": "2026-10-11T13:17:56.294Z",
     "dataVerifiedAt": "2026-10-10T03:50:28Z",
     "refreshMode": "verified-snapshot",
     "note": "赛程、排名与资料分别保留来源和更新时间。",
@@ -27,7 +27,7 @@
       "晋级对阵由已核实赛果与签位关联；未公布日期不归入今天。",
       "2026-10-10：WTA/ATP每日OP PDF的解析文本与缓存截图日期不一致，日程以赛事HTML、已交叉核对的发布信息为准；自动采集不得通过版本校验失败的PDF。"
     ],
-    "updateScope": "球员出生日期资料；比赛、比分和排名未更新",
+    "updateScope": "WTA本期官方整榜核对与代表国家来源；ATP差异待复核，不改排名数值或比赛数据",
     "uiVersion": "0.9",
     "enrichmentVerifiedAt": "2026-10-10T03:50:28Z",
     "contentPatchedAt": "2026-10-11T07:11:26.583Z",
@@ -73,7 +73,7 @@
         "rankings": "2026-10-10T06:16:42Z"
       },
       "WTA": {
-        "rankings": "2026-10-10T06:16:42Z"
+        "rankings": "2026-10-11T13:04:59.217Z"
       }
     },
     "scheduleCoverage": [
@@ -145,7 +145,8 @@
     "appliedReviews": [
       "2026-10-11-finals-review",
       "2026-10-11-next-day-and-results",
-      "2026-10-11-player-completeness"
+      "2026-10-11-player-completeness",
+      "2026-10-11-official-ranking-review"
     ],
     "birthdatesUpdatedAt": "2026-10-11T11:52:28.279Z",
     "openResultsLicense": {
@@ -920,8 +921,8 @@
       "age": 27,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -929,8 +930,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -959,8 +960,8 @@
       "age": 28,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -968,8 +969,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -998,8 +999,8 @@
       "age": 32,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1007,8 +1008,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1037,8 +1038,8 @@
       "age": 22,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1046,8 +1047,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1082,8 +1083,8 @@
       "age": 19,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": true,
       "prospect": true,
@@ -1093,8 +1094,8 @@
       "verifiedAt": "2026-10-09T09:30:50Z",
       "reasonSourceUrl": "https://www.chinaopen.com/cn/contents/281/1652.html",
       "reasonShort": "19 岁 · 中网四强",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "following",
       "favorite": false,
       "preferenceUpdatedAt": "2026-10-10T03:18:59Z",
@@ -1129,8 +1130,8 @@
       "age": 21,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1138,8 +1139,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1168,8 +1169,8 @@
       "age": 32,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1177,8 +1178,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1207,8 +1208,8 @@
       "age": 30,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": true,
       "prospect": false,
@@ -1216,8 +1217,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "following",
       "favorite": false,
       "preferenceUpdatedAt": "2026-10-10T03:18:59Z",
@@ -1251,8 +1252,8 @@
       "age": 25,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1260,8 +1261,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1290,8 +1291,8 @@
       "age": 24,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1299,8 +1300,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1329,8 +1330,8 @@
       "age": 25,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1338,8 +1339,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1368,8 +1369,8 @@
       "age": 29,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1377,8 +1378,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1407,8 +1408,8 @@
       "age": 18,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": true,
@@ -1418,8 +1419,8 @@
       "verifiedAt": "2026-10-09T09:30:50Z",
       "reasonSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "reasonShort": "官方榜单显示 18 岁、世界第 13",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1448,8 +1449,8 @@
       "age": 22,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1457,8 +1458,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1491,8 +1492,8 @@
       "age": 20,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1500,8 +1501,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1530,8 +1531,8 @@
       "age": 36,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1539,8 +1540,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1569,8 +1570,8 @@
       "age": 28,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1578,8 +1579,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1608,8 +1609,8 @@
       "age": 21,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1617,8 +1618,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1647,8 +1648,8 @@
       "age": 30,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1656,8 +1657,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1690,8 +1691,8 @@
       "age": 30,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1699,8 +1700,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1733,8 +1734,8 @@
       "age": 24,
       "rankChange": 4,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1742,8 +1743,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1772,8 +1773,8 @@
       "age": 27,
       "rankChange": -1,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1781,8 +1782,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1811,8 +1812,8 @@
       "age": 31,
       "rankChange": -1,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1820,8 +1821,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1850,8 +1851,8 @@
       "age": 25,
       "rankChange": -1,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1859,8 +1860,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1889,8 +1890,8 @@
       "age": 25,
       "rankChange": -1,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1898,8 +1899,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1928,8 +1929,8 @@
       "age": 24,
       "rankChange": 5,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1937,8 +1938,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -1967,8 +1968,8 @@
       "age": 28,
       "rankChange": -1,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -1976,8 +1977,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2006,8 +2007,8 @@
       "age": 31,
       "rankChange": -1,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2015,8 +2016,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2045,8 +2046,8 @@
       "age": 20,
       "rankChange": -1,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2054,8 +2055,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2084,8 +2085,8 @@
       "age": 26,
       "rankChange": -1,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2093,8 +2094,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2123,8 +2124,8 @@
       "age": 24,
       "rankChange": -1,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2132,8 +2133,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2162,8 +2163,8 @@
       "age": 29,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2171,8 +2172,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2201,8 +2202,8 @@
       "age": 31,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2210,8 +2211,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2242,8 +2243,8 @@
       "age": 20,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": true,
       "prospect": true,
@@ -2253,8 +2254,8 @@
       "verifiedAt": "2026-10-09T09:30:50Z",
       "reasonSourceUrl": "https://www.chinaopen.com/cn/contents/281/1652.html",
       "reasonShort": "20 岁 · 首次闯入 WTA 1000 四强",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "following",
       "favorite": false,
       "preferenceUpdatedAt": "2026-10-10T03:18:59Z",
@@ -2288,8 +2289,8 @@
       "age": 28,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2297,8 +2298,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2327,8 +2328,8 @@
       "age": 25,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2336,8 +2337,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2366,8 +2367,8 @@
       "age": 22,
       "rankChange": 26,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2375,8 +2376,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2406,8 +2407,8 @@
       "age": 25,
       "rankChange": 2,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2415,8 +2416,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2445,8 +2446,8 @@
       "age": 27,
       "rankChange": -2,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2454,8 +2455,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2484,8 +2485,8 @@
       "age": 30,
       "rankChange": -2,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2493,8 +2494,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2523,8 +2524,8 @@
       "age": 28,
       "rankChange": 19,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2532,8 +2533,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2562,8 +2563,8 @@
       "age": 24,
       "rankChange": -3,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2571,8 +2572,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2601,8 +2602,8 @@
       "age": 30,
       "rankChange": 1,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2610,8 +2611,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2640,8 +2641,8 @@
       "age": 23,
       "rankChange": -3,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2649,8 +2650,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2679,8 +2680,8 @@
       "age": 26,
       "rankChange": -3,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2688,8 +2689,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2716,8 +2717,8 @@
       "age": 24,
       "rankChange": -3,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2725,8 +2726,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2755,8 +2756,8 @@
       "age": 25,
       "rankChange": 0,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2764,8 +2765,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2794,8 +2795,8 @@
       "age": 28,
       "rankChange": -3,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2803,8 +2804,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2833,8 +2834,8 @@
       "age": 24,
       "rankChange": -3,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2842,8 +2843,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2872,8 +2873,8 @@
       "age": 29,
       "rankChange": -2,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2881,8 +2882,8 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
@@ -2912,8 +2913,8 @@
       "age": 24,
       "rankChange": -2,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2926,8 +2927,8 @@
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "birthDate": "2002-10-08",
       "profileCheckedAt": "2026-10-10T06:16:42Z",
       "dateOfBirth": "2002-10-08",
@@ -2956,8 +2957,8 @@
       "age": null,
       "rankChange": -2,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -2968,8 +2969,8 @@
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "doublesRank": 7,
       "doublesRankDate": "2026-10-05",
       "doublesRankCheckedAt": "2026-10-10T06:16:42Z",
@@ -2999,8 +3000,8 @@
       "age": null,
       "rankChange": -2,
       "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
       "prospect": false,
@@ -3011,8 +3012,8 @@
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "doublesRank": 1,
       "doublesRankDate": "2026-10-05",
       "doublesRankCheckedAt": "2026-10-10T06:16:42Z",
@@ -7438,10 +7439,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1992-03-21",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q289365#P569",
@@ -7475,10 +7476,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1996-05-05",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q19577829#P569",
@@ -7512,10 +7513,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1995-05-12",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q19924597#P569",
@@ -7549,10 +7550,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1996-08-01",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q16979848#P569",
@@ -7586,10 +7587,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2002-04-30",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q65599731#P569",
@@ -7623,10 +7624,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1997-11-15",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q19560013#P569",
@@ -7660,10 +7661,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1998-06-05",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q20676333#P569",
@@ -7697,10 +7698,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2008-02-17",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q128688561#P569",
@@ -7734,10 +7735,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1997-11-06",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q20745254#P569",
@@ -7771,10 +7772,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2004-07-07",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q113162452#P569",
@@ -7808,10 +7809,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1997-05-27",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q19281715#P569",
@@ -7845,10 +7846,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2007-02-20",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q113218343#P569",
@@ -7882,10 +7883,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-12-22",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q29052147#P569",
@@ -7919,10 +7920,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1992-10-16",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q7929924#P569",
@@ -7956,10 +7957,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2003-11-18",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q106367605#P569",
@@ -7993,10 +7994,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2007-06-23",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q116447696#P569",
@@ -8030,10 +8031,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2000-12-31",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q105745525#P569",
@@ -8067,10 +8068,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-01-25",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q48528654#P569",
@@ -8104,10 +8105,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-11-20",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q27537235#P569",
@@ -8141,10 +8142,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2004-05-07",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q105825572#P569",
@@ -8178,10 +8179,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-12-31",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q61889608#P569",
@@ -8215,10 +8216,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2006-04-16",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q123615700#P569",
@@ -8252,10 +8253,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-08-28",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q65769637#P569",
@@ -8289,10 +8290,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1999-07-08",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q121770120#P569",
@@ -8326,10 +8327,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2006-02-13",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q121826235#P569",
@@ -8363,10 +8364,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1998-09-28",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q28815694#P569",
@@ -8400,10 +8401,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1992-02-12",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q722311#P569",
@@ -8437,10 +8438,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2005-12-04",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q110156289#P569",
@@ -8474,10 +8475,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1995-01-07",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q2429984#P569",
@@ -8511,10 +8512,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2003-01-20",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q84599634#P569",
@@ -8548,10 +8549,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1987-08-08",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q57942#P569",
@@ -8585,10 +8586,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-03-28",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q41799108#P569",
@@ -8622,10 +8623,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2004-05-21",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q113780001#P569",
@@ -8659,10 +8660,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1997-05-07",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q17144642#P569",
@@ -8696,10 +8697,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2003-01-09",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q98278358#P569",
@@ -8733,10 +8734,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1998-09-10",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q20676027#P569",
@@ -8745,7 +8746,13 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q20676027$d2536f43-465d-71f3-e458-b49bec4947b5"
-      ]
+      ],
+      "countrySourceUrl": "https://www.wtatennis.com/players/324267/anna-blinkova",
+      "countryCheckedAt": "2026-10-11T13:04:59.217Z",
+      "countryBasis": "official-tour-representation",
+      "externalIds": {
+        "wta": "324267"
+      }
     },
     {
       "id": "mananchaya-sawangkaew",
@@ -8770,10 +8777,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2002-07-10",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q61559705#P569",
@@ -8807,10 +8814,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2005-10-27",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q110418366#P569",
@@ -8844,10 +8851,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1996-04-16",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q766964#P569",
@@ -8881,10 +8888,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2004-06-17",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q111324826#P569",
@@ -8918,10 +8925,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1997-09-30",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q18636254#P569",
@@ -8955,10 +8962,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2002-04-29",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q57192958#P569",
@@ -8992,10 +8999,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2002-09-24",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q96069911#P569",
@@ -9029,10 +9036,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2000-05-25",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q20898017#P569",
@@ -9066,10 +9073,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2000-12-13",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q33011749#P569",
@@ -9103,10 +9110,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1996-07-02",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q18972370#P569",
@@ -9140,10 +9147,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-10T06:16:42Z",
-      "rankSourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "pointsCheckedAt": "2026-10-10T06:16:42Z",
-      "pointsSourceUrl": "https://tenniscompanion.org/rankings/womens/",
+      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2002-11-13",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q64849968#P569",
@@ -19226,14 +19233,746 @@
           "points": 625,
           "change": -2
         }
-      ]
+      ],
+      "evidenceReview": {
+        "state": "conflict",
+        "rankingDate": "2026-10-05",
+        "checkedAt": "2026-10-11T13:04:59.217Z",
+        "sourceUrl": "https://atp.balldontlie.io/",
+        "reviewedRows": [
+          [
+            1,
+            "jannik-sinner",
+            11000,
+            0
+          ],
+          [
+            2,
+            "alexander-zverev",
+            9720,
+            0
+          ],
+          [
+            3,
+            "carlos-alcaraz",
+            5260,
+            0
+          ],
+          [
+            4,
+            "ben-shelton",
+            4680,
+            0
+          ],
+          [
+            5,
+            "daniil-medvedev",
+            4010,
+            1
+          ],
+          [
+            6,
+            "felix-auger-aliassime",
+            3890,
+            -1
+          ],
+          [
+            7,
+            "flavio-cobolli",
+            3680,
+            0
+          ],
+          [
+            8,
+            "frances-tiafoe",
+            3380,
+            0
+          ],
+          [
+            9,
+            "alex-de-minaur",
+            3300,
+            1
+          ],
+          [
+            10,
+            "arthur-fils",
+            3275,
+            -1
+          ],
+          [
+            11,
+            "novak-djokovic",
+            3180,
+            0
+          ],
+          [
+            12,
+            "taylor-fritz",
+            2880,
+            0
+          ],
+          [
+            13,
+            "rafael-jodar",
+            2659,
+            0
+          ],
+          [
+            14,
+            "valentin-vacherot",
+            2450,
+            4
+          ],
+          [
+            15,
+            "jakub-mensik",
+            2445,
+            -1
+          ],
+          [
+            16,
+            "learner-tien",
+            2395,
+            -1
+          ],
+          [
+            17,
+            "tommy-paul",
+            2375,
+            -1
+          ],
+          [
+            18,
+            "brandon-nakashima",
+            2335,
+            -1
+          ],
+          [
+            19,
+            "jiri-lehecka",
+            2310,
+            4
+          ],
+          [
+            20,
+            "francisco-cerundolo",
+            2220,
+            2
+          ],
+          [
+            21,
+            "luciano-darderi",
+            2200,
+            -2
+          ],
+          [
+            22,
+            "alexander-bublik",
+            2185,
+            -2
+          ],
+          [
+            23,
+            "andrey-rublev",
+            2175,
+            1
+          ],
+          [
+            24,
+            "casper-ruud",
+            2145,
+            -3
+          ],
+          [
+            25,
+            "lorenzo-musetti",
+            2010,
+            0
+          ],
+          [
+            26,
+            "alejandro-davidovich-fokina",
+            1930,
+            0
+          ],
+          [
+            27,
+            "karen-khachanov",
+            1900,
+            0
+          ],
+          [
+            28,
+            "alexander-blockx",
+            1787,
+            0
+          ],
+          [
+            29,
+            "joao-fonseca",
+            1750,
+            0
+          ],
+          [
+            30,
+            "alejandro-tabilo",
+            1605,
+            1
+          ],
+          [
+            31,
+            "tomas-martin-etcheverry",
+            1590,
+            -1
+          ],
+          [
+            32,
+            "ugo-humbert",
+            1575,
+            0
+          ],
+          [
+            33,
+            "arthur-rinderknech",
+            1520,
+            0
+          ],
+          [
+            34,
+            "hubert-hurkacz",
+            1475,
+            5
+          ],
+          [
+            35,
+            "alex-michelsen",
+            1460,
+            -1
+          ],
+          [
+            36,
+            "ignacio-buse",
+            1447,
+            -1
+          ],
+          [
+            37,
+            "arthur-fery",
+            1413,
+            -1
+          ],
+          [
+            38,
+            "matteo-arnaldi",
+            1386,
+            -1
+          ],
+          [
+            39,
+            "zizou-bergs",
+            1320,
+            -1
+          ],
+          [
+            40,
+            "cameron-norrie",
+            1275,
+            0
+          ],
+          [
+            41,
+            "botic-van-de-zandschulp",
+            1258,
+            0
+          ],
+          [
+            42,
+            "denis-shapovalov",
+            1245,
+            4
+          ],
+          [
+            43,
+            "stefanos-tsitsipas",
+            1230,
+            1
+          ],
+          [
+            44,
+            "daniel-merida",
+            1210,
+            -2
+          ],
+          [
+            45,
+            "luca-van-assche",
+            1180,
+            -2
+          ],
+          [
+            46,
+            "matteo-berrettini",
+            1168,
+            1
+          ],
+          [
+            47,
+            "mariano-navone",
+            1155,
+            -2
+          ],
+          [
+            48,
+            "quentin-halys",
+            1107,
+            2
+          ],
+          [
+            49,
+            "jaume-munar",
+            1100,
+            15
+          ],
+          [
+            50,
+            "raphael-collignon",
+            1078,
+            -2
+          ],
+          [
+            51,
+            "nuno-borges",
+            1070,
+            -2
+          ],
+          [
+            52,
+            "adolfo-daniel-vallejo",
+            1048,
+            4
+          ],
+          [
+            53,
+            "sebastian-baez",
+            1044,
+            -2
+          ],
+          [
+            54,
+            "thiago-agustin-tirante",
+            1010,
+            -2
+          ],
+          [
+            55,
+            "juan-manuel-cerundolo",
+            995,
+            -2
+          ],
+          [
+            56,
+            "arthur-gea",
+            985,
+            2
+          ],
+          [
+            57,
+            "yannick-hanfmann",
+            976,
+            -3
+          ],
+          [
+            58,
+            "tallon-griekspoor",
+            975,
+            -3
+          ],
+          [
+            59,
+            "jan-lennard-struff",
+            949,
+            0
+          ],
+          [
+            60,
+            "jaime-faria",
+            941,
+            1
+          ],
+          [
+            61,
+            "miomir-kecmanovic",
+            925,
+            -4
+          ],
+          [
+            62,
+            "roman-andres-burruchaga",
+            891,
+            -2
+          ],
+          [
+            63,
+            "fabian-marozsan",
+            880,
+            -1
+          ],
+          [
+            64,
+            "james-duckworth",
+            877,
+            -1
+          ],
+          [
+            65,
+            "pablo-carreno-busta",
+            874,
+            1
+          ],
+          [
+            66,
+            "ethan-quinn",
+            874,
+            -1
+          ],
+          [
+            67,
+            "daniel-altmaier",
+            849,
+            0
+          ],
+          [
+            68,
+            "vit-kopriva",
+            846,
+            0
+          ],
+          [
+            69,
+            "facundo-diaz-acosta",
+            824,
+            0
+          ],
+          [
+            70,
+            "kamil-majchrzak",
+            805,
+            1
+          ],
+          [
+            71,
+            "corentin-moutet",
+            805,
+            -1
+          ],
+          [
+            72,
+            "titouan-droguet",
+            801,
+            0
+          ],
+          [
+            73,
+            "martin-landaluce",
+            797,
+            0
+          ],
+          [
+            74,
+            "sebastian-korda",
+            790,
+            0
+          ],
+          [
+            75,
+            "tomas-machac",
+            783,
+            0
+          ],
+          [
+            76,
+            "kyrian-jacquet",
+            781,
+            10
+          ],
+          [
+            77,
+            "camilo-ugo-carabelli",
+            770,
+            -1
+          ],
+          [
+            78,
+            "hamad-medjedovic",
+            764,
+            -1
+          ],
+          [
+            79,
+            "roman-safiullin",
+            744,
+            5
+          ],
+          [
+            80,
+            "marin-cilic",
+            741,
+            -2
+          ],
+          [
+            81,
+            "aleksandar-kovacevic",
+            730,
+            -2
+          ],
+          [
+            82,
+            "zachary-svajda",
+            729,
+            -2
+          ],
+          [
+            83,
+            "adrian-mannarino",
+            723,
+            -2
+          ],
+          [
+            84,
+            "alex-molcan",
+            712,
+            12
+          ],
+          [
+            85,
+            "rinky-hijikata",
+            711,
+            -3
+          ],
+          [
+            86,
+            "mattia-bellucci",
+            700,
+            5
+          ],
+          [
+            87,
+            "lorenzo-sonego",
+            698,
+            -4
+          ],
+          [
+            88,
+            "marcos-giron",
+            688,
+            -3
+          ],
+          [
+            89,
+            "hugo-gaston",
+            677,
+            -2
+          ],
+          [
+            90,
+            "marco-trungelliti",
+            661,
+            -2
+          ],
+          [
+            91,
+            "jan-choinski",
+            658,
+            -2
+          ],
+          [
+            92,
+            "benjamin-bonzi",
+            656,
+            -2
+          ],
+          [
+            93,
+            "yunchaokete-bu",
+            652,
+            11
+          ],
+          [
+            94,
+            "michael-zheng",
+            649,
+            -2
+          ],
+          [
+            95,
+            "jesper-de-jong",
+            641,
+            -2
+          ],
+          [
+            96,
+            "jacob-fearnley",
+            639,
+            -2
+          ],
+          [
+            97,
+            "dino-prizmic",
+            638,
+            -2
+          ],
+          [
+            98,
+            "adam-walton",
+            630,
+            -1
+          ],
+          [
+            99,
+            "terence-atmane",
+            626,
+            0
+          ],
+          [
+            100,
+            "toby-samuel",
+            625,
+            -2
+          ]
+        ],
+        "conflicts": [
+          {
+            "playerId": "carlos-alcaraz",
+            "current": {
+              "rank": 3,
+              "points": 5260
+            },
+            "candidate": {
+              "rank": 3,
+              "points": 5560
+            }
+          },
+          {
+            "playerId": "felix-auger-aliassime",
+            "current": {
+              "rank": 6,
+              "points": 3890
+            },
+            "candidate": {
+              "rank": 5,
+              "points": 3890
+            }
+          },
+          {
+            "playerId": "daniil-medvedev",
+            "current": {
+              "rank": 5,
+              "points": 4010
+            },
+            "candidate": {
+              "rank": 6,
+              "points": 3860
+            }
+          },
+          {
+            "playerId": "novak-djokovic",
+            "current": {
+              "rank": 11,
+              "points": 3180
+            },
+            "candidate": {
+              "rank": 8,
+              "points": 3480
+            }
+          },
+          {
+            "playerId": "alex-de-minaur",
+            "current": {
+              "rank": 9,
+              "points": 3300
+            },
+            "candidate": {
+              "rank": 9,
+              "points": 3430
+            }
+          },
+          {
+            "playerId": "frances-tiafoe",
+            "current": {
+              "rank": 8,
+              "points": 3380
+            },
+            "candidate": {
+              "rank": 10,
+              "points": 3380
+            }
+          },
+          {
+            "playerId": "arthur-fils",
+            "current": {
+              "rank": 10,
+              "points": 3275
+            },
+            "candidate": {
+              "rank": 11,
+              "points": 3275
+            }
+          },
+          {
+            "playerId": "jiri-lehecka",
+            "current": {
+              "rank": 19,
+              "points": 2310
+            },
+            "candidate": {
+              "rank": 16,
+              "points": 2440
+            }
+          },
+          {
+            "playerId": "learner-tien",
+            "current": {
+              "rank": 16,
+              "points": 2395
+            },
+            "candidate": {
+              "rank": 17,
+              "points": 2395
+            }
+          },
+          {
+            "playerId": "tommy-paul",
+            "current": {
+              "rank": 17,
+              "points": 2375
+            },
+            "candidate": {
+              "rank": 18,
+              "points": 2375
+            }
+          },
+          {
+            "playerId": "brandon-nakashima",
+            "current": {
+              "rank": 18,
+              "points": 2335
+            },
+            "candidate": {
+              "rank": 19,
+              "points": 2335
+            }
+          }
+        ],
+        "note": "同样标注2026年10月5日的两份来源，在11位球员的名次或积分上存在差异。本次未取得可核对的官方历史整榜，暂保留原来源；这不代表原数值已确认无误，也不将两份数据混合成新榜。"
+      }
     },
     {
       "tour": "WTA",
       "rankingDate": "2026-10-05",
-      "verifiedAt": "2026-10-10T06:16:42Z",
-      "sourceUrl": "https://tenniscompanion.org/rankings/womens/",
-      "sourceName": "TennisCompanion 单打榜单",
+      "verifiedAt": "2026-10-11T13:04:59.217Z",
+      "sourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "sourceName": "WTA 官方单打榜单",
       "officialUrl": "https://www.wtatennis.com/rankings/singles",
       "crossCheckUrl": "https://www.wtatennis.com/rankings/singles",
       "rows": [
@@ -19837,7 +20576,623 @@
           "points": 785,
           "change": -2
         }
-      ]
+      ],
+      "previousRankSource": {
+        "sourceUrl": "https://tenniscompanion.org/rankings/womens/",
+        "sourceName": "TennisCompanion 单打榜单",
+        "verifiedAt": "2026-10-10T06:16:42Z"
+      },
+      "evidenceReview": {
+        "state": "official-reviewed",
+        "rankingDate": "2026-10-05",
+        "checkedAt": "2026-10-11T13:04:59.217Z",
+        "sourceUrl": "https://www.wtatennis.com/rankings/singles",
+        "rowCount": 100,
+        "reviewedRows": [
+          [
+            1,
+            "elena-rybakina",
+            9901,
+            0
+          ],
+          [
+            2,
+            "aryna-sabalenka",
+            7810,
+            0
+          ],
+          [
+            3,
+            "jessica-pegula",
+            7265,
+            0
+          ],
+          [
+            4,
+            "coco-gauff",
+            7244,
+            0
+          ],
+          [
+            5,
+            "mirra-andreeva",
+            5841,
+            0
+          ],
+          [
+            6,
+            "linda-noskova",
+            5328,
+            0
+          ],
+          [
+            7,
+            "elina-svitolina",
+            4809,
+            0
+          ],
+          [
+            8,
+            "karolina-muchova",
+            4683,
+            0
+          ],
+          [
+            9,
+            "iga-swiatek",
+            4119,
+            0
+          ],
+          [
+            10,
+            "marta-kostyuk",
+            4040,
+            0
+          ],
+          [
+            11,
+            "amanda-anisimova",
+            3363,
+            0
+          ],
+          [
+            12,
+            "belinda-bencic",
+            2925,
+            0
+          ],
+          [
+            13,
+            "iva-jovic",
+            2841,
+            0
+          ],
+          [
+            14,
+            "diana-shnaider",
+            2588,
+            0
+          ],
+          [
+            15,
+            "victoria-mboko",
+            2521,
+            0
+          ],
+          [
+            16,
+            "sorana-cirstea",
+            2464,
+            0
+          ],
+          [
+            17,
+            "naomi-osaka",
+            2296,
+            0
+          ],
+          [
+            18,
+            "alexandra-eala",
+            2276,
+            0
+          ],
+          [
+            19,
+            "elise-mertens",
+            2165,
+            0
+          ],
+          [
+            20,
+            "jasmine-paolini",
+            2122,
+            0
+          ],
+          [
+            21,
+            "maja-chwalinska",
+            2082,
+            4
+          ],
+          [
+            22,
+            "anna-kalinskaya",
+            2043,
+            -1
+          ],
+          [
+            23,
+            "madison-keys",
+            2029,
+            -1
+          ],
+          [
+            24,
+            "emma-navarro",
+            2024,
+            -1
+          ],
+          [
+            25,
+            "anastasia-potapova",
+            1926,
+            -1
+          ],
+          [
+            26,
+            "leylah-fernandez",
+            1894,
+            5
+          ],
+          [
+            27,
+            "marie-bouzkova",
+            1873,
+            -1
+          ],
+          [
+            28,
+            "ekaterina-alexandrova",
+            1811,
+            -1
+          ],
+          [
+            29,
+            "sara-bejlek",
+            1710,
+            -1
+          ],
+          [
+            30,
+            "ann-li",
+            1573,
+            -1
+          ],
+          [
+            31,
+            "diane-parry",
+            1551,
+            -1
+          ],
+          [
+            32,
+            "jelena-ostapenko",
+            1481,
+            0
+          ],
+          [
+            33,
+            "maria-sakkari",
+            1462,
+            0
+          ],
+          [
+            34,
+            "nikola-bartunkova",
+            1352,
+            0
+          ],
+          [
+            35,
+            "cristina-bucsa",
+            1349,
+            0
+          ],
+          [
+            36,
+            "peyton-stearns",
+            1316,
+            0
+          ],
+          [
+            37,
+            "talia-gibson",
+            1301,
+            26
+          ],
+          [
+            38,
+            "xinyu-wang",
+            1288,
+            2
+          ],
+          [
+            39,
+            "liudmila-samsonova",
+            1284,
+            -2
+          ],
+          [
+            40,
+            "donna-vekic",
+            1278,
+            -2
+          ],
+          [
+            41,
+            "kimberly-birrell",
+            1255,
+            19
+          ],
+          [
+            42,
+            "hailey-baptiste",
+            1230,
+            -3
+          ],
+          [
+            43,
+            "barbora-krejcikova",
+            1198,
+            1
+          ],
+          [
+            44,
+            "clara-tauson",
+            1184,
+            -3
+          ],
+          [
+            45,
+            "yuliia-starodubtseva",
+            1165,
+            -3
+          ],
+          [
+            46,
+            "daria-snigur",
+            1163,
+            -3
+          ],
+          [
+            47,
+            "oleksandra-oliynykova",
+            1126,
+            0
+          ],
+          [
+            48,
+            "magdalena-frech",
+            1120,
+            -3
+          ],
+          [
+            49,
+            "janice-tjen",
+            1120,
+            -3
+          ],
+          [
+            50,
+            "anhelina-kalinina",
+            1112,
+            -2
+          ],
+          [
+            51,
+            "karolina-pliskova",
+            1106,
+            -2
+          ],
+          [
+            52,
+            "mayar-sherif",
+            1105,
+            -2
+          ],
+          [
+            53,
+            "tamara-korpatsch",
+            1091,
+            -2
+          ],
+          [
+            54,
+            "qinwen-zheng",
+            1083,
+            -2
+          ],
+          [
+            55,
+            "katerina-siniakova",
+            1075,
+            -2
+          ],
+          [
+            56,
+            "katie-boulter",
+            1062,
+            -2
+          ],
+          [
+            57,
+            "zhang-shuai",
+            1055,
+            -2
+          ],
+          [
+            58,
+            "zeynep-sonmez",
+            1052,
+            -2
+          ],
+          [
+            59,
+            "paula-badosa",
+            1052,
+            -2
+          ],
+          [
+            60,
+            "jaqueline-cristian",
+            1051,
+            -2
+          ],
+          [
+            61,
+            "lilli-tagger",
+            1045,
+            -2
+          ],
+          [
+            62,
+            "elena-gabriela-ruse",
+            1033,
+            4
+          ],
+          [
+            63,
+            "lanlana-tararudee",
+            1032,
+            -1
+          ],
+          [
+            64,
+            "anna-bondar",
+            1029,
+            5
+          ],
+          [
+            65,
+            "tereza-valentova",
+            1014,
+            -4
+          ],
+          [
+            66,
+            "camila-osorio",
+            993,
+            -2
+          ],
+          [
+            67,
+            "viktorija-golubic",
+            993,
+            -2
+          ],
+          [
+            68,
+            "maria-timofeeva",
+            989,
+            20
+          ],
+          [
+            69,
+            "alina-korneeva",
+            988,
+            13
+          ],
+          [
+            70,
+            "alycia-parks",
+            985,
+            0
+          ],
+          [
+            71,
+            "elisabetta-cocciaretto",
+            985,
+            -4
+          ],
+          [
+            72,
+            "caty-mcnally",
+            983,
+            -4
+          ],
+          [
+            73,
+            "ashlyn-krueger",
+            945,
+            -2
+          ],
+          [
+            74,
+            "katie-volynets",
+            935,
+            4
+          ],
+          [
+            75,
+            "maya-joint",
+            934,
+            24
+          ],
+          [
+            76,
+            "kamilla-rakhimova",
+            929,
+            1
+          ],
+          [
+            77,
+            "mccartney-kessler",
+            925,
+            -5
+          ],
+          [
+            78,
+            "kaitlin-quevedo",
+            920,
+            -5
+          ],
+          [
+            79,
+            "panna-udvardy",
+            919,
+            -5
+          ],
+          [
+            80,
+            "magda-linette",
+            916,
+            -5
+          ],
+          [
+            81,
+            "petra-marcinko",
+            915,
+            -5
+          ],
+          [
+            82,
+            "yulia-putintseva",
+            904,
+            -3
+          ],
+          [
+            83,
+            "antonia-ruzic",
+            894,
+            -3
+          ],
+          [
+            84,
+            "tatjana-maria",
+            894,
+            -3
+          ],
+          [
+            85,
+            "xiyu-wang",
+            889,
+            -2
+          ],
+          [
+            86,
+            "hanne-vandewinkel",
+            887,
+            -2
+          ],
+          [
+            87,
+            "daria-kasatkina",
+            883,
+            -2
+          ],
+          [
+            88,
+            "darja-vidmanova",
+            877,
+            -2
+          ],
+          [
+            89,
+            "anna-blinkova",
+            875,
+            -2
+          ],
+          [
+            90,
+            "mananchaya-sawangkaew",
+            868,
+            -1
+          ],
+          [
+            91,
+            "taylah-preston",
+            848,
+            3
+          ],
+          [
+            92,
+            "taylor-townsend",
+            843,
+            -2
+          ],
+          [
+            93,
+            "solana-sierra",
+            830,
+            -2
+          ],
+          [
+            94,
+            "renata-zarazua",
+            819,
+            -2
+          ],
+          [
+            95,
+            "sinja-kraus",
+            817,
+            0
+          ],
+          [
+            96,
+            "jessica-bouzas-maneiro",
+            809,
+            -3
+          ],
+          [
+            97,
+            "claire-liu",
+            790,
+            -1
+          ],
+          [
+            98,
+            "simona-waltert",
+            790,
+            -1
+          ],
+          [
+            99,
+            "julia-grabher",
+            787,
+            12
+          ],
+          [
+            100,
+            "emma-raducanu",
+            785,
+            -2
+          ]
+        ],
+        "sourceSha256": "9ee10e1a1df99b2a353fa3eb3f760dd7e61d896e1377600f53574063722a27a7",
+        "note": "本期完整前100的姓名、代表国家、名次、积分及周变化已逐项对照 WTA 官方页面。页面明确对应2026年10月5日；另一个接口仍返回9月28日，未用于替换本期榜单。此为本期核对，不代表实时或自动更新。"
+      }
     }
   ],
   "draws": [

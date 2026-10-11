@@ -133,3 +133,7 @@ html[data-edition="public"] [data-action="admin"],html[data-edition="public"] [d
 /* Keep the deciding match-tiebreak column clear of the winner marker. */
 .scoreboard-primary .arena-score .score-mtb-col{width:55px}.arena-score .score-set-header{white-space:nowrap}
 @media(max-width:760px){.scoreboard-primary .arena-score .score-mtb-col{width:48px}}
+
+/* Review labels stay secondary to names and scores. */
+.ranking-period{flex-wrap:wrap;row-gap:8px}.ranking-review-badge{display:inline-flex;align-items:center;gap:5px;border:1px solid currentColor;border-radius:7px;padding:5px 8px;font-size:12px;line-height:1.4;background:transparent;white-space:nowrap;cursor:pointer}.ranking-review-badge .icon{width:14px;height:14px}.review-pending,.rank-review-inline{color:#876125}.review-confirmed{color:#286550}.rank-review-dot{display:inline-block;width:5px;height:5px;border-radius:50%;background:#876125;vertical-align:top;margin-left:3px}.rank-review-inline{font-size:11px;font-weight:500;margin-left:4px;white-space:nowrap}.ranking-discrepancies{display:grid;gap:10px;margin:12px 0}.ranking-discrepancies>div{display:grid;gap:3px;padding-bottom:8px;border-bottom:1px solid var(--line,#e4e9df);font-size:12px}.ranking-evidence summary{font-size:13px}.ranking-evidence p{font-size:13px;line-height:1.65}.ranking-review-badge:focus-visible{outline:2px solid currentColor;outline-offset:3px}
+@media(max-width:760px){.ranking-period{justify-content:flex-start}.ranking-review-badge{font-size:11px;padding:4px 6px}.rank-review-inline{font-size:10px}}

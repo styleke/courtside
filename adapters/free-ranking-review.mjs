@@ -3,14 +3,14 @@ import {createHash} from 'node:crypto';
 const TOURS=['ATP','WTA'];
 const norm=x=>String(x||'').normalize('NFKD').replace(/\p{M}/gu,'').toLowerCase().replace(/[^a-z0-9]/g,'');
 const day=x=>typeof x==='string'&&/^\d{4}-\d{2}-\d{2}$/.test(x)&&Number.isFinite(Date.parse(x))&&new Date(x).toISOString().slice(0,10)===x;
-export function rankingURL(tour,cursor=null){
+export function rankingURL(tour,cursor=null,{date=null}={}){
  if(!TOURS.includes(tour))throw Error('unsupported-tour');
  if(cursor!==null&&(!Number.isSafeInteger(cursor)||cursor<0))throw Error('invalid-cursor');
  const u=new URL('https://api.balldontlie.io/'+tour.toLowerCase()+'/v1/rankings');
- u.searchParams.set('per_page','100');if(cursor!==null)u.searchParams.set('cursor',String(cursor));return u.href;
+ u.searchParams.set('per_page','100');if(date!==null){if(!day(date))throw Error('invalid-requested-date');u.searchParams.set('date',date);}if(cursor!==null)u.searchParams.set('cursor',String(cursor));return u.href;
 }
-export function inspectRankingPages(pages,tour,current,{today=new Date().toISOString().slice(0,10)}={}){
- if(!TOURS.includes(tour)||!day(today))throw Error('invalid-review-scope');
+export function inspectRankingPages(pages,tour,current,{today=new Date().toISOString().slice(0,10),requestedDate=null}={}){
+ if(!TOURS.includes(tour)||!day(today)||(requestedDate!==null&&!day(requestedDate)))throw Error('invalid-review-scope');
  const problems=[],rows=[],seenPlayers=new Set(),seenRanks=new Set();
  const old=current.rankings?.find(t=>t.tour===tour),players=current.players||[];
  if(!Array.isArray(pages)||!pages.length||pages.length>2)throw Error('invalid-page-count');
@@ -34,6 +34,7 @@ export function inspectRankingPages(pages,tour,current,{today=new Date().toISOSt
  if(rows.length!==100||rows.some((r,i)=>r.rank!==i+1))problems.push('incomplete-top-100');
  const dates=[...new Set(rows.map(r=>r.rankingDate))],rankingDate=dates.length===1?dates[0]:null;
  if(!rankingDate)problems.push('mixed-or-missing-issue-date');
+ if(requestedDate!==null&&rankingDate!==requestedDate)problems.push('requested-date-not-honored');
  if(rankingDate){
   if(rankingDate>today)problems.push('future-issue-date');
   if(Date.parse(today)-Date.parse(rankingDate)>14*86400000)problems.push('old-issue-date');
@@ -42,7 +43,7 @@ export function inspectRankingPages(pages,tour,current,{today=new Date().toISOSt
  if(rows.some(r=>r.playerId===null))problems.push('unresolved-identities');
  const known=rows.map(r=>r.playerId).filter(Boolean);if(new Set(known).size!==known.length)problems.push('identity-collision');
  if(rankingDate===old?.rankingDate&&rows.some(r=>r.playerId&&old.rows.some(o=>o.playerId===r.playerId&&(o.rank!==r.rank||o.points!==r.points))))problems.push('same-issue-conflict');
- return {tour,rankingDate,rows,problems:[...new Set(problems)],eligibleForEditorialReview:problems.length===0,publicDataWritten:false,automaticPublication:false,independentlyVerified:false,sourcePage:'https://'+tour.toLowerCase()+'.balldontlie.io/'};
+ return {tour,rankingDate,requestedDate,rows,problems:[...new Set(problems)],eligibleForEditorialReview:problems.length===0,publicDataWritten:false,automaticPublication:false,independentlyVerified:false,sourcePage:'https://'+tour.toLowerCase()+'.balldontlie.io/'};
 }
 export async function reviewFreeRankings(current,{apiKey,freeConfirmed,fetcher=fetch,sleep=ms=>new Promise(r=>setTimeout(r,ms)),now=()=>Date.now()}={}){
  const report={startedAt:new Date(now()).toISOString(),source:'BALLDONTLIE Free',mode:'read-only',publicDataWritten:false,automaticPublication:false,requests:[],tours:[],errors:[]};
