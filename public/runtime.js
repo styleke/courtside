@@ -44,5 +44,14 @@ function publicData(input){const d=JSON.parse(JSON.stringify(input));
  const walk=o=>{if(!o||typeof o!=='object')return;for(const k of Object.keys(o)){if(k.startsWith('_')||['operatorNotes','privateNotes','verificationNote'].includes(k)){delete o[k];continue;}walk(o[k]);}};walk(d);return d;
 }
 function sameOriginURL(relative,base){const u=new URL(relative,base),b=new URL(base);if(u.origin!==b.origin||!['https:','http:'].includes(u.protocol)||u.username||u.password)throw new Error('数据地址必须与网站同源');return u.href;}
-return {validate,publicationNewer,sourceState,publicData,sameOriginURL,reviewCoverage};
+function publishedDataURL(relative,base,settings={}){
+ const b=new URL(base);
+ const brand=b.protocol==='https:'&&(b.hostname==='courtside-tennis.pages.dev'||b.hostname.endsWith('.courtside-tennis.pages.dev'));
+ if(settings.mode==='static'&&settings.publicDataOrigin==='github-pages'&&brand){
+  if(!['data/content.json','data/status.json'].includes(relative))throw new Error('未经允许的数据文件');
+  return new URL(relative,'https://styleke.github.io/courtside/').href;
+ }
+ return sameOriginURL(relative,base);
+}
+return {validate,publicationNewer,sourceState,publicData,sameOriginURL,reviewCoverage,publishedDataURL};
 });

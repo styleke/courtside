@@ -1,0 +1,74 @@
+{
+  "schemaVersion": 1,
+  "entries": [
+    {
+      "playerId": "carlos-alcaraz",
+      "fileTitle": "File:Damir Džumhur vs Carlos Alcaraz, 2025 Roland Garros, 2025-05-30 (237) (cropped) (cropped).jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Damir_D%C5%BEumhur_vs_Carlos_Alcaraz,_2025_Roland_Garros,_2025-05-30_(237)_(cropped)_(cropped).jpg",
+      "decision": "approved",
+      "objectPosition": "50% 20%",
+      "reviewedAt": "2026-10-11",
+      "reviewBasis": "Source metadata checked; head-and-shoulders composition visually reviewed. Not an official ATP/WTA headshot."
+    },
+    {
+      "playerId": "karolina-muchova",
+      "fileTitle": "File:Karolína Muchová (2023 US Open) 13 (cropped).jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Karol%C3%ADna_Muchov%C3%A1_(2023_US_Open)_13_(cropped).jpg",
+      "decision": "approved",
+      "objectPosition": "50% 20%",
+      "reviewedAt": "2026-10-11",
+      "reviewBasis": "Source metadata checked; head-and-shoulders composition visually reviewed. Not an official ATP/WTA headshot."
+    },
+    {
+      "playerId": "mirra-andreeva",
+      "fileTitle": "File:Mirra Andreeva WMQ23 (cropped).jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Mirra_Andreeva_WMQ23_(cropped).jpg",
+      "decision": "approved",
+      "objectPosition": "50% 20%",
+      "reviewedAt": "2026-10-11",
+      "reviewBasis": "Source metadata checked; head-and-shoulders composition visually reviewed. Not an official ATP/WTA headshot."
+    },
+    {
+      "playerId": "marat-safin",
+      "fileTitle": "File:Marat Safin, 2006 (cropped).jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Marat_Safin,_2006_(cropped).jpg",
+      "decision": "approved",
+      "objectPosition": "50% 20%",
+      "reviewedAt": "2026-10-11",
+      "reviewBasis": "Source metadata checked; head-and-shoulders composition visually reviewed. Not an official ATP/WTA headshot."
+    },
+    {
+      "playerId": "roger-federer",
+      "fileTitle": "File:Roger Federer 2015 (cropped).jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Roger_Federer_2015_(cropped).jpg",
+      "decision": "approved",
+      "objectPosition": "50% 20%",
+      "reviewedAt": "2026-10-11",
+      "reviewBasis": "Source metadata checked; head-and-shoulders composition visually reviewed. Not an official ATP/WTA headshot."
+    },
+    {
+      "playerId": "novak-djokovic",
+      "fileTitle": "File:Novak Djokovic Paris 2024 Olympic Games (cropped).jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Novak_Djokovic_Paris_2024_Olympic_Games_(cropped).jpg",
+      "decision": "approved",
+      "objectPosition": "50% 20%",
+      "reviewedAt": "2026-10-11",
+      "reviewBasis": "Retained licensed source as a temporary profile image; improve resolution, not labelled official or new-season."
+    },
+    {
+      "playerId": "justine-henin",
+      "fileTitle": "File:Justine Henin in 2005.jpg",
+      "sourcePage": "https://commons.wikimedia.org/wiki/File:Justine_Henin_in_2005.jpg",
+      "decision": "approved",
+      "objectPosition": "50% 20%",
+      "reviewedAt": "2026-10-11",
+      "reviewBasis": "Retained licensed source as a temporary profile image; improve resolution, not labelled official or new-season."
+    },
+    {
+      "playerId": "nikola-bartunkova",
+      "decision": "withheld",
+      "reviewedAt": "2026-10-11",
+      "reason": "Available full-body return-of-serve image is unsuitable as a formal portrait. Await a licensed headshot; do not guess or synthesize a face."
+    }
+  ]
+}

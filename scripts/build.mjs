@@ -3,13 +3,15 @@ import {readFile,writeFile,mkdir,rm,copyFile} from 'node:fs/promises';
 import {fileURLToPath} from 'node:url';import path from 'node:path';
 import Runtime from '../public/runtime.js';
 import {buildPortraits} from './build-portraits.mjs';
+import {assertFreeBuild} from './free-build-guard.mjs';
 const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
+await assertFreeBuild(root);
 const original=JSON.parse(await readFile(path.join(root,'data/content.json'),'utf8'));
 const errors=Runtime.validate(original);if(errors.length)throw new Error(errors.join('\n'));
 const data=Runtime.publicData(original),seed='window.COURTSIDE_SEED = '+JSON.stringify(data).replace(/</g,'\\u003c')+';';
 await writeFile(path.join(root,'public/data.js'),seed);
 const site=path.join(root,'dist/site');await rm(site,{recursive:true,force:true});await mkdir(path.join(site,'data'),{recursive:true});
-const config="window.COURTSIDE_CONFIG = {mode:'static',pollMs:60000};";
+const config="window.COURTSIDE_CONFIG = {mode:'static',publicDataOrigin:'github-pages',pollMs:60000};";
 let status;try{status=JSON.parse(await readFile(path.join(root,'data/automation-status.json'),'utf8'));}catch{status={generatedAt:null,automaticSourceSync:false,jobs:[]};}
 const files=['index.html','styles.css','core.js','domain-v06.js','runtime.js','app.js'];
 for(const f of files)await copyFile(path.join(root,'public',f),path.join(site,f));

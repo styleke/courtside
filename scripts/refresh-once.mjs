@@ -2,6 +2,7 @@
 import {readFile,writeFile,rename,mkdir} from 'node:fs/promises';import {fileURLToPath} from 'node:url';import path from 'node:path';
 import {Refresher,validateContent,intervalFor} from '../services/refresh.mjs';
 const root=path.dirname(path.dirname(fileURLToPath(import.meta.url))),file=path.join(root,'data/content.json');
+await (await import('./free-build-guard.mjs')).assertFreeBuild(root);
 const config=JSON.parse(await readFile(path.join(root,'config/sources.json'),'utf8'));
 let data=JSON.parse(await readFile(file,'utf8')),previous={jobs:[]};try{previous=JSON.parse(await readFile(path.join(root,'data/automation-status.json'),'utf8'));}catch{}
 const observed=()=>Date.now();let writes=0;

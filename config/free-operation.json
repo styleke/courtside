@@ -1,0 +1,10 @@
+{
+  "monthlyBudgetUSD": 0,
+  "allowPaidServices": false,
+  "allowPaidTrials": false,
+  "allowAutomaticUpgrade": false,
+  "architecture": "Cloudflare Pages static UI + existing GitHub Pages data files",
+  "dataCommitsSkipCloudflareBuild": true,
+  "accountBillingVerified": false,
+  "note": "This file constrains project code and source admission; it does not read, lock, or certify cloud-account billing settings."
+}

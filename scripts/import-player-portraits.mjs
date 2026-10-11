@@ -53,7 +53,7 @@ async function main(){
  const data=JSON.parse(await readFile(path.join(root,'data/content.json'),'utf8'));
  let previous={schemaVersion:1,photos:{}};try{previous=JSON.parse(await readFile(path.join(root,'public/player-photos.json'),'utf8'));}catch{}
  const photos={...previous.photos},report={startedAt:new Date().toISOString(),records:[],productionTennisDataChanged:false};
- const players=data.players.filter(p=>p.enName).sort((a,b)=>Number(b.followed)-Number(a.followed));
+ const players=data.players.filter(p=>p.enName&&!previous.photos?.[p.id]?.selectionLocked).sort((a,b)=>Number(b.followed)-Number(a.followed));
  const limit=Number(process.env.PHOTO_LIMIT)||players.length,selected=players.slice(0,Math.min(limit,300));
  const mapped=new Map(),entityIds=new Set();
  for(const batch of chunks(selected,40)){

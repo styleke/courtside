@@ -163,7 +163,7 @@ function sourcesModal(){
 }
 
 async function fetchJSON(relative){
- const url=R.sameOriginURL(relative,document.baseURI);const response=await fetch(url,{cache:'no-store',credentials:'same-origin',signal:AbortSignal.timeout(12000)});
+ const url=R.publishedDataURL(relative,document.baseURI,settings);const response=await fetch(url,{cache:'no-store',credentials:'omit',redirect:'error',signal:AbortSignal.timeout(12000)});
  if(!response.ok)throw new Error('资料暂不可用');if(!/json/i.test(response.headers.get('content-type')||''))throw new Error('资料格式不符');
  const text=await response.text();if(text.length>3000000)throw new Error('资料过大');return JSON.parse(text);
 }

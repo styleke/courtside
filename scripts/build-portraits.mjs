@@ -8,9 +8,15 @@ export async function buildPortraits(root,site){
  if(manifest.schemaVersion!==1||!manifest.photos||Object.keys(manifest.photos).length>1000)throw Error('Invalid portrait manifest');
  const rows=[];await mkdir(path.join(site,'images/players'),{recursive:true});
  for(const [id,p] of Object.entries(manifest.photos)){
+  if(p.displayAllowed===false)continue;
   if(p.playerId!==id||!/^images\/players\/[a-z0-9_-]+\.(jpg|png|webp)$/.test(p.src)||!p.author||!p.license||!/^https:\/\/commons\.wikimedia\.org\//.test(p.sourcePage)||!/^https:\/\/(?:creativecommons\.org|commons\.wikimedia\.org)\//.test(p.licenseUrl))throw Error('Unverified photo '+id);
   const bytes=await readFile(path.join(root,'public',p.src));if(createHash('sha256').update(bytes).digest('hex')!==p.sha256)throw Error('Photo bytes differ '+id);
   await copyFile(path.join(root,'public',p.src),path.join(site,p.src));
+  if(p.previewSrc){
+   if(!/^images\/players\/[a-z0-9_-]+\.(jpg|png|webp)$/.test(p.previewSrc)||!p.previewSha256)throw Error('Invalid preview '+id);
+   const large=await readFile(path.join(root,'public',p.previewSrc));if(createHash('sha256').update(large).digest('hex')!==p.previewSha256)throw Error('Preview bytes differ '+id);
+   await copyFile(path.join(root,'public',p.previewSrc),path.join(site,p.previewSrc));
+  }
   rows.push(`<article id="${esc(id)}"><img src="${esc(p.src)}" width="80" height="80" loading="lazy" alt="${esc(p.name)}"><div><h2>${esc(p.name)}</h2><p>${esc(p.enName)}</p><p>摄影／作者：${esc(p.author)}</p><p><a href="${esc(p.sourcePage)}">原始文件与来源</a> · <a href="${esc(p.licenseUrl)}">${esc(p.license)}</a></p><small>用于球员资料展示，缩略与圆形裁切；图片沿用原许可。不是球员对本站的代言。</small></div></article>`);
  }
  for(const f of ['photos.js','photos.css','player-photos-data.js','player-photos.json'])await copyFile(path.join(root,'public',f),path.join(site,f));
