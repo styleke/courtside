@@ -16,16 +16,16 @@ jobs:
     timeout-minutes: 4
     permissions:
       contents: write
-      actions: write
     steps:
       - uses: actions/checkout@v6
         with:
           ref: main
+          persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
           package-manager-cache: false
-      - name: Verify the bounded reviewed patch before applying any code
+      - name: Verify the exact locally reviewed patch
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -35,12 +35,9 @@ jobs:
           import base64,gzip,json,hashlib,pathlib,subprocess
           root=pathlib.Path('/tmp/scheduler-release')
           encoded=base64.b64decode(json.loads((root/'blob.json').read_text())['content']).decode('ascii')
-          # Resolve the single identified transcription error; the full digest
-          # must still match the exact locally tested patch before any execution.
           old='gvfzshrkyryrivf9';new='gvfzshrkyrznivf9'
           assert encoded.count(old)==1,'Unexpected source transport'
-          encoded=encoded.replace(old,new)
-          compressed=base64.b64decode(encoded,validate=True)
+          compressed=base64.b64decode(encoded.replace(old,new),validate=True)
           assert hashlib.sha256(compressed).hexdigest()=='25c2883266ac2acb2a81bb0d83368a19274eb51e2a296819411537496437cccc','Patch hash mismatch'
           patch=root/'scheduler.patch';patch.write_bytes(gzip.decompress(compressed))
           subprocess.run(['git','apply','--check','--unidiff-zero',str(patch)],check=True)
@@ -50,23 +47,29 @@ jobs:
           assert changed==allowed,(changed-allowed,allowed-changed)
           (root/'verified.json').write_text(json.dumps({'patchVerified':True,'files':sorted(changed),'factualDataChanged':False}))
           PY
-      - name: Run all regressions and build without changing source data or permissions
+      - name: Run all regressions and protect public data
         run: |
           npm test > /tmp/scheduler-release/tests.txt
           tail -n 12 /tmp/scheduler-release/tests.txt
           npm run build
           git diff --exit-code -- data config public
-      - name: Publish the tested scheduler and start one explicitly manual acceptance run
+      - name: Stage blob objects only; branch publication requires the authorized editor
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
-          git config user.name 'github-actions[bot]'
-          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
-          git add .github/workflows/refresh.yml .github/workflows/sync-known-results.yml .github/workflows/stage-fixture-discovery.yml .github/workflows/operation-watch.yml adapters/fixture-discovery.mjs scripts/check-operation-health.mjs scripts/sync-open-results.mjs services/operation-health.mjs tests/fixture-quality.test.cjs tests/free-maintenance.test.cjs tests/operation-health.test.cjs tests/phase1.test.cjs tests/v08.test.cjs
-          git commit -m '[CF-Pages-Skip] fix: route admitted updates through a single scheduler'
-          git push origin HEAD:main
-          gh api --method POST "repos/${GITHUB_REPOSITORY}/actions/workflows/refresh.yml/dispatches" -f ref=main
-          printf 'Acceptance trigger: workflow_dispatch, not schedule.\n'
+          python - <<'PY'
+          import pathlib,json,subprocess,hashlib,os
+          assert os.environ['GITHUB_REPOSITORY']=='styleke/courtside'
+          root=pathlib.Path('/tmp/scheduler-release');files=json.loads((root/'verified.json').read_text())['files'];entries=[]
+          for name in files:
+              data=pathlib.Path(name).read_bytes();payload=json.dumps({'content':data.decode(),'encoding':'utf-8'})
+              result=json.loads(subprocess.check_output(['gh','api','--method','POST','repos/styleke/courtside/git/blobs','--input','-'],input=payload,text=True))
+              expected=hashlib.sha1(b'blob '+str(len(data)).encode()+b'\0'+data).hexdigest()
+              assert result['sha']==expected,name
+              entries.append({'path':name,'mode':'100644','type':'blob','sha':result['sha']})
+          report={'branchChanged':False,'sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'baseTree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'entries':entries}
+          (root/'tree-entries.json').write_text(json.dumps(report,indent=2));print(json.dumps(report))
+          PY
       - uses: actions/upload-artifact@v4
         if: always()
         with:
