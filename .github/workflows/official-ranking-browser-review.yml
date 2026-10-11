@@ -13,7 +13,7 @@ jobs:
   review:
     if: github.event.repository.private == false
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 4
     steps:
       - uses: actions/checkout@v6
         with:
@@ -24,18 +24,25 @@ jobs:
           package-manager-cache: false
       - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
       - run: npx playwright install --with-deps chromium
-      - name: Read a public WTA ranking list and the ATP reports link; stop at access restrictions
+      - name: Read one official ranking page through its ordinary public controls
         run: |
           node --input-type=module <<'NODE'
           import {chromium} from 'playwright';import {mkdir,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
-          const out='/tmp/official-ranking-browser';await mkdir(out,{recursive:true});const browser=await chromium.launch();const report={startedAt:new Date().toISOString(),publicDataChanged:false,automatedCollectorEnabled:false,pages:[]};
+          const out='/tmp/official-ranking-browser';await mkdir(out,{recursive:true});const browser=await chromium.launch();
+          const report={startedAt:new Date().toISOString(),publicDataChanged:false,automatedCollectorEnabled:false,pages:[]};
           try{
             const p=await browser.newPage({viewport:{width:1440,height:1050}});
-            const url='https://www.wtatennis.com/rankings/singles';const entry={url,startedAt:new Date().toISOString()};
+            const entry={url:'https://www.wtatennis.com/rankings/singles',startedAt:new Date().toISOString()};
             try{
-              const r=await p.goto(url,{waitUntil:'domcontentloaded',timeout:30000});entry.status=r.status();if(r.status()!==200)throw Error('HTTP '+r.status());
+              const r=await p.goto(entry.url,{waitUntil:'domcontentloaded',timeout:30000});entry.status=r.status();if(r.status()!==200)throw Error('HTTP '+r.status());
               await p.locator('.js-player-item-favourite').first().waitFor({timeout:20000});
-              const consent=p.locator('#onetrust-reject-all-handler');if(await consent.isVisible())await consent.click();
+              const settings=p.locator('#onetrust-pc-btn-handler');
+              if(await settings.isVisible()){
+                await settings.click();await p.locator('#onetrust-pc-sdk').waitFor({state:'visible'});
+                const optional=p.locator('#ot-group-id-OSSTA_BG');if(await optional.isVisible())await optional.uncheck();
+                await p.locator('.save-preference-btn-handler').click();await p.locator('#onetrust-pc-sdk').waitFor({state:'hidden'});
+                entry.consent='optional cookies declined via preference controls';
+              }
               entry.beforeCount=await p.locator('.js-player-item-favourite').count();entry.beforeDate=await p.locator('section.js-rankings').getAttribute('data-date');
               await writeFile(out+'/wta-before.html',await p.content());await p.screenshot({path:out+'/wta-before.png'});
               const button=p.locator('.js-load-more');if(await button.isVisible()){
@@ -46,12 +53,9 @@ jobs:
               entry.rows=await p.locator('.js-player-item-favourite').evaluateAll(rows=>rows.map(r=>({text:r.innerText,attributes:Object.fromEntries([...r.attributes].filter(a=>a.name.startsWith('data-')).map(a=>[a.name,a.value])),links:[...r.querySelectorAll('a[href]')].map(a=>({text:a.innerText,href:a.getAttribute('href')}))})));
               const html=await p.content();await writeFile(out+'/wta-after.html',html);entry.sha256=createHash('sha256').update(html).digest('hex');
               await p.locator('.js-player-item-favourite').nth(Math.min(88,entry.afterCount-1)).scrollIntoViewIfNeeded();await p.screenshot({path:out+'/wta-last50.png'});
-            }catch(e){entry.error=String(e.message).slice(0,300);await writeFile(out+'/wta-partial.html',await p.content());}
+            }catch(e){entry.error=String(e.message).slice(0,1200);await writeFile(out+'/wta-partial.html',await p.content());await p.screenshot({path:out+'/wta-partial.png'});}
             entry.finishedAt=new Date().toISOString();report.pages.push(entry);
-            const atp={url:'https://www.atptour.com/en/media/rankings-and-stats',startedAt:new Date().toISOString()};
-            try{const r=await p.goto(atp.url,{waitUntil:'domcontentloaded',timeout:25000});atp.status=r.status();if(r.status()===200){await p.waitForTimeout(1500);const html=await p.content();await writeFile(out+'/atp-media.html',html);atp.links=await p.locator('a[href]').evaluateAll(as=>as.map(a=>({text:a.innerText,href:a.href})).filter(a=>/\.pdf/i.test(a.href)));}else atp.error='Access restricted; no bypass attempted';}catch(e){atp.error=String(e.message).slice(0,200);}
-            atp.finishedAt=new Date().toISOString();report.pages.push(atp);
-          }finally{await browser.close();report.finishedAt=new Date().toISOString();await writeFile(out+'/browser.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report.pages.map(({rows,links,...x})=>({...x,rows:rows?.length,pdfLinks:links?.length})),null,2));}
+          }finally{await browser.close();report.finishedAt=new Date().toISOString();await writeFile(out+'/browser.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report.pages.map(({rows,...x})=>({...x,rows:rows?.length})),null,2));}
           NODE
       - name: No public fields or source permissions can change
         if: always()
