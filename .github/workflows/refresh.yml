@@ -39,7 +39,7 @@ jobs:
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add data/content.json data/automation-status.json
           if ! git diff --cached --quiet; then
-            git commit -m "data: update verified snapshot and channel status"
+            git commit -m "[CF-Pages-Skip] data: update verified snapshot and channel status"
             git push origin HEAD:main
           fi
   publish:
