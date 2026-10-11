@@ -1,0 +1,43 @@
+name: Review free score sources
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/free-score-source-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  inspect:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Inspect documented public API only
+        run: |
+          mkdir -p review
+          node --input-type=module <<'NODE'
+          import {writeFile} from 'node:fs/promises';
+          const urls=[['sportscore-spec','https://sportscore.com/developers/openapi.yaml'],['sportscore-tennis','https://sportscore.com/api/widget/matches/?sport=tennis&limit=50'],['baseline-index','https://baseline-today.vercel.app/data']];
+          const report={at:new Date().toISOString(),productionModified:false,rows:[]};
+          for(const [id,url] of urls){
+            const row={id,url};
+            try{
+              const r=await fetch(url,{headers:{'User-Agent':'CourtsideSourceReview/1.0 (https://courtside-tennis.pages.dev/)'},signal:AbortSignal.timeout(15000)});row.status=r.status;row.contentType=r.headers.get('content-type');
+              if(r.ok){const text=await r.text();if(text.length>2500000)throw Error('Diagnostic payload too large');await writeFile('review/'+id+'.txt',text);row.bytes=text.length;
+                if(row.contentType?.includes('json')){const json=JSON.parse(text);row.keys=Object.keys(json);row.sample=json.matches?.slice(0,3)||json.data?.slice?.(0,3)||json;row.count=json.matches?.length??json.data?.length??null;}
+              }else await r.body?.cancel();
+            }catch(e){row.error=String(e.message);}
+            report.rows.push(row);await new Promise(r=>setTimeout(r,500));
+          }
+          console.log(JSON.stringify(report,null,2));await writeFile('review/summary.json',JSON.stringify(report,null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: free-score-source-review
+          path: review
+          retention-days: 1
