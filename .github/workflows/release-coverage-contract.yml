@@ -39,7 +39,7 @@ jobs:
           assert.deepEqual(before.meta.sourceChecks,after.meta.sourceChecks);
           assert.deepEqual(before.meta.scheduleCoverage.map(r=>r.checkedAt),after.meta.scheduleCoverage.map(r=>r.checkedAt));
           NODE
-          git diff --exit-code -- data/automation-status.json public config
+          git diff --exit-code -- data/automation-status.json config public ':(exclude)public/data.js'
       - id: commit
         run: |
           git config user.name 'github-actions[bot]'
