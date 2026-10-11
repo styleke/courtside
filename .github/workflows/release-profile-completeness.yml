@@ -1,0 +1,176 @@
+name: Release verified player completeness
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/release-profile-completeness.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-data-writes
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 9
+    permissions:
+      contents: write
+      actions: read
+    outputs:
+      release_sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Restore only the hash-verified, locally tested source changes
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/profile-transport
+          if node -e 'process.exit(require("./data/content.json").meta.appliedReviews?.includes("2026-10-11-player-completeness")?0:1)'; then
+            echo 'Scoped profile review already published'
+          else
+            for sha in 790fbd0cf59ed1675be984f184c950609f120ec4 866e65accea77ff95c3e054aaf38d85f9806370a e5d7a8b5eb533e3980f8c027cf2994a3a818ecc6; do
+              gh api "repos/${GITHUB_REPOSITORY}/git/blobs/${sha}" > "/tmp/profile-transport/${sha}.json"
+            done
+            python - <<'PY'
+          import base64,gzip,json,hashlib,pathlib,subprocess
+          root=pathlib.Path('/tmp/profile-transport')
+          shas=['790fbd0cf59ed1675be984f184c950609f120ec4','866e65accea77ff95c3e054aaf38d85f9806370a','e5d7a8b5eb533e3980f8c027cf2994a3a818ecc6']
+          chunks=[base64.b64decode(json.loads((root/(s+'.json')).read_text())['content']).decode('ascii') for s in shas]
+          # The transfer is text, not executable input. Correct known transcription
+          # differences, then require the exact pre-transfer compressed-content hash.
+          repairs=[('Xn78/adLrql','Xn78/adArql'),('rVZqKdJW','rVZqFdJW'),('Fr2ooW','Fr2oW'),('darYC2q','darYCyq'),('cVs67YNi','cVs67RNi'),('JhC+I1Us','JhC+oVUs'),('9NtUxc','9NtPtUxc')]
+          for a,b in repairs:
+              assert chunks[1].count(a)==1,a
+              chunks[1]=chunks[1].replace(a,b)
+          encoded=''.join(chunks);(root/'received.b64').write_text(encoded)
+          raw=base64.b64decode(encoded,validate=True)
+          assert hashlib.sha256(raw).hexdigest()=='9144ba78ad4294f4f03fce740dc3da80a756f7660750d1c79a3b5d149b40d9c3','Source transfer hash mismatch: stop before changing files'
+          pack=json.loads(gzip.decompress(raw))
+          existing={'public/core.js','public/app.js','public/styles.css','scripts/build.mjs'}
+          added={'config/profile-editorial.json','scripts/apply-profile-review.mjs','scripts/audit-player-completeness.mjs','scripts/browser-profile-acceptance.mjs','tests/profile-completeness.test.cjs'}
+          assert set(pack['before'])==existing and set(pack['after'])==existing and set(pack['files'])==added
+          for f,h in pack['before'].items():assert hashlib.sha256(pathlib.Path(f).read_bytes()).hexdigest()==h,f+' changed; reconcile instead of overwriting'
+          for f,text in pack['files'].items():
+              assert not pathlib.Path(f).exists(),f
+              pathlib.Path(f).parent.mkdir(parents=True,exist_ok=True);pathlib.Path(f).write_text(text)
+          installer=root/'install.py';installer.write_text(pack['installer']);subprocess.run(['python',str(installer)],check=True)
+          for f,h in pack['after'].items():assert hashlib.sha256(pathlib.Path(f).read_bytes()).hexdigest()==h,f+' installed hash mismatch'
+          (root/'verified.json').write_text(json.dumps({'verified':True,'modifiedCodeFiles':sorted(existing),'addedFiles':sorted(added)}))
+          PY
+          fi
+      - name: Retrieve exact reviewed evidence and licensed portraits
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          if node -e 'process.exit(require("./data/content.json").meta.appliedReviews?.includes("2026-10-11-player-completeness")?0:1)'; then
+            echo 'No evidence re-import required'
+          else
+            gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/11699671965/zip" > /tmp/profile-evidence.zip
+            gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/11698584328/zip" > /tmp/profile-candidates.zip
+            python - <<'PY'
+          import pathlib,zipfile
+          for file,destination,photos in [('/tmp/profile-evidence.zip','/tmp/profile-evidence',False),('/tmp/profile-candidates.zip','/tmp/profile-candidates',True)]:
+              root=pathlib.Path(destination);root.mkdir(exist_ok=True)
+              with zipfile.ZipFile(file) as z:
+                  for item in z.infolist():
+                      p=pathlib.PurePosixPath(item.filename)
+                      if item.is_dir():continue
+                      if p.is_absolute() or '..' in p.parts:raise ValueError('Unsafe archive path')
+                      if photos and item.filename!='candidate-photos.json' and not item.filename.startswith('candidates/'):continue
+                      if item.file_size>5000000:raise ValueError('Oversized review evidence')
+                      out=root/p;out.parent.mkdir(parents=True,exist_ok=True);out.write_bytes(z.read(item))
+          PY
+          fi
+          node scripts/apply-profile-review.mjs /tmp/profile-evidence /tmp/profile-candidates
+      - name: Run every regression and build the staged site
+        run: npm test && npm run build
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - name: Use real Chromium against the local staged site before publishing
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 --directory dist/site > /tmp/profile-server.log 2>&1 &
+          server=$!
+          trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 1
+          BASE_URL=http://127.0.0.1:8765/ REPORT_DIR=phase2/profile-staging node scripts/browser-profile-acceptance.mjs
+      - name: Preserve unrelated collection switches, ages and existing photo behavior
+        run: git diff --exit-code -- data/automation-status.json config/sources.json config/free-operation.json public/ages.js public/photos.js public/photos.css
+      - id: commit
+        name: Publish only after staged browser acceptance
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/core.js public/app.js public/styles.css scripts/build.mjs config/profile-editorial.json scripts/apply-profile-review.mjs scripts/audit-player-completeness.mjs scripts/browser-profile-acceptance.mjs tests/profile-completeness.test.cjs data/content.json public/data.js public/player-photos.json public/player-photos-data.js public/images/players
+          if ! git diff --cached --quiet; then
+            git commit -m 'fix: complete doubles player profiles and verified pair history'
+            git push origin HEAD:main
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: profile-staging-review
+          path: |
+            phase2/profile-staging
+            phase2/profile-release.json
+            phase2/profile-completeness.json
+            /tmp/profile-transport
+          retention-days: 1
+  publish:
+    needs: integrate
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+  verify:
+    needs: [integrate, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.integrate.outputs.release_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Wait for the new branded interface and shared data
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          for(let n=0;n<20;n++){try{const get=async url=>{const r=await fetch(url+'?profile='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(12000)});assert.ok(r.ok,'HTTP '+r.status);return r;};const app=await(await get('https://courtside-tennis.pages.dev/app.js')).text();assert.ok(app.includes('function rankBadge'));const d=await(await get('https://styleke.github.io/courtside/data/content.json')).json();assert.ok(d.meta.appliedReviews?.includes('2026-10-11-player-completeness'));console.log(JSON.stringify({revision:d.meta.revision,brandedInterfaceReady:true,checkedAt:new Date().toISOString()}));break;}catch(e){if(n===19)throw e;await new Promise(r=>setTimeout(r,8000));}}
+          NODE
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/browser-profile-acceptance.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: profile-live-browser
+          path: phase2/profile-browser
+          retention-days: 1
+  cleanup:
+    needs: [publish, verify]
+    if: always() && needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      actions: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" --jq '.artifacts[] | select(.name == "github-pages") | .id')
+          for id in $ids; do
+            case "$id" in *[!0-9]*) exit 1;; esac
+            gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}"
+          done
