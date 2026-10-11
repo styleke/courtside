@@ -6,7 +6,7 @@ on:
   schedule:
     - cron: '11 * * * *'
   workflow_run:
-    workflows: ['Sync known singles results','Stage tennis fixture discovery']
+    workflows: ['Check tennis data','Sync known singles results','Stage tennis fixture discovery']
     types: [completed]
   workflow_dispatch:
 permissions:

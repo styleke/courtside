@@ -1,59 +1,27 @@
 name: Check tennis data
 on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/refresh.yml']
   schedule:
     - cron: '11,41 * * * *'
   workflow_dispatch:
 permissions:
   contents: read
-  pages: write
-  id-token: write
 concurrency:
   group: courtside-refresh
   cancel-in-progress: false
 jobs:
-  collect:
-    if: github.event.repository.private == false && vars.COURTSIDE_COLLECTION_ENABLED == 'true'
-    runs-on: ubuntu-latest
-    timeout-minutes: 8
+  results:
+    if: github.event.repository.private == false
+    uses: ./.github/workflows/sync-known-results.yml
     permissions:
       contents: write
-    outputs:
-      collection_outcome: ${{ steps.collect.outcome }}
-    steps:
-      - uses: actions/checkout@v6
-        with:
-          ref: main
-      - uses: actions/setup-node@v6
-        with:
-          node-version: '22'
-      - run: npm test
-      - id: collect
-        continue-on-error: true
-        run: node scripts/refresh-once.mjs
-      - name: Validate last usable snapshot
-        run: npm run build
-      - name: Save data and truthful channel status
-        shell: bash
-        run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add data/content.json data/automation-status.json
-          if ! git diff --cached --quiet; then
-            git commit -m "[CF-Pages-Skip] data: update verified snapshot and channel status"
-            git push origin HEAD:main
-          fi
-  publish:
-    needs: collect
-    uses: ./.github/workflows/pages.yml
-    permissions:
-      contents: read
       pages: write
       id-token: write
-  verify_collection:
-    needs: [collect, publish]
-    if: always() && needs.collect.result != 'skipped' && needs.collect.outputs.collection_outcome != 'success'
-    runs-on: ubuntu-latest
-    steps:
-      - run: |
-          echo "::error::Some required sources were not updated. Last valid data was retained; inspect the channel log."
-          exit 1
+      actions: write
+  discovery:
+    if: github.event.repository.private == false
+    uses: ./.github/workflows/stage-fixture-discovery.yml
+    permissions:
+      contents: read

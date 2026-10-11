@@ -12,6 +12,8 @@ const channel='knownSinglesResults',at=new Date().toISOString(),previous=(health
 const job={...previous,channel,automationEnabled:true,status:'running',intervalMinutes:config.intervalMinutes,lastAttemptAt:at,sourceName:config.sourceName,scope:config.scope,upstreamUpdateCadence:config.upstreamUpdateCadence};
 const active=config.editions.filter(e=>{const t=original.tournaments.find(t=>t.id===e.tournamentId);return t&&C.day(at)>=C.addDays(t.startDate,-1)&&C.day(at)<=C.addDays(t.endDate,2);});
 const report={startedAt:at,source:config.sourceName,automaticFullCoverage:false,requests:0,applied:[],observed:true};
+const execution={event:process.env.GITHUB_EVENT_NAME||'local',runId:process.env.GITHUB_RUN_ID||null,workflow:process.env.GITHUB_WORKFLOW||null,ref:process.env.GITHUB_REF||null};
+report.execution=execution;job.execution=execution;
 try{
  if(!active.length){job.status='not-configured';job.message='当前没有已配置且仍在同步期的赛事';report.skipped='no-active-edition';}
  else{

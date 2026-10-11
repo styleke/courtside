@@ -3,8 +3,7 @@ on:
   push:
     branches: [main]
     paths: ['.github/workflows/stage-fixture-discovery.yml']
-  schedule:
-    - cron: '17,47 * * * *'
+  workflow_call:
   workflow_dispatch:
 permissions:
   contents: read

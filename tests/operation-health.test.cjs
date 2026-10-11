@@ -18,3 +18,31 @@ test('old upstream export cannot borrow fresh request time',async()=>{const {WAT
 test('unknown workflow is rejected',async()=>{const {inspectOperation}=await import('../services/operation-health.mjs');A.throws(()=>inspectOperation({file:'unapproved.yml'},{state:'active'},[],[],feed,{now}));});
 test('repeated alerts reuse their own issue',async()=>{const {notificationAction}=await import('../services/operation-health.mjs');const issue={number:3,title:'Courtside 数据更新检查',state:'open',user:{login:'github-actions[bot]'},body:'<!-- courtside-operation-watch:v1 signature=abc -->'};A.equal(notificationAction([issue],{channels:[{problems:['old']}]},'abc').action,'none');A.equal(notificationAction([issue],{channels:[{problems:['new']}]},'def').action,'update');A.equal(notificationAction([issue],{channels:[{problems:[]}]},'ok').action,'close');});
 test('unrelated issues are never edited or closed',async()=>{const {notificationAction}=await import('../services/operation-health.mjs');const x={number:9,title:'Courtside 数据更新检查',state:'open',user:{login:'styleke'},body:'manual issue'};A.equal(notificationAction([x],{channels:[{problems:['bad']}]},'x').action,'create');A.equal(notificationAction([x],{channels:[{problems:[]}]},'x').action,'none');});
+
+test('manual successes cannot close the required scheduling launch gate',async()=>{
+ const x=await check([run(1,'workflow_dispatch')],[],{requireScheduledEvidence:true});
+ A.ok(x.problems.includes('scheduled-delivery-unverified'));A.equal(x.scheduledVerified,false);
+});
+test('duplicate run IDs cannot manufacture two schedule successes',async()=>{const x=await check([run(1),run(1)]);A.equal(x.successfulScheduledRunsObserved,1);});
+test('unified scheduler checks each channel rather than the overall green result',async()=>{
+ const {WATCHED,projectChannelRun}=await import('../services/operation-health.mjs');
+ const parent={...run(1),path:'.github/workflows/refresh.yml'};
+ const jobs=[{id:1,name:'results / collect',status:'completed',conclusion:'success'},{id:2,name:'results / verify',status:'completed',conclusion:'failure'},{id:3,name:'discovery / discover',status:'completed',conclusion:'success'}];
+ A.equal(projectChannelRun(parent,jobs,WATCHED[0]).conclusion,'failure');A.equal(projectChannelRun(parent,jobs,WATCHED[1]).conclusion,'success');
+});
+test('missing or duplicate child jobs do not count as channel proof',async()=>{
+ const {WATCHED,projectChannelRun}=await import('../services/operation-health.mjs');
+ const p={...run(1),path:'.github/workflows/refresh.yml'},j={id:1,name:'discovery / discover',status:'completed',conclusion:'success'};
+ for(const jobs of [[],[j,j]]){const r=projectChannelRun(p,jobs,WATCHED[1]);A.equal(r.conclusion,'failure');A.equal(r.jobEvidenceComplete,false);}
+});
+test('the trigger type survives a successful reusable job projection',async()=>{
+ const {WATCHED,projectChannelRun}=await import('../services/operation-health.mjs');
+ const j=[{id:3,name:'discovery / discover',status:'completed',conclusion:'success'}];
+ for(const e of ['push','workflow_dispatch','schedule']){const r=projectChannelRun({...run(1,e),path:'.github/workflows/refresh.yml'},j,WATCHED[1]);A.equal(r.event,e);}
+});
+test('another workflow cannot impersonate the unified scheduler',async()=>{
+ const {WATCHED,projectChannelRun}=await import('../services/operation-health.mjs');A.equal(projectChannelRun({...run(1),path:'.github/workflows/pages.yml'},[],WATCHED[0]),null);
+});
+test('unfinished parent cannot be accepted even if its children already succeeded',async()=>{
+ const {WATCHED,projectChannelRun}=await import('../services/operation-health.mjs');const r=projectChannelRun({...run(1),path:'.github/workflows/refresh.yml',status:'in_progress'},[{name:'discovery / discover',status:'completed',conclusion:'success'}],WATCHED[1]);A.equal(r.conclusion,null);
+});
