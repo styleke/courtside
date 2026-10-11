@@ -2,7 +2,7 @@ name: Release isolated rankings and verified ages
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/release-operation-rankings.yml']
+    paths: ['.github/workflows/release-operation-rankings.yml','.github/patches/complete-verified-birthdays.mjs']
   workflow_dispatch:
 permissions:
   contents: read
