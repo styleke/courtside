@@ -1,0 +1,18 @@
+{
+  "reviewDate":"2026-10-11",
+  "scope":"Birth dates only. These are manually read public facts, not an automated ATP/WTA crawler.",
+  "players":[
+    {"id":"carlos-alcaraz","dateOfBirth":"2003-05-05","sourceUrl":"https://bnpparibasopen.com/players/detail/carlos-alcaraz"},
+    {"id":"karolina-muchova","dateOfBirth":"1996-08-21","sourceUrl":"https://www.wtatennis.com/players/322191/karolina-muchova"},
+    {"id":"mirra-andreeva","dateOfBirth":"2007-04-29","sourceUrl":"https://www.wtatennis.com/players/331809/mirra-andreeva"},
+    {"id":"nikola-bartunkova","dateOfBirth":"2006-02-25","sourceUrl":"https://www.wtatennis.com/players/330364/name"},
+    {"id":"marat-safin","dateOfBirth":"1980-01-27","sourceUrl":"https://www.atptour.com/en/players/Marat_Safin/S741/bio"},
+    {"id":"justine-henin","dateOfBirth":"1982-06-01","sourceUrl":"https://www.tennisfame.com/hall-of-famers/inductees/justine-henin"},
+    {"id":"roger-federer","dateOfBirth":"1981-08-08","sourceUrl":"https://www.tennistv.com/players/roger-federer"},
+    {"id":"novak-djokovic","dateOfBirth":"1987-05-22","sourceUrl":"https://novakdjokovic.com/en/news/other-news/happy-birthday-nole-2/"},
+    {"id":"yuliia-starodubtseva","dateOfBirth":"2000-02-17","sourceUrl":"https://www.wtatennis.com/players/325338/yuliia-starodubtseva"},
+    {"id":"yunchaokete-bu","dateOfBirth":"2002-01-19","sourceUrl":"https://www.atptour.com/es/players/bu-yunchaokete/y09v/overview"},
+    {"id":"jaume-munar","dateOfBirth":"1997-05-05","sourceUrl":"https://www.abnamro-open.nl/en/players/jaume-munar"},
+    {"id":"yue-yuan","dateOfBirth":"1998-09-25","sourceUrl":"https://www.wtatennis.com/players/324325/name"}
+  ]
+}

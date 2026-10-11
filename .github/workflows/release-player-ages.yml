@@ -1,0 +1,108 @@
+name: Publish source-backed player ages
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/release-player-ages.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-age-release
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    outputs:
+      release_sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: cp data/content.json /tmp/courtside-before-ages.json
+      - run: node scripts/apply-age-interface.mjs
+      - run: npm test
+      - name: Import full birth dates from a free structured source
+        run: node scripts/import-player-birthdays.mjs --apply
+      - name: Apply official cross-checks and resolve ranking DOB gaps
+        run: node scripts/apply-editorial-birthdays.mjs
+      - run: npm test && npm run build
+      - name: Verify no scores, rankings, follows, photos or source freshness changed
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';import Age from './public/ages.js';
+          const before=JSON.parse(await readFile('/tmp/courtside-before-ages.json','utf8')),after=JSON.parse(await readFile('data/content.json','utf8'));
+          for(const key of ['matches','tournaments','rankings','draws','tickets','activities','articles','lessons'])assert.deepEqual(after[key],before[key],key);
+          for(const key of ['sourceChecks','refreshStatus','dataVerifiedAt','scheduleCoverage','coverage'])assert.deepEqual(after.meta[key],before.meta[key],key);
+          const birthKeys=new Set(['dateOfBirth','birthPrecision','birthSourceUrl','birthCheckedAt','birthEntityRevision','birthVerification','birthStatementIds','birthCorroboratingUrl','birthReviewedOn']);
+          const strip=p=>Object.fromEntries(Object.entries(p).filter(([key])=>!birthKeys.has(key)));assert.deepEqual(after.players.map(strip),before.players.map(strip));
+          for(const table of after.rankings)assert.equal(table.rows.filter(r=>Age.of(after.players.find(p=>p.id===r.playerId))!==null).length,100);
+          console.log(JSON.stringify({revision:after.meta.revision,ages:after.players.filter(p=>Age.of(p)!==null).length,players:after.players.length,sportingFieldsChanged:false}));
+          NODE
+          git diff --exit-code -- data/automation-status.json config/sources.json public/player-photos.json
+      - id: commit
+        name: Publish only DOB data and age presentation
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/content.json public/index.html public/app.js public/styles.css scripts/build.mjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'feat: show source-backed current ages beside player names'
+            git push origin HEAD:main
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Preserve evidence and released source for review
+        if: always()
+        run: |
+          mkdir -p phase2/age
+          git archive -o phase2/age/released-source.zip HEAD
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: player-age-release
+          path: phase2/age
+          retention-days: 1
+  publish:
+    needs: integrate
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+  verify:
+    needs: [integrate, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.integrate.outputs.release_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Wait for the actual brand site and shared data
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';import {readFile,mkdir,writeFile} from 'node:fs/promises';import A from './public/ages.js';
+          const baseline=JSON.parse(await readFile('data/content.json','utf8'));let report;
+          for(let n=0;n<30;n++){try{const get=async url=>{const r=await fetch(url+'?ages='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(12000)});if(!r.ok)throw Error('HTTP '+r.status);return r;};const html=await(await get('https://courtside-tennis.pages.dev/')).text();assert.ok(html.includes('ages.js'));const app=await(await get('https://courtside-tennis.pages.dev/app.js')).text();assert.ok(app.includes('function ageTag'));const ageJS=await(await get('https://courtside-tennis.pages.dev/ages.js')).text();assert.ok(ageJS.includes('Asia/Shanghai'));const data=await(await get('https://styleke.github.io/courtside/data/content.json')).json();assert.ok(data.meta.revision>=baseline.meta.revision);for(const table of data.rankings)assert.equal(table.rows.filter(x=>A.of(data.players.find(p=>p.id===x.playerId))!==null).length,100);const status=await(await get('https://styleke.github.io/courtside/data/status.json')).json();assert.equal(status.automaticSourceSync,false);report={url:'https://courtside-tennis.pages.dev/',checkedAt:new Date().toISOString(),revision:data.meta.revision,ages:data.players.filter(p=>A.of(p)!==null).length,unknown:data.players.filter(p=>A.of(p)===null).map(p=>p.id),followed:data.players.filter(p=>p.followed).map(p=>({id:p.id,dateOfBirth:p.dateOfBirth,age:A.of(p)})),automaticTennisCollection:false,passed:true};break;}catch(e){if(n===29)throw e;await new Promise(r=>setTimeout(r,10000));}}
+          await mkdir('phase2/age-browser',{recursive:true});await writeFile('phase2/age-browser/deployment.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          NODE
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/browser-age-acceptance.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: player-age-browser
+          path: phase2/age-browser
+          retention-days: 1

@@ -1,0 +1,38 @@
+name: Stage tennis fixture discovery
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/stage-fixture-discovery.yml']
+  schedule:
+    - cron: '17,47 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-fixture-staging
+  cancel-in-progress: false
+jobs:
+  discover:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: node --test tests/age-discovery.test.cjs
+      - name: Discover candidates without publishing sporting data
+        run: node scripts/stage-fixture-discovery.mjs
+      - name: No commits, no public-feed mutation, no site rebuild
+        if: always()
+        run: git diff --exit-code -- data config public
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: fixture-discovery-review
+          path: phase2/discovery
+          retention-days: 1
