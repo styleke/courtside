@@ -1,0 +1,60 @@
+name: Release readiness checks
+on:
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/release-readiness.yml']
+permissions:
+  contents: read
+concurrency:
+  group: courtside-release-readiness
+  cancel-in-progress: false
+jobs:
+  content:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: node --test tests/source-content.test.cjs
+      - name: Inspect actual documented free tennis API responses
+        run: node scripts/probe-tennis-content.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: source-content-readiness
+          path: phase2/source-content-readiness.json
+          retention-days: 1
+  browser:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm test
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - name: Real browser checks against published website
+        env:
+          COURTSIDE_SITE_URL: https://styleke.github.io/courtside/
+        run: node scripts/browser-acceptance.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: public-browser-acceptance
+          path: phase2/browser
+          retention-days: 1
