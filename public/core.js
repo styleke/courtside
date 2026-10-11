@@ -81,7 +81,7 @@ function completedSetWins(record,sides){
 }
 
 // Country labels use sourced country codes; never infer citizenship from birthplace.
-const COUNTRY_NAMES={ESA:'萨尔瓦多',NZL:'新西兰',ARG:'阿根廷',AUS:'澳大利亚',AUT:'奥地利',BEL:'比利时',BLR:'白俄罗斯',BRA:'巴西',CAN:'加拿大',CHI:'智利',CHN:'中国',CRO:'克罗地亚',CZE:'捷克',DEN:'丹麦',ESP:'西班牙',FRA:'法国',GBR:'英国',GER:'德国',GRE:'希腊',INA:'印度尼西亚',ITA:'意大利',JPN:'日本',KAZ:'哈萨克斯坦',LAT:'拉脱维亚',MEX:'墨西哥',MON:'摩纳哥',NED:'荷兰',NOR:'挪威',PAR:'巴拉圭',PER:'秘鲁',PHI:'菲律宾',POL:'波兰',ROU:'罗马尼亚',RUS:'俄罗斯',SRB:'塞尔维亚',SUI:'瑞士',SWE:'瑞典',UKR:'乌克兰',USA:'美国',POR:'葡萄牙',EGY:'埃及',TUR:'土耳其',THA:'泰国',HUN:'匈牙利',COL:'哥伦比亚',SVK:'斯洛伐克',SLO:'斯洛文尼亚',UZB:'乌兹别克斯坦'};
+const COUNTRY_NAMES={ARM:'亚美尼亚',ESA:'萨尔瓦多',NZL:'新西兰',ARG:'阿根廷',AUS:'澳大利亚',AUT:'奥地利',BEL:'比利时',BLR:'白俄罗斯',BRA:'巴西',CAN:'加拿大',CHI:'智利',CHN:'中国',CRO:'克罗地亚',CZE:'捷克',DEN:'丹麦',ESP:'西班牙',FRA:'法国',GBR:'英国',GER:'德国',GRE:'希腊',INA:'印度尼西亚',ITA:'意大利',JPN:'日本',KAZ:'哈萨克斯坦',LAT:'拉脱维亚',MEX:'墨西哥',MON:'摩纳哥',NED:'荷兰',NOR:'挪威',PAR:'巴拉圭',PER:'秘鲁',PHI:'菲律宾',POL:'波兰',ROU:'罗马尼亚',RUS:'俄罗斯',SRB:'塞尔维亚',SUI:'瑞士',SWE:'瑞典',UKR:'乌克兰',USA:'美国',POR:'葡萄牙',EGY:'埃及',TUR:'土耳其',THA:'泰国',HUN:'匈牙利',COL:'哥伦比亚',SVK:'斯洛伐克',SLO:'斯洛文尼亚',UZB:'乌兹别克斯坦'};
 function countryName(code){return COUNTRY_NAMES[code]||code||'国籍待核验';}
 /** Parse explicitly ordered tennis scores. Unknown syntax is not partially guessed.
  * games and tiebreak entries are source-side ordered. Brackets mark a match tiebreak.

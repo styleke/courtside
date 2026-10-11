@@ -1,8 +1,31 @@
 {
-  "generatedAt": null,
+  "generatedAt": "2026-10-11T10:02:32.091Z",
   "automaticSourceSync": false,
   "schedulerRunning": false,
-  "configuredChannels": [],
+  "configuredChannels": [
+    "knownSinglesResults"
+  ],
   "freshChannels": [],
-  "jobs": []
+  "jobs": [
+    {
+      "channel": "knownSinglesResults",
+      "automationEnabled": true,
+      "status": "ok",
+      "intervalMinutes": 30,
+      "lastAttemptAt": "2026-10-11T10:02:30.968Z",
+      "sourceName": "Baseline Today / Wikipedia contributors",
+      "scope": "既有中网女单与上海男单对阵的完赛补全；不提供逐分直播、不发现日期、不更新排名或双打",
+      "upstreamUpdateCadence": "daily",
+      "lastSuccessAt": "2026-10-11T10:02:31.989Z",
+      "lastCheckAt": "2026-10-11T10:02:31.989Z",
+      "etag": null,
+      "matchedKnownMatches": 69,
+      "appliedMatches": 12,
+      "unresolvedConflicts": 0,
+      "message": "已校验已收录单打赛果",
+      "datasetFingerprint": "c976d90aeafe5c18106c013ecd585a6d0e305b3da9367aff154e9bd2aa2e3476",
+      "sourceGeneratedAt": "2026-10-11T10:02:31.649Z"
+    }
+  ],
+  "partialAutomaticSourceSync": true
 }
