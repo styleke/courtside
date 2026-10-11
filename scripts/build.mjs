@@ -13,7 +13,7 @@ await writeFile(path.join(root,'public/data.js'),seed);
 const site=path.join(root,'dist/site');await rm(site,{recursive:true,force:true});await mkdir(path.join(site,'data'),{recursive:true});
 const config="window.COURTSIDE_CONFIG = {mode:'static',publicDataOrigin:'github-pages',pollMs:60000};";
 let status;try{status=JSON.parse(await readFile(path.join(root,'data/automation-status.json'),'utf8'));}catch{status={generatedAt:null,automaticSourceSync:false,jobs:[]};}
-const files=['index.html','styles.css','core.js','domain-v06.js','runtime.js','app.js'];
+const files=['index.html','styles.css','core.js','domain-v06.js','runtime.js','ages.js','app.js'];
 for(const f of files)await copyFile(path.join(root,'public',f),path.join(site,f));
 await writeFile(path.join(site,'site-config.js'),config);await writeFile(path.join(site,'data.js'),seed);
 await writeFile(path.join(site,'data/content.json'),JSON.stringify(data));await writeFile(path.join(site,'data/status.json'),JSON.stringify(status));await writeFile(path.join(site,'.nojekyll'),'');
@@ -21,7 +21,7 @@ await buildPortraits(root,site);
 let html=await readFile(path.join(root,'public/index.html'),'utf8');
 html=html.replace('<link rel="stylesheet" href="styles.css">',`<style>${await readFile(path.join(root,'public/styles.css'),'utf8')}</style>`);
 html=html.replace('<link rel="stylesheet" href="photos.css">',`<style>${await readFile(path.join(root,'public/photos.css'),'utf8')}</style>`);
-for(const file of ['core.js','domain-v06.js','runtime.js','site-config.js','data.js','player-photos-data.js','photos.js','app.js']){
+for(const file of ['core.js','domain-v06.js','runtime.js','site-config.js','data.js','player-photos-data.js','photos.js','ages.js','app.js']){
  const text=file==='site-config.js'?"window.COURTSIDE_CONFIG = {mode:'snapshot',pollMs:60000};":await readFile(path.join(root,'public',file),'utf8');
  html=html.replace(`<script src="${file}"></script>`,`<script>${text.replace(/<\/script/gi,'<\\/script')}</script>`);
 }

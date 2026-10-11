@@ -116,3 +116,10 @@ html[data-edition="public"] [data-action="admin"],html[data-edition="public"] [d
 @media(max-width:760px){.result-context{margin:11px 12px 3px;font-size:10px}.finished-primary{padding:0 10px}.scoreboard-primary .score-player-name,.result-detail-top .scoreboard-primary .score-player-name{font-size:14px}.scoreboard-primary .score-player-en{font-size:9px}.scoreboard-primary .score-country{font-size:9px}.scoreboard-primary .score-total{font-size:20px}.scoreboard-primary .set-cell{font-size:18px}.scoreboard-primary .score-set-col{width:28px}.scoreboard-primary .score-total-col{width:32px}.scoreboard-primary .score-status-col{width:24px}.scoreboard-primary .score-name-line{gap:4px;flex-wrap:wrap}.scoreboard-primary .score-rank{font-size:9px}.finished-card .h2h-row{margin-top:8px}.scoreboard-primary .arena-score th,.scoreboard-primary .arena-score td{padding-left:6px;padding-right:6px}}
 
 .h2h-inclusion{display:block;text-align:center;margin-top:4px;color:var(--muted);font-size:10px;line-height:1.2}
+
+/* Current age stays secondary to the player's name. */
+.player-age{display:inline-block;font-size:11px!important;font-weight:500;line-height:1.7;color:var(--muted);white-space:nowrap;letter-spacing:0;vertical-align:middle}
+.rank-name-line{display:flex;align-items:center;flex-wrap:wrap;column-gap:8px;row-gap:0;min-width:0}
+.rank-name-line .player-age{background:var(--soft);border-radius:4px;padding:0 5px}
+.identity-meta .player-age{padding-left:2px;color:inherit;opacity:.85}
+@media(max-width:480px){.rank-name-line{column-gap:5px}.rank-name-line .player-age{font-size:10px!important;padding:0 4px}.identity-meta .player-age{font-size:10px!important}}
