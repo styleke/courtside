@@ -21,15 +21,21 @@ export function inspectFixtures(envelopes,data,day,{limit=200}={}){
  const candidates=[];
  for(const [key,row] of byKey){const mapping=EVENT_MAP[row.competition];const tr=mapping&&data.tournaments.find(x=>x.id===mapping[0]&&x.tour===mapping[1]);const flags=[];if(row._conflicting)flags.push('source-conflict');
   const event=tr&&day>=tr.startDate&&day<=tr.endDate?tr:null;
-  if(!event)flags.push('event-mapping-needed');if(mapping&&mapping[2]!=='单打')flags.push('team-identities-needed');
-  const ids=[findIdentity(row.home,data.players),findIdentity(row.away,data.players)];if(ids.some(x=>!x)||ids[0]===ids[1])flags.push('player-mapping-needed');
-  const existing=event&&ids.every(Boolean)&&mapping[2]==='单打'?data.matches.find(m=>m.tournamentId===event.id&&m.discipline==='单打'&&Core.matchDate(m)===day&&m.sides.flat().length===2&&ids.every(id=>m.sides.flat().includes(id))):null;
-  if(existing?.startAt&&Date.parse(existing.startAt)!==Date.parse(row.time))flags.push('time-conflict');
+  if(!event)flags.push('event-mapping-needed');
+  const parts=[row.home,row.away].map(n=>mapping?.[2]==='双打'?n.split(/\s*\/\s*/):[n]);
+  const sides=parts.map(s=>s.map(n=>findIdentity(n,data.players))),ids=sides.flat(),teamSize=mapping?.[2]==='双打'?2:1;
+  const mapped=sides.every(s=>s.length===teamSize&&s.every(Boolean))&&new Set(ids).size===ids.length;
+  if(!mapped){flags.push('player-mapping-needed');if(teamSize===2)flags.push('team-identities-needed');}
+  const pair=ss=>ss.map(s=>[...s].sort().join('+')).sort().join('|');
+  const options=event&&mapped?data.matches.filter(m=>m.tournamentId===event.id&&m.discipline===mapping[2]&&Core.matchDate(m)===day&&pair(m.sides)===pair(sides)):[];
+  const existing=options.length===1?options[0]:null;if(options.length>1)flags.push('match-identity-conflict');
+  if(existing?.startAt&&Date.parse(existing.startAt)!==Date.parse(row.time))flags.push(existing.timeKind==='notBefore'?'not-before-time-conflict':'time-conflict');
+  if(existing?.timeKind==='following')flags.push('vendor-estimate-not-official-slot');
   if(existing?.status==='finished'&&row.status!=='finished')flags.push('status-conflict');
   if(row.status==='finished')flags.push('per-set-result-unavailable');
   const id=createHash('sha256').update(key).digest('hex').slice(0,20);
-  candidates.push({candidateId:id,beijingDate:day,beijingTime:Core.clock(row.time),reportedStartAt:row.time,reportedStatus:row.status,competition:row.competition,names:[row.home,row.away],playerIds:ids,tournamentId:event?.id||null,discipline:mapping?.[2]||null,existingMatchId:existing?.id||null,sourceUrl:'https://sportscore.com'+row.url,flags,publishable:false});
+  candidates.push({candidateId:id,beijingDate:day,beijingTime:Core.clock(row.time),reportedStartAt:row.time,reportedStatus:row.status,competition:row.competition,names:[row.home,row.away],playerIds:ids,sides,identityResolved:mapped,tournamentId:event?.id||null,discipline:mapping?.[2]||null,existingMatchId:existing?.id||null,sourceUrl:'https://sportscore.com'+row.url,flags,publishable:false});
  }
  const coverage=data.meta.scheduleCoverage?.filter(x=>x.date===day).map(x=>({tournamentId:x.tournamentId,expectedKnownMatches:x.matchIds.length,matchedKnownMatches:x.matchIds.filter(id=>candidates.some(c=>c.existingMatchId===id)).length,unmatchedKnownMatchIds:x.matchIds.filter(id=>!candidates.some(c=>c.existingMatchId===id))}))||[];
- return {beijingDate:day,source:'SportScore',attributionUrl:'https://sportscore.com/',utcDates:required,candidates,warnings:[...new Set(warnings)],rejectedCount:rejected.length,coverage,summary:{beijingDayCandidates:candidates.length,matchedExisting:candidates.filter(c=>c.existingMatchId).length,newMappedSingles:candidates.filter(c=>!c.existingMatchId&&c.tournamentId&&c.playerIds.every(Boolean)&&c.discipline==='单打').length,needsIdentity:candidates.filter(c=>c.flags.includes('player-mapping-needed')).length,needsEvent:candidates.filter(c=>c.flags.includes('event-mapping-needed')).length},canPublish:false};
+ return {beijingDate:day,source:'SportScore',attributionUrl:'https://sportscore.com/',utcDates:required,candidates,warnings:[...new Set(warnings)],rejectedCount:rejected.length,coverage,summary:{beijingDayCandidates:candidates.length,matchedExisting:candidates.filter(c=>c.existingMatchId).length,newMappedSingles:candidates.filter(c=>!c.existingMatchId&&c.tournamentId&&c.playerIds.every(Boolean)&&c.discipline==='单打').length,matchedDoubles:candidates.filter(c=>c.existingMatchId&&c.discipline==='双打').length,needsIdentity:candidates.filter(c=>c.flags.includes('player-mapping-needed')).length,needsEvent:candidates.filter(c=>c.flags.includes('event-mapping-needed')).length},canPublish:false};
 }

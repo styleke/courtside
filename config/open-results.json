@@ -1,0 +1,25 @@
+{
+  "enabled": true,
+  "automationPermitted": true,
+  "sourceName": "Baseline Today / Wikipedia contributors",
+  "urlTemplate": "https://baseline-today.vercel.app/data/results-{year}.json",
+  "sourcePage": "https://baseline-today.vercel.app/data",
+  "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+  "upstreamUpdateCadence": "daily",
+  "intervalMinutes": 30,
+  "maximumRequestsPerRun": 1,
+  "maximumBytes": 12000000,
+  "scope": "既有中网女单与上海男单对阵的完赛补全；不提供逐分直播、不发现日期、不更新排名或双打",
+  "freeUse": {
+    "costUSD": 0,
+    "usageAllowed": true,
+    "noAutoUpgrade": true,
+    "quotaMode": "hard-stop",
+    "termsUrl": "https://baseline-today.vercel.app/data",
+    "checkedAt": "2026-10-11T09:31:03.998Z"
+  },
+  "editions": [
+    {"tournamentId":"shanghai-2026","providerTournamentId":754,"season":2026,"tour":"atp","tournament":"Rolex Shanghai Masters","startDate":"2026-10-07","source":"https://en.wikipedia.org/wiki/2026_Rolex_Shanghai_Masters_%E2%80%93_Singles"},
+    {"tournamentId":"beijing-wta-2026","providerTournamentId":835,"season":2026,"tour":"wta","tournament":"Beijing","startDate":"2026-09-30","source":"https://en.wikipedia.org/wiki/2026_China_Open_%E2%80%93_Women's_singles"}
+  ]
+}

@@ -15,6 +15,7 @@ export async function assertFreeBuild(root){
  if(policy.monthlyBudgetUSD!==0||policy.allowPaidServices!==false||policy.allowPaidTrials!==false||policy.allowAutomaticUpgrade!==false)throw Error('本站仅允许零新增费用配置');
  const sources=JSON.parse(await readFile(path.join(root,'config/sources.json'),'utf8'));
  const errors=validateFreeSources(sources);
+ try{const extra=JSON.parse(await readFile(path.join(root,'config/open-results.json'),'utf8'));errors.push(...validateFreeSources({knownSinglesResults:extra}));}catch(e){if(e.code!=='ENOENT')throw e;}
  for(const file of ['functions','public/_worker.js','public/_worker.js/index.js']){
   try{await access(path.join(root,file));errors.push('静态发布不允许未经审核的函数入口: '+file);}catch(e){if(e.code!=='ENOENT')throw e;}
  }

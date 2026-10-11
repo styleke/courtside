@@ -1,0 +1,109 @@
+name: Sync known singles results
+on:
+  schedule:
+    - cron: '23,53 * * * *'
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-data-writes
+  cancel-in-progress: false
+jobs:
+  collect:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    permissions:
+      contents: write
+    outputs:
+      source_outcome: ${{ steps.source.outcome }}
+      attempt_at: ${{ steps.report.outputs.at }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm test
+      - id: source
+        continue-on-error: true
+        run: node scripts/sync-open-results.mjs
+      - id: report
+        run: |
+          echo "at=$(node -e 'const s=require("./data/automation-status.json");console.log(s.jobs.find(j=>j.channel==="knownSinglesResults").lastAttemptAt)')" >> "$GITHUB_OUTPUT"
+      - run: npm run build
+      - name: Publish bounded result fields and honest channel state
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/content.json data/automation-status.json
+          if ! git diff --cached --quiet; then
+            git commit -m '[CF-Pages-Skip] data: check licensed results for existing singles matches'
+            git push origin HEAD:main
+          fi
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: known-result-check
+          path: phase2/result-sync/report.json
+          retention-days: 1
+  publish:
+    needs: collect
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+  verify:
+    needs: [collect, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Verify the served data and truthful partial scope
+        env:
+          EXPECTED_ATTEMPT_AT: ${{ needs.collect.outputs.attempt_at }}
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile} from 'node:fs/promises';
+          const expected=JSON.parse(await readFile('data/content.json','utf8'));
+          let last;
+          for(let i=0;i<6;i++){
+            try{
+              const base='https://styleke.github.io/courtside/data/';
+              const r=await fetch(base+'content.json?run='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(10000)});if(!r.ok)throw Error('Content '+r.status);const d=await r.json();
+              const sr=await fetch(base+'status.json?run='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(10000)});if(!sr.ok)throw Error('Status '+sr.status);const s=await sr.json();
+              if(d.meta.revision<expected.meta.revision||s.automaticSourceSync!==false||!s.jobs.some(j=>j.channel==='knownSinglesResults'&&j.lastAttemptAt===process.env.EXPECTED_ATTEMPT_AT))throw Error('Publication not current');
+              console.log(JSON.stringify({revision:d.meta.revision,channel:s.jobs.find(j=>j.channel==='knownSinglesResults'),fullAutomaticService:false,publicRead:true}));last=null;break;
+            }catch(e){last=e;await new Promise(r=>setTimeout(r,7000));}
+          }
+          if(last)throw last;
+          NODE
+      - name: Do not report source errors as a successful update
+        if: needs.collect.outputs.source_outcome != 'success'
+        run: exit 1
+  cleanup:
+    needs: [publish, verify]
+    if: always() && needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      actions: write
+    steps:
+      - name: Delete only this completed deployment's temporary Pages archive
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" --jq '.artifacts[] | select(.name == "github-pages") | .id')
+          for id in $ids; do
+            case "$id" in *[!0-9]*) exit 1;; esac
+            gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}"
+          done

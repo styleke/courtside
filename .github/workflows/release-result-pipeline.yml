@@ -1,0 +1,142 @@
+name: Release verified result pipeline
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/release-result-pipeline.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-data-writes
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: write
+      actions: read
+    outputs:
+      release_sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Retrieve the exact previously reviewed documents, not new unreviewed data
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          cp data/content.json /tmp/before-result-release.json
+          if node -e 'const d=require("./data/content.json");process.exit(d.meta.appliedReviews?.includes("2026-10-11-next-day-and-results")?0:1)'; then
+            echo 'Dated editorial import already committed'
+          else
+            gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/11697169654/zip" > /tmp/reviewed-days.zip
+            gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/11698436085/zip" > /tmp/reviewed-draw.zip
+            python - <<'PY'
+          import zipfile,pathlib
+          for file,destination in [('/tmp/reviewed-days.zip','/tmp/reviewed-days'),('/tmp/reviewed-draw.zip','/tmp/reviewed-draw')]:
+              root=pathlib.Path(destination);root.mkdir(exist_ok=True)
+              with zipfile.ZipFile(file) as z:
+                  for member in z.infolist():
+                      if member.is_dir(): continue
+                      if member.filename not in ['shanghai-schedule.txt','shanghai-next.txt','shanghai-draw.txt']: continue
+                      if member.file_size>3000000: raise ValueError('Evidence size rejected')
+                      (root/member.filename).write_bytes(z.read(member))
+          PY
+          fi
+      - run: node scripts/apply-dated-review.mjs /tmp/reviewed-days /tmp/reviewed-draw
+      - run: node scripts/install-result-interface.mjs
+      - run: npm test
+      - name: Fetch and apply licensed results from the actual free export
+        run: node scripts/sync-open-results.mjs
+      - run: npm test && npm run build
+      - name: Check protected data and the announced next-day schedule
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';import {readFile} from 'node:fs/promises';import Core from './public/core.js';
+          const before=JSON.parse(await readFile('/tmp/before-result-release.json','utf8')),after=JSON.parse(await readFile('data/content.json','utf8'));
+          for(const k of ['rankings','tickets','activities','articles'])assert.deepEqual(after[k],before[k],k);
+          for(const p of after.players){const b=before.players.find(q=>q.id===p.id);for(const k of ['name','enName','dateOfBirth','rank','rankDate','rankCheckedAt','points','pointsCheckedAt','followed','favorite','prospect'])assert.deepEqual(p[k],b[k],p.id+'/'+k);}
+          const tomorrow=after.matches.filter(m=>Core.matchDate(m)==='2026-10-12');assert.equal(tomorrow.length,12);const alcaraz=tomorrow.find(m=>m.sides.flat().includes('carlos-alcaraz'));assert.equal(alcaraz.startAt,'2026-10-12T18:00:00+08:00');assert.equal(alcaraz.timeKind,'notBefore');
+          const status=JSON.parse(await readFile('data/automation-status.json','utf8'));assert.equal(status.automaticSourceSync,false);assert.equal(status.jobs.find(j=>j.channel==='knownSinglesResults').status,'ok');
+          console.log(JSON.stringify({revision:after.meta.revision,addedMatches:after.matches.length-before.matches.length,nextDayMatches:tomorrow.length,newResultRecords:after.matches.filter(m=>m.fieldSources?.results?.provider==='baseline-today').length,protectedDataUnchanged:true,automaticScope:'known singles results only'}));
+          NODE
+          git diff --exit-code -- public/player-photos.json public/photos.js public/photos.css public/ages.js config/sources.json
+      - id: commit
+        name: Publish the one user-facing release without changing account settings
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/content.json data/automation-status.json public/app.js public/core.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'data: publish reviewed next-day schedule and licensed result supplementation'
+            git push origin HEAD:main
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: result-pipeline-release
+          path: |
+            phase2/day-release/editorial.json
+            phase2/result-sync/report.json
+          retention-days: 1
+  publish:
+    needs: integrate
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+  verify:
+    needs: [integrate, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.integrate.outputs.release_sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Wait for the actual branded interface and shared data
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';import {readFile,mkdir,writeFile} from 'node:fs/promises';
+          const expected=JSON.parse(await readFile('data/content.json','utf8'));let report;
+          for(let n=0;n<24;n++){try{const get=async url=>{const r=await fetch(url+'?pipeline='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(12000),redirect:'error'});if(!r.ok)throw Error('HTTP '+r.status);return r;};const app=await(await get('https://courtside-tennis.pages.dev/app.js')).text();assert.ok(app.includes('function openResultCredit'));assert.ok(app.includes('ageTag'));const d=await(await get('https://styleke.github.io/courtside/data/content.json')).json();assert.ok(d.meta.revision>=expected.meta.revision);assert.ok(d.meta.appliedReviews.includes('2026-10-11-next-day-and-results'));const status=await(await get('https://styleke.github.io/courtside/data/status.json')).json();assert.equal(status.automaticSourceSync,false);assert.equal(status.jobs.find(j=>j.channel==='knownSinglesResults').status,'ok');report={url:'https://courtside-tennis.pages.dev/',revision:d.meta.revision,partialAutomaticSourceSync:status.partialAutomaticSourceSync,knownResultChannel:status.jobs.find(j=>j.channel==='knownSinglesResults'),checkedAt:new Date().toISOString(),passed:true};break;}catch(e){if(n===23)throw e;await new Promise(r=>setTimeout(r,8000));}}
+          await mkdir('phase2/data-browser',{recursive:true});await writeFile('phase2/data-browser/deployment.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          NODE
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/browser-data-acceptance.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: result-pipeline-browser
+          path: phase2/data-browser
+          retention-days: 1
+  cleanup:
+    needs: [publish, verify]
+    if: always() && needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      actions: write
+    steps:
+      - name: Remove only this completed deployment archive; keep small review evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" --jq '.artifacts[] | select(.name == "github-pages") | .id')
+          for id in $ids; do
+            case "$id" in *[!0-9]*) exit 1;; esac
+            gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}"
+          done
