@@ -1,0 +1,44 @@
+name: Verify free release integrity
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/free-release-integrity.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Compare served image bytes with the licensed source manifest
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';import {readFile,mkdir,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
+          const base='https://courtside-tennis.pages.dev/',hash=x=>createHash('sha256').update(x).digest('hex');
+          const expected=JSON.parse(await readFile('public/player-photos.json','utf8'));
+          const report={at:new Date().toISOString(),url:base,readOnly:true,checks:[]};
+          for(const p of Object.values(expected.photos).filter(x=>x.selectionLocked&&x.displayAllowed!==false)){
+            for(const [file,sha] of [[p.src,p.sha256],[p.previewSrc,p.previewSha256]]){
+              const r=await fetch(new URL(file+'?integrity='+process.env.GITHUB_RUN_ID,base),{cache:'no-store',redirect:'error',signal:AbortSignal.timeout(12000)});const bytes=Buffer.from(await r.arrayBuffer());
+              report.checks.push({id:p.playerId,file,status:r.status,bytes:bytes.length,matchesManifest:r.status===200&&hash(bytes)===sha});
+            }
+          }
+          report.passed=report.checks.length===14&&report.checks.every(x=>x.matchesManifest);
+          await mkdir('phase2',{recursive:true});await writeFile('phase2/photo-integrity.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));assert.ok(report.passed,'Published images must match their selected licensed files');
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: free-release-integrity
+          path: phase2/photo-integrity.json
+          retention-days: 1
