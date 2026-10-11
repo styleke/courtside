@@ -1,0 +1,43 @@
+name: Review birthdays and fixture coverage
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/age-source-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Read exact public birthdays without changing the site
+        run: node scripts/import-player-birthdays.mjs
+      - name: Check documented fixture and tracker data without publishing scores
+        if: always()
+        run: |
+          node --input-type=module <<'NODE'
+          import {mkdir,writeFile} from 'node:fs/promises';
+          const dir='phase2/age';await mkdir(dir,{recursive:true});
+          const now=new Date(),day=now.toISOString().slice(0,10),prior=new Date(now.getTime()-86400000).toISOString().slice(0,10);
+          const urls=[['fixtures-prior','https://sportscore.com/api/v1/fixtures/?sport=tennis&date='+prior+'&limit=200'],['fixtures-current','https://sportscore.com/api/v1/fixtures/?sport=tennis&date='+day+'&limit=200'],['tracker-sample','https://sportscore.com/api/widget/tracker/?sport=tennis&id=23xmvvfl4zknmg8']];
+          const report={at:now.toISOString(),readOnly:true,rows:[]};
+          for(const [id,url] of urls){const row={id,url};try{const r=await fetch(url,{headers:{'User-Agent':'CourtsideSourceReview/1.0 (https://courtside-tennis.pages.dev/)'},signal:AbortSignal.timeout(15000),redirect:'error'});row.status=r.status;row.type=r.headers.get('content-type');if(r.ok){const text=await r.text();if(text.length>2000000)throw Error('oversize');await writeFile(dir+'/'+id+'.txt',text);row.bytes=text.length;}else await r.body?.cancel();}catch(e){row.error=e.message;}report.rows.push(row);await new Promise(r=>setTimeout(r,600));}
+          await writeFile(dir+'/source-requests.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report));
+          NODE
+      - name: Ensure sporting data and photo selections are unchanged
+        run: git diff --exit-code -- data public/player-photos.json config
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: birthdays-and-fixture-review
+          path: phase2/age
+          retention-days: 1
