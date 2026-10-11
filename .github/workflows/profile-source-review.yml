@@ -1,0 +1,53 @@
+name: Review doubles source evidence
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/profile-source-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+jobs:
+  review:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Capture finite editorial evidence without publishing or enabling a crawler
+        run: |
+          node --input-type=module <<'NODE'
+          import {mkdir,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
+          const out='/tmp/profile-sources';await mkdir(out,{recursive:true});
+          const targets=[
+            ['shanghai-day.html','https://en.rolexshanghaimasters.com/en/scores/schedule'],
+            ['doubles-h2h.html','https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08'],
+            ['doubles-ranking.html','https://www.tennis.com/players-rankings/atp-doubles'],
+            ['tokyo-h2h.html','https://www.tennis.com/tournaments/rakuten-japan-open-tennis-championships/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-10-05'],
+            ['usopen-h2h.html','https://www.tennis.com/tournaments/us-open/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-09-08'],
+            ['wimbledon-h2h.html','https://www.tennis.com/tournaments/wimbledon/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-07-06'],
+            ['extra-labels.json','https://www.wikidata.org/w/api.php?'+new URLSearchParams({action:'wbgetentities',format:'json',ids:'Q110904224|Q23888026|Q107652300',props:'labels|aliases|descriptions|claims',languages:'en|mul|zh|zh-hans|zh-cn|zh-hant',maxlag:'5'})]
+          ];
+          const records=[];
+          for(const [file,url] of targets){
+            const startedAt=new Date().toISOString();try{
+              const r=await fetch(url,{headers:{'User-Agent':'CourtsideEditorialReview/1.0 (https://github.com/styleke/courtside)'},signal:AbortSignal.timeout(25000),redirect:'error'});
+              const bytes=Buffer.from(await r.arrayBuffer());if(bytes.length>5000000)throw Error('Response too large');
+              if(!r.ok)throw Error('HTTP '+r.status);await writeFile(out+'/'+file,bytes);
+              records.push({file,url,status:r.status,bytes:bytes.length,sha256:createHash('sha256').update(bytes).digest('hex'),startedAt,checkedAt:new Date().toISOString()});
+            }catch(e){records.push({file,url,startedAt,error:e.message,checkedAt:new Date().toISOString()});}
+            await new Promise(r=>setTimeout(r,600));
+          }
+          await writeFile(out+'/sources.json',JSON.stringify({records,productionChanged:false,automaticCollectionEnabled:false},null,2));console.log(JSON.stringify(records,null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: doubles-editorial-evidence
+          path: /tmp/profile-sources/
+          retention-days: 1
