@@ -1,0 +1,150 @@
+name: Release isolated rankings and verified ages
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/release-operation-rankings.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-data-writes
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    permissions:
+      contents: write
+      actions: read
+      issues: write
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Install narrowly scoped tested ranking rules
+        run: |
+          python .github/patches/isolated-rankings.py
+          cp .github/patches/isolated-rankings.test.cjs tests/isolated-rankings.test.cjs
+          cp .github/patches/complete-verified-birthdays.mjs scripts/complete-verified-birthdays.mjs
+          cp data/content.json /tmp/before-birthdays.json
+      - name: Match the two missing birthdays using complete names and official ATP identifiers
+        run: node scripts/complete-verified-birthdays.mjs
+      - name: Regressions and build
+        run: npm test && npm run build
+      - name: Preserve all results, rankings, preferences, photographs and source-check timestamps
+        run: |
+          git diff --exit-code -- data/automation-status.json config public/photos.js public/photos.css public/ages.js public/player-photos.json public/player-photos-data.js public/images
+          node --input-type=module <<'NODE'
+          import {readFile} from 'node:fs/promises';import assert from 'node:assert/strict';
+          const before=JSON.parse(await readFile('/tmp/before-birthdays.json','utf8')),after=JSON.parse(await readFile('data/content.json','utf8'));
+          for(const k of Object.keys(before).filter(k=>!['meta','players'].includes(k)))assert.deepEqual(before[k],after[k],k);
+          for(const k of ['sourceChecks','refreshStatus'])assert.deepEqual(before.meta[k],after.meta[k],k);
+          const allowed=new Set(['dateOfBirth','birthPrecision','birthSourceUrl','birthCheckedAt','birthEntityRevision','birthStatementIds','birthCorroboratingUrl','birthVerification']);
+          for(const p of before.players){const q=after.players.find(x=>x.id===p.id);if(['yi-zhou','zhizhen-zhang'].includes(p.id)){for(const k of Object.keys({...p,...q}).filter(k=>!allowed.has(k)))assert.deepEqual(p[k],q[k],p.id+' '+k);}else assert.deepEqual(p,q,p.id);}
+          NODE
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - name: Existing desktop, mobile and hover features still work before publishing
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 --directory dist/site > /tmp/ops-stage.log 2>&1 &
+          server=$!
+          trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 1
+          BASE_URL=http://127.0.0.1:8765/ REPORT_DIR=phase2/ops-staging node scripts/browser-profile-acceptance.mjs
+      - name: Recheck operation recovery and its existing issue without starting another recovery
+        continue-on-error: true
+        env:
+          GH_TOKEN: ${{ github.token }}
+          ALLOW_BOUNDED_RECOVERY: 'false'
+          ALLOW_OPERATION_ISSUE: 'true'
+        run: node scripts/check-operation-health.mjs
+      - id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/runtime.js services/refresh.mjs tests/v08.test.cjs tests/isolated-rankings.test.cjs scripts/complete-verified-birthdays.mjs data/content.json public/data.js
+          if ! git diff --cached --quiet; then
+            git commit -m 'fix: independently validate tennis tours and complete verified player ages'
+            git push origin HEAD:main
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: isolated-ranking-stage
+          path: |
+            phase2/ops-staging
+            phase2/birthday-completion
+            phase2/operation-watch
+            phase2/profile-completeness.json
+          retention-days: 1
+  publish:
+    needs: integrate
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+  verify:
+    needs: [integrate,publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.integrate.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Check actual deployed runtime, birthdays and unchanged rankings
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile,mkdir,writeFile} from 'node:fs/promises';import assert from 'node:assert/strict';
+          const expected=JSON.parse(await readFile('data/content.json','utf8')),runtime=await readFile('public/runtime.js','utf8');
+          for(let n=0;n<20;n++)try{
+            const app=await fetch('https://courtside-tennis.pages.dev/runtime.js?ops='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(12000)});assert.ok(app.ok);assert.equal(await app.text(),runtime);
+            const r=await fetch('https://styleke.github.io/courtside/data/content.json?ops='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(12000)});assert.ok(r.ok);const data=await r.json();
+            assert.deepEqual(data.rankings,expected.rankings);for(const id of ['yi-zhou','zhizhen-zhang'])assert.equal(data.players.find(p=>p.id===id).dateOfBirth,expected.players.find(p=>p.id===id).dateOfBirth);
+            await mkdir('phase2/ops-live',{recursive:true});await writeFile('phase2/ops-live/network.json',JSON.stringify({at:new Date().toISOString(),revision:data.meta.revision,exactRuntime:true,rankingsPreserved:true,birthdays:data.players.filter(p=>['yi-zhou','zhizhen-zhang'].includes(p.id)).map(p=>({id:p.id,date:p.dateOfBirth,source:p.birthSourceUrl}))},null,2));break;
+          }catch(e){if(n===19)throw e;await new Promise(r=>setTimeout(r,7000));}
+          NODE
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - run: REPORT_DIR=phase2/ops-live node scripts/browser-profile-acceptance.mjs
+      - name: Browser displays the newly completed player ages
+        run: |
+          node --input-type=module <<'NODE'
+          import {chromium} from 'playwright';import {writeFile} from 'node:fs/promises';import assert from 'node:assert/strict';
+          const browser=await chromium.launch();try{const page=await browser.newPage({viewport:{width:1440,height:1000}});await page.goto('https://courtside-tennis.pages.dev/?ops-age='+Date.now(),{waitUntil:'networkidle'});await page.locator('.date-picker').fill('2026-10-12');await page.locator('.date-picker').dispatchEvent('change');const card=page.locator('[data-match-id="sh-oop-927b3edfd3126064"]').first();await card.scrollIntoViewIfNeeded();assert.match(await card.locator('[data-player-age="yi-zhou"]').first().innerText(),/21 岁/);assert.match(await card.locator('[data-player-age="zhizhen-zhang"]').first().innerText(),/29 岁/);await card.screenshot({path:'phase2/ops-live/completed-ages.png'});await writeFile('phase2/ops-live/age-ui.json',JSON.stringify({at:new Date().toISOString(),passed:true,checks:2,realPublicWebsite:true},null,2));}finally{await browser.close();}
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: isolated-ranking-live
+          path: phase2/ops-live
+          retention-days: 1
+  cleanup:
+    needs: [publish,verify]
+    if: always() && needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      actions: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" --jq '.artifacts[] | select(.name == "github-pages") | .id')
+          for id in $ids; do
+            case "$id" in *[!0-9]*) exit 1;; esac
+            gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}"
+          done
