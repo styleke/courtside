@@ -1,0 +1,97 @@
+name: Verify completed day coverage
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/release-coverage-contract.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-data-writes
+  cancel-in-progress: false
+jobs:
+  correct:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: cp data/content.json /tmp/coverage-before.json
+      - run: node scripts/repair-day-coverage.mjs
+      - run: cp scripts/day-coverage-contract.test.cjs tests/day-coverage-contract.test.cjs
+      - run: npm test && npm run build
+      - name: The correction changes no match, rank, age, photograph or source-check time
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile} from 'node:fs/promises';import assert from 'node:assert/strict';
+          const before=JSON.parse(await readFile('/tmp/coverage-before.json','utf8')),after=JSON.parse(await readFile('data/content.json','utf8'));
+          for(const k of Object.keys(before).filter(k=>k!=='meta'))assert.deepEqual(before[k],after[k],k);
+          assert.deepEqual(before.meta.sourceChecks,after.meta.sourceChecks);
+          assert.deepEqual(before.meta.scheduleCoverage.map(r=>r.checkedAt),after.meta.scheduleCoverage.map(r=>r.checkedAt));
+          NODE
+          git diff --exit-code -- data/automation-status.json public config
+      - id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add adapters/official-day.mjs data/content.json scripts/browser-data-acceptance.mjs tests/day-coverage-contract.test.cjs
+          if ! git diff --cached --quiet; then
+            git commit -m '[CF-Pages-Skip] fix: use the validated day-coverage contract without redating sources'
+            git push origin HEAD:main
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+  publish:
+    needs: correct
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+  verify:
+    needs: [correct, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.correct.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - run: node scripts/browser-data-acceptance.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: final-data-browser-check
+          path: phase2/data-browser
+          retention-days: 1
+  cleanup:
+    needs: [publish, verify]
+    if: always() && needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      actions: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" --jq '.artifacts[] | select(.name == "github-pages") | .id')
+          for id in $ids; do
+            case "$id" in *[!0-9]*) exit 1;; esac
+            gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}"
+          done

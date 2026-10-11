@@ -1,0 +1,9 @@
+/** Repair only the coverage-schema mismatch for the two already reviewed official days. */
+import {readFile,writeFile} from 'node:fs/promises';import assert from 'node:assert/strict';import R from '../public/runtime.js';
+const file='data/content.json',d=JSON.parse(await readFile(file,'utf8'));
+assert.ok(d.meta.appliedReviews?.includes('2026-10-11-next-day-and-results'));
+let changed=0;for(const date of ['2026-10-11','2026-10-12']){const row=d.meta.scheduleCoverage.find(r=>r.tournamentId==='shanghai-2026'&&r.date===date);assert.ok(row);if(row.expectedCount!==undefined){assert.equal(row.expectedCount,row.matchIds.length);assert.equal(row.checkedAt,'2026-10-11T09:24:26.693Z');row.expectedMatches=row.expectedCount;row.sourceDate=date;delete row.expectedCount;changed++;}assert.equal(R.reviewCoverage(d,date,'ATP').find(r=>r.tournamentId==='shanghai-2026').complete,true);}
+if(changed){d.meta.revision++;d.meta.updatedAt=new Date().toISOString();d.meta.updateScope='修正已核验赛程的完整性标识，不改变比赛、比分或资料核验时间';await writeFile(file,JSON.stringify(d,null,2)+'\n');}
+let adapter=await readFile('adapters/official-day.mjs','utf8');if(adapter.includes('expectedCount:doc.count')){adapter=adapter.replace('expectedCount:doc.count','sourceDate:doc.date,expectedMatches:doc.count');await writeFile('adapters/official-day.mjs',adapter);}
+let browser=await readFile('scripts/browser-data-acceptance.mjs','utf8');const anchor="ok('twelve announced Shanghai matches on October 12');";if(!browser.includes('no false missing-schedule notice')){assert.ok(browser.includes(anchor));browser=browser.replace(anchor,anchor+"assert.equal(await page.locator('#main .notice.warn').count(),0);ok('no false missing-schedule notice for the complete next day');");await writeFile('scripts/browser-data-acceptance.mjs',browser);}
+console.log(JSON.stringify({changed,revision:d.meta.revision,coverage:R.reviewCoverage(d,'2026-10-12','ATP'),checkedAtPreserved:true}));
