@@ -1,0 +1,61 @@
+name: Inspect official ranking conflict evidence
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/ranking-conflict-evidence.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-ranking-editorial-evidence
+  cancel-in-progress: false
+jobs:
+  inspect:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Snapshot current code and a finite set of official public documents
+        run: |
+          mkdir -p /tmp/ranking-evidence
+          git archive --format=zip HEAD > /tmp/ranking-evidence/source.zip
+          node --input-type=module <<'NODE'
+          import {mkdir,writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
+          const out='/tmp/ranking-evidence';
+          const urls=[
+            ['wta-singles.pdf','https://wtafiles.wtatennis.com/pdf/rankings/Singles_Numeric.pdf'],
+            ['blinkova.html','https://www.wtatennis.com/players/324267/anna-blinkova'],
+            ['wta-rankings.html','https://www.wtatennis.com/rankings/singles'],
+            ['atp-weekly.html','https://www.atptour.com/en/rankings/singles?dateWeek=2026-10-05&rankRange=0-100&region=all'],
+            ['atp-media.html','https://www.atptour.com/en/media/mediaguide']
+          ];
+          const report={at:new Date().toISOString(),commit:process.env.GITHUB_SHA,mode:'finite-editorial-review',sourceRequests:[],publicDataChanged:false};
+          for(const [file,url] of urls){
+            const entry={file,url,startedAt:new Date().toISOString()};
+            try{
+              const r=await fetch(url,{headers:{'User-Agent':'CourtsideEditorialReview/1.0 (https://courtside-tennis.pages.dev/; finite ranking conflict verification)'},redirect:'error',signal:AbortSignal.timeout(25000)});entry.status=r.status;entry.contentType=r.headers.get('content-type');
+              if(!r.ok){await r.body?.cancel();throw Error('HTTP '+r.status);}
+              const chunks=[];let bytes=0;const reader=r.body.getReader();for(;;){const {done,value}=await reader.read();if(done)break;bytes+=value.length;if(bytes>5000000){await reader.cancel();throw Error('Size limit');}chunks.push(Buffer.from(value));}
+              const body=Buffer.concat(chunks);entry.bytes=bytes;entry.sha256=createHash('sha256').update(body).digest('hex');await writeFile(out+'/'+file,body);
+            }catch(e){entry.error=String(e.message).slice(0,200);}
+            entry.checkedAt=new Date().toISOString();report.sourceRequests.push(entry);await new Promise(r=>setTimeout(r,1000));
+          }
+          await writeFile(out+'/evidence.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          NODE
+      - name: Evidence capture cannot alter public information or enable collectors
+        if: always()
+        run: git diff --exit-code -- data config public
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: official-ranking-conflict-evidence
+          path: /tmp/ranking-evidence/
+          retention-days: 1
