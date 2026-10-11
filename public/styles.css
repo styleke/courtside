@@ -129,3 +129,7 @@ html[data-edition="public"] [data-action="admin"],html[data-edition="public"] [d
 @media(max-width:760px){.scoreboard-primary .score-name-line{align-items:flex-start}.scoreboard-primary .score-player-name{font-size:13px}.scoreboard-primary .score-rank,.scoreboard-primary .player-age{font-size:9px}.snapshot-mark{font-size:8px}.profile-double-rank{font-size:19px}.h2h-coverage-note{font-size:10px}.scoreboard-primary .score-name-col{min-width:115px}.meeting-source{padding:0 8px 10px}}
 
 .h2h-row .compare-row{grid-template-columns:minmax(0,1fr) max-content minmax(0,1fr)}.h2h-row .compare-label{white-space:nowrap}.h2h-row .compare-label .icon{flex-shrink:0}
+
+/* Keep the deciding match-tiebreak column clear of the winner marker. */
+.scoreboard-primary .arena-score .score-mtb-col{width:55px}.arena-score .score-set-header{white-space:nowrap}
+@media(max-width:760px){.scoreboard-primary .arena-score .score-mtb-col{width:48px}}

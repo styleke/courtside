@@ -18,6 +18,11 @@
   if(left<margin){left=rect.left;top=rect.bottom+gap;side='below';if(top+h>vh-margin){top=rect.top-h-gap;side='above';}}
   return {left:clamp(left,margin,vw-w-margin),top:clamp(top,margin,vh-h-margin),width:w,height:h,side};
  }
+ function focusPhoto(node){
+  const direct=node?.closest?.('.photo-avatar');
+  if(direct)return direct;
+  return node?.matches?.('button,a[href],[role="button"]')?(node.querySelector?.('.photo-avatar')||null):null;
+ }
  function initPreview(doc){
   const win=doc.defaultView;if(!win||doc.documentElement.dataset.photoPreviewBound)return;
   doc.documentElement.dataset.photoPreviewBound='true';
@@ -50,8 +55,8 @@
    win.clearTimeout(hideTimer);win.clearTimeout(showTimer);showTimer=win.setTimeout(()=>show(a),140);
   });
   doc.addEventListener('pointerout',ev=>{const a=photoOf(ev.target);if(a&&!a.contains(ev.relatedTarget)){if(tip?.contains(ev.relatedTarget)){win.clearTimeout(showTimer);return;}closeSoon();}});
-  doc.addEventListener('focusin',ev=>{if(touch)return;const a=photoOf(ev.target)||ev.target?.querySelector?.('.photo-avatar');if(a?.querySelector('img'))show(a);});
-  doc.addEventListener('focusout',ev=>{const a=photoOf(ev.target)||ev.target?.querySelector?.('.photo-avatar');if(a===active)closeSoon();});
+  doc.addEventListener('focusin',ev=>{if(touch)return;const a=focusPhoto(ev.target);if(a?.querySelector('img'))show(a);});
+  doc.addEventListener('focusout',ev=>{const a=focusPhoto(ev.target);if(a===active)closeSoon();});
   doc.addEventListener('pointerdown',ev=>{touch=ev.pointerType==='touch';if(!tip?.contains(ev.target))hide();},true);
   doc.addEventListener('keydown',ev=>{touch=false;if(ev.key==='Escape'&&tip&&!tip.hidden){ev.preventDefault();ev.stopPropagation();hide();}},true);
   win.addEventListener('scroll',hide,true);win.addEventListener('resize',hide);doc.addEventListener('visibilitychange',()=>{if(doc.hidden)hide();});
@@ -65,5 +70,5 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',()=>initPreview(document),{once:true});
   else initPreview(document);
  }
- return {get,avatar,credit,initials,previewPosition};
+ return {get,avatar,credit,initials,previewPosition,focusPhoto};
 });

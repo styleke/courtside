@@ -9,3 +9,8 @@ for(const [label,rect,vw,vh] of [
 ])test('portrait preview remains inside '+label,()=>{const p=P.previewPosition(rect,vw,vh);assert.ok(p.left>=12);assert.ok(p.top>=12);assert.ok(p.left+p.width<=vw-12);assert.ok(p.top+p.height<=vh-12);});
 test('right-edge portrait opens on left',()=>assert.equal(P.previewPosition({left:1350,right:1390,top:100,bottom:140,height:40},1440,900).side,'left'));
 test('preview name is escaped and no remote image is introduced',()=>{const p={id:'test',name:'<script>x</script>',enName:'Test Player'};const m={photos:{test:{playerId:'test',src:'images/players/test.jpg',author:'Author',license:'CC BY 4.0',sourcePage:'https://commons.wikimedia.org/wiki/File:Test.jpg'}}};const html=P.avatar(p,'',m);assert.ok(html.includes('data-photo-name="&lt;script&gt;x&lt;/script&gt;"'));assert.ok(!html.includes('<script>'));assert.ok(html.includes('images/players/test.jpg'));});
+
+test('focusing a dialog does not select an unrelated descendant portrait',()=>{const photo={};const dialog={closest:()=>null,matches:()=>false,querySelector:()=>photo};assert.equal(P.focusPhoto(dialog),null);});
+test('a directly focused portrait retains keyboard enlargement',()=>{const photo={};assert.equal(P.focusPhoto({closest:()=>photo}),photo);});
+test('a focused player button retains its portrait enlargement',()=>{const photo={};assert.equal(P.focusPhoto({closest:()=>null,matches:()=>true,querySelector:()=>photo}),photo);});
+test('focus target without a portrait is harmless',()=>{assert.equal(P.focusPhoto(null),null);assert.equal(P.focusPhoto({closest:()=>null,matches:()=>true,querySelector:()=>null}),null);});
