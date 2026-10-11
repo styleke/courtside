@@ -1,0 +1,52 @@
+name: Inspect scheduled operation and ranking sources
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/operations-rankings-review.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+  actions: read
+jobs:
+  inspect:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Snapshot current source and actual scheduler evidence
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/operations-review
+          git archive --format=zip HEAD > /tmp/operations-review/source.zip
+          gh api "repos/${GITHUB_REPOSITORY}/actions/workflows?per_page=100" > /tmp/operations-review/workflows.json
+          for file in sync-known-results.yml stage-fixture-discovery.yml refresh.yml; do
+            gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/${file}/runs?per_page=5" > "/tmp/operations-review/${file}.runs.json" || true
+          done
+          node scripts/audit-player-completeness.mjs || true
+          cp phase2/profile-completeness.json /tmp/operations-review/profile-completeness.json || true
+      - name: Fetch bounded public documentation and free ranking candidates
+        run: |
+          node --input-type=module <<'NODE'
+          import {writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';
+          const out='/tmp/operations-review';
+          const targets=[['atp-weeks.json','https://atp-rankings.ishanjha.com/api/weeks'],['atp-docs.html','https://atp-rankings.ishanjha.com/api-docs'],['tml-files.json','https://stats.tennismylife.org/api/data-files'],['tml-docs.html','https://stats.tennismylife.org/tennis-match-database'],['tml-rankings.html','https://stats.tennismylife.org/ranking']];
+          const results=[];
+          async function capture(file,url){const at=new Date().toISOString();try{const r=await fetch(url,{headers:{'User-Agent':'CourtsideSourceReview/1.0 (https://github.com/styleke/courtside)'},signal:AbortSignal.timeout(15000),redirect:'error'});if(!r.ok)throw Error('HTTP '+r.status);const b=Buffer.from(await r.arrayBuffer());if(b.length>5000000)throw Error('Oversized response');await writeFile(out+'/'+file,b);results.push({file,url,checkedAt:at,bytes:b.length,sha256:createHash('sha256').update(b).digest('hex')});return b.toString('utf8');}catch(e){results.push({file,url,checkedAt:at,error:e.message});return null;}}
+          for(const [file,url] of targets){const text=await capture(file,url);if(file==='atp-weeks.json'&&text){const weeks=JSON.parse(text).weeks||[];const latest=weeks.filter(s=>/^\d{4}-\d{2}-\d{2}$/.test(s)&&s<=new Date().toISOString().slice(0,10)).sort().at(-1);if(latest)await capture('atp-latest.json','https://atp-rankings.ishanjha.com/api/week/'+latest);}await new Promise(r=>setTimeout(r,400));}
+          await writeFile(out+'/sources.json',JSON.stringify({at:new Date().toISOString(),productionChanged:false,results},null,2));console.log(JSON.stringify(results,null,2));
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: operation-and-ranking-review
+          path: /tmp/operations-review/
+          retention-days: 1
