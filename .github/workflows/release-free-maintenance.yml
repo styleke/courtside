@@ -1,0 +1,137 @@
+name: Publish free maintenance improvements
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/release-free-maintenance.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-free-maintenance
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    outputs:
+      release_sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Apply exact reviewed edits without touching sporting records
+        run: node scripts/apply-free-maintenance.mjs
+      - run: npm test
+      - name: Import seven reviewed portraits and withhold one unsuitable image
+        run: node scripts/import-curated-portraits.mjs
+      - run: npm test && npm run build
+      - id: commit
+        name: Publish only the bounded free-operation and portrait change set
+        run: |
+          git diff --exit-code -- data/content.json data/automation-status.json config/sources.json
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/runtime.js public/app.js public/photos.js public/player-photos.json public/player-photos-data.js public/images/players
+          git add scripts/build.mjs scripts/free-build-guard.mjs scripts/refresh-once.mjs scripts/import-player-portraits.mjs scripts/build-portraits.mjs
+          git add config/free-operation.json config/curated-portraits.json tests/free-maintenance.test.cjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'release: separate free data delivery and improve reviewed player portraits'
+            git push origin HEAD:main
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - name: Archive changed source and review evidence
+        if: success()
+        run: |
+          git archive --format=zip HEAD > phase2/released-source.zip
+          cp public/player-photos.json phase2/player-photos.json
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: free-maintenance-release
+          path: phase2/
+          retention-days: 1
+  publish:
+    needs: integrate
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+  verify:
+    needs: [integrate, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Wait for the actual Cloudflare release, without triggering another build
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';import {mkdir,writeFile} from 'node:fs/promises';
+          let report;const base='https://courtside-tennis.pages.dev/';
+          for(let n=0;n<30;n++){
+            try{
+              const get=async path=>{const r=await fetch(base+path+'?check='+process.env.GITHUB_RUN_ID,{cache:'no-store',signal:AbortSignal.timeout(12000)});if(!r.ok)throw Error('HTTP '+r.status);return r;};
+              const config=await(await get('site-config.js')).text();assert.ok(config.includes("publicDataOrigin:'github-pages'"));
+              const manifest=await(await get('player-photos.json')).json();assert.equal(manifest.photos['nikola-bartunkova'].displayAllowed,false);
+              const selected=Object.values(manifest.photos).filter(x=>x.selectionLocked&&x.displayAllowed!==false);assert.equal(selected.length,7);
+              const checks=[];for(const x of selected){assert.notEqual(x.src,x.previewSrc);const small=await get(x.src),large=await get(x.previewSrc);checks.push({id:x.playerId,smallStatus:small.status,largeStatus:large.status,smallBytes:(await small.arrayBuffer()).byteLength,largeBytes:(await large.arrayBuffer()).byteLength});}
+              const json=await fetch('https://styleke.github.io/courtside/data/content.json',{cache:'no-store',signal:AbortSignal.timeout(12000)});assert.equal(json.status,200);assert.equal(json.headers.get('access-control-allow-origin'),'*');const data=await json.json();
+              const status=await(await fetch('https://styleke.github.io/courtside/data/status.json')).json();assert.equal(status.automaticSourceSync,false);
+              report={url:base,checkedAt:new Date().toISOString(),portraitChecks:checks,withheld:'nikola-bartunkova',dataRevision:data.meta.revision,sharedFeedReachable:true,automaticTennisCollection:false,accountBillingVerified:false};break;
+            }catch(e){if(n===29)throw e;await new Promise(r=>setTimeout(r,10000));}
+          }
+          await mkdir('phase2/browser',{recursive:true});await writeFile('phase2/browser/deployment.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          NODE
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - name: Reuse browser acceptance against the brand address and correct published feed
+        env:
+          COURTSIDE_SITE_URL: https://courtside-tennis.pages.dev/
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile,writeFile} from 'node:fs/promises';
+          let x=await readFile('scripts/browser-acceptance.mjs','utf8');
+          const before="assert.equal(new URL(base).origin,'https://styleke.github.io');assert.equal(new URL(base).pathname,'/courtside/');";
+          if(!x.includes(before))throw Error('Unknown acceptance baseline');
+          x=x.replace(before,"assert.equal(new URL(base).origin,'https://courtside-tennis.pages.dev');assert.equal(new URL(base).pathname,'/');");
+          x=x.replaceAll("fetch('data/content.json')","fetch(window.CourtRuntime.publishedDataURL('data/content.json',document.baseURI,window.COURTSIDE_CONFIG))");
+          x=x.replaceAll("fetch('data/status.json')","fetch(window.CourtRuntime.publishedDataURL('data/status.json',document.baseURI,window.COURTSIDE_CONFIG))");
+          await writeFile('scripts/browser-brand-check.mjs',x);
+          NODE
+          node scripts/browser-brand-check.mjs
+      - name: Check the real cross-origin feed and larger hover file
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';import {writeFile} from 'node:fs/promises';import {chromium} from 'playwright';
+          const b=await chromium.launch();const p=await b.newPage({viewport:{width:1440,height:1000}});const urls=[];p.on('response',r=>{if(r.url().includes('/data/'))urls.push({url:r.url(),status:r.status()});});
+          try{
+            await p.goto('https://courtside-tennis.pages.dev/',{waitUntil:'networkidle'});
+            assert.ok(urls.some(r=>r.url==='https://styleke.github.io/courtside/data/content.json'&&r.status===200));
+            await p.locator('#nav a[href="#players"]').click();
+            const a=p.locator('.photo-avatar[data-photo-player="carlos-alcaraz"]').first();await a.scrollIntoViewIfNeeded();await a.locator('img').evaluate(x=>x.decode());const src=await a.locator('img').getAttribute('src');
+            await a.hover();const tip=p.locator('#court-photo-preview');await tip.waitFor({state:'visible'});const img=tip.locator('img');await img.evaluate(x=>x.decode());const big=await img.getAttribute('src');assert.ok(big.includes('-large-'));assert.ok(!big.endsWith(src));
+            await p.screenshot({path:'phase2/browser/curated-portrait-hover.png'});
+            const safe=await p.evaluate(()=>window.CourtPhotos.get({id:'nikola-bartunkova'},window.COURTSIDE_PHOTOS));assert.equal(safe,null);
+            const report={at:new Date().toISOString(),url:p.url(),actualRequests:urls,largePreview:big,smallThumbnail:src,withheldPhotoHidden:true,networkMocks:false,passed:true};await writeFile('phase2/browser/free-feed-and-photo.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          }finally{await b.close();}
+          NODE
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: free-maintenance-browser
+          path: phase2/browser
+          retention-days: 1
