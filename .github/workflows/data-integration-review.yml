@@ -19,7 +19,7 @@ jobs:
         with:
           node-version: '22'
           package-manager-cache: false
-      - name: Inspect bounded public documents; do not edit the public feed
+      - name: Read a licensed export and bounded official evidence without publication
         run: |
           node --input-type=module <<'NODE'
           import {mkdir,writeFile} from 'node:fs/promises';
@@ -27,17 +27,12 @@ jobs:
           import {assertFreeBuild} from './scripts/free-build-guard.mjs';
           await assertFreeBuild(process.cwd());await mkdir('phase2/integration-review',{recursive:true});
           const urls=[
-            ['shanghai-robots','https://en.rolexshanghaimasters.com/robots.txt'],
-            ['shanghai-schedule','https://en.rolexshanghaimasters.com/en/scores/schedule'],
-            ['shanghai-next','https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=8'],
-            ['shanghai-results','https://en.rolexshanghaimasters.com/en/scores/results'],
-            ['beijing-robots','https://www.chinaopen.com/robots.txt'],
-            ['beijing-home','https://www.chinaopen.com/cn/'],
-            ['sportscore-bracket','https://sportscore.com/api/widget/bracket/?sport=tennis&slug=atp-shanghai-china-men-singles'],
-            ['sportscore-fixtures','https://sportscore.com/api/v1/fixtures/?sport=tennis&date=2026-10-11&limit=200']
+            ['shanghai-draw','https://en.rolexshanghaimasters.com/en/scores/draw'],
+            ['baseline-license','https://baseline-today.vercel.app/data'],
+            ['baseline-results','https://baseline-today.vercel.app/data/results-2026.json']
           ];
           const report={startedAt:new Date().toISOString(),publicDataWritten:false,requests:[]};
-          for(const [id,url] of urls){const row={id,url};try{const r=await fetch(url,{headers:{'User-Agent':'CourtsideReview/1.0 (https://courtside-tennis.pages.dev/; bounded user-requested review)'},redirect:'error',signal:AbortSignal.timeout(12000)});row.status=r.status;row.type=r.headers.get('content-type');if(r.ok){const text=await r.text();if(Buffer.byteLength(text)>2000000)throw Error('Response exceeds review limit');row.bytes=Buffer.byteLength(text);row.sha256=createHash('sha256').update(text).digest('hex');await writeFile('phase2/integration-review/'+id+'.txt',text);}else await r.body?.cancel();}catch(e){row.error=e.message;}report.requests.push(row);await new Promise(r=>setTimeout(r,700));}
+          for(const [id,url] of urls){const row={id,url};try{const r=await fetch(url,{headers:{'User-Agent':'CourtsideReview/1.0 (https://courtside-tennis.pages.dev/; bounded review)'},redirect:'error',signal:AbortSignal.timeout(15000)});row.status=r.status;row.type=r.headers.get('content-type');row.lastModified=r.headers.get('last-modified');if(r.ok){const reader=r.body.getReader();const parts=[];let size=0;while(true){const {done,value}=await reader.read();if(done)break;size+=value.byteLength;if(size>12000000){await reader.cancel();throw Error('Response exceeds review limit');}parts.push(Buffer.from(value));}const text=Buffer.concat(parts).toString('utf8');row.bytes=size;row.sha256=createHash('sha256').update(text).digest('hex');await writeFile('phase2/integration-review/'+id+'.txt',text);}else await r.body?.cancel();}catch(e){row.error=e.message;}report.requests.push(row);await new Promise(r=>setTimeout(r,900));}
           report.finishedAt=new Date().toISOString();await writeFile('phase2/integration-review/report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
           NODE
       - run: git diff --exit-code -- data config public
