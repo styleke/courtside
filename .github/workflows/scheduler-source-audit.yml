@@ -1,0 +1,72 @@
+name: Inspect schedule delivery and fixture contracts
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/scheduler-source-audit.yml']
+  workflow_dispatch:
+  schedule:
+    - cron: '11,41 * * * *'
+permissions:
+  contents: read
+jobs:
+  heartbeat:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 1
+    steps:
+      - name: Record delivery independently of credentials, sources, checkout and deployments
+        env:
+          EVENT_NAME: ${{ github.event_name }}
+          EVENT_SCHEDULE: ${{ github.event.schedule }}
+          DEFAULT_BRANCH: ${{ github.event.repository.default_branch }}
+        run: |
+          python - <<'PY'
+          import os,json,datetime
+          print(json.dumps({'observedAt':datetime.datetime.now(datetime.timezone.utc).isoformat(),'event':os.getenv('EVENT_NAME'),'schedule':os.getenv('EVENT_SCHEDULE'),'defaultBranch':os.getenv('DEFAULT_BRANCH'),'ref':os.getenv('GITHUB_REF'),'sha':os.getenv('GITHUB_SHA'),'sourceRequests':0,'publicDataChanged':False}))
+          PY
+  inspect:
+    if: github.event.repository.private == false && github.event_name != 'schedule'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    permissions:
+      contents: read
+      actions: read
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Snapshot actual source and workflow records
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/integration-audit
+          git archive --format=zip HEAD > /tmp/integration-audit/source.zip
+          gh api "repos/${GITHUB_REPOSITORY}" --jq '{id,full_name,private,fork,archived,disabled,created_at,pushed_at,default_branch}' > /tmp/integration-audit/repository.json
+          gh api "repos/${GITHUB_REPOSITORY}/actions/workflows?per_page=100" --jq '{total_count,workflows:[.workflows[]|{id,name,path,state,created_at,updated_at}]}' > /tmp/integration-audit/workflows.json
+          for file in sync-known-results.yml stage-fixture-discovery.yml operation-watch.yml scheduler-source-audit.yml; do
+            gh api "repos/${GITHUB_REPOSITORY}/actions/workflows/${file}/runs?per_page=20" --jq '{total_count,workflow_runs:[.workflow_runs[]|{id,event,status,conclusion,head_branch,head_sha,created_at,run_started_at,updated_at,html_url}]}' > "/tmp/integration-audit/${file}.runs.json"
+          done
+          gh api "repos/${GITHUB_REPOSITORY}/actions/runs?event=schedule&per_page=20" --jq '{total_count,workflow_runs:[.workflow_runs[]|{id,path,event,status,conclusion,head_branch,head_sha,created_at,run_started_at,html_url}]}' > /tmp/integration-audit/schedule-runs.json
+      - name: Review bounded documented free responses and their actual contracts
+        run: |
+          node --input-type=module <<'NODE'
+          import {writeFile} from 'node:fs/promises';import {createHash} from 'node:crypto';import C from './public/core.js';import A from './public/ages.js';
+          const day=A.today(),dates=[C.addDays(day,-1),day,C.addDays(day,1)],root='/tmp/integration-audit',records=[];
+          const targets=[['sportscore-api.yaml','https://sportscore.com/developers/openapi.yaml'],['sportscore-terms.html','https://sportscore.com/developers/terms/'],...dates.map(d=>['fixtures-'+d+'.json','https://sportscore.com/api/v1/fixtures/?sport=tennis&date='+d+'&limit=200']),['atp-standings.json','https://sportscore.com/api/widget/standings/?sport=tennis&slug=atp'],['wta-standings.json','https://sportscore.com/api/widget/standings/?sport=tennis&slug=wta'],['player-sample.json','https://sportscore.com/api/widget/player/?sport=tennis&slug=carlos-alcaraz']];
+          for(const [file,url] of targets){try{const startedAt=new Date().toISOString();const r=await fetch(url,{headers:{'User-Agent':'CourtsideBoundedContractReview/1.0 (https://courtside-tennis.pages.dev/; no paid tier)','Accept':'application/json,text/html,application/yaml'},redirect:'error',signal:AbortSignal.timeout(18000)});if(!r.ok){await r.body?.cancel();throw Error('HTTP '+r.status);}const reader=r.body.getReader(),parts=[];let count=0;while(true){const {done,value}=await reader.read();if(done)break;count+=value.length;if(count>3000000){await reader.cancel();throw Error('oversize');}parts.push(Buffer.from(value));}const body=Buffer.concat(parts);await writeFile(root+'/'+file,body);records.push({file,url,startedAt,observedAt:new Date().toISOString(),httpStatus:r.status,bytes:count,sha256:createHash('sha256').update(body).digest('hex'),serverDate:r.headers.get('date'),age:r.headers.get('age'),cache:r.headers.get('cache-control')});}catch(e){records.push({file,url,error:e.message,observedAt:new Date().toISOString()});}await new Promise(r=>setTimeout(r,500));}
+          await writeFile(root+'/sources.json',JSON.stringify({at:new Date().toISOString(),day,records,published:false},null,2));console.log(JSON.stringify(records,null,2));
+          NODE
+      - name: Source inspection must not change public data
+        if: always()
+        run: git diff --exit-code -- data config public
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: scheduler-fixture-contract-audit
+          path: /tmp/integration-audit/
+          retention-days: 1
