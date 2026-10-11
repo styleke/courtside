@@ -1,0 +1,118 @@
+name: Verify profile information visibility
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/release-profile-visibility.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-data-writes
+  cancel-in-progress: false
+jobs:
+  refine:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    permissions:
+      contents: write
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Apply only the reviewed information-visibility patch
+        run: python .github/patches/profile-visibility.py
+      - name: Run every regression and build
+        run: npm test && npm run build
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - name: Verify staged page, keyboard hover and genuine mobile tap in Chromium
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 --directory dist/site > /tmp/visibility-server.log 2>&1 &
+          server=$!
+          trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 1
+          BASE_URL=http://127.0.0.1:8765/ REPORT_DIR=phase2/visibility-staging node scripts/browser-profile-acceptance.mjs
+      - name: Confirm no factual data, photos, source dates or collection switches changed
+        run: |
+          git diff --exit-code -- data config public/data.js public/player-photos.json public/player-photos-data.js public/images public/ages.js public/photos.css public/core.js
+          python - <<'PY'
+          import subprocess
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
+          allowed={'public/app.js','public/styles.css','public/photos.js','tests/photo-preview.test.cjs','scripts/browser-profile-acceptance.mjs'}
+          assert changed<=allowed,changed-allowed
+          PY
+      - id: commit
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/app.js public/styles.css public/photos.js tests/photo-preview.test.cjs scripts/browser-profile-acceptance.mjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'fix: keep doubles information visible and avoid modal-triggered portrait zoom'
+            git push origin HEAD:main
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: profile-visibility-staging
+          path: phase2/visibility-staging
+          retention-days: 1
+  publish:
+    needs: refine
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+  verify:
+    needs: [refine, publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.refine.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Wait for the exact new branded UI assets
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile} from 'node:fs/promises';import assert from 'node:assert/strict';
+          const files=['app.js','photos.js','styles.css'],expected=await Promise.all(files.map(f=>readFile('public/'+f,'utf8')));
+          for(let attempt=0;attempt<20;attempt++){try{for(let i=0;i<files.length;i++){const r=await fetch('https://courtside-tennis.pages.dev/'+files[i]+'?visibility='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(10000)});assert.ok(r.ok);assert.equal(await r.text(),expected[i],files[i]+' has not deployed');}console.log('Exact branded assets verified');break;}catch(e){if(attempt===19)throw e;await new Promise(r=>setTimeout(r,6000));}}
+          NODE
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - run: REPORT_DIR=phase2/visibility-live node scripts/browser-profile-acceptance.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: profile-visibility-live
+          path: phase2/visibility-live
+          retention-days: 1
+  cleanup:
+    needs: [publish, verify]
+    if: always() && needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      actions: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" --jq '.artifacts[] | select(.name == "github-pages") | .id')
+          for id in $ids; do
+            case "$id" in *[!0-9]*) exit 1;; esac
+            gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}"
+          done
