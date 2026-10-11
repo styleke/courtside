@@ -9,7 +9,7 @@ test('publication needs a newer revision; an old snapshot never rolls back',()=>
 test('same revision alone does not authorize replacement',()=>{A.equal(R.publicationNewer(copy(),copy()),false);});
 test('a deleted rank row rejects the whole publication',()=>{const d=copy();d.rankings[0].rows.splice(20,1);A.ok(R.validate(d).some(x=>x.includes('100')));});
 test('different player-card ranking and ranking table is rejected',()=>{const d=copy();d.players.find(p=>p.id===d.rankings[0].rows[0].playerId).rank=3;A.ok(R.validate(d).some(x=>x.includes('不一致')));});
-test('mixed weekly table editions are rejected',()=>{const d=copy();d.rankings[0].rankingDate='2026-10-12';A.ok(R.validate(d).some(x=>x.includes('日期不一致')));});
+test('player and table issue mismatch within one tour is rejected',()=>{const d=copy();d.rankings[0].rankingDate='2026-10-12';A.ok(R.validate(d).some(x=>x.includes('日期不一致')));});
 test('finished scores must have a full winner identity',()=>{const d=copy(),m=d.matches.find(m=>m.status==='finished');m.winnerIds=[];A.ok(R.validate(d).some(x=>x.includes('胜者')));});
 test('a player cannot oppose themself',()=>{const d=copy();d.matches[0].sides[1]=[...d.matches[0].sides[0]];A.ok(R.validate(d).some(x=>x.includes('重复')));});
 test('duplicated same-round match is rejected',()=>{const d=copy();d.matches.push({...structuredClone(d.matches[0]),id:'duplicate-test'});A.ok(R.validate(d).some(x=>x.includes('对阵重复')));});

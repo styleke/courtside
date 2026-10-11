@@ -15,8 +15,8 @@ function reviewCoverage(d,date,tour='ALL',now=Date.now()){
 
 function validate(d){
  const errors=C.validate(d);if(errors.length)return errors;
- if(d.rankings){if(d.rankings.length!==2||new Set(d.rankings.map(t=>t.tour)).size!==2)errors.push('必须同时提供ATP和WTA前100榜单');for(const t of d.rankings){errors.push(...V.rankingErrors(t,d.players));if(!C.validDate(t.rankingDate))errors.push('榜单日期无效');if(!C.safeURL(t.sourceUrl))errors.push('榜单缺少有效来源');for(let i=0;i<t.rows.length;i++){const row=t.rows[i],p=d.players.find(x=>x.id===row.playerId);if(row.rank!==i+1)errors.push('榜单必须按1至100连续排序');if(i&&row.points>t.rows[i-1].points)errors.push('积分顺序与排名矛盾');if(p&&(p.rank!==row.rank||p.points!==row.points))errors.push('球员卡与排名表数据不一致');}}
-  if(new Set(d.rankings.map(t=>t.rankingDate)).size!==1)errors.push('ATP/WTA榜单日期不一致');}
+ if(d.rankings){if(d.rankings.length!==2||new Set(d.rankings.map(t=>t.tour)).size!==2)errors.push('必须同时提供ATP和WTA前100榜单');for(const t of d.rankings){errors.push(...V.rankingErrors(t,d.players));if(!C.validDate(t.rankingDate))errors.push('榜单日期无效');if(!C.safeURL(t.sourceUrl))errors.push('榜单缺少有效来源');for(let i=0;i<t.rows.length;i++){const row=t.rows[i],p=d.players.find(x=>x.id===row.playerId);if(row.rank!==i+1)errors.push('榜单必须按1至100连续排序');if(i&&row.points>t.rows[i-1].points)errors.push('积分顺序与排名矛盾');if(p&&(p.rank!==row.rank||p.points!==row.points))errors.push('球员卡与排名表数据不一致');if(p&&p.rankDate!==t.rankingDate)errors.push('同一巡回赛球员卡与榜单日期不一致');}}
+  /* ATP and WTA publications are independently dated; each player issue matches its tour. */}
  const seen=new Set();for(const m of d.matches){
   const all=m.sides.flat();if(new Set(all).size!==all.length||m.sides[0].length!==m.sides[1].length)errors.push(m.id+': 参赛方重复或人数不一致');
   const tr=d.tournaments.find(t=>t.id===m.tournamentId);if(m.localDate&&tr&&(m.localDate<tr.startDate||m.localDate>C.addDays(tr.endDate,1)))errors.push(m.id+': 比赛日期超出本届赛事');

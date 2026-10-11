@@ -1,11 +1,11 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "revision": 15,
+    "revision": 16,
     "mode": "reviewed",
     "demoDate": "2026-10-10",
     "asOfDate": "2026-10-11",
-    "updatedAt": "2026-10-11T10:58:34.562Z",
+    "updatedAt": "2026-10-11T11:52:28.279Z",
     "dataVerifiedAt": "2026-10-10T03:50:28Z",
     "refreshMode": "verified-snapshot",
     "note": "赛程、排名与资料分别保留来源和更新时间。",
@@ -27,7 +27,7 @@
       "晋级对阵由已核实赛果与签位关联；未公布日期不归入今天。",
       "2026-10-10：WTA/ATP每日OP PDF的解析文本与缓存截图日期不一致，日程以赛事HTML、已交叉核对的发布信息为准；自动采集不得通过版本校验失败的PDF。"
     ],
-    "updateScope": "补齐中文名、许可照片与双打排名快照；核验上海赛果及固定组合交手。不更改单打周榜、年龄或关注设置。",
+    "updateScope": "球员出生日期资料；比赛、比分和排名未更新",
     "uiVersion": "0.9",
     "enrichmentVerifiedAt": "2026-10-10T03:50:28Z",
     "contentPatchedAt": "2026-10-11T07:11:26.583Z",
@@ -147,7 +147,7 @@
       "2026-10-11-next-day-and-results",
       "2026-10-11-player-completeness"
     ],
-    "birthdatesUpdatedAt": "2026-10-11T09:14:10.657Z",
+    "birthdatesUpdatedAt": "2026-10-11T11:52:28.279Z",
     "openResultsLicense": {
       "source": "https://baseline-today.vercel.app/data",
       "original": "Wikipedia contributors",
@@ -3380,7 +3380,17 @@
       "nicknames": [],
       "externalIds": {
         "atp": "z0cq"
-      }
+      },
+      "dateOfBirth": "2005-03-14",
+      "birthPrecision": "day",
+      "birthSourceUrl": "https://www.wikidata.org/wiki/Q123392404#P569",
+      "birthCheckedAt": "2026-10-11T11:52:28.279Z",
+      "birthEntityRevision": 2555108443,
+      "birthVerification": "atp-id-and-official-cross-check",
+      "birthStatementIds": [
+        "Q123392404$7316ec8f-44ad-2eae-3147-57bb55ecb6e7"
+      ],
+      "birthCorroboratingUrl": "https://en.rolexshanghaimasters.com/en/players/yi-zhou/z0cq"
     },
     {
       "id": "lorenzo-musetti",
@@ -9741,7 +9751,17 @@
       "nicknames": [],
       "externalIds": {
         "atp": "z371"
-      }
+      },
+      "dateOfBirth": "1996-10-16",
+      "birthPrecision": "day",
+      "birthSourceUrl": "https://www.wikidata.org/wiki/Q21623382#P569",
+      "birthCheckedAt": "2026-10-11T11:52:28.279Z",
+      "birthEntityRevision": 2547964327,
+      "birthVerification": "atp-id-and-official-cross-check",
+      "birthStatementIds": [
+        "Q21623382$AC43E6C1-1E74-4770-805A-DCE5404AEBBD"
+      ],
+      "birthCorroboratingUrl": "https://www.abnamro-open.nl/tennis/spelers/zhizhen-zhang"
     },
     {
       "id": "constantin-frantzen",

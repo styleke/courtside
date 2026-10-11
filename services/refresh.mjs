@@ -25,12 +25,14 @@ export function applyFeed(current,channel,feed,now=Date.now()){
  if(Date.parse(feed.observedAt)>now+300000)throw new Error('拒绝未来时间的数据');
  const previous=current.meta.feedChecks?.[channel]?.observedAt;if(previous&&Date.parse(feed.observedAt)<Date.parse(previous))throw new Error('拒绝较旧的来源版本');
  const next=COPY(current),collections=CHANNELS[channel].collections;let changed=0;
+ if(channel==='rankings'&&Array.isArray(feed.changes.rankings)){const tours=new Set(feed.changes.rankings.map(t=>t.tour));if((feed.changes.players||[]).some(p=>!tours.has(current.players.find(x=>x.id===p.id)?.tour||p.tour)))throw new Error('排名来源不能修改未更新巡回赛的球员');}
  for(const key of Object.keys(feed.changes))if(!collections.includes(key))throw new Error(`该通道不能修改 ${key}`);
  for(const key of collections){const incoming=feed.changes[key];if(incoming==null)continue;if(!Array.isArray(incoming))throw new Error(`${key}需要数组`);
   if(key==='rankings'){
-   if(incoming.length!==2||new Set(incoming.map(t=>t.tour)).size!==2)throw new Error('排名发布必须同时包含ATP/WTA完整前100');
-   for(const table of incoming){const errs=V6.rankingErrors(table,next.players);if(errs.length)throw new Error(errs.join(';'));const old=next.rankings?.find(t=>t.tour===table.tour);if(old&&table.rankingDate<old.rankingDate)throw new Error('拒绝旧一期排名');}
-   next.rankings=COPY(incoming);for(const q of next.players){if(q.careerStatus!=='retired'){q.rank=null;q.points=null;q.rankChange=null;}}for(const table of incoming)for(const row of table.rows){const q=next.players.find(p=>p.id===row.playerId);Object.assign(q,{rank:row.rank,points:row.points,rankChange:row.change??null,rankDate:table.rankingDate,rankCheckedAt:feed.observedAt,rankSourceUrl:table.sourceUrl,pointsSourceUrl:table.sourceUrl,pointsCheckedAt:feed.observedAt});}changed+=200;continue;
+   if(!incoming.length||incoming.length>2||new Set(incoming.map(t=>t.tour)).size!==incoming.length||incoming.some(t=>!['ATP','WTA'].includes(t.tour)))throw new Error('每次更新须提供对应巡回赛的完整前100，不能重复或混入其他榜单');
+   const affected=new Set(incoming.map(t=>t.tour));
+   for(const table of incoming){if(!Core.validDate(table.rankingDate)||table.rankingDate>Core.day(new Date(now).toISOString()))throw new Error('榜单日期无效或来自未来');const errs=V6.rankingErrors(table,next.players);if(errs.length)throw new Error(errs.join(';'));const old=next.rankings?.find(t=>t.tour===table.tour);if(old&&table.rankingDate<old.rankingDate)throw new Error('拒绝旧一期排名');}
+   next.rankings=(next.rankings||[]).map(t=>COPY(incoming.find(n=>n.tour===t.tour)||t));for(const q of next.players){if(affected.has(q.tour)&&q.careerStatus!=='retired'){q.rank=null;q.points=null;q.rankChange=null;}}for(const table of incoming)for(const row of table.rows){const q=next.players.find(p=>p.id===row.playerId);Object.assign(q,{rank:row.rank,points:row.points,rankChange:row.change??null,rankDate:table.rankingDate,rankCheckedAt:feed.observedAt,rankSourceUrl:table.sourceUrl,pointsSourceUrl:table.sourceUrl,pointsCheckedAt:feed.observedAt});}changed+=incoming.reduce((sum,t)=>sum+t.rows.length,0);continue;
   }
   if(!next[key])next[key]=[];
   for(const item of incoming){if(!item.id)throw new Error('条目缺少ID');if(channel==='rankings'&&key==='players'&&next.players.some(p=>p.id===item.id)&&Object.keys(item).some(k=>!['id','name','enName','country','tour','rank','points','rankChange','rankDate','rankSourceUrl','rankCheckedAt','pointsSourceUrl','pointsCheckedAt'].includes(k)))throw new Error('排名来源越权修改球员资料');const i=next[key].findIndex(x=>x.id===item.id);if(i<0){next[key].push(COPY(item));changed++;}else{const candidate=key==='players'?mergeRecord(next[key][i],item,channel):{...next[key][i],...item};for(const f of next[key][i]._locks||[])candidate[f]=next[key][i][f];if(JSON.stringify(candidate)!==JSON.stringify(next[key][i]))changed++;next[key][i]=candidate;}}
@@ -42,10 +44,10 @@ export function applyFeed(current,channel,feed,now=Date.now()){
  const mapping={schedule:'scheduleLastCheckedAt',results:'resultsLastCheckedAt',draws:'drawsLastCheckedAt',rankings:'rankingLastCheckedAt',broadcasts:'broadcastLastCheckedAt',tickets:'ticketsLastCheckedAt',profiles:'profilesLastCheckedAt'};
  const fields=feed.scope?.fields||(channel==='scores'?[]:[channel]);
  next.meta.sourceChecks={...next.meta.sourceChecks};
- const scopes=feed.scope?.tournaments||feed.scope?.tours||[channel];
+ const scopes=channel==='rankings'?feed.changes.rankings.map(t=>t.tour):(feed.scope?.tournaments||feed.scope?.tours||[channel]);
  for(const scope of scopes){const old=next.meta.sourceChecks[scope]||{};next.meta.sourceChecks[scope]={...old};for(const field of fields)if(mapping[field])next.meta.sourceChecks[scope][field]=feed.observedAt;}
  // Legacy global fields remain scoped to exactly the fields supplied by this feed.
- for(const field of fields)if(channel!=='scores'&&mapping[field])next.meta.refreshStatus[mapping[field]]=feed.observedAt;
+ for(const field of fields)if(channel!=='scores'&&!(channel==='rankings'&&feed.changes.rankings.length===1)&&mapping[field])next.meta.refreshStatus[mapping[field]]=feed.observedAt;
 
  return next;
 }
