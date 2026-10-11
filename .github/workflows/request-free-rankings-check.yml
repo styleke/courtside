@@ -1,0 +1,23 @@
+name: Request confirmed free ranking check
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/request-free-rankings-check.yml']
+permissions:
+  actions: write
+concurrency:
+  group: courtside-request-free-ranking-check
+  cancel-in-progress: false
+jobs:
+  request:
+    if: github.repository == 'styleke/courtside' && github.event.repository.private == false && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    steps:
+      - name: Dispatch the read-only review after confirmed FREE plans and secret storage
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          set -euo pipefail
+          printf '%s' '{"ref":"main","inputs":{"free_plan_confirmed":true}}' | gh api --method POST repos/styleke/courtside/actions/workflows/free-rankings-review.yml/dispatches --input -
+          echo 'Requested one read-only ranking check. No public data is changed by this dispatcher.'
