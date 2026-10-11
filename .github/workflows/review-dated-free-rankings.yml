@@ -1,0 +1,69 @@
+name: Review explicitly dated free rankings
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/review-dated-free-rankings.yml']
+permissions:
+  contents: read
+concurrency:
+  group: courtside-free-ranking-review
+  cancel-in-progress: false
+jobs:
+  review:
+    if: github.repository == 'styleke/courtside' && github.event.repository.private == false && github.run_number == 1 && github.run_attempt == 1
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Compare the two dated FREE endpoints without editing public data
+        env:
+          BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile,writeFile,mkdir} from 'node:fs/promises';
+          import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+          import {assertFreeBuild} from './scripts/free-build-guard.mjs';
+          import {reviewFreeRankings} from './adapters/free-ranking-review.mjs';
+          await assertFreeBuild(process.cwd());
+          const bytes=await readFile('data/content.json'),current=JSON.parse(bytes),actualRequests=[],seen=new Set();
+          const key=process.env.BDL_API_KEY,issueDate='2026-10-05';
+          const allowed=new Set(['https://api.balldontlie.io/atp/v1/rankings','https://api.balldontlie.io/wta/v1/rankings']);
+          const result=await reviewFreeRankings(current,{apiKey:key,freeConfirmed:true,fetcher:async(url,options)=>{
+            const u=new URL(url);assert.ok(allowed.has(u.origin+u.pathname));assert.equal(u.searchParams.get('per_page'),'100');
+            assert.ok(!u.searchParams.has('cursor')&&!seen.has(u.pathname)&&actualRequests.length<2);
+            seen.add(u.pathname);u.searchParams.set('date',issueDate);actualRequests.push(u.href);
+            return fetch(u,options);
+          }});
+          assert.equal(result.requests.length,actualRequests.length);
+          result.requests.forEach((r,i)=>r.url=actualRequests[i]);
+          result.requestedIssueDate=issueDate;result.currentContentSha256=createHash('sha256').update(bytes).digest('hex');
+          for(const t of result.tours){
+            if(t.rows.length&&t.rankingDate!==issueDate){t.problems.push('requested-date-not-honored');t.eligibleForEditorialReview=false;}
+            const prior=current.rankings.find(x=>x.tour===t.tour);
+            t.comparedWithIssueDate=prior.rankingDate;
+            t.differences=t.rows.flatMap(r=>{const old=prior.rows.find(x=>x.playerId===r.playerId);return old&&(old.rank!==r.rank||old.points!==r.points)?[{playerId:r.playerId,enName:r.enName,current:{rank:old.rank,points:old.points,date:prior.rankingDate},candidate:{rank:r.rank,points:r.points,date:r.rankingDate}}]:[];});
+          }
+          assert.ok(bytes.equals(await readFile('data/content.json')));
+          if(typeof key==='string'&&key.length>=8)assert.ok(!JSON.stringify(result).includes(key));
+          const root='phase2/dated-free-rankings';await mkdir(root,{recursive:true});
+          await writeFile(root+'/report.json',JSON.stringify(result,null,2));
+          const snapshot={rankings:current.rankings,players:current.players.map(p=>({id:p.id,name:p.name,enName:p.enName,tour:p.tour,country:p.country,aliases:p.aliases,externalIds:p.externalIds,rank:p.rank,points:p.points,rankingDate:p.rankingDate}))};
+          await writeFile(root+'/current-ranking-context.json',JSON.stringify(snapshot,null,2));
+          console.log(JSON.stringify({status:result.status,requests:result.requests.map(r=>({url:r.url,status:r.status})),requestedIssueDate:issueDate,tours:result.tours.map(t=>({tour:t.tour,date:t.rankingDate,rows:t.rows.length,problems:t.problems,differences:t.differences.length})),errors:result.errors,publicDataWritten:false},null,2));
+          if(result.status==='error')process.exitCode=1;
+          NODE
+      - name: Confirm all published data and collection permissions remain unchanged
+        if: always()
+        run: git diff --exit-code -- data public config
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: dated-free-ranking-review
+          path: phase2/dated-free-rankings/
+          retention-days: 1
