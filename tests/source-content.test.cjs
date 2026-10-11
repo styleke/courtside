@@ -1,0 +1,8 @@
+const {test}=require('node:test');const assert=require('node:assert/strict');
+const load=()=>import('../scripts/probe-tennis-content.mjs');
+test('a football namesake is not a tennis player',async()=>{const {inspectTennisBody:f}=await load();const x=f({player:[{idPlayer:'123',strPlayer:'Carlos Alcaraz',strSport:'Soccer'}]},{kind:'players',name:'Carlos Alcaraz'});assert.equal(x.valid,false);assert.match(x.reason,/sport/);});
+test('HTTP 200 with no events does not mean there are no matches',async()=>{const {inspectTennisBody:f}=await load();const x=f({events:null},{date:'2026-10-11'});assert.equal(x.valid,false);assert.equal(x.reason,'no_data_returned');});
+test('event date must match requested date',async()=>{const {inspectTennisBody:f}=await load();const x=f({events:[{idEvent:'1',strSport:'Tennis',dateEvent:'2026-10-10',strHomeTeam:'A',strAwayTeam:'B'}]},{date:'2026-10-11'});assert.equal(x.valid,false);assert.match(x.reason,/date/);});
+test('a tournament title alone is not an individual match',async()=>{const {inspectTennisBody:f}=await load();const x=f({events:[{idEvent:'1',strSport:'Tennis',dateEvent:'2026-10-11',strEvent:'Shanghai Masters'}]},{date:'2026-10-11'});assert.equal(x.valid,false);});
+test('one good row never certifies an entire schedule',async()=>{const {inspectTennisBody:f}=await load();const x=f({events:[{idEvent:'1',strSport:'Tennis',dateEvent:'2026-10-11',strHomeTeam:'A',strAwayTeam:'B'}]},{date:'2026-10-11'});assert.equal(x.valid,true);assert.equal(x.completeScheduleVerified,false);assert.equal(x.perSetScoresVerified,false);});
+test('JSON error body is not data',async()=>{const {inspectTennisBody:f}=await load();assert.equal(f({error:'quota exceeded'}).valid,false);});
