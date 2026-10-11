@@ -1,6 +1,18 @@
 /* Transport-independent publication checks. Pure functions shared by browser and jobs. */
 (function(root,factory){const api=factory(typeof module==='object'&&module.exports?require('./core.js'):root.CourtCore,typeof module==='object'&&module.exports?require('./domain-v06.js'):root.CourtV6);if(typeof module==='object'&&module.exports)module.exports=api;else root.CourtRuntime=api;})(typeof globalThis!=='undefined'?globalThis:this,function(C,V){
 'use strict';
+function reviewCoverage(d,date,tour='ALL',now=Date.now()){
+ const ids=d.meta.coverageTrackedTournamentIds||[];
+ return d.tournaments.filter(t=>ids.includes(t.id)&&t.startDate<=date&&t.endDate>=date&&(tour==='ALL'||t.tour===tour)).map(t=>{
+  const row=(d.meta.scheduleCoverage||[]).find(x=>x.tournamentId===t.id&&x.date===date);
+  const actual=d.matches.filter(m=>m.tournamentId===t.id&&C.matchDate(m)===date).map(m=>m.id);
+  const expected=row?.matchIds||[];
+  const complete=!!row&&row.sourceDate===date&&C.validInstant(row.checkedAt)&&!!C.safeURL(row.sourceUrl)&&row.expectedMatches===expected.length&&new Set(expected).size===expected.length&&actual.length===expected.length&&expected.every(id=>actual.includes(id));
+  const stale=complete&&date===C.day(new Date(now).toISOString())&&(now-Date.parse(row.checkedAt)>90*60000||Date.parse(row.checkedAt)>now+300000);
+  return {tournamentId:t.id,complete,stale,checkedAt:row?.checkedAt||null,sourceUrl:row?.sourceUrl||t.drawUrl||t.sourceUrl};
+ });
+}
+
 function validate(d){
  const errors=C.validate(d);if(errors.length)return errors;
  if(d.rankings){if(d.rankings.length!==2||new Set(d.rankings.map(t=>t.tour)).size!==2)errors.push('必须同时提供ATP和WTA前100榜单');for(const t of d.rankings){errors.push(...V.rankingErrors(t,d.players));if(!C.validDate(t.rankingDate))errors.push('榜单日期无效');if(!C.safeURL(t.sourceUrl))errors.push('榜单缺少有效来源');for(let i=0;i<t.rows.length;i++){const row=t.rows[i],p=d.players.find(x=>x.id===row.playerId);if(row.rank!==i+1)errors.push('榜单必须按1至100连续排序');if(i&&row.points>t.rows[i-1].points)errors.push('积分顺序与排名矛盾');if(p&&(p.rank!==row.rank||p.points!==row.points))errors.push('球员卡与排名表数据不一致');}}
@@ -32,5 +44,5 @@ function publicData(input){const d=JSON.parse(JSON.stringify(input));
  const walk=o=>{if(!o||typeof o!=='object')return;for(const k of Object.keys(o)){if(k.startsWith('_')||['operatorNotes','privateNotes','verificationNote'].includes(k)){delete o[k];continue;}walk(o[k]);}};walk(d);return d;
 }
 function sameOriginURL(relative,base){const u=new URL(relative,base),b=new URL(base);if(u.origin!==b.origin||!['https:','http:'].includes(u.protocol)||u.username||u.password)throw new Error('数据地址必须与网站同源');return u.href;}
-return {validate,publicationNewer,sourceState,publicData,sameOriginURL};
+return {validate,publicationNewer,sourceState,publicData,sameOriginURL,reviewCoverage};
 });

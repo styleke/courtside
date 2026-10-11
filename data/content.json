@@ -1,11 +1,11 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "revision": 9,
+    "revision": 10,
     "mode": "reviewed",
     "demoDate": "2026-10-10",
-    "asOfDate": "2026-10-10",
-    "updatedAt": "2026-10-10T08:07:10.044Z",
+    "asOfDate": "2026-10-11",
+    "updatedAt": "2026-10-11T07:11:26.583Z",
     "dataVerifiedAt": "2026-10-10T03:50:28Z",
     "refreshMode": "verified-snapshot",
     "note": "赛程、排名与资料分别保留来源和更新时间。",
@@ -13,13 +13,13 @@
       "atpRankTop": 100,
       "wtaRankTop": 100,
       "matchDateStart": "2026-10-05",
-      "matchDateEnd": "2026-10-10",
+      "matchDateEnd": "2026-10-11",
       "rankEffectiveDate": "2026-10-05",
       "h2hMatches": 5,
       "rankEnrichedPlayers": 200,
       "styleProfiles": 4,
       "tournamentHistories": 4,
-      "todayAnnouncedMatches": 27
+      "todayAnnouncedMatches": 15
     },
     "sourceConflicts": [
       "ATP官方排名页面本轮返回403；榜单采用同一期公开排名表并与第二来源交叉核对。",
@@ -27,10 +27,10 @@
       "晋级对阵由已核实赛果与签位关联；未公布日期不归入今天。",
       "2026-10-10：WTA/ATP每日OP PDF的解析文本与缓存截图日期不一致，日程以赛事HTML、已交叉核对的发布信息为准；自动采集不得通过版本校验失败的PDF。"
     ],
-    "updateScope": "完赛比分优先；官方确认两组赛后交手及中网女双半决赛结果；非全站数据更新",
+    "updateScope": "中网决赛日安排、半决赛赛果与晋级；上海10月11日赛程及已明确完赛结果",
     "uiVersion": "0.9",
     "enrichmentVerifiedAt": "2026-10-10T03:50:28Z",
-    "contentPatchedAt": "2026-10-10T08:07:10.044Z",
+    "contentPatchedAt": "2026-10-11T07:11:26.583Z",
     "refreshStatus": {
       "automatic": false,
       "actual": "manual",
@@ -60,12 +60,13 @@
     },
     "sourceChecks": {
       "shanghai-2026": {
-        "schedule": "2026-10-10T07:37:49.035Z",
-        "results": "2026-10-10T07:37:49.035Z"
+        "schedule": "2026-10-11T07:06:47Z",
+        "results": "2026-10-11T07:06:47Z"
       },
       "beijing-wta-2026": {
-        "schedule": "2026-10-10T06:16:42Z",
-        "results": "2026-10-10T06:16:42Z"
+        "schedule": "2026-10-11T07:06:47Z",
+        "results": "2026-10-11T07:06:47Z",
+        "broadcasts": "2026-10-11T07:06:47Z"
       },
       "ATP": {
         "rankings": "2026-10-10T06:16:42Z"
@@ -73,7 +74,53 @@
       "WTA": {
         "rankings": "2026-10-10T06:16:42Z"
       }
-    }
+    },
+    "scheduleCoverage": [
+      {
+        "tournamentId": "beijing-wta-2026",
+        "date": "2026-10-11",
+        "sourceDate": "2026-10-11",
+        "expectedMatches": 2,
+        "matchIds": [
+          "bj-1011-singles-final",
+          "bj-1011-doubles-final"
+        ],
+        "checkedAt": "2026-10-11T07:06:47Z",
+        "sourceUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+        "method": "editorial-source-review"
+      },
+      {
+        "tournamentId": "shanghai-2026",
+        "date": "2026-10-11",
+        "sourceDate": "2026-10-11",
+        "expectedMatches": 13,
+        "matchIds": [
+          "sh-1011-gea",
+          "sh-1011-hurkacz",
+          "sh-1011-zverev",
+          "sh-1011-davidovich",
+          "sh-1011-khachanov",
+          "sh-1011-deminaur",
+          "sh-1011-cerundolo",
+          "sh-1011-bublik",
+          "sh-1011-polmans",
+          "sh-1011-darderi",
+          "sh-1011-bolelli",
+          "sh-1011-miedler",
+          "sh-1011-arribage"
+        ],
+        "checkedAt": "2026-10-11T07:06:47Z",
+        "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+        "method": "editorial-source-review"
+      }
+    ],
+    "coverageTrackedTournamentIds": [
+      "beijing-wta-2026",
+      "shanghai-2026"
+    ],
+    "appliedReviews": [
+      "2026-10-11-finals-review"
+    ]
   },
   "players": [
     {
@@ -7604,6 +7651,261 @@
       "doublesRankDate": "2026-10-05",
       "doublesRankCheckedAt": "2026-10-10T06:16:42Z",
       "doublesRankSourceUrl": "https://tenniscompanion.org/rankings/womens/"
+    },
+    {
+      "id": "marc-polmans",
+      "name": "Marc Polmans",
+      "enName": "Marc Polmans",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "jan-zielinski",
+      "name": "Jan Zielinski",
+      "enName": "Jan Zielinski",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "fumin-jiang",
+      "name": "Fumin Jiang",
+      "enName": "Fumin Jiang",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "tianhui-zhang",
+      "name": "Tianhui Zhang",
+      "enName": "Tianhui Zhang",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "julian-cash",
+      "name": "Julian Cash",
+      "enName": "Julian Cash",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "lloyd-glasspool",
+      "name": "Lloyd Glasspool",
+      "enName": "Lloyd Glasspool",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "simone-bolelli",
+      "name": "Simone Bolelli",
+      "enName": "Simone Bolelli",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "andrea-vavassori",
+      "name": "Andrea Vavassori",
+      "enName": "Andrea Vavassori",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "austin-krajicek",
+      "name": "Austin Krajicek",
+      "enName": "Austin Krajicek",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "nikola-mektic",
+      "name": "Nikola Mektic",
+      "enName": "Nikola Mektic",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "lucas-miedler",
+      "name": "Lucas Miedler",
+      "enName": "Lucas Miedler",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "neil-oberleitner",
+      "name": "Neil Oberleitner",
+      "enName": "Neil Oberleitner",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "robert-cash",
+      "name": "Robert Cash",
+      "enName": "Robert Cash",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "alexander-erler",
+      "name": "Alexander Erler",
+      "enName": "Alexander Erler",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "theo-arribage",
+      "name": "Theo Arribage",
+      "enName": "Theo Arribage",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "albano-olivetti",
+      "name": "Albano Olivetti",
+      "enName": "Albano Olivetti",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "sadio-doumbia",
+      "name": "Sadio Doumbia",
+      "enName": "Sadio Doumbia",
+      "aliases": [],
+      "tour": "ATP",
+      "country": null,
+      "rank": null,
+      "points": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "verifiedAt": "2026-10-11T07:06:47Z"
     }
   ],
   "tournaments": [
@@ -7716,7 +8018,24 @@
         "rafael-matos",
         "orlando-luz",
         "jakob-schnaitter",
-        "mark-wallner"
+        "mark-wallner",
+        "marc-polmans",
+        "jan-zielinski",
+        "fumin-jiang",
+        "tianhui-zhang",
+        "julian-cash",
+        "lloyd-glasspool",
+        "simone-bolelli",
+        "andrea-vavassori",
+        "austin-krajicek",
+        "nikola-mektic",
+        "lucas-miedler",
+        "neil-oberleitner",
+        "robert-cash",
+        "alexander-erler",
+        "theo-arribage",
+        "albano-olivetti",
+        "sadio-doumbia"
       ],
       "sourceUrl": "https://www.atptour.com/en/tournaments/shanghai/5014/overview",
       "ticketUrl": "https://en.rolexshanghaimasters.com/en/tickets/tickets",
@@ -7830,8 +8149,8 @@
           "coverage": "tournament",
           "linkLabel": "直播与回放",
           "accessShort": "进入平台观看",
-          "sourceUrl": "https://www.sina.cn/news/detail/5352173500366895.html",
-          "verifiedAt": "2026-10-10T06:16:42Z",
+          "sourceUrl": "https://weibo.com/2/detail/5352815350516449",
+          "verifiedAt": "2026-10-11T07:06:47Z",
           "validFrom": "2026-09-28",
           "validThrough": "2026-10-11",
           "broadcastStatus": "confirmed"
@@ -12130,15 +12449,17 @@
       "editorPick": true,
       "ruleCandidate": false,
       "reason": "",
-      "reasonShort": "争夺决赛席位",
-      "score": null,
-      "winnerIds": [],
+      "reasonShort": "",
+      "score": "7-5 6-2",
+      "winnerIds": [
+        "qinwen-zheng"
+      ],
       "scoreOrder": "winner-first",
       "watchLinks": [],
       "demo": false,
-      "status": "scheduled",
+      "status": "finished",
       "sourceUrl": "https://www.chinaopen.com/cn/contents/281/1655.html",
-      "verifiedAt": "2026-10-10T06:16:42Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
       "roundCode": "SF",
       "drawPosition": 0,
       "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1020/OP.pdf",
@@ -12153,6 +12474,11 @@
           "checkedAt": "2026-10-10T06:16:42Z",
           "method": "manual-cross-check",
           "note": "OP parsed text dates 10/10; cached page image dates 10/09. Do not use cached PDF image as sole evidence. Time corroborated against daily schedule report and user correction."
+        },
+        "results": {
+          "primaryUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "method": "editorial-source-review"
         }
       },
       "h2h": {
@@ -12169,7 +12495,10 @@
         "asOf": "本场赛前",
         "meetings": []
       },
-      "courtOrder": 3
+      "courtOrder": 3,
+      "resultSourceUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+      "resultVerifiedAt": "2026-10-11T07:06:47Z",
+      "resultSummary": "已晋级决赛"
     },
     {
       "id": "bj-draw-sf-1",
@@ -12194,15 +12523,17 @@
       "editorPick": true,
       "ruleCandidate": false,
       "reason": "",
-      "reasonShort": "争夺决赛席位",
-      "score": null,
-      "winnerIds": [],
+      "reasonShort": "",
+      "score": "6-2 6-2",
+      "winnerIds": [
+        "mirra-andreeva"
+      ],
       "scoreOrder": "winner-first",
       "watchLinks": [],
       "demo": false,
-      "status": "scheduled",
+      "status": "finished",
       "sourceUrl": "https://www.chinaopen.com/cn/contents/281/1655.html",
-      "verifiedAt": "2026-10-10T06:16:42Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
       "roundCode": "SF",
       "drawPosition": 1,
       "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1020/OP.pdf",
@@ -12231,7 +12562,8 @@
             "sourceUrl": "https://www.stevegtennis.com/head-to-head/women/Mirra_Andreeva/Nikola_Bartunkova/",
             "eventEn": "US Open"
           }
-        ]
+        ],
+        "asOf": "本场赛前"
       },
       "fieldSources": {
         "schedule": {
@@ -12243,9 +12575,17 @@
           "checkedAt": "2026-10-10T06:16:42Z",
           "method": "manual-cross-check",
           "note": "OP parsed text dates 10/10; cached page image dates 10/09. Do not use cached PDF image as sole evidence. Time corroborated against daily schedule report and user correction."
+        },
+        "results": {
+          "primaryUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "method": "editorial-source-review"
         }
       },
-      "courtOrder": 2
+      "courtOrder": 2,
+      "resultSourceUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+      "resultVerifiedAt": "2026-10-11T07:06:47Z",
+      "resultSummary": "已晋级决赛"
     },
     {
       "id": "bj-draw-r64-23",
@@ -13106,7 +13446,7 @@
       "status": "finished",
       "editorPick": true,
       "ruleCandidate": false,
-      "reasonShort": "冲击女双决赛",
+      "reasonShort": "",
       "score": "6-4 6-2",
       "winnerIds": [
         "zhang-shuai",
@@ -13115,13 +13455,20 @@
       "watchLinks": [],
       "sourceUrl": "https://www.chinaopen.com/cn/contents/281/1655.html",
       "scheduleSourceUrl": "https://weibo.com/2/detail/5352397478299485",
-      "verifiedAt": "2026-10-10T06:16:42Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
       "scheduleVerifiedAt": "2026-10-10T06:16:42Z",
       "demo": false,
       "scoreOrder": "winner-first",
-      "resultSourceUrl": "https://www.chinaopen.com/cn/contents/281/1656.html",
-      "resultVerifiedAt": "2026-10-10T08:07:10.044Z",
-      "resultSummary": "张帅 / 西尼亚科娃晋级决赛。"
+      "resultSourceUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+      "resultVerifiedAt": "2026-10-11T07:06:47Z",
+      "resultSummary": "已晋级决赛",
+      "fieldSources": {
+        "results": {
+          "primaryUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "method": "editorial-source-review"
+        }
+      }
     },
     {
       "id": "bj-1010-doubles-2",
@@ -13147,18 +13494,773 @@
       "courtOrder": 4,
       "session": "晚场",
       "scheduleConfirmed": true,
-      "status": "scheduled",
+      "status": "finished",
       "editorPick": false,
       "ruleCandidate": false,
-      "reasonShort": "女单结束并适当休息后进行",
-      "score": null,
-      "winnerIds": [],
+      "reasonShort": "",
+      "score": "6-4 3-6 [10-7]",
+      "winnerIds": [
+        "gabriela-dabrowski",
+        "luisa-stefani"
+      ],
       "watchLinks": [],
       "sourceUrl": "https://www.chinaopen.com/cn/contents/281/1655.html",
       "scheduleSourceUrl": "https://weibo.com/2/detail/5352397478299485",
-      "verifiedAt": "2026-10-10T06:16:42Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
       "scheduleVerifiedAt": "2026-10-10T06:16:42Z",
-      "demo": false
+      "demo": false,
+      "scoreOrder": "winner-first",
+      "resultSourceUrl": "https://www.wtatennis.com/tournaments/china-open/draws",
+      "resultVerifiedAt": "2026-10-11T07:06:47Z",
+      "resultSummary": "已晋级决赛",
+      "fieldSources": {
+        "results": {
+          "primaryUrl": "https://www.wtatennis.com/tournaments/china-open/draws",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "bj-1011-singles-final",
+      "tournamentId": "beijing-wta-2026",
+      "sides": [
+        [
+          "qinwen-zheng"
+        ],
+        [
+          "mirra-andreeva"
+        ]
+      ],
+      "startAt": "2026-10-11T19:30:00+08:00",
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "notBefore",
+      "court": "首创钻石球场",
+      "courtOrder": 2,
+      "session": "晚场",
+      "round": "决赛",
+      "roundCode": "F",
+      "discipline": "单打",
+      "scheduleConfirmed": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "editorPick": true,
+      "ruleCandidate": false,
+      "reasonShort": "郑钦文与安德烈娃争夺女单冠军",
+      "watchLinks": [],
+      "sourceUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+      "scheduleSourceUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        }
+      },
+      "h2h": {
+        "playerIds": [
+          "qinwen-zheng",
+          "mirra-andreeva"
+        ],
+        "wins": [
+          1,
+          0
+        ],
+        "asOf": "本场赛前",
+        "sourceUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+        "verifiedAt": "2026-10-11T07:06:47Z",
+        "meetings": [
+          {
+            "matchId": "beijing-2024-qf-zheng-andreeva",
+            "tournamentId": "beijing-wta-2024",
+            "event": "中国网球公开赛",
+            "eventName": "中国网球公开赛",
+            "eventEn": "China Open",
+            "eventEnName": "China Open",
+            "year": 2024,
+            "date": "2024-10-04",
+            "round": "四分之一决赛",
+            "roundCode": "QF",
+            "winnerId": "qinwen-zheng",
+            "score": "5-7 6-0 6-4",
+            "scoreOrder": "winner-first",
+            "sourceUrl": "https://www.wtatennis.com/news/4139983/zheng-reels-in-andreeva-in-beijing-to-make-first-wta-1000-semifinal"
+          }
+        ]
+      }
+    },
+    {
+      "id": "bj-1011-doubles-final",
+      "tournamentId": "beijing-wta-2026",
+      "sides": [
+        [
+          "zhang-shuai",
+          "katerina-siniakova"
+        ],
+        [
+          "gabriela-dabrowski",
+          "luisa-stefani"
+        ]
+      ],
+      "startAt": "2026-10-11T16:30:00+08:00",
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "exact",
+      "court": "首创钻石球场",
+      "courtOrder": 1,
+      "session": null,
+      "round": "决赛",
+      "roundCode": "F",
+      "discipline": "双打",
+      "scheduleConfirmed": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "editorPick": true,
+      "ruleCandidate": false,
+      "reasonShort": "女双头号种子与二号种子争冠",
+      "watchLinks": [],
+      "sourceUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+      "scheduleSourceUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://www.chinaopen.com/cn/contents/281/1659.html",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1011-gea",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "arthur-gea"
+        ],
+        [
+          "ben-shelton"
+        ]
+      ],
+      "startAt": "2026-10-11T12:00:00+08:00",
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "exact",
+      "court": "中央球场",
+      "courtOrder": 1,
+      "session": null,
+      "round": "第三轮",
+      "roundCode": "R32",
+      "discipline": "单打",
+      "scheduleConfirmed": true,
+      "status": "finished",
+      "score": "7-6(5) 7-6(3)",
+      "winnerIds": [
+        "arthur-gea"
+      ],
+      "scoreOrder": "winner-first",
+      "editorPick": false,
+      "ruleCandidate": false,
+      "reasonShort": "",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        },
+        "results": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/results",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "method": "editorial-source-review"
+        }
+      },
+      "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/results",
+      "resultVerifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "sh-1011-hurkacz",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "hubert-hurkacz"
+        ],
+        [
+          "yi-zhou"
+        ]
+      ],
+      "startAt": null,
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "following",
+      "court": "中央球场",
+      "courtOrder": 2,
+      "session": null,
+      "round": "第三轮",
+      "roundCode": "R32",
+      "discipline": "单打",
+      "scheduleConfirmed": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "editorPick": true,
+      "ruleCandidate": false,
+      "reasonShort": "周意与胡尔卡奇争夺16强席位",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1011-zverev",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "alexander-zverev"
+        ],
+        [
+          "quentin-halys"
+        ]
+      ],
+      "startAt": "2026-10-11T18:00:00+08:00",
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "notBefore",
+      "court": "中央球场",
+      "courtOrder": 3,
+      "session": null,
+      "round": "第三轮",
+      "roundCode": "R32",
+      "discipline": "单打",
+      "scheduleConfirmed": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "editorPick": true,
+      "ruleCandidate": false,
+      "reasonShort": "头号种子兹维列夫出战第三轮",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1011-davidovich",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "alejandro-davidovich-fokina"
+        ],
+        [
+          "frances-tiafoe"
+        ]
+      ],
+      "startAt": null,
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "following",
+      "court": "中央球场",
+      "courtOrder": 4,
+      "session": null,
+      "round": "第三轮",
+      "roundCode": "R32",
+      "discipline": "单打",
+      "scheduleConfirmed": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "editorPick": false,
+      "ruleCandidate": false,
+      "reasonShort": "",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1011-khachanov",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "karen-khachanov"
+        ],
+        [
+          "adrian-mannarino"
+        ]
+      ],
+      "startAt": "2026-10-11T12:00:00+08:00",
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "exact",
+      "court": "二号看台球场",
+      "courtOrder": 1,
+      "session": null,
+      "round": "第三轮",
+      "roundCode": "R32",
+      "discipline": "单打",
+      "scheduleConfirmed": true,
+      "status": "finished",
+      "score": "6-2 6-4",
+      "winnerIds": [
+        "karen-khachanov"
+      ],
+      "scoreOrder": "winner-first",
+      "editorPick": false,
+      "ruleCandidate": false,
+      "reasonShort": "",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        },
+        "results": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/results",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "method": "editorial-source-review"
+        }
+      },
+      "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/results",
+      "resultVerifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "sh-1011-deminaur",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "alex-de-minaur"
+        ],
+        [
+          "rei-sakamoto"
+        ]
+      ],
+      "startAt": null,
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "following",
+      "court": "二号看台球场",
+      "courtOrder": 2,
+      "session": null,
+      "round": "第三轮",
+      "roundCode": "R32",
+      "discipline": "单打",
+      "scheduleConfirmed": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "editorPick": false,
+      "ruleCandidate": false,
+      "reasonShort": "",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1011-cerundolo",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "francisco-cerundolo"
+        ],
+        [
+          "jakub-mensik"
+        ]
+      ],
+      "startAt": null,
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "following",
+      "court": "二号看台球场",
+      "courtOrder": 3,
+      "session": null,
+      "round": "第三轮",
+      "roundCode": "R32",
+      "discipline": "单打",
+      "scheduleConfirmed": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "editorPick": false,
+      "ruleCandidate": false,
+      "reasonShort": "",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1011-bublik",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "alexander-bublik"
+        ],
+        [
+          "brandon-nakashima"
+        ]
+      ],
+      "startAt": null,
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "following",
+      "court": "二号看台球场",
+      "courtOrder": 4,
+      "session": null,
+      "round": "第三轮",
+      "roundCode": "R32",
+      "discipline": "单打",
+      "scheduleConfirmed": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "editorPick": false,
+      "ruleCandidate": false,
+      "reasonShort": "",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1011-polmans",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "marc-polmans",
+          "jan-zielinski"
+        ],
+        [
+          "fumin-jiang",
+          "tianhui-zhang"
+        ]
+      ],
+      "startAt": "2026-10-11T12:00:00+08:00",
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "exact",
+      "court": "三号球场",
+      "courtOrder": 1,
+      "session": null,
+      "round": "第一轮",
+      "roundCode": "R32",
+      "discipline": "双打",
+      "scheduleConfirmed": true,
+      "status": "finished",
+      "score": "7-6(3) 6-2",
+      "winnerIds": [
+        "marc-polmans",
+        "jan-zielinski"
+      ],
+      "scoreOrder": "winner-first",
+      "editorPick": false,
+      "ruleCandidate": false,
+      "reasonShort": "",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        },
+        "results": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/results",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "method": "editorial-source-review"
+        }
+      },
+      "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/results",
+      "resultVerifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "sh-1011-darderi",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "luciano-darderi",
+          "tomas-martin-etcheverry"
+        ],
+        [
+          "julian-cash",
+          "lloyd-glasspool"
+        ]
+      ],
+      "startAt": null,
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "following",
+      "court": "三号球场",
+      "courtOrder": 2,
+      "session": null,
+      "round": "第一轮",
+      "roundCode": "R32",
+      "discipline": "双打",
+      "scheduleConfirmed": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "editorPick": false,
+      "ruleCandidate": false,
+      "reasonShort": "",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1011-bolelli",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "simone-bolelli",
+          "andrea-vavassori"
+        ],
+        [
+          "austin-krajicek",
+          "nikola-mektic"
+        ]
+      ],
+      "startAt": null,
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "following",
+      "court": "三号球场",
+      "courtOrder": 3,
+      "session": null,
+      "round": "第一轮",
+      "roundCode": "R32",
+      "discipline": "双打",
+      "scheduleConfirmed": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "editorPick": false,
+      "ruleCandidate": false,
+      "reasonShort": "",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1011-miedler",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "lucas-miedler",
+          "neil-oberleitner"
+        ],
+        [
+          "robert-cash",
+          "alexander-erler"
+        ]
+      ],
+      "startAt": "2026-10-11T12:00:00+08:00",
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "exact",
+      "court": "四号球场",
+      "courtOrder": 1,
+      "session": null,
+      "round": "第一轮",
+      "roundCode": "R32",
+      "discipline": "双打",
+      "scheduleConfirmed": true,
+      "status": "finished",
+      "score": "7-6(8) 7-5",
+      "winnerIds": [
+        "lucas-miedler",
+        "neil-oberleitner"
+      ],
+      "scoreOrder": "winner-first",
+      "editorPick": false,
+      "ruleCandidate": false,
+      "reasonShort": "",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        },
+        "results": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/results",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "method": "editorial-source-review"
+        }
+      },
+      "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/results",
+      "resultVerifiedAt": "2026-10-11T07:06:47Z"
+    },
+    {
+      "id": "sh-1011-arribage",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "theo-arribage",
+          "albano-olivetti"
+        ],
+        [
+          "nuno-borges",
+          "sadio-doumbia"
+        ]
+      ],
+      "startAt": null,
+      "localDate": "2026-10-11",
+      "confirmedBeijingDate": "2026-10-11",
+      "timeKind": "following",
+      "court": "四号球场",
+      "courtOrder": 2,
+      "session": null,
+      "round": "第一轮",
+      "roundCode": "R32",
+      "discipline": "双打",
+      "scheduleConfirmed": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "editorPick": false,
+      "ruleCandidate": false,
+      "reasonShort": "",
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "scheduleVerifiedAt": "2026-10-11T07:06:47Z",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "demo": false,
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T07:06:47Z",
+          "sourceDate": "2026-10-11",
+          "method": "editorial-source-review"
+        }
+      }
     }
   ],
   "tickets": [
@@ -15096,10 +16198,12 @@
             "bj-SF-0",
             "bj-SF-1"
           ],
-          "kind": "pending"
+          "matchId": "bj-1011-singles-final"
         }
       ],
-      "coverageNote": "第三轮起完整收录；已补充关注球员前轮记录。"
+      "coverageNote": "第三轮起完整收录；已补充关注球员前轮记录。",
+      "finalStageVerifiedAt": "2026-10-11T07:06:47Z",
+      "finalStageSourceUrl": "https://www.chinaopen.com/cn/contents/281/1659.html"
     },
     {
       "id": "shanghai-2026-singles",
@@ -15233,81 +16337,81 @@
           "id": "sh-R32-0",
           "round": "R32",
           "position": 0,
-          "kind": "pending",
           "previousIds": [
             "sh-R64-0",
             "sh-R64-1"
-          ]
+          ],
+          "matchId": "sh-1011-zverev"
         },
         {
           "id": "sh-R32-1",
           "round": "R32",
           "position": 1,
-          "kind": "pending",
           "previousIds": [
             "sh-R64-2",
             "sh-R64-3"
-          ]
+          ],
+          "matchId": "sh-1011-bublik"
         },
         {
           "id": "sh-R32-2",
           "round": "R32",
           "position": 2,
-          "kind": "pending",
           "previousIds": [
             "sh-R64-4",
             "sh-R64-5"
-          ]
+          ],
+          "matchId": "sh-1011-deminaur"
         },
         {
           "id": "sh-R32-3",
           "round": "R32",
           "position": 3,
-          "kind": "pending",
           "previousIds": [
             "sh-R64-6",
             "sh-R64-7"
-          ]
+          ],
+          "matchId": "sh-1011-khachanov"
         },
         {
           "id": "sh-R32-4",
           "round": "R32",
           "position": 4,
-          "kind": "pending",
           "previousIds": [
             "sh-R64-8",
             "sh-R64-9"
-          ]
+          ],
+          "matchId": "sh-1011-gea"
         },
         {
           "id": "sh-R32-5",
           "round": "R32",
           "position": 5,
-          "kind": "pending",
           "previousIds": [
             "sh-R64-10",
             "sh-R64-11"
-          ]
+          ],
+          "matchId": "sh-1011-cerundolo"
         },
         {
           "id": "sh-R32-6",
           "round": "R32",
           "position": 6,
-          "kind": "pending",
           "previousIds": [
             "sh-R64-12",
             "sh-R64-13"
-          ]
+          ],
+          "matchId": "sh-1011-hurkacz"
         },
         {
           "id": "sh-R32-7",
           "round": "R32",
           "position": 7,
-          "kind": "pending",
           "previousIds": [
             "sh-R64-14",
             "sh-R64-15"
-          ]
+          ],
+          "matchId": "sh-1011-davidovich"
         },
         {
           "id": "sh-R64-21",
@@ -15368,6 +16472,45 @@
         }
       ],
       "coverageNote": "已收录第二轮上半区赛果及部分下半区赛程。"
+    },
+    {
+      "id": "beijing-wta-2026-doubles",
+      "tournamentId": "beijing-wta-2026",
+      "discipline": "双打",
+      "sourceUrl": "https://www.wtatennis.com/tournaments/china-open/draws",
+      "verifiedAt": "2026-10-11T07:06:47Z",
+      "rounds": [
+        "SF",
+        "F"
+      ],
+      "completeFromRound": "SF",
+      "coverageNote": "半决赛与决赛",
+      "nodes": [
+        {
+          "id": "bj-d-SF-0",
+          "round": "SF",
+          "position": 0,
+          "matchId": "bj-1010-doubles-1",
+          "previousIds": []
+        },
+        {
+          "id": "bj-d-SF-1",
+          "round": "SF",
+          "position": 1,
+          "matchId": "bj-1010-doubles-2",
+          "previousIds": []
+        },
+        {
+          "id": "bj-d-F-0",
+          "round": "F",
+          "position": 0,
+          "matchId": "bj-1011-doubles-final",
+          "previousIds": [
+            "bj-d-SF-0",
+            "bj-d-SF-1"
+          ]
+        }
+      ]
     }
   ]
 }

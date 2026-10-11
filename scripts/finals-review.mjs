@@ -39,7 +39,7 @@ export function applyReview(input){
  const add=(id,tournamentId,sides,clock,kind,court,order,round,score=null,winnerIds=[])=>{
   if(d.matches.some(m=>m.id===id))throw Error('Conflicting existing match '+id);
   const source=tournamentId===BJ?news:sh;
-  const m={id,tournamentId,sides,startAt:clock?`${DAY}T${clock}:00+08:00`:null,localDate:DAY,confirmedBeijingDate:DAY,timeKind:kind,court,courtOrder:order,session:null,round:round==='F'?'决赛':'第三轮',roundCode:round,discipline:sides[0].length===1?'单打':'双打',scheduleConfirmed:true,status:score?'finished':'scheduled',score,winnerIds,scoreOrder:'winner-first',editorPick:tournamentId===BJ,ruleCandidate:false,reasonShort:'',watchLinks:[],sourceUrl:source,scheduleSourceUrl:source,scheduleVerifiedAt:CHECKED,verifiedAt:CHECKED,demo:false,fieldSources:{schedule:{primaryUrl:source,checkedAt:CHECKED,sourceDate:DAY,method:'editorial-source-review'}}};
+  const m={id,tournamentId,sides,startAt:clock?`${DAY}T${clock}:00+08:00`:null,localDate:DAY,confirmedBeijingDate:DAY,timeKind:kind,court,courtOrder:order,session:null,round:round==='F'?'决赛':sides[0].length===1?'第三轮':'第一轮',roundCode:round,discipline:sides[0].length===1?'单打':'双打',scheduleConfirmed:true,status:score?'finished':'scheduled',score,winnerIds,scoreOrder:'winner-first',editorPick:tournamentId===BJ,ruleCandidate:false,reasonShort:'',watchLinks:[],sourceUrl:source,scheduleSourceUrl:source,scheduleVerifiedAt:CHECKED,verifiedAt:CHECKED,demo:false,fieldSources:{schedule:{primaryUrl:source,checkedAt:CHECKED,sourceDate:DAY,method:'editorial-source-review'}}};
   if(score){m.resultSourceUrl=results;m.resultVerifiedAt=CHECKED;m.fieldSources.results={primaryUrl:results,checkedAt:CHECKED,method:'editorial-source-review'};}
   d.matches.push(m);return m;
  };
