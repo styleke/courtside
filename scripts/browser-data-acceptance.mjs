@@ -8,7 +8,7 @@ try{
  const remote=await page.evaluate(async()=>{const url=window.CourtRuntime.publishedDataURL('data/content.json',document.baseURI,window.COURTSIDE_CONFIG);const r=await fetch(url+'?pipeline='+Date.now());return r.json();});
  assert.ok(remote.meta.appliedReviews.includes('2026-10-11-next-day-and-results'));report.revision=remote.meta.revision;ok('brand site reads the released shared dataset');
  const checkDate=async(p,date)=>{await p.locator('#nav a[href="#today"]').click();await p.locator('.date-picker').fill(date);await p.locator('.date-picker').dispatchEvent('change');};
- await checkDate(page,'2026-10-12');assert.equal(await page.locator('#main .match-card').count(),12);ok('twelve announced Shanghai matches on October 12');
+ await checkDate(page,'2026-10-12');assert.equal(await page.locator('#main .match-card').count(),12);ok('twelve announced Shanghai matches on October 12');assert.equal(await page.locator('#main .notice.warn').count(),0);ok('no false missing-schedule notice for the complete next day');
  const next=remote.matches.find(m=>m.localDate==='2026-10-12'&&m.sides.flat().includes('carlos-alcaraz'));assert.ok(next);const card=page.locator('[data-match-id="'+next.id+'"]').first();assert.match(await card.innerText(),/不早于.*18:00/);assert.match(await card.innerText(),/阿尔卡拉斯/);ok('Alcaraz next match has the official not-before slot');
  await page.locator('[data-action="filter"][data-value="follow"]').click();assert.equal(await page.locator('#main .match-card').count(),1);ok('follow filter discovers the newly imported match');
  await page.screenshot({path:dir+'/tomorrow-followed.png'});

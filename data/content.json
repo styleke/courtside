@@ -1,11 +1,11 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "revision": 13,
+    "revision": 14,
     "mode": "reviewed",
     "demoDate": "2026-10-10",
     "asOfDate": "2026-10-11",
-    "updatedAt": "2026-10-11T10:02:31.989Z",
+    "updatedAt": "2026-10-11T10:13:23.799Z",
     "dataVerifiedAt": "2026-10-10T03:50:28Z",
     "refreshMode": "verified-snapshot",
     "note": "赛程、排名与资料分别保留来源和更新时间。",
@@ -27,7 +27,7 @@
       "晋级对阵由已核实赛果与签位关联；未公布日期不归入今天。",
       "2026-10-10：WTA/ATP每日OP PDF的解析文本与缓存截图日期不一致，日程以赛事HTML、已交叉核对的发布信息为准；自动采集不得通过版本校验失败的PDF。"
     ],
-    "updateScope": "已收录单打赛果自动补全，不更新赛程或排名",
+    "updateScope": "修正已核验赛程的完整性标识，不改变比赛、比分或资料核验时间",
     "uiVersion": "0.9",
     "enrichmentVerifiedAt": "2026-10-10T03:50:28Z",
     "contentPatchedAt": "2026-10-11T07:11:26.583Z",
@@ -93,7 +93,6 @@
       {
         "tournamentId": "shanghai-2026",
         "date": "2026-10-11",
-        "expectedCount": 13,
         "matchIds": [
           "sh-1011-gea",
           "sh-1011-hurkacz",
@@ -111,12 +110,13 @@
         ],
         "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
         "checkedAt": "2026-10-11T09:24:26.693Z",
-        "method": "editorial-source-review"
+        "method": "editorial-source-review",
+        "expectedMatches": 13,
+        "sourceDate": "2026-10-11"
       },
       {
         "tournamentId": "shanghai-2026",
         "date": "2026-10-12",
-        "expectedCount": 12,
         "matchIds": [
           "sh-oop-2ad57aff8220e246",
           "sh-oop-9658d74bb70c5b7a",
@@ -133,7 +133,9 @@
         ],
         "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=8",
         "checkedAt": "2026-10-11T09:24:26.693Z",
-        "method": "editorial-source-review"
+        "method": "editorial-source-review",
+        "expectedMatches": 12,
+        "sourceDate": "2026-10-12"
       }
     ],
     "coverageTrackedTournamentIds": [

@@ -94,7 +94,7 @@ export function applyOfficialDays(input,docs,{checkedAt,reviewId}={}){
    ids.push(m.id);
   }
   data.meta.scheduleCoverage=(data.meta.scheduleCoverage||[]).filter(x=>!(x.tournamentId===t.id&&x.date===doc.date));
-  data.meta.scheduleCoverage.push({tournamentId:t.id,date:doc.date,expectedCount:doc.count,matchIds:ids,sourceUrl:doc.sourceUrl,checkedAt,method:'editorial-source-review'});
+  data.meta.scheduleCoverage.push({tournamentId:t.id,date:doc.date,sourceDate:doc.date,expectedMatches:doc.count,matchIds:ids,sourceUrl:doc.sourceUrl,checkedAt,method:'editorial-source-review'});
   const sc=(data.meta.sourceChecks??={});sc[t.id]={...sc[t.id],schedule:checkedAt};if(doc.records.some(r=>r.status==='finished'))sc[t.id].results=checkedAt;
   report.days.push({date:doc.date,tournamentId:t.id,count:doc.count,matchIds:ids,sourceUrl:doc.sourceUrl});
  }
