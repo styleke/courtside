@@ -1,0 +1,102 @@
+name: Publish reviewed finals schedule
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/review-finals.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-finals-review
+  cancel-in-progress: false
+jobs:
+  correct:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Keep doubles round labels separate from singles
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile,writeFile} from 'node:fs/promises';
+          const p='scripts/finals-review.mjs',a="round:round==='F'?'决赛':'第三轮'",b="round:round==='F'?'决赛':sides[0].length===1?'第三轮':'第一轮'";
+          let text=await readFile(p,'utf8');
+          if(text.includes(a))text=text.replace(a,b);
+          else if(!text.includes(b))throw Error('Unexpected review schema');
+          await writeFile(p,text);
+          NODE
+      - name: Apply bounded editorial review without enabling collectors
+        run: node scripts/finals-review.mjs
+      - run: npm test
+      - run: npm run build
+      - name: Verify finals and commit only the reviewed scope
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          import {readFile} from 'node:fs/promises';
+          import C from './public/core.js';
+          const d=JSON.parse(await readFile('data/content.json','utf8'));
+          const finals=d.matches.filter(m=>m.tournamentId==='beijing-wta-2026'&&C.matchDate(m)==='2026-10-11');
+          assert.equal(finals.length,2);assert.ok(finals.every(m=>m.roundCode==='F'));
+          const doubles=d.matches.filter(m=>m.id.startsWith('sh-1011-')&&m.discipline==='双打');
+          assert.equal(doubles.length,5);assert.ok(doubles.every(m=>m.round==='第一轮'));
+          NODE
+          git diff --exit-code -- config/sources.json data/automation-status.json public/player-photos.json public/photos.js public/photos.css
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add data/content.json public/app.js public/runtime.js scripts/finals-review.mjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'fix: publish October 11 finals, results and dated coverage guards'
+            git push origin HEAD:main
+          fi
+  publish:
+    needs: correct
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+  verify:
+    needs: publish
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+      - name: Verify published match identities, times, scores and portrait support
+        run: |
+          node --input-type=module <<'NODE'
+          import assert from 'node:assert/strict';
+          const base='https://styleke.github.io/courtside/';
+          let report;
+          for(let attempt=1;attempt<=8;attempt++){
+            try{
+              const get=async file=>{const r=await fetch(base+file+'?review='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(12000),redirect:'error'});if(!r.ok)throw Error(file+' HTTP '+r.status);return r;};
+              const d=await(await get('data/content.json')).json();
+              assert.ok(d.meta.appliedReviews?.includes('2026-10-11-finals-review'));
+              const s=d.matches.find(m=>m.id==='bj-1011-singles-final'),b=d.matches.find(m=>m.id==='bj-1011-doubles-final');
+              assert.deepEqual(s.sides,[['qinwen-zheng'],['mirra-andreeva']]);
+              assert.equal(s.startAt,'2026-10-11T19:30:00+08:00');assert.equal(s.timeKind,'notBefore');
+              assert.equal(b.startAt,'2026-10-11T16:30:00+08:00');
+              assert.equal(d.matches.find(m=>m.id==='bj-draw-sf-0').score,'7-5 6-2');
+              assert.equal(d.matches.find(m=>m.id==='bj-draw-sf-1').score,'6-2 6-2');
+              assert.equal(d.tournaments.find(t=>t.id==='beijing-wta-2026').watchLinks.find(w=>w.region==='CN').providerId,'migu');
+              const app=await(await get('app.js')).text();assert.ok(app.includes('dayCoverageNotice'));
+              assert.ok(app.includes('CourtPhotos'));
+              const photos=await(await get('player-photos.json')).json();assert.ok(photos.photos['mirra-andreeva']);
+              const status=await(await get('data/status.json')).json();
+              report={url:base,checkedAt:new Date().toISOString(),revision:d.meta.revision,review:d.meta.appliedReviews.at(-1),finals:[{id:s.id,startAt:s.startAt,timeKind:s.timeKind},{id:b.id,startAt:b.startAt,timeKind:b.timeKind}],shanghaiMatches:d.matches.filter(m=>m.id.startsWith('sh-1011-')).length,portraitCount:Object.keys(photos.photos).length,automaticCollection:status.automaticSourceSync,verified:true};
+              break;
+            }catch(error){if(attempt===8)throw error;await new Promise(resolve=>setTimeout(resolve,10000));}
+          }
+          console.log(JSON.stringify(report,null,2));
+          NODE
