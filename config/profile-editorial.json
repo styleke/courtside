@@ -1,0 +1,700 @@
+{
+  "schemaVersion": 1,
+  "reviewId": "2026-10-11-player-completeness",
+  "names": [
+    {
+      "playerId": "sonay-kartal",
+      "expectedEnName": "Sonay Kartal",
+      "name": "索尼娅·卡塔尔",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q110904224",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "dayana-yastremska",
+      "expectedEnName": "Dayana Yastremska",
+      "name": "达雅娜·雅斯特雷姆斯卡",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q23888026",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "marc-polmans",
+      "expectedEnName": "Marc Polmans",
+      "name": "马克·波尔曼斯",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q19059583",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "jan-zielinski",
+      "expectedEnName": "Jan Zielinski",
+      "name": "扬·杰林斯基",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q20725356",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "fumin-jiang",
+      "expectedEnName": "Fumin Jiang",
+      "name": "姜福民",
+      "sourceUrl": "https://www.sina.cn/news/detail/5350606240746309.html",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "tianhui-zhang",
+      "expectedEnName": "Tianhui Zhang",
+      "name": "张天汇",
+      "sourceUrl": "https://www.sina.cn/news/detail/5350606240746309.html",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "julian-cash",
+      "expectedEnName": "Julian Cash",
+      "name": "朱利安·卡什",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q112231593",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "lloyd-glasspool",
+      "expectedEnName": "Lloyd Glasspool",
+      "name": "劳埃德·格拉斯普尔",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q24809773",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "simone-bolelli",
+      "expectedEnName": "Simone Bolelli",
+      "name": "西莫内·博莱利",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q315970",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "andrea-vavassori",
+      "expectedEnName": "Andrea Vavassori",
+      "name": "安德烈亚·瓦瓦索里",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q43677815",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "austin-krajicek",
+      "expectedEnName": "Austin Krajicek",
+      "name": "奥斯汀·克拉吉塞克",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q4823160",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "nikola-mektic",
+      "expectedEnName": "Nikola Mektic",
+      "name": "尼寇拉·梅克提奇",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q7035585",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "lucas-miedler",
+      "expectedEnName": "Lucas Miedler",
+      "name": "卢卡斯·米德勒",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q17386379",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "neil-oberleitner",
+      "expectedEnName": "Neil Oberleitner",
+      "name": "尼尔·奥伯莱特纳",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q107652300",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "robert-cash",
+      "expectedEnName": "Robert Cash",
+      "name": "罗伯特·卡什",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q122964908",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "alexander-erler",
+      "expectedEnName": "Alexander Erler",
+      "name": "亚历山大·厄勒",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q25003614",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "theo-arribage",
+      "expectedEnName": "Theo Arribage",
+      "name": "西奥·阿里巴格",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q116730266",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "albano-olivetti",
+      "expectedEnName": "Albano Olivetti",
+      "name": "阿尔巴诺·奥利维蒂",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q549297",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    },
+    {
+      "playerId": "sadio-doumbia",
+      "expectedEnName": "Sadio Doumbia",
+      "name": "萨迪奥·敦比亚",
+      "sourceUrl": "https://www.wikidata.org/wiki/Q26922387",
+      "checkedAt": "2026-10-11T10:37:46Z"
+    }
+  ],
+  "identityAliases": [
+    {
+      "playerId": "jj-tracy",
+      "name": "James Tracy",
+      "sourceUrl": "https://www.atptour.com/en/atp-challenger-tour/challenger-tv/challenger-tv-search-results/2025-5067-qs017-savannah-jj-tracy-vs-marc-polmans/2025/5067/all"
+    },
+    {
+      "playerId": "tim-puetz",
+      "name": "Tim Pütz",
+      "sourceUrl": "https://en.wikipedia.org/wiki/Tim_P%C3%BCtz"
+    }
+  ],
+  "rankings": {
+    "source": {
+      "file": "doubles-ranking.html",
+      "url": "https://www.tennis.com/players-rankings/atp-doubles",
+      "status": 200,
+      "bytes": 652562,
+      "sha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f",
+      "startedAt": "2026-10-11T10:31:42.405Z",
+      "checkedAt": "2026-10-11T10:31:42.722Z"
+    },
+    "basis": "observed-snapshot",
+    "rankingDate": null,
+    "rows": [
+      {
+        "playerId": "christian-harrison",
+        "expectedEnName": "Christian Harrison",
+        "enName": "Christian Harrison",
+        "rank": 4,
+        "points": 6050,
+        "country": "USA",
+        "profileUrl": "https://www.tennis.com/players-rankings/christian-harrison"
+      },
+      {
+        "playerId": "neal-skupski",
+        "expectedEnName": "Neal Skupski",
+        "enName": "Neal Skupski",
+        "rank": 3,
+        "points": 6890,
+        "country": "GBR",
+        "profileUrl": "https://www.tennis.com/players-rankings/neal-skupski"
+      },
+      {
+        "playerId": "robert-galloway",
+        "expectedEnName": "Robert Galloway",
+        "enName": "Robert Galloway",
+        "rank": 47,
+        "points": 1855,
+        "country": "USA",
+        "profileUrl": "https://www.tennis.com/players-rankings/robert-galloway"
+      },
+      {
+        "playerId": "andre-goransson",
+        "expectedEnName": "Andre Goransson",
+        "enName": "André Göransson",
+        "rank": 29,
+        "points": 2520,
+        "country": "SWE",
+        "profileUrl": "https://www.tennis.com/players-rankings/andre-goransson"
+      },
+      {
+        "playerId": "kevin-krawietz",
+        "expectedEnName": "Kevin Krawietz",
+        "enName": "Kevin Krawietz",
+        "rank": 7,
+        "points": 5670,
+        "country": "GER",
+        "profileUrl": "https://www.tennis.com/players-rankings/kevin-krawietz"
+      },
+      {
+        "playerId": "tim-puetz",
+        "expectedEnName": "Tim Puetz",
+        "enName": "Tim Pütz",
+        "rank": 11,
+        "points": 5400,
+        "country": "GER",
+        "profileUrl": "https://www.tennis.com/players-rankings/tim-putz"
+      },
+      {
+        "playerId": "sander-arends",
+        "expectedEnName": "Sander Arends",
+        "enName": "Sander Arends",
+        "rank": 44,
+        "points": 1980,
+        "country": "NED",
+        "profileUrl": "https://www.tennis.com/players-rankings/sander-arends"
+      },
+      {
+        "playerId": "luke-johnson",
+        "expectedEnName": "Luke Johnson",
+        "enName": "Luke Johnson",
+        "rank": 46,
+        "points": 1910,
+        "country": "GBR",
+        "profileUrl": "https://www.tennis.com/players-rankings/luke-johnson"
+      },
+      {
+        "playerId": "hugo-nys",
+        "expectedEnName": "Hugo Nys",
+        "enName": "Hugo Nys",
+        "rank": 28,
+        "points": 2570,
+        "country": "MON",
+        "profileUrl": "https://www.tennis.com/players-rankings/hugo-nys"
+      },
+      {
+        "playerId": "edouard-roger-vasselin",
+        "expectedEnName": "Edouard Roger-Vasselin",
+        "enName": "Édouard Roger-Vasselin",
+        "rank": 27,
+        "points": 2570,
+        "country": "FRA",
+        "profileUrl": "https://www.tennis.com/players-rankings/edouard-roger-vasselin"
+      },
+      {
+        "playerId": "adam-pavlasek",
+        "expectedEnName": "Adam Pavlasek",
+        "enName": "Adam Pavlásek",
+        "rank": 38,
+        "points": 2245,
+        "country": "CZE",
+        "profileUrl": "https://www.tennis.com/players-rankings/adam-pavlasek"
+      },
+      {
+        "playerId": "patrik-rikl",
+        "expectedEnName": "Patrik Rikl",
+        "enName": "Patrik Rikl",
+        "rank": 32,
+        "points": 2350,
+        "country": "CZE",
+        "profileUrl": "https://www.tennis.com/players-rankings/patrik-rikl"
+      },
+      {
+        "playerId": "francisco-cabral",
+        "expectedEnName": "Francisco Cabral",
+        "enName": "Francisco Cabral",
+        "rank": 30,
+        "points": 2460,
+        "country": "POR",
+        "profileUrl": "https://www.tennis.com/players-rankings/francisco-cabral"
+      },
+      {
+        "playerId": "jj-tracy",
+        "expectedEnName": "JJ Tracy",
+        "enName": "James Tracy",
+        "rank": 42,
+        "points": 2005,
+        "country": "USA",
+        "profileUrl": "https://www.tennis.com/players-rankings/james-tracy"
+      },
+      {
+        "playerId": "marc-polmans",
+        "expectedEnName": "Marc Polmans",
+        "enName": "Marc Polmans",
+        "rank": 21,
+        "points": 3100,
+        "country": "AUS",
+        "profileUrl": "https://www.tennis.com/players-rankings/marc-polmans"
+      },
+      {
+        "playerId": "jan-zielinski",
+        "expectedEnName": "Jan Zielinski",
+        "enName": "Jan Zieliński",
+        "rank": 37,
+        "points": 2250,
+        "country": "POL",
+        "profileUrl": "https://www.tennis.com/players-rankings/jan-zielinski"
+      },
+      {
+        "playerId": "julian-cash",
+        "expectedEnName": "Julian Cash",
+        "enName": "Julian Cash",
+        "rank": 15,
+        "points": 3970,
+        "country": "GBR",
+        "profileUrl": "https://www.tennis.com/players-rankings/julian-cash"
+      },
+      {
+        "playerId": "lloyd-glasspool",
+        "expectedEnName": "Lloyd Glasspool",
+        "enName": "Lloyd Glasspool",
+        "rank": 15,
+        "points": 3970,
+        "country": "GBR",
+        "profileUrl": "https://www.tennis.com/players-rankings/lloyd-glasspool"
+      },
+      {
+        "playerId": "simone-bolelli",
+        "expectedEnName": "Simone Bolelli",
+        "enName": "Simone Bolelli",
+        "rank": 12,
+        "points": 5150,
+        "country": "ITA",
+        "profileUrl": "https://www.tennis.com/players-rankings/simone-bolelli"
+      },
+      {
+        "playerId": "andrea-vavassori",
+        "expectedEnName": "Andrea Vavassori",
+        "enName": "Andrea Vavassori",
+        "rank": 10,
+        "points": 5450,
+        "country": "ITA",
+        "profileUrl": "https://www.tennis.com/players-rankings/andrea-vavassori"
+      },
+      {
+        "playerId": "austin-krajicek",
+        "expectedEnName": "Austin Krajicek",
+        "enName": "Austin Krajicek",
+        "rank": 25,
+        "points": 2680,
+        "country": "USA",
+        "profileUrl": "https://www.tennis.com/players-rankings/austin-krajicek"
+      },
+      {
+        "playerId": "nikola-mektic",
+        "expectedEnName": "Nikola Mektic",
+        "enName": "Nikola Mektić",
+        "rank": 24,
+        "points": 2770,
+        "country": "CRO",
+        "profileUrl": "https://www.tennis.com/players-rankings/nikola-mektic"
+      },
+      {
+        "playerId": "lucas-miedler",
+        "expectedEnName": "Lucas Miedler",
+        "enName": "Lucas Miedler",
+        "rank": 26,
+        "points": 2650,
+        "country": "AUT",
+        "profileUrl": "https://www.tennis.com/players-rankings/lucas-miedler"
+      },
+      {
+        "playerId": "neil-oberleitner",
+        "expectedEnName": "Neil Oberleitner",
+        "enName": "Neil Oberleitner",
+        "rank": 39,
+        "points": 2220,
+        "country": "AUT",
+        "profileUrl": "https://www.tennis.com/players-rankings/neil-oberleitner"
+      },
+      {
+        "playerId": "robert-cash",
+        "expectedEnName": "Robert Cash",
+        "enName": "Robert Cash",
+        "rank": 54,
+        "points": 1555,
+        "country": "USA",
+        "profileUrl": "https://www.tennis.com/players-rankings/robert-cash"
+      },
+      {
+        "playerId": "alexander-erler",
+        "expectedEnName": "Alexander Erler",
+        "enName": "Alexander Erler",
+        "rank": 40,
+        "points": 2185,
+        "country": "AUT",
+        "profileUrl": "https://www.tennis.com/players-rankings/alexander-erler"
+      },
+      {
+        "playerId": "theo-arribage",
+        "expectedEnName": "Theo Arribage",
+        "enName": "Théo Arribagé",
+        "rank": 20,
+        "points": 3340,
+        "country": "FRA",
+        "profileUrl": "https://www.tennis.com/players-rankings/theo-arribage"
+      },
+      {
+        "playerId": "albano-olivetti",
+        "expectedEnName": "Albano Olivetti",
+        "enName": "Albano Olivetti",
+        "rank": 19,
+        "points": 3340,
+        "country": "FRA",
+        "profileUrl": "https://www.tennis.com/players-rankings/albano-olivetti"
+      },
+      {
+        "playerId": "sadio-doumbia",
+        "expectedEnName": "Sadio Doumbia",
+        "enName": "Sadio Doumbia",
+        "rank": 23,
+        "points": 2780,
+        "country": "FRA",
+        "profileUrl": "https://www.tennis.com/players-rankings/sadio-doumbia"
+      }
+    ]
+  },
+  "portraits": [
+    {
+      "playerId": "marc-polmans",
+      "sha256": "7400dfd9192a4843f66b6987bd31720f9ed09e58ec0db698a02cb2ec3bb2b677",
+      "objectPosition": "50% 20%"
+    },
+    {
+      "playerId": "jan-zielinski",
+      "sha256": "680ed0c0ba768a81558975547442ec196a9d74ed0734d29b535ed1fe08da098c",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "julian-cash",
+      "sha256": "1408adedfc2001df299d36370e9435a2f84b51bb8897599f728a4b85e6a4bcf7",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "lloyd-glasspool",
+      "sha256": "c76eccbba5a294aebb0575ab00964e681336cde219fb0b70145e7ac082693451",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "simone-bolelli",
+      "sha256": "fbf7ef1a67a2c41096b93ee1a809936e881a20395e6bd31e0a19accdcdb26bb4",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "andrea-vavassori",
+      "sha256": "4617e10fb7e41559490d9b48b262d4032b900af91c4e95a70d9bce3745f9fa5b",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "austin-krajicek",
+      "sha256": "df2f7059582bd9c9fa63d744b43ee084c5df1245733d7ca574d5b552130e14b3",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "nikola-mektic",
+      "sha256": "2bc34d2b15261faed2ea57e65cb281f5707ccbaddc7b134f7869d6bcaf678207",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "lucas-miedler",
+      "sha256": "2679fc161aed3945b8038ca70e5586dc918c11b70ebfd3aed38c231814da929d",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "robert-cash",
+      "sha256": "79a466c36bd1bed1340af5d0468f5c57ebe1b468e7dfcea58a6c3eb6cf6d49ca",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "alexander-erler",
+      "sha256": "3bc5c300aad063642a40428abb7c686086bb41fb22a093d0b60e444362c28fc9",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "theo-arribage",
+      "sha256": "d68345a84ba6bbaf63945e8c995e2df38a5d81ebaab8cae0ec3275b6cfa16030",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "albano-olivetti",
+      "sha256": "26297676457488f32fdb7dbe829bc3a9253869b454fb75ff9d8fdd3d0915f046",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "sadio-doumbia",
+      "sha256": "1f72eaf0a9667b9c2d6291d325bcd433bf5df047f8d15dbb0cecfff5af3a741c",
+      "objectPosition": "50% 12%"
+    },
+    {
+      "playerId": "jaime-faria",
+      "sha256": "22b20942843b56b6e17da70e66521b41d44587da7f02e3fd8a46b35c568d8a2a",
+      "objectPosition": "50% 20%"
+    },
+    {
+      "playerId": "hamad-medjedovic",
+      "sha256": "afa77997c574be77492b82cc73d5f2af3264bc6b48c82fc04e07ef4b610210c9",
+      "objectPosition": "50% 12%"
+    }
+  ],
+  "officialDay": {
+    "file": "shanghai-day.html",
+    "url": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+    "status": 200,
+    "bytes": 93699,
+    "sha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
+    "startedAt": "2026-10-11T10:31:39.470Z",
+    "checkedAt": "2026-10-11T10:31:39.681Z"
+  },
+  "officialH2H": {
+    "file": "doubles-h2h.html",
+    "url": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+    "status": 200,
+    "bytes": 42511,
+    "sha256": "cde654b30c79e2f6796ee48c845ab486881ff42ab9e58fba24212e6d552a48cb",
+    "startedAt": "2026-10-11T10:31:40.281Z",
+    "checkedAt": "2026-10-11T10:31:41.805Z"
+  },
+  "h2h": {
+    "sides": [
+      [
+        "simone-bolelli",
+        "andrea-vavassori"
+      ],
+      [
+        "austin-krajicek",
+        "nikola-mektic"
+      ]
+    ],
+    "wins": [
+      1,
+      3
+    ],
+    "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+    "verifiedAt": "2026-10-11T10:31:41.805Z",
+    "coverage": "complete-total",
+    "basis": "after-match",
+    "asOf": "本场赛后",
+    "throughMatchId": "sh-1011-bolelli",
+    "includedMatchIds": [
+      "sh-1011-bolelli"
+    ],
+    "scope": "上海赛事官方交手页面列示的固定组合交手，包含 2026 年上海本场；逐场结果与赛事记录复核。",
+    "meetings": [
+      {
+        "matchId": "sh-1011-bolelli",
+        "year": 2026,
+        "date": "2026-10-11",
+        "event": "上海大师赛",
+        "eventEn": "ATP Masters 1000 Shanghai",
+        "level": "ATP 1000",
+        "round": "第一轮",
+        "roundCode": "R32",
+        "score": "6-7(2) 7-6(2) [10-7]",
+        "scoreOrder": "winner-first",
+        "winnerIds": [
+          "austin-krajicek",
+          "nikola-mektic"
+        ],
+        "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+        "verifiedAt": "2026-10-11T10:31:41.805Z",
+        "corroboratingUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+        "corroboratingCheckedAt": "2026-10-11T10:31:39.681Z"
+      },
+      {
+        "matchId": "tokyo-2026-doubles-sf-bolelli-krajicek",
+        "year": 2026,
+        "date": "2026-10-05",
+        "event": "日本公开赛",
+        "eventEn": "Tokyo",
+        "level": "ATP 500",
+        "round": "半决赛",
+        "roundCode": "SF",
+        "score": "7-5 7-6(3)",
+        "scoreOrder": "winner-first",
+        "winnerIds": [
+          "austin-krajicek",
+          "nikola-mektic"
+        ],
+        "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+        "verifiedAt": "2026-10-11T10:31:41.805Z",
+        "corroboratingUrl": "https://www.tennis.com/tournaments/rakuten-japan-open-tennis-championships/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-10-05",
+        "corroboratingCheckedAt": "2026-10-11T10:31:43.404Z"
+      },
+      {
+        "matchId": "usopen-2026-doubles-r16-bolelli-krajicek",
+        "year": 2026,
+        "date": "2026-09-08",
+        "event": "美国公开赛",
+        "eventEn": "US Open",
+        "level": "大满贯",
+        "round": "第三轮",
+        "roundCode": "R16",
+        "score": "4-6 7-6(5) 7-6(8)",
+        "scoreOrder": "winner-first",
+        "winnerIds": [
+          "simone-bolelli",
+          "andrea-vavassori"
+        ],
+        "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+        "verifiedAt": "2026-10-11T10:31:41.805Z",
+        "corroboratingUrl": "https://www.tennis.com/tournaments/us-open/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-09-08",
+        "corroboratingCheckedAt": "2026-10-11T10:31:44.075Z"
+      },
+      {
+        "matchId": "wimbledon-2026-doubles-r16-bolelli-krajicek",
+        "year": 2026,
+        "date": "2026-07-06",
+        "event": "温布尔登锦标赛",
+        "eventEn": "Wimbledon",
+        "level": "大满贯",
+        "round": "第三轮",
+        "roundCode": "R16",
+        "score": "7-6(4) 4-6 6-4",
+        "scoreOrder": "winner-first",
+        "winnerIds": [
+          "austin-krajicek",
+          "nikola-mektic"
+        ],
+        "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+        "verifiedAt": "2026-10-11T10:31:41.805Z",
+        "corroboratingUrl": "https://www.tennis.com/tournaments/wimbledon/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-07-06",
+        "corroboratingCheckedAt": "2026-10-11T10:31:44.751Z"
+      }
+    ]
+  },
+  "sourceEvidence": [
+    {
+      "file": "shanghai-day.html",
+      "url": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "status": 200,
+      "bytes": 93699,
+      "sha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
+      "startedAt": "2026-10-11T10:31:39.470Z",
+      "checkedAt": "2026-10-11T10:31:39.681Z"
+    },
+    {
+      "file": "doubles-h2h.html",
+      "url": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+      "status": 200,
+      "bytes": 42511,
+      "sha256": "cde654b30c79e2f6796ee48c845ab486881ff42ab9e58fba24212e6d552a48cb",
+      "startedAt": "2026-10-11T10:31:40.281Z",
+      "checkedAt": "2026-10-11T10:31:41.805Z"
+    },
+    {
+      "file": "doubles-ranking.html",
+      "url": "https://www.tennis.com/players-rankings/atp-doubles",
+      "status": 200,
+      "bytes": 652562,
+      "sha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f",
+      "startedAt": "2026-10-11T10:31:42.405Z",
+      "checkedAt": "2026-10-11T10:31:42.722Z"
+    },
+    {
+      "file": "tokyo-h2h.html",
+      "url": "https://www.tennis.com/tournaments/rakuten-japan-open-tennis-championships/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-10-05",
+      "status": 200,
+      "bytes": 149689,
+      "sha256": "835f1710bdfa6f221ab16d85672622e6e8cc05afb6e6a965f996da2b36f2673d",
+      "startedAt": "2026-10-11T10:31:43.322Z",
+      "checkedAt": "2026-10-11T10:31:43.404Z"
+    },
+    {
+      "file": "usopen-h2h.html",
+      "url": "https://www.tennis.com/tournaments/us-open/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-09-08",
+      "status": 200,
+      "bytes": 146011,
+      "sha256": "9ef7d3e2c82db7a81e6a8ca36707ded3ab1dce7517a20e868d3f46188310889e",
+      "startedAt": "2026-10-11T10:31:44.004Z",
+      "checkedAt": "2026-10-11T10:31:44.075Z"
+    },
+    {
+      "file": "wimbledon-h2h.html",
+      "url": "https://www.tennis.com/tournaments/wimbledon/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-07-06",
+      "status": 200,
+      "bytes": 146045,
+      "sha256": "953970e7174b2074eb53baf98d018ddccabf2452bb3a55647254ba923bdce7f1",
+      "startedAt": "2026-10-11T10:31:44.675Z",
+      "checkedAt": "2026-10-11T10:31:44.751Z"
+    },
+    {
+      "file": "extra-labels.json",
+      "url": "https://www.wikidata.org/w/api.php?action=wbgetentities&format=json&ids=Q110904224%7CQ23888026%7CQ107652300&props=labels%7Caliases%7Cdescriptions%7Cclaims&languages=en%7Cmul%7Czh%7Czh-hans%7Czh-cn%7Czh-hant&maxlag=5",
+      "status": 200,
+      "bytes": 68005,
+      "sha256": "f78f37aecaf48d5d424c90f54b699d423da30d805e7628ca7006db5890254d40",
+      "startedAt": "2026-10-11T10:31:45.351Z",
+      "checkedAt": "2026-10-11T10:31:45.614Z"
+    }
+  ]
+}

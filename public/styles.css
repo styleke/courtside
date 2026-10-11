@@ -123,3 +123,9 @@ html[data-edition="public"] [data-action="admin"],html[data-edition="public"] [d
 .rank-name-line .player-age{background:var(--soft);border-radius:4px;padding:0 5px}
 .identity-meta .player-age{padding-left:2px;color:inherit;opacity:.85}
 @media(max-width:480px){.rank-name-line{column-gap:5px}.rank-name-line .player-age{font-size:10px!important;padding:0 4px}.identity-meta .player-age{font-size:10px!important}}
+
+/* Explicit optional-data states and independent doubles provenance. */
+.snapshot-mark{font-size:9px;font-weight:400;margin-left:4px;opacity:.8}.rank-unverified{font-weight:400!important;font-size:10px!important}.h2h-coverage-note{display:block;text-align:center;font-size:11px;line-height:1.65;color:var(--muted);margin:7px 0}.profile-doubles{padding:16px 18px;border:1px solid var(--line);border-radius:12px;margin:16px 0}.profile-doubles h4{margin:0 0 10px}.profile-double-rank{font-size:21px;font-weight:650;margin-right:14px}.profile-doubles p{font-size:12px;line-height:1.7}.meeting-source{display:flex;align-items:center;gap:10px;flex-wrap:wrap;padding:0 14px 12px}.meeting-source small{font-size:10px;color:var(--muted)}.score-name-line{flex-wrap:wrap}.score-name-line .player-age{font-size:11px;font-weight:400}.scoreboard-primary .score-player-name{overflow-wrap:anywhere}.scoreboard-primary .score-player-en{overflow-wrap:anywhere}.profile-numbers{min-width:0}
+@media(max-width:760px){.scoreboard-primary .score-name-line{align-items:flex-start}.scoreboard-primary .score-player-name{font-size:13px}.scoreboard-primary .score-rank,.scoreboard-primary .player-age{font-size:9px}.snapshot-mark{font-size:8px}.profile-double-rank{font-size:19px}.h2h-coverage-note{font-size:10px}.scoreboard-primary .score-name-col{min-width:115px}.meeting-source{padding:0 8px 10px}}
+
+.h2h-row .compare-row{grid-template-columns:minmax(0,1fr) max-content minmax(0,1fr)}.h2h-row .compare-label{white-space:nowrap}.h2h-row .compare-label .icon{flex-shrink:0}

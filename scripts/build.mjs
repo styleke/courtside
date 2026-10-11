@@ -4,6 +4,7 @@ import {fileURLToPath} from 'node:url';import path from 'node:path';
 import Runtime from '../public/runtime.js';
 import {buildPortraits} from './build-portraits.mjs';
 import {assertFreeBuild} from './free-build-guard.mjs';
+import {profileCompleteness} from './audit-player-completeness.mjs';
 const root=path.dirname(path.dirname(fileURLToPath(import.meta.url)));
 await assertFreeBuild(root);
 const original=JSON.parse(await readFile(path.join(root,'data/content.json'),'utf8'));
@@ -18,6 +19,9 @@ for(const f of files)await copyFile(path.join(root,'public',f),path.join(site,f)
 await writeFile(path.join(site,'site-config.js'),config);await writeFile(path.join(site,'data.js'),seed);
 await writeFile(path.join(site,'data/content.json'),JSON.stringify(data));await writeFile(path.join(site,'data/status.json'),JSON.stringify(status));await writeFile(path.join(site,'.nojekyll'),'');
 await buildPortraits(root,site);
+const profileAudit=profileCompleteness(data,JSON.parse(await readFile(path.join(root,'public/player-photos.json'),'utf8')));
+await mkdir(path.join(root,'phase2'),{recursive:true});await writeFile(path.join(root,'phase2/profile-completeness.json'),JSON.stringify(profileAudit,null,2));
+console.log(JSON.stringify({profileAudit:{date:profileAudit.date,referencedPlayers:profileAudit.referencedPlayers,playersWithGaps:profileAudit.playersWithGaps,h2hGaps:profileAudit.h2hGaps.length},fullCoverageClaimed:false}));
 let html=await readFile(path.join(root,'public/index.html'),'utf8');
 html=html.replace('<link rel="stylesheet" href="styles.css">',`<style>${await readFile(path.join(root,'public/styles.css'),'utf8')}</style>`);
 html=html.replace('<link rel="stylesheet" href="photos.css">',`<style>${await readFile(path.join(root,'public/photos.css'),'utf8')}</style>`);

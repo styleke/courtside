@@ -1,11 +1,11 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "revision": 14,
+    "revision": 15,
     "mode": "reviewed",
     "demoDate": "2026-10-10",
     "asOfDate": "2026-10-11",
-    "updatedAt": "2026-10-11T10:13:23.799Z",
+    "updatedAt": "2026-10-11T10:58:34.562Z",
     "dataVerifiedAt": "2026-10-10T03:50:28Z",
     "refreshMode": "verified-snapshot",
     "note": "赛程、排名与资料分别保留来源和更新时间。",
@@ -27,7 +27,7 @@
       "晋级对阵由已核实赛果与签位关联；未公布日期不归入今天。",
       "2026-10-10：WTA/ATP每日OP PDF的解析文本与缓存截图日期不一致，日程以赛事HTML、已交叉核对的发布信息为准；自动采集不得通过版本校验失败的PDF。"
     ],
-    "updateScope": "修正已核验赛程的完整性标识，不改变比赛、比分或资料核验时间",
+    "updateScope": "补齐中文名、许可照片与双打排名快照；核验上海赛果及固定组合交手。不更改单打周榜、年龄或关注设置。",
     "uiVersion": "0.9",
     "enrichmentVerifiedAt": "2026-10-10T03:50:28Z",
     "contentPatchedAt": "2026-10-11T07:11:26.583Z",
@@ -60,8 +60,8 @@
     },
     "sourceChecks": {
       "shanghai-2026": {
-        "schedule": "2026-10-11T09:24:26.693Z",
-        "results": "2026-10-11T09:24:26.693Z",
+        "schedule": "2026-10-11T10:31:39.681Z",
+        "results": "2026-10-11T10:31:39.681Z",
         "draws": "2026-10-11T09:31:03.998Z"
       },
       "beijing-wta-2026": {
@@ -92,30 +92,6 @@
       },
       {
         "tournamentId": "shanghai-2026",
-        "date": "2026-10-11",
-        "matchIds": [
-          "sh-1011-gea",
-          "sh-1011-hurkacz",
-          "sh-1011-zverev",
-          "sh-1011-davidovich",
-          "sh-1011-khachanov",
-          "sh-1011-deminaur",
-          "sh-1011-cerundolo",
-          "sh-1011-bublik",
-          "sh-1011-polmans",
-          "sh-1011-darderi",
-          "sh-1011-bolelli",
-          "sh-1011-miedler",
-          "sh-1011-arribage"
-        ],
-        "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-        "checkedAt": "2026-10-11T09:24:26.693Z",
-        "method": "editorial-source-review",
-        "expectedMatches": 13,
-        "sourceDate": "2026-10-11"
-      },
-      {
-        "tournamentId": "shanghai-2026",
         "date": "2026-10-12",
         "matchIds": [
           "sh-oop-2ad57aff8220e246",
@@ -136,6 +112,30 @@
         "method": "editorial-source-review",
         "expectedMatches": 12,
         "sourceDate": "2026-10-12"
+      },
+      {
+        "tournamentId": "shanghai-2026",
+        "date": "2026-10-11",
+        "sourceDate": "2026-10-11",
+        "expectedMatches": 13,
+        "matchIds": [
+          "sh-1011-gea",
+          "sh-1011-hurkacz",
+          "sh-1011-zverev",
+          "sh-1011-davidovich",
+          "sh-1011-khachanov",
+          "sh-1011-deminaur",
+          "sh-1011-cerundolo",
+          "sh-1011-bublik",
+          "sh-1011-polmans",
+          "sh-1011-darderi",
+          "sh-1011-bolelli",
+          "sh-1011-miedler",
+          "sh-1011-arribage"
+        ],
+        "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+        "checkedAt": "2026-10-11T10:31:39.681Z",
+        "method": "editorial-source-review"
       }
     ],
     "coverageTrackedTournamentIds": [
@@ -144,7 +144,8 @@
     ],
     "appliedReviews": [
       "2026-10-11-finals-review",
-      "2026-10-11-next-day-and-results"
+      "2026-10-11-next-day-and-results",
+      "2026-10-11-player-completeness"
     ],
     "birthdatesUpdatedAt": "2026-10-11T09:14:10.657Z",
     "openResultsLicense": {
@@ -4376,7 +4377,14 @@
       ],
       "externalIds": {
         "atp": "hb05"
-      }
+      },
+      "doublesRank": 4,
+      "doublesPoints": 6050,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "neal-skupski",
@@ -4416,7 +4424,14 @@
       ],
       "externalIds": {
         "atp": "sl22"
-      }
+      },
+      "doublesRank": 3,
+      "doublesPoints": 6890,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "romain-arneodo",
@@ -4606,7 +4621,14 @@
       ],
       "externalIds": {
         "atp": "g09v"
-      }
+      },
+      "doublesRank": 47,
+      "doublesPoints": 1855,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "andre-goransson",
@@ -4646,7 +4668,14 @@
       ],
       "externalIds": {
         "atp": "ge03"
-      }
+      },
+      "doublesRank": 29,
+      "doublesPoints": 2520,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "bart-stevens",
@@ -4765,7 +4794,14 @@
       ],
       "externalIds": {
         "atp": "kb92"
-      }
+      },
+      "doublesRank": 7,
+      "doublesPoints": 5670,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "tim-puetz",
@@ -4773,7 +4809,8 @@
       "enName": "Tim Puetz",
       "aliases": [
         "Puetz",
-        "普茨"
+        "普茨",
+        "Tim Pütz"
       ],
       "tour": "ATP",
       "country": "GER",
@@ -4805,7 +4842,21 @@
       ],
       "externalIds": {
         "atp": "pc68"
-      }
+      },
+      "aliasSources": [
+        {
+          "name": "Tim Pütz",
+          "sourceUrl": "https://en.wikipedia.org/wiki/Tim_P%C3%BCtz",
+          "checkedAt": "2026-10-11T10:31:39.681Z"
+        }
+      ],
+      "doublesRank": 11,
+      "doublesPoints": 5400,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "camilo-ugo-carabelli",
@@ -9192,9 +9243,11 @@
     },
     {
       "id": "sonay-kartal",
-      "name": "Sonay Kartal",
+      "name": "索尼娅·卡塔尔",
       "enName": "Sonay Kartal",
-      "aliases": [],
+      "aliases": [
+        "Sonay Kartal"
+      ],
       "tour": "WTA",
       "country": "GBR",
       "rank": null,
@@ -9224,13 +9277,17 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q110904224$72a62c3d-46b6-5279-632c-85bbbee21235"
-      ]
+      ],
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q110904224",
+      "nameCheckedAt": "2026-10-11T10:37:46Z"
     },
     {
       "id": "dayana-yastremska",
-      "name": "Dayana Yastremska",
+      "name": "达雅娜·雅斯特雷姆斯卡",
       "enName": "Dayana Yastremska",
-      "aliases": [],
+      "aliases": [
+        "Dayana Yastremska"
+      ],
       "tour": "WTA",
       "country": "UKR",
       "rank": null,
@@ -9260,7 +9317,9 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q23888026$195f55a8-4f93-756b-3d24-612f6efc30a9"
-      ]
+      ],
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q23888026",
+      "nameCheckedAt": "2026-10-11T10:37:46Z"
     },
     {
       "id": "yue-yuan",
@@ -9397,7 +9456,14 @@
         "atp": "ac55"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=8",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "doublesRank": 44,
+      "doublesPoints": 1980,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "luke-johnson",
@@ -9433,7 +9499,14 @@
         "atp": "j543"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=8",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "doublesRank": 46,
+      "doublesPoints": 1910,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "marcelo-melo",
@@ -9531,7 +9604,14 @@
         "atp": "n670"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=8",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "doublesRank": 28,
+      "doublesPoints": 2570,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "edouard-roger-vasselin",
@@ -9567,7 +9647,14 @@
         "atp": "r613"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=8",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "doublesRank": 27,
+      "doublesPoints": 2570,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "petr-nouza",
@@ -9752,7 +9839,14 @@
         "atp": "pg32"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=8",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "doublesRank": 38,
+      "doublesPoints": 2245,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "patrik-rikl",
@@ -9788,7 +9882,14 @@
         "atp": "rh13"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=8",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "doublesRank": 32,
+      "doublesPoints": 2350,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "marcelo-arevalo",
@@ -9964,13 +10065,22 @@
         "atp": "cl84"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=8",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "doublesRank": 30,
+      "doublesPoints": 2460,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "jj-tracy",
       "name": "JJ·特雷西",
       "enName": "JJ Tracy",
-      "aliases": [],
+      "aliases": [
+        "James Tracy"
+      ],
       "country": "USA",
       "tour": "ATP",
       "rank": null,
@@ -10000,7 +10110,21 @@
         "atp": "t0gf"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=8",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "aliasSources": [
+        {
+          "name": "James Tracy",
+          "sourceUrl": "https://www.atptour.com/en/atp-challenger-tour/challenger-tv/challenger-tv-search-results/2025-5067-qs017-savannah-jj-tracy-vs-marc-polmans/2025/5067/all",
+          "checkedAt": "2026-10-11T10:31:39.681Z"
+        }
+      ],
+      "doublesRank": 42,
+      "doublesPoints": 2005,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "jakob-schnaitter",
@@ -10136,9 +10260,11 @@
     },
     {
       "id": "marc-polmans",
-      "name": "Marc Polmans",
+      "name": "马克·波尔曼斯",
       "enName": "Marc Polmans",
-      "aliases": [],
+      "aliases": [
+        "Marc Polmans"
+      ],
       "tour": "ATP",
       "country": "AUS",
       "rank": null,
@@ -10161,13 +10287,24 @@
         "atp": "pg94"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q19059583",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 21,
+      "doublesPoints": 3100,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "jan-zielinski",
-      "name": "Jan Zielinski",
+      "name": "扬·杰林斯基",
       "enName": "Jan Zielinski",
-      "aliases": [],
+      "aliases": [
+        "Jan Zielinski"
+      ],
       "tour": "ATP",
       "country": "POL",
       "rank": null,
@@ -10190,13 +10327,24 @@
         "atp": "z423"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q20725356",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 37,
+      "doublesPoints": 2250,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "fumin-jiang",
-      "name": "Fumin Jiang",
+      "name": "姜福民",
       "enName": "Fumin Jiang",
-      "aliases": [],
+      "aliases": [
+        "Fumin Jiang"
+      ],
       "tour": "ATP",
       "country": "CHN",
       "rank": null,
@@ -10210,13 +10358,17 @@
         "atp": "j0fn"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.sina.cn/news/detail/5350606240746309.html",
+      "nameCheckedAt": "2026-10-11T10:37:46Z"
     },
     {
       "id": "tianhui-zhang",
-      "name": "Tianhui Zhang",
+      "name": "张天汇",
       "enName": "Tianhui Zhang",
-      "aliases": [],
+      "aliases": [
+        "Tianhui Zhang"
+      ],
       "tour": "ATP",
       "country": "CHN",
       "rank": null,
@@ -10230,13 +10382,17 @@
         "atp": "z0d1"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.sina.cn/news/detail/5350606240746309.html",
+      "nameCheckedAt": "2026-10-11T10:37:46Z"
     },
     {
       "id": "julian-cash",
-      "name": "Julian Cash",
+      "name": "朱利安·卡什",
       "enName": "Julian Cash",
-      "aliases": [],
+      "aliases": [
+        "Julian Cash"
+      ],
       "tour": "ATP",
       "country": "GBR",
       "rank": null,
@@ -10259,13 +10415,24 @@
         "atp": "ci96"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q112231593",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 15,
+      "doublesPoints": 3970,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "lloyd-glasspool",
-      "name": "Lloyd Glasspool",
+      "name": "劳埃德·格拉斯普尔",
       "enName": "Lloyd Glasspool",
-      "aliases": [],
+      "aliases": [
+        "Lloyd Glasspool"
+      ],
       "tour": "ATP",
       "country": "GBR",
       "rank": null,
@@ -10288,13 +10455,24 @@
         "atp": "gd08"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q24809773",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 15,
+      "doublesPoints": 3970,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "simone-bolelli",
-      "name": "Simone Bolelli",
+      "name": "西莫内·博莱利",
       "enName": "Simone Bolelli",
-      "aliases": [],
+      "aliases": [
+        "Simone Bolelli"
+      ],
       "tour": "ATP",
       "country": "ITA",
       "rank": null,
@@ -10317,13 +10495,24 @@
         "atp": "ba98"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q315970",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 12,
+      "doublesPoints": 5150,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "andrea-vavassori",
-      "name": "Andrea Vavassori",
+      "name": "安德烈亚·瓦瓦索里",
       "enName": "Andrea Vavassori",
-      "aliases": [],
+      "aliases": [
+        "Andrea Vavassori"
+      ],
       "tour": "ATP",
       "country": "ITA",
       "rank": null,
@@ -10346,13 +10535,24 @@
         "atp": "va08"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q43677815",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 10,
+      "doublesPoints": 5450,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "austin-krajicek",
-      "name": "Austin Krajicek",
+      "name": "奥斯汀·克拉吉塞克",
       "enName": "Austin Krajicek",
-      "aliases": [],
+      "aliases": [
+        "Austin Krajicek"
+      ],
       "tour": "ATP",
       "country": "USA",
       "rank": null,
@@ -10375,13 +10575,25 @@
         "atp": "ka00"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q4823160",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 25,
+      "doublesPoints": 2680,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f",
+      "doublesRankNote": "此处采用 Tennis.com 双打榜页面快照 No.25。上海官网球员档案另列 No.23，但两页均未标明榜单日期，不能据此判断谁更新更晚；不将快照称为已确认的最新 ATP 官方周榜。"
     },
     {
       "id": "nikola-mektic",
-      "name": "Nikola Mektic",
+      "name": "尼寇拉·梅克提奇",
       "enName": "Nikola Mektic",
-      "aliases": [],
+      "aliases": [
+        "Nikola Mektic"
+      ],
       "tour": "ATP",
       "country": "CRO",
       "rank": null,
@@ -10404,13 +10616,24 @@
         "atp": "mf09"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q7035585",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 24,
+      "doublesPoints": 2770,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "lucas-miedler",
-      "name": "Lucas Miedler",
+      "name": "卢卡斯·米德勒",
       "enName": "Lucas Miedler",
-      "aliases": [],
+      "aliases": [
+        "Lucas Miedler"
+      ],
       "tour": "ATP",
       "country": "AUT",
       "rank": null,
@@ -10433,13 +10656,24 @@
         "atp": "mo55"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q17386379",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 26,
+      "doublesPoints": 2650,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "neil-oberleitner",
-      "name": "Neil Oberleitner",
+      "name": "尼尔·奥伯莱特纳",
       "enName": "Neil Oberleitner",
-      "aliases": [],
+      "aliases": [
+        "Neil Oberleitner"
+      ],
       "tour": "ATP",
       "country": "AUT",
       "rank": null,
@@ -10462,13 +10696,24 @@
         "atp": "o0ad"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q107652300",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 39,
+      "doublesPoints": 2220,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "robert-cash",
-      "name": "Robert Cash",
+      "name": "罗伯特·卡什",
       "enName": "Robert Cash",
-      "aliases": [],
+      "aliases": [
+        "Robert Cash"
+      ],
       "tour": "ATP",
       "country": "USA",
       "rank": null,
@@ -10491,13 +10736,24 @@
         "atp": "c0e0"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q122964908",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 54,
+      "doublesPoints": 1555,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "alexander-erler",
-      "name": "Alexander Erler",
+      "name": "亚历山大·厄勒",
       "enName": "Alexander Erler",
-      "aliases": [],
+      "aliases": [
+        "Alexander Erler"
+      ],
       "tour": "ATP",
       "country": "AUT",
       "rank": null,
@@ -10520,13 +10776,24 @@
         "atp": "e928"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q25003614",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 40,
+      "doublesPoints": 2185,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "theo-arribage",
-      "name": "Theo Arribage",
+      "name": "西奥·阿里巴格",
       "enName": "Theo Arribage",
-      "aliases": [],
+      "aliases": [
+        "Theo Arribage"
+      ],
       "tour": "ATP",
       "country": "FRA",
       "rank": null,
@@ -10549,13 +10816,24 @@
         "atp": "a0e5"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q116730266",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 20,
+      "doublesPoints": 3340,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "albano-olivetti",
-      "name": "Albano Olivetti",
+      "name": "阿尔巴诺·奥利维蒂",
       "enName": "Albano Olivetti",
-      "aliases": [],
+      "aliases": [
+        "Albano Olivetti"
+      ],
       "tour": "ATP",
       "country": "FRA",
       "rank": null,
@@ -10578,13 +10856,24 @@
         "atp": "o411"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q549297",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 19,
+      "doublesPoints": 3340,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     },
     {
       "id": "sadio-doumbia",
-      "name": "Sadio Doumbia",
+      "name": "萨迪奥·敦比亚",
       "enName": "Sadio Doumbia",
-      "aliases": [],
+      "aliases": [
+        "Sadio Doumbia"
+      ],
       "tour": "ATP",
       "country": "FRA",
       "rank": null,
@@ -10607,7 +10896,16 @@
         "atp": "d917"
       },
       "countrySourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "countryCheckedAt": "2026-10-11T09:24:26.693Z"
+      "countryCheckedAt": "2026-10-11T09:24:26.693Z",
+      "nameSourceUrl": "https://www.wikidata.org/wiki/Q26922387",
+      "nameCheckedAt": "2026-10-11T10:37:46Z",
+      "doublesRank": 23,
+      "doublesPoints": 2780,
+      "doublesRankDate": null,
+      "doublesRankCheckedAt": "2026-10-11T10:31:42.722Z",
+      "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
+      "doublesRankBasis": "observed-snapshot",
+      "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
     }
   ],
   "tournaments": [
@@ -16621,28 +16919,28 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "verifiedAt": "2026-10-11T09:24:26.693Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "verifiedAt": "2026-10-11T10:31:39.681Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         },
         "results": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
       },
       "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "resultVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "resultsVerifiedAt": "2026-10-11T09:24:26.693Z"
+      "resultVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "resultsVerifiedAt": "2026-10-11T10:31:39.681Z"
     },
     {
       "id": "sh-1011-hurkacz",
@@ -16678,28 +16976,28 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "verifiedAt": "2026-10-11T09:24:26.693Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "verifiedAt": "2026-10-11T10:31:39.681Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         },
         "results": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
       },
       "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "resultsVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "resultVerifiedAt": "2026-10-11T09:24:26.693Z"
+      "resultsVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "resultVerifiedAt": "2026-10-11T10:31:39.681Z"
     },
     {
       "id": "sh-1011-zverev",
@@ -16733,15 +17031,15 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
       "verifiedAt": "2026-10-11T07:06:47Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
       }
@@ -16778,15 +17076,15 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
       "verifiedAt": "2026-10-11T07:06:47Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
       }
@@ -16825,28 +17123,28 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "verifiedAt": "2026-10-11T09:24:26.693Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "verifiedAt": "2026-10-11T10:31:39.681Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         },
         "results": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
       },
       "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "resultVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "resultsVerifiedAt": "2026-10-11T09:24:26.693Z"
+      "resultVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "resultsVerifiedAt": "2026-10-11T10:31:39.681Z"
     },
     {
       "id": "sh-1011-deminaur",
@@ -16882,28 +17180,28 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "verifiedAt": "2026-10-11T09:24:26.693Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "verifiedAt": "2026-10-11T10:31:39.681Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         },
         "results": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
       },
       "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "resultsVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "resultVerifiedAt": "2026-10-11T09:24:26.693Z"
+      "resultsVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "resultVerifiedAt": "2026-10-11T10:31:39.681Z"
     },
     {
       "id": "sh-1011-cerundolo",
@@ -16927,9 +17225,11 @@
       "roundCode": "R32",
       "discipline": "单打",
       "scheduleConfirmed": true,
-      "status": "scheduled",
-      "score": null,
-      "winnerIds": [],
+      "status": "finished",
+      "score": "6-3 3-6 6-2",
+      "winnerIds": [
+        "jakub-mensik"
+      ],
       "scoreOrder": "winner-first",
       "editorPick": false,
       "ruleCandidate": false,
@@ -16937,18 +17237,28 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "verifiedAt": "2026-10-11T07:06:47Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "verifiedAt": "2026-10-11T10:31:39.681Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
+          "method": "editorial-source-review"
+        },
+        "results": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
+          "sourceDate": "2026-10-11",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
-      }
+      },
+      "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "resultsVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "resultVerifiedAt": "2026-10-11T10:31:39.681Z"
     },
     {
       "id": "sh-1011-bublik",
@@ -16982,15 +17292,15 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
       "verifiedAt": "2026-10-11T07:06:47Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
       }
@@ -17032,28 +17342,28 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "verifiedAt": "2026-10-11T09:24:26.693Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "verifiedAt": "2026-10-11T10:31:39.681Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         },
         "results": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
       },
       "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "resultVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "resultsVerifiedAt": "2026-10-11T09:24:26.693Z"
+      "resultVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "resultsVerifiedAt": "2026-10-11T10:31:39.681Z"
     },
     {
       "id": "sh-1011-darderi",
@@ -17092,28 +17402,28 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "verifiedAt": "2026-10-11T09:24:26.693Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "verifiedAt": "2026-10-11T10:31:39.681Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         },
         "results": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
       },
       "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "resultsVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "resultVerifiedAt": "2026-10-11T09:24:26.693Z"
+      "resultsVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "resultVerifiedAt": "2026-10-11T10:31:39.681Z"
     },
     {
       "id": "sh-1011-bolelli",
@@ -17139,9 +17449,12 @@
       "roundCode": "R32",
       "discipline": "双打",
       "scheduleConfirmed": true,
-      "status": "scheduled",
-      "score": null,
-      "winnerIds": [],
+      "status": "finished",
+      "score": "6-7(2) 7-6(2) [10-7]",
+      "winnerIds": [
+        "austin-krajicek",
+        "nikola-mektic"
+      ],
       "scoreOrder": "winner-first",
       "editorPick": false,
       "ruleCandidate": false,
@@ -17149,17 +17462,135 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "verifiedAt": "2026-10-11T07:06:47Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "verifiedAt": "2026-10-11T10:31:39.681Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
+          "method": "editorial-source-review"
+        },
+        "results": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
+          "sourceDate": "2026-10-11",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
+      },
+      "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+      "resultsVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "resultVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "h2h": {
+        "sides": [
+          [
+            "simone-bolelli",
+            "andrea-vavassori"
+          ],
+          [
+            "austin-krajicek",
+            "nikola-mektic"
+          ]
+        ],
+        "wins": [
+          1,
+          3
+        ],
+        "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+        "verifiedAt": "2026-10-11T10:31:41.805Z",
+        "coverage": "complete-total",
+        "basis": "after-match",
+        "asOf": "本场赛后",
+        "throughMatchId": "sh-1011-bolelli",
+        "includedMatchIds": [
+          "sh-1011-bolelli"
+        ],
+        "scope": "上海赛事官方交手页面列示的固定组合交手，包含 2026 年上海本场；逐场结果与赛事记录复核。",
+        "meetings": [
+          {
+            "matchId": "sh-1011-bolelli",
+            "year": 2026,
+            "date": "2026-10-11",
+            "event": "上海大师赛",
+            "eventEn": "ATP Masters 1000 Shanghai",
+            "level": "ATP 1000",
+            "round": "第一轮",
+            "roundCode": "R32",
+            "score": "6-7(2) 7-6(2) [10-7]",
+            "scoreOrder": "winner-first",
+            "winnerIds": [
+              "austin-krajicek",
+              "nikola-mektic"
+            ],
+            "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+            "verifiedAt": "2026-10-11T10:31:41.805Z",
+            "corroboratingUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
+            "corroboratingCheckedAt": "2026-10-11T10:31:39.681Z"
+          },
+          {
+            "matchId": "tokyo-2026-doubles-sf-bolelli-krajicek",
+            "year": 2026,
+            "date": "2026-10-05",
+            "event": "日本公开赛",
+            "eventEn": "Tokyo",
+            "level": "ATP 500",
+            "round": "半决赛",
+            "roundCode": "SF",
+            "score": "7-5 7-6(3)",
+            "scoreOrder": "winner-first",
+            "winnerIds": [
+              "austin-krajicek",
+              "nikola-mektic"
+            ],
+            "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+            "verifiedAt": "2026-10-11T10:31:41.805Z",
+            "corroboratingUrl": "https://www.tennis.com/tournaments/rakuten-japan-open-tennis-championships/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-10-05",
+            "corroboratingCheckedAt": "2026-10-11T10:31:43.404Z"
+          },
+          {
+            "matchId": "usopen-2026-doubles-r16-bolelli-krajicek",
+            "year": 2026,
+            "date": "2026-09-08",
+            "event": "美国公开赛",
+            "eventEn": "US Open",
+            "level": "大满贯",
+            "round": "第三轮",
+            "roundCode": "R16",
+            "score": "4-6 7-6(5) 7-6(8)",
+            "scoreOrder": "winner-first",
+            "winnerIds": [
+              "simone-bolelli",
+              "andrea-vavassori"
+            ],
+            "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+            "verifiedAt": "2026-10-11T10:31:41.805Z",
+            "corroboratingUrl": "https://www.tennis.com/tournaments/us-open/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-09-08",
+            "corroboratingCheckedAt": "2026-10-11T10:31:44.075Z"
+          },
+          {
+            "matchId": "wimbledon-2026-doubles-r16-bolelli-krajicek",
+            "year": 2026,
+            "date": "2026-07-06",
+            "event": "温布尔登锦标赛",
+            "eventEn": "Wimbledon",
+            "level": "大满贯",
+            "round": "第三轮",
+            "roundCode": "R16",
+            "score": "7-6(4) 4-6 6-4",
+            "scoreOrder": "winner-first",
+            "winnerIds": [
+              "austin-krajicek",
+              "nikola-mektic"
+            ],
+            "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/head-to-head/doubles/ka00/mf09/ba98/va08",
+            "verifiedAt": "2026-10-11T10:31:41.805Z",
+            "corroboratingUrl": "https://www.tennis.com/tournaments/wimbledon/matches/bolelli-s-vavassori-a-vs-krajicek-a-mektic-n-2026-07-06",
+            "corroboratingCheckedAt": "2026-10-11T10:31:44.751Z"
+          }
+        ]
       }
     },
     {
@@ -17199,28 +17630,28 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "verifiedAt": "2026-10-11T09:24:26.693Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "verifiedAt": "2026-10-11T10:31:39.681Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         },
         "results": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
       },
       "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "resultVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "resultsVerifiedAt": "2026-10-11T09:24:26.693Z"
+      "resultVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "resultsVerifiedAt": "2026-10-11T10:31:39.681Z"
     },
     {
       "id": "sh-1011-arribage",
@@ -17259,28 +17690,28 @@
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
       "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "scheduleVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "verifiedAt": "2026-10-11T09:24:26.693Z",
+      "scheduleVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "verifiedAt": "2026-10-11T10:31:39.681Z",
       "demo": false,
       "fieldSources": {
         "schedule": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         },
         "results": {
           "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-          "checkedAt": "2026-10-11T09:24:26.693Z",
+          "checkedAt": "2026-10-11T10:31:39.681Z",
           "sourceDate": "2026-10-11",
-          "sourceSha256": "2e69f8ffff746f32b2ce7d03bafea181f5d8d6fe1ad453b330a0d5633701a82b",
+          "sourceSha256": "bfd5582444c676ee571a2d7bfeac528bb15492788f6f046f086ab8460ee24461",
           "method": "editorial-source-review"
         }
       },
       "resultSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
-      "resultsVerifiedAt": "2026-10-11T09:24:26.693Z",
-      "resultVerifiedAt": "2026-10-11T09:24:26.693Z"
+      "resultsVerifiedAt": "2026-10-11T10:31:39.681Z",
+      "resultVerifiedAt": "2026-10-11T10:31:39.681Z"
     },
     {
       "id": "sh-oop-2ad57aff8220e246",

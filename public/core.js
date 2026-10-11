@@ -17,7 +17,25 @@ function matchName(m,d){return m.sides.map(side=>side.map(id=>d.players.find(p=>
 function ticketContext(m,d){const t=d.tournaments.find(x=>x.id===m.tournamentId);const local=m.startAt?day(m.startAt,t?.timeZone):m.localDate;const blocked=['withdrawn','cancelled','rescheduled','suspended'].includes(m.status);const candidates=d.tickets.filter(x=>x.tournamentId===m.tournamentId&&x.kind==='session'&&x.localDate===local&&x.court===m.court&&x.session===m.session&&x.confirmed);const matched=!blocked&&m.scheduleConfirmed&&local&&m.court&&m.session?candidates[0]:null;return{blocked,localDate:local||null,matched:matched||null,url:blocked?null:(matched?.url||t?.ticketUrl||null),label:matched?'查看对应官方票务':'查看赛事官方票务',instruction:blocked?'赛程已变化，请重新核验票务；原匹配已暂停。':matched?`现场购票：当地 ${local} · ${m.court} · ${m.session}`:`当地 ${local||'日期待公布'} · ${m.court&&m.session?'票种适用范围未核验':'球场或场次待核验'}；暂不匹配具体票种。`};}
 function sortMatches(ms,d){return [...ms].sort((a,b)=>Number(followed(b,d))-Number(followed(a,d))||(b.editorPick?1:0)-(a.editorPick?1:0)||Number(a.status==='finished')-Number(b.status==='finished')||((a.startAt?Date.parse(a.startAt):Infinity)-(b.startAt?Date.parse(b.startAt):Infinity)));}
 function recommend(d,date){return sortMatches(d.matches.filter(m=>matchDate(m)===date&&!['cancelled','withdrawn'].includes(m.status)&&(followed(m,d)||m.editorPick||m.ruleCandidate)),d);}
-function h2hView(m){const h=m?.h2h,unknown={known:false,wins:null,total:null,firstMeeting:false};if(!h||!Array.isArray(h.wins)||h.wins.length!==2||!h.wins.every(v=>Number.isInteger(v)&&v>=0)||!safeURL(h.sourceUrl)||!validInstant(h.verifiedAt)||!Array.isArray(h.playerIds)||h.playerIds.length!==2||!Array.isArray(m.sides)||m.sides.length!==2||!m.sides.every(s=>Array.isArray(s)&&s.length===1))return unknown;let wins;if(m.sides[0][0]===h.playerIds[0]&&m.sides[1][0]===h.playerIds[1])wins=[...h.wins];else if(m.sides[0][0]===h.playerIds[1]&&m.sides[1][0]===h.playerIds[0])wins=[...h.wins].reverse();else return unknown;const total=wins[0]+wins[1];return {known:true,wins,total,firstMeeting:total===0};}
+/** Compare exact teams; teammate order is immaterial, partner changes are not. */
+function sideKey(side){return Array.isArray(side)&&side.length>0&&side.length<=2&&side.every(id=>typeof id==='string')&&new Set(side).size===side.length?[...side].sort().join('|'):null;}
+function h2hSides(h){return Array.isArray(h?.sides)?h.sides:Array.isArray(h?.playerIds)&&h.playerIds.length===2?h.playerIds.map(id=>[id]):null;}
+function h2hDirection(m){const a=m?.sides,b=h2hSides(m?.h2h);if(!Array.isArray(a)||a.length!==2||!Array.isArray(b)||b.length!==2||!a.every(x=>sideKey(x))||!b.every(x=>sideKey(x))||a[0].length!==a[1].length||new Set(a.flat()).size!==a.flat().length||new Set(b.flat()).size!==b.flat().length)return -1;return sideKey(a[0])===sideKey(b[0])&&sideKey(a[1])===sideKey(b[1])?0:sideKey(a[0])===sideKey(b[1])&&sideKey(a[1])===sideKey(b[0])?1:-1;}
+function h2hView(m){
+ const h=m?.h2h,unknown={known:false,wins:null,total:null,firstMeeting:false},direction=h2hDirection(m);
+ if(!h||direction<0||!Array.isArray(h.wins)||h.wins.length!==2||!h.wins.every(v=>Number.isInteger(v)&&v>=0)||!safeURL(h.sourceUrl)||!validInstant(h.verifiedAt))return unknown;
+ const wins=direction?[...h.wins].reverse():[...h.wins],total=wins[0]+wins[1],partial=h.coverage==='records-only'||h.complete===false;
+ // A partial count must be supported by individually sourced, unique played matches.
+ if(partial){const count=[0,0],seen=new Set();if(!Array.isArray(h.meetings))return unknown;for(const row of h.meetings){const board=scoreboardView(row,m.sides),key=row.matchId||[row.date,row.event,row.round].join('|');if(!board.known||board.status==='walkover'||!validDate(row.date)||!safeURL(row.sourceUrl)||!validInstant(row.verifiedAt)||seen.has(key))return unknown;seen.add(key);count[board.winnerSide]++;}if(count.some((n,i)=>n!==wins[i]))return unknown;}
+ return {known:true,wins,total,firstMeeting:!partial&&total===0,coverage:partial?'records-only':'complete-total'};
+}
+/** A source observation date is never substituted for the ranking's issue date. */
+function playerRanking(player,doubles=false){
+ const prefix=doubles?'doublesRank':'rank',value=player?.[prefix],known=Number.isInteger(value)&&value>0;
+ return {known,value:known?value:null,label:doubles?'双打':'单打',date:validDate(player?.[prefix+'Date'])?player[prefix+'Date']:null,checkedAt:validInstant(player?.[prefix+'CheckedAt'])?player[prefix+'CheckedAt']:null,sourceUrl:safeURL(player?.[prefix+'SourceUrl']),snapshot:player?.[prefix+'Basis']==='observed-snapshot',note:player?.[prefix+'Note']||''};
+}
+function secondaryPlayerName(player){const a=String(player?.name||'').normalize('NFKC').trim().toLowerCase(),b=String(player?.enName||'').normalize('NFKC').trim().toLowerCase();return a&&a!==b?player.enName||'':'';}
+
 
 /** Build a post-match view without mutating a sourced pre-match H2H snapshot.
  * Only an explicitly confirmed result is merged. Rendering/polling is idempotent.
@@ -27,7 +45,7 @@ function matchHistoryView(m,d){
  const base=h2hView(m),h=m?.h2h||{},tr=d?.tournaments?.find(t=>t.id===m?.tournamentId);
  const sides=m?.sides||[],ids=sides.flat(),board=scoreboardView(m,sides);
  const singles=sides.length===2&&sides.every(s=>s.length===1);
- const pairMatches=!h.playerIds||singles&&h.playerIds.length===2&&h.playerIds.every(id=>ids.includes(id));
+ const pairMatches=h2hDirection(m)>=0;
  const raw=pairMatches&&Array.isArray(h.meetings)?h.meetings:[];
  const norm=v=>String(v||'').toLowerCase().normalize('NFKC').replace(/[\s·:：()（）_-]/g,'');
  const round=v=>({第二轮:'r64',第三轮:'r32',第四轮:'r16',八强:'qf',四强:'sf',半决赛:'sf',决赛:'f'}[v]||norm(v));
@@ -70,7 +88,7 @@ function matchHistoryView(m,d){
  }
  rows.sort((a,b)=>Number(b.year||0)-Number(a.year||0)||(a.date&&b.date?b.date.localeCompare(a.date):0)||Number(!!b.currentMatch)-Number(!!a.currentMatch));
  const total=known&&wins?wins[0]+wins[1]:null;
- return {known,wins:known?wins:null,total,firstMeeting:known&&total===0,meetings:rows,currentIncluded:included,completed:confirmed,coverage:known?'complete-total':'records-only'};
+ return {known,wins:known?wins:null,total,firstMeeting:known&&base.coverage!=='records-only'&&total===0,meetings:rows,currentIncluded:included,completed:confirmed,coverage:known&&base.coverage!=='records-only'?'complete-total':'records-only'};
 }
 function completedSetWins(record,sides){
  const b=scoreboardView(record,sides);if(!b.known)return null;const won=[0,0];
@@ -137,6 +155,7 @@ function validate(d){const e=[];if(!d||typeof d!=='object'||Array.isArray(d))ret
  for(const c of cols){const ids=new Set();for(const x of d[c]){if(!x||typeof x!=='object'||Array.isArray(x)){e.push(`${c} 条目必须是对象`);continue;}if(typeof x.id!=='string'||!/^[a-zA-Z0-9_-]+$/.test(x.id))e.push(`${c}: id 只能包含字母数字下划线连字符`);if(ids.has(x.id))e.push(`${c}: 重复 id ${x.id}`);ids.add(x.id);}}
  if(e.length)return e;
  const ps=new Set(d.players.map(x=>x.id)),ts=new Set(d.tournaments.map(x=>x.id));for(const p of d.players){if(typeof p.name!=='string'||!p.name.trim())e.push(`${p.id}: 缺少球员名`);if(typeof p.followed!=='boolean')e.push(`${p.id}: followed 必须为布尔值`);if(p.rank!=null&&(!Number.isInteger(p.rank)||p.rank<1))e.push(`${p.id}: 排名须为正整数或 null`);if(p.points!=null&&(!Number.isFinite(p.points)||p.points<0))e.push(`${p.id}: 积分须为非负数或 null`);if(!['ATP','WTA'].includes(p.tour))e.push(`${p.id}: 球员排名体系无效`);}
+ for(const p of d.players){if(p.doublesRank!=null){if(!Number.isInteger(p.doublesRank)||p.doublesRank<1)e.push(p.id+': 双打排名须为正整数');if(!safeURL(p.doublesRankSourceUrl)||!validInstant(p.doublesRankCheckedAt))e.push(p.id+': 双打排名需独立来源和核验时间');if(!validDate(p.doublesRankDate)&&p.doublesRankBasis!=='observed-snapshot')e.push(p.id+': 双打排名需榜单日期或明确的页面快照口径');}if(p.doublesRankBasis==='observed-snapshot'&&p.doublesRankDate!=null)e.push(p.id+': 页面快照不能伪造榜单日期');}
  for(const t of d.tournaments){if(!validDate(t.startDate)||!validDate(t.endDate)||t.endDate<t.startDate)e.push(`${t.id}: 赛事日期无效`);if(!validZone(t.timeZone))e.push(`${t.id}: IANA 时区无效`);if(!t.name)e.push(`${t.id}: 缺少赛事名称`);if(!['ATP','WTA','CHALLENGER','ITF','TEAM','SLAM'].includes(t.tour))e.push(`${t.id}: 赛事体系无效`);}
  for(const m of d.matches){if(!ts.has(m.tournamentId))e.push(`${m.id}: 引用的赛事不存在`);if(!Array.isArray(m.sides)||m.sides.length!==2||!m.sides.every(s=>Array.isArray(s)&&s.length>0&&s.length<=2&&s.every(id=>ps.has(id))))e.push(`${m.id}: 必须有两个有效参赛方`);if(m.startAt!=null&&!validInstant(m.startAt))e.push(`${m.id}: 开赛时间必须为带时区 ISO 8601`);if(m.localDate&&!validDate(m.localDate))e.push(`${m.id}: 当地日期无效`);if(m.confirmedBeijingDate&&!validDate(m.confirmedBeijingDate))e.push(`${m.id}: 北京日期无效`);if(!['scheduled','finished','suspended','withdrawn','cancelled','rescheduled'].includes(m.status))e.push(`${m.id}: 状态无效`);if(!['exact','notBefore','following','dateOnly'].includes(m.timeKind))e.push(`${m.id}: 时间类型无效`);if(['following','dateOnly'].includes(m.timeKind)&&m.startAt)e.push(`${m.id}: 待定时刻不可伪造 startAt`);if(m.startAt&&m.localDate&&day(m.startAt,d.tournaments.find(t=>t.id===m.tournamentId)?.timeZone)!==m.localDate)e.push(`${m.id}: 当地日期与开赛时刻不一致`);if(m.startAt&&m.confirmedBeijingDate&&day(m.startAt)!==m.confirmedBeijingDate)e.push(`${m.id}: 北京日期与开赛时刻不一致`);}
  for(const t of d.tickets){if(!ts.has(t.tournamentId))e.push(`${t.id}: 票务赛事不存在`);if(t.opensAt&&!validInstant(t.opensAt))e.push(`${t.id}: 开票时间需包含时区`);if(t.localDate&&!validDate(t.localDate))e.push(`${t.id}: 票务当地日期无效`);}
@@ -147,7 +166,7 @@ function validate(d){const e=[];if(!d||typeof d!=='object'||Array.isArray(d))ret
  for(const p of d.players){if(p.followTier!=null&&!['favorite','following','none'].includes(p.followTier))e.push(`${p.id}: 关注类型无效`);if(p.favorite===true&&!p.followed)e.push(`${p.id}: 喜欢的球员必须在关注名单`);if(isRetired(p)&&(p.rank!=null||p.points!=null))e.push(`${p.id}: 退役球员不能有当前排名积分`);if(p.nicknames!=null&&(!Array.isArray(p.nicknames)||nicknameList(p).length!==p.nicknames.length))e.push(`${p.id}: 昵称需要来源与核验时间`);}
  if(d.meta.mode==='reviewed'){for(const c of ['players','tournaments','matches','tickets','activities'])for(const x of d[c])if(x.demo)e.push(`${c}.${x.id}: 发布模式不能包含演示条目`);for(const c of ['matches','tickets','activities'])for(const x of d[c])if(!x.sourceUrl||!validInstant(x.verifiedAt))e.push(`${c}.${x.id}: 发布内容需来源与核验时间`);}
 
- for(const m of d.matches){if(m.h2h&&!h2hView(m).known)e.push(`${m.id}: H2H 需有效来源、时间、非负整数胜场和匹配的球员方向`);if(m.h2h?.meetings!=null&&!Array.isArray(m.h2h.meetings))e.push(`${m.id}: 交手明细须为数组`);else for(const r of m.h2h?.meetings||[]){if(!r||!Number.isInteger(r.year)||!ps.has(r.winnerId)||!m.h2h.playerIds?.includes(r.winnerId))e.push(`${m.id}: 交手明细无效`);}}
+ for(const m of d.matches){if(m.h2h&&!h2hView(m).known)e.push(`${m.id}: H2H 需有效来源、时间、非负整数胜场和匹配的球员方向`);if(m.h2h?.meetings!=null&&!Array.isArray(m.h2h.meetings))e.push(`${m.id}: 交手明细须为数组`);else for(const r of m.h2h?.meetings||[]){if(!r||!Number.isInteger(r.year)||(m.sides?.[0]?.length===2?(!scoreboardView(r,m.sides).known||!safeURL(r.sourceUrl)||!validInstant(r.verifiedAt)):(!ps.has(r.winnerId)||!m.h2h.playerIds?.includes(r.winnerId))))e.push(`${m.id}: 交手明细无效`);}}
  for(const p of d.players){if(p.prospect!=null&&typeof p.prospect!=='boolean')e.push(`${p.id}: prospect 必须是布尔值`);if(p.tournamentHistory!=null&&!Array.isArray(p.tournamentHistory))e.push(`${p.id}: 赛事履历须为数组`);else for(const h of p.tournamentHistory||[]){if(!h||!ts.has(h.tournamentId)||h.appearanceOrdinal!=null&&(!Number.isInteger(h.appearanceOrdinal)||h.appearanceOrdinal<1))e.push(`${p.id}: 赛事参赛次数无效`);if(h&&(h.appearanceOrdinal!=null||h.bestRound)&&(!safeURL(h.sourceUrl)||!validInstant(h.verifiedAt)))e.push(`${p.id}: 赛事履历缺来源或核验时间`);}if(p.styleProfile&&(!Array.isArray(p.styleProfile.tags)||p.styleProfile.kind!=='editorial'||!safeURL(p.styleProfile.sourceUrl)||!validInstant(p.styleProfile.verifiedAt)))e.push(`${p.id}: 球风需编辑标注和来源`);}
 
  for(const m of d.matches){
@@ -157,4 +176,4 @@ function validate(d){const e=[];if(!d||typeof d!=='object'||Array.isArray(d))ret
   }
  }
  return e;}
-return{BJ,validDate,validInstant,validZone,parts,day,clock,addDays,matchDate,timeLabel,safeURL,followed,matchName,ticketContext,sortMatches,recommend,h2hView,matchHistoryView,completedSetWins,countryName,parseTennisScore,scoreboardView,watchOptions,interestTier,setInterest,isRetired,nicknameList,brief,validate};});
+return{BJ,validDate,validInstant,validZone,parts,day,clock,addDays,matchDate,timeLabel,safeURL,followed,matchName,ticketContext,sortMatches,recommend,h2hView,playerRanking,secondaryPlayerName,matchHistoryView,completedSetWins,countryName,parseTennisScore,scoreboardView,watchOptions,interestTier,setInterest,isRetired,nicknameList,brief,validate};});
