@@ -4,10 +4,11 @@ import assert from 'node:assert/strict';
 import {createHash} from 'node:crypto';
 import {preciseBirth,applyBirthdays} from './import-player-birthdays.mjs';
 import {assertFreeBuild} from './free-build-guard.mjs';
+import {textOf} from '../adapters/public-html.mjs';
 import Runtime from '../public/runtime.js';
 await assertFreeBuild(process.cwd());
 const targets=[
- {id:'yi-zhou',name:'Zhou Yi',title:'Zhou Yi (tennis)',atp:'Z0CQ',birth:'2005-03-14',official:'https://www.atptour.com/en/players/-/z0cq/overview'},
+ {id:'yi-zhou',name:'Zhou Yi',title:'Zhou Yi (tennis)',atp:'Z0CQ',birth:'2005-03-14',official:'https://en.rolexshanghaimasters.com/en/players/yi-zhou/z0cq'},
  {id:'zhizhen-zhang',name:'Zhang Zhizhen',title:'Zhang Zhizhen',atp:'Z371',birth:'1996-10-16',official:'https://www.abnamro-open.nl/tennis/spelers/zhizhen-zhang'}
 ];
 const bytes=await readFile('data/content.json'),original=JSON.parse(bytes);
@@ -30,8 +31,20 @@ try{
   assert.ok(p&&e);assert.equal(p.externalIds?.atp?.toUpperCase(),t.atp);
   const external=(e.claims?.P536||[]).filter(c=>c.rank!=='deprecated').map(c=>String(c.mainsnak?.datavalue?.value||'').toUpperCase());
   assert.deepEqual([...new Set(external)],[t.atp]);
-  const found=preciseBirth(e,{...p,enName:t.name});assert.ok(found.ok,t.id+': '+found.reason);assert.equal(found.date,t.birth,'Structured date conflicts with the reviewed official profile');
-  report.records.push({playerId:p.id,enName:p.enName,ok:true,dateOfBirth:found.date,sourceUrl:'https://www.wikidata.org/wiki/'+ids[i]+'#P569',entityRevision:e.lastrevid,statementIds:found.statementIds,officialCorroboration:t.official,matchedAtpId:t.atp});
+  let found=preciseBirth(e,{...p,enName:t.name}),annotation=null;
+  if(!found.ok&&t.id==='yi-zhou'&&found.reason==='imprecise_or_qualified_birth_date'){
+   // This one reviewed annotation means "most precise value", not an approximate date.
+   // Do not relax the generic DOB importer: require a separate actual official page.
+   const births=e.claims.P569.filter(c=>c.rank!=='deprecated');assert.equal(births.length,1);const claim=births[0];
+   assert.deepEqual(Object.keys(claim.qualifiers||{}),['P459']);assert.equal(claim.qualifiers.P459.length,1);assert.equal(claim.qualifiers.P459[0].datavalue?.value?.id,'Q71536040');
+   assert.equal(report.requests.length,2);const r=await fetch(t.official,{headers:{'User-Agent':'CourtsideEditorialReview/1.0 (https://courtside-tennis.pages.dev/)'},redirect:'error',signal:AbortSignal.timeout(15000)});if(!r.ok){await r.body?.cancel();throw Error('Official birthday cross-check HTTP '+r.status);}
+   const html=await r.text();assert.ok(Buffer.byteLength(html)<1000000);const text=textOf(html);assert.match(text,/Yi\s+Zhou/);assert.match(text,/2005[.\/-]03[.\/-]14/);
+   await writeFile('phase2/birthday-completion/yi-zhou-official.html',html);report.requests.push({url:t.official,checkedAt:new Date().toISOString(),sha256:createHash('sha256').update(html).digest('hex')});
+   annotation={property:'P459',value:'Q71536040',meaning:'most precise value',resolution:'matching date in separately fetched official event profile'};
+   const reviewed=structuredClone(e);for(const c of reviewed.claims.P569)if(c.rank!=='deprecated'){delete c.qualifiers;delete c['qualifiers-order'];}found=preciseBirth(reviewed,{...p,enName:t.name});
+  }
+  assert.ok(found.ok,t.id+': '+found.reason);assert.equal(found.date,t.birth,'Structured date conflicts with the reviewed official profile');
+  report.records.push({playerId:p.id,enName:p.enName,ok:true,dateOfBirth:found.date,sourceUrl:'https://www.wikidata.org/wiki/'+ids[i]+'#P569',entityRevision:e.lastrevid,statementIds:found.statementIds,officialCorroboration:t.official,matchedAtpId:t.atp,reviewedAnnotation:annotation});
  }
  report.finishedAt=new Date().toISOString();
  const result=applyBirthdays(original,report,report.finishedAt);
