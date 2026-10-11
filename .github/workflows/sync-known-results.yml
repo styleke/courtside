@@ -1,7 +1,10 @@
 name: Sync known singles results
 on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/sync-known-results.yml']
   schedule:
-    - cron: '23,53 * * * *'
+    - cron: '24,54 * * * *'
   workflow_dispatch:
 permissions:
   contents: read
