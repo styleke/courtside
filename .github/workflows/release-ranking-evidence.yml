@@ -1,0 +1,159 @@
+name: Release verified ranking evidence
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/release-ranking-evidence.yml']
+  workflow_dispatch:
+permissions:
+  contents: read
+concurrency:
+  group: courtside-data-writes
+  cancel-in-progress: false
+jobs:
+  integrate:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 7
+    permissions:
+      contents: write
+      actions: read
+    outputs:
+      sha: ${{ steps.commit.outputs.sha }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: main
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Load only the already reviewed documents; no new tennis API requests
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          mkdir -p /tmp/rank-evidence
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/11703401037/zip" > /tmp/rank-evidence/official.zip
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/11702898801/zip" > /tmp/rank-evidence/browser.zip
+          gh api "repos/${GITHUB_REPOSITORY}/actions/artifacts/11703320093/zip" > /tmp/rank-evidence/api.zip
+          python - <<'PY'
+          import pathlib,zipfile
+          root=pathlib.Path('/tmp/rank-evidence')
+          wanted={'official':{'blinkova.html','evidence.json'},'browser':{'wta-after.html','browser.json'},'api':{'report.json'}}
+          for name,files in wanted.items():
+              out=root/name;out.mkdir(exist_ok=True)
+              with zipfile.ZipFile(root/(name+'.zip')) as z:
+                  for file in files:
+                      info=z.getinfo(file);assert info.file_size<=5000000
+                      (out/file).write_bytes(z.read(info))
+          PY
+      - name: Apply exact-table review without changing sporting values or permissions
+        run: |
+          python .github/patches/rank-evidence/install.py
+          cp .github/patches/rank-evidence/apply-ranking-evidence.py scripts/apply-ranking-evidence.py
+          cp .github/patches/rank-evidence/browser-ranking-evidence.mjs scripts/browser-ranking-evidence.mjs
+          python scripts/apply-ranking-evidence.py /tmp/rank-evidence/official /tmp/rank-evidence/browser /tmp/rank-evidence/api
+      - name: Regressions and build
+        run: |
+          npm test > /tmp/rank-evidence/tests.txt
+          tail -12 /tmp/rank-evidence/tests.txt
+          npm run build
+      - name: No images, ages, automatic collection, free configuration or other public features changed
+        run: |
+          git diff --exit-code -- data/automation-status.json config public/ages.js public/photos.js public/photos.css public/player-photos.json public/player-photos-data.js public/images public/runtime.js
+          python - <<'PY'
+          import subprocess
+          changed=set(subprocess.check_output(['git','diff','--name-only'],text=True).splitlines())
+          allowed={'public/core.js','public/app.js','public/styles.css','adapters/free-ranking-review.mjs','data/content.json','public/data.js'}
+          assert changed<=allowed,changed-allowed
+          PY
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - name: Exercise the staged ranking evidence and all existing profile/score features
+        run: |
+          python3 -m http.server 8765 --bind 127.0.0.1 --directory dist/site > /tmp/rank-evidence/server.txt 2>&1 &
+          server=$!
+          trap 'kill "$server" 2>/dev/null || true' EXIT
+          sleep 1
+          BASE_URL=http://127.0.0.1:8765/ REPORT_DIR=phase2/ranking-staging node scripts/browser-ranking-evidence.mjs
+          BASE_URL=http://127.0.0.1:8765/ REPORT_DIR=phase2/profile-staging node scripts/browser-profile-acceptance.mjs
+      - id: commit
+        name: Publish only after actual staged browser acceptance
+        run: |
+          git config user.name 'github-actions[bot]'
+          git config user.email '41898282+github-actions[bot]@users.noreply.github.com'
+          git add public/core.js public/app.js public/styles.css adapters/free-ranking-review.mjs data/content.json public/data.js tests/ranking-evidence.test.cjs scripts/apply-ranking-evidence.py scripts/browser-ranking-evidence.mjs
+          if ! git diff --cached --quiet; then
+            git commit -m 'fix: verify the official WTA issue and expose unresolved ATP ranking differences'
+            git push origin HEAD:main
+          fi
+          echo "sha=$(git rev-parse HEAD)" >> "$GITHUB_OUTPUT"
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ranking-evidence-staging
+          path: |
+            phase2/ranking-staging
+            phase2/profile-staging
+            phase2/ranking-evidence
+            /tmp/rank-evidence/tests.txt
+          retention-days: 1
+  publish:
+    needs: integrate
+    uses: ./.github/workflows/pages.yml
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+  verify:
+    needs: [integrate,publish]
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: ${{ needs.integrate.outputs.sha }}
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Confirm exact deployed frontend and the reviewed data revision
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile,mkdir,writeFile} from 'node:fs/promises';import assert from 'node:assert/strict';import {createHash} from 'node:crypto';
+          const files=['app.js','core.js','styles.css'],expected=await Promise.all(files.map(f=>readFile('public/'+f,'utf8')));
+          for(let n=0;n<20;n++)try{
+            for(let i=0;i<files.length;i++){const r=await fetch('https://courtside-tennis.pages.dev/'+files[i]+'?ranking='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(12000)});assert.ok(r.ok);assert.equal(await r.text(),expected[i],files[i]+' pending deployment');}
+            const r=await fetch('https://styleke.github.io/courtside/data/content.json?ranking='+process.env.GITHUB_RUN_ID,{signal:AbortSignal.timeout(12000)});assert.ok(r.ok);const text=await r.text(),data=JSON.parse(text);assert.ok(data.meta.appliedReviews?.includes('2026-10-11-official-ranking-review'));
+            const wta=data.rankings.find(t=>t.tour==='WTA');assert.equal(wta.evidenceReview.state,'official-reviewed');assert.equal(wta.rankingDate,'2026-10-05');assert.equal(data.players.find(p=>p.id==='anna-blinkova').country,'FRA');
+            await mkdir('phase2/ranking-live',{recursive:true});await writeFile('phase2/ranking-live/network.json',JSON.stringify({checkedAt:new Date().toISOString(),revision:data.meta.revision,exactFrontend:true,dataSha256:createHash('sha256').update(text).digest('hex'),wtaRows:wta.rows.length,wtaIssueDate:wta.rankingDate,atpConflicts:data.rankings.find(t=>t.tour==='ATP').evidenceReview.conflicts.length},null,2));break;
+          }catch(e){if(n===19)throw e;await new Promise(r=>setTimeout(r,7000));}
+          NODE
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - run: REPORT_DIR=phase2/ranking-live node scripts/browser-ranking-evidence.mjs
+      - run: REPORT_DIR=phase2/profile-live node scripts/browser-profile-acceptance.mjs
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: ranking-evidence-live
+          path: |
+            phase2/ranking-live
+            phase2/profile-live
+          retention-days: 1
+  cleanup:
+    needs: [publish,verify]
+    if: always() && needs.publish.result == 'success'
+    runs-on: ubuntu-latest
+    timeout-minutes: 2
+    permissions:
+      actions: write
+    steps:
+      - env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          ids=$(gh api "repos/${GITHUB_REPOSITORY}/actions/runs/${GITHUB_RUN_ID}/artifacts" --jq '.artifacts[] | select(.name == "github-pages") | .id')
+          for id in $ids; do
+            case "$id" in *[!0-9]*) exit 1;; esac
+            gh api --method DELETE "repos/${GITHUB_REPOSITORY}/actions/artifacts/${id}"
+          done
