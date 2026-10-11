@@ -1,0 +1,46 @@
+name: Review free ATP and WTA ranking candidates
+on:
+  push:
+    branches: [main]
+    paths: ['.github/workflows/free-rankings-review.yml']
+  workflow_dispatch:
+    inputs:
+      free_plan_confirmed:
+        description: 'Account is Free $0, with no paid subscription or payment-method trial'
+        type: boolean
+        required: true
+        default: false
+permissions:
+  contents: read
+concurrency:
+  group: courtside-free-ranking-review
+  cancel-in-progress: false
+jobs:
+  review:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 4
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Verify all regressions before a credential-gated request
+        run: npm test
+      - name: Inspect the two free ranking endpoints, without publication
+        env:
+          BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
+          COURTSIDE_BDL_FREE_CONFIRMED: ${{ github.event_name == 'workflow_dispatch' && inputs.free_plan_confirmed && 'true' || 'false' }}
+        run: node scripts/review-free-rankings.mjs
+      - name: Ranking inspection cannot mutate public data or collection permissions
+        if: always()
+        run: git diff --exit-code -- data public config
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: free-ranking-candidate-review
+          path: phase2/free-ranking-review/report.json
+          retention-days: 1
