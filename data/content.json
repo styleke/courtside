@@ -1,11 +1,11 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "revision": 23,
+    "revision": 24,
     "mode": "reviewed",
     "demoDate": "2026-10-10",
     "asOfDate": "2026-10-11",
-    "updatedAt": "2026-10-12T13:11:54.573Z",
+    "updatedAt": "2026-10-12T14:41:55.275Z",
     "dataVerifiedAt": "2026-10-10T03:50:28Z",
     "refreshMode": "verified-snapshot",
     "note": "赛程、排名与资料分别保留来源和更新时间。",
@@ -18006,15 +18006,17 @@
       "discipline": "单打",
       "roundCode": "R32",
       "round": "第三轮",
-      "status": "scheduled",
-      "score": null,
-      "winnerIds": [],
+      "status": "finished",
+      "score": "6-4 6-2",
+      "winnerIds": [
+        "tommy-paul"
+      ],
       "scoreOrder": "winner-first",
       "demo": false,
       "editorPick": false,
       "watchLinks": [],
       "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=8",
-      "verifiedAt": "2026-10-11T09:24:26.693Z",
+      "verifiedAt": "2026-10-12T14:41:55.275Z",
       "localDate": "2026-10-12",
       "confirmedBeijingDate": "2026-10-12",
       "timeKind": "following",
@@ -18031,8 +18033,24 @@
           "sourceDate": "2026-10-12",
           "sourceSha256": "a480128b0dd2531e3a1bd61bc03453a5f597b94240eb73b145de0ce8eaffb800",
           "method": "editorial-source-review"
+        },
+        "results": {
+          "provider": "baseline-today",
+          "providerMatchId": 91743,
+          "primaryUrl": "https://en.wikipedia.org/wiki/2026_Rolex_Shanghai_Masters_%E2%80%93_Singles",
+          "compiledBy": "https://baseline-today.vercel.app/data",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "attribution": "Match results from Wikipedia draw pages by Wikipedia contributors (https://www.wikipedia.org), licensed CC BY-SA 4.0. Compiled by Baseline Today (https://baseline-today.vercel.app/data); this file is shared under the same license, CC BY-SA 4.0. The source column links each result's draw page.",
+          "checkedAt": "2026-10-12T14:41:55.275Z",
+          "sourceGeneratedAt": "2026-10-12T14:41:54.832Z",
+          "tieBreakDetail": "complete",
+          "method": "licensed-export"
         }
-      }
+      },
+      "resultSourceUrl": "https://en.wikipedia.org/wiki/2026_Rolex_Shanghai_Masters_%E2%80%93_Singles",
+      "resultVerifiedAt": "2026-10-12T14:41:55.275Z",
+      "resultsVerifiedAt": "2026-10-12T14:41:55.275Z"
     },
     {
       "id": "sh-oop-ec56610a1de623a9",
