@@ -27,9 +27,24 @@ async function boundedJSON(response) {
   try { return JSON.parse(text); } catch { fail('invalid-json'); }
 }
 
+/** Return only a fixed diagnostic category, never a raw exception or a token. */
+function networkErrorKind(error) {
+  let name = '', message = '';
+  try {
+    if (typeof error?.name === 'string') name = error.name;
+    if (typeof error?.message === 'string') message = error.message.slice(0, 512);
+  } catch { return 'unclassified'; }
+  if (name === 'TimeoutError' || name === 'AbortError') return 'timeout-or-abort';
+  if (/invalid redirect value|unsupported redirect|unsupported.*option/i.test(message)) return 'request-options';
+  if (/illegal invocation/i.test(message)) return 'runtime-invocation';
+  if (/DNS|name resolution|ENOTFOUND|EAI_AGAIN/i.test(message)) return 'name-resolution';
+  if (/network connection lost|connection reset|ECONNRESET|socket|TLS/i.test(message)) return 'connection';
+  return 'unclassified';
+}
+
 /** Purely injected dependencies in unit tests never count as live Cron evidence. */
 export async function runTick(controller, env, {fetcher = fetch, now = Date.now} = {}) {
-  const report = {version: 1, origin: 'cloudflare-cron', outcome: 'disabled', requests: 0,
+  const report = {version: 2, origin: 'cloudflare-cron', outcome: 'disabled', requests: 0,
     githubEvent: 'workflow_dispatch', publicationVerified: false, fullCoverage: false};
   if (env?.FREE_ONLY_CONFIRMED !== 'true' || env?.TIMER_ENABLED !== 'true') return report;
   const token = env.GITHUB_ACTIONS_TOKEN;
@@ -51,11 +66,23 @@ export async function runTick(controller, env, {fetcher = fetch, now = Date.now}
   async function request(url, method = 'GET', body) {
     if (![RUNS, DISPATCH].includes(url) || report.requests >= 2) fail('request-bound');
     report.requests++;
+    report.requestStage = method === 'POST' ? 'dispatch' : 'list-runs';
+    delete report.httpStatus;
     let response;
     try {
-      response = await fetcher(url, {method, headers, redirect: 'error',
+      // workerd accepts follow/manual here, not the browser/Node 'error' mode.
+      // Manual never follows Location; all 3xx responses are rejected below.
+      response = await fetcher(url, {method, headers, redirect: 'manual',
         signal: AbortSignal.timeout(10000), ...(body ? {body: JSON.stringify(body)} : {})});
-    } catch { fail('github-network-error'); }
+    } catch (error) {
+      report.errorKind = networkErrorKind(error);
+      fail('github-network-error');
+    }
+    report.httpStatus = response.status;
+    if (response.status >= 300 && response.status < 400) {
+      await response.body?.cancel();
+      fail('github-redirect-blocked');
+    }
     if (!response.ok) {
       await response.body?.cancel();
       fail('github-http-' + response.status);
@@ -96,7 +123,7 @@ export async function runTick(controller, env, {fetcher = fetch, now = Date.now}
     return {...report, outcome: 'accepted', code: 'dispatch-accepted-not-publication'};
   } catch (error) {
     const code = String(error.message);
-    const safe = /^(github-(network-error|http-\d{3})|invalid-(content-type|json|run-envelope|run-record)|missing-response-body|response-size-limit|request-bound|existing-run-stuck|unexpected-dispatch-response)$/;
+    const safe = /^(github-(network-error|redirect-blocked|http-\d{3})|invalid-(content-type|json|run-envelope|run-record)|missing-response-body|response-size-limit|request-bound|existing-run-stuck|unexpected-dispatch-response)$/;
     return {...report, outcome: 'error', code: safe.test(code) ? code : 'clock-check-failed'};
   }
 }
@@ -107,7 +134,11 @@ export default {
   async scheduled(controller, env) {
     controller.noRetry?.();
     const result = await runTick(controller, env);
-    console.info(JSON.stringify(result));
-    if (result.outcome === 'error') throw new Error(result.code);
+    const log = JSON.stringify({...result, message: 'Courtside clock: ' + (result.code || result.outcome)});
+    if (result.outcome === 'error') {
+      console.error(log);
+      throw new Error(result.code);
+    }
+    console.info(log);
   }
 };
