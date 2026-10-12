@@ -5,7 +5,9 @@
   "workers_dev": false,
   "preview_urls": false,
   "triggers": {
-    "crons": []
+    "crons": [
+      "11,41 * * * *"
+    ]
   },
   "vars": {
     "FREE_ONLY_CONFIRMED": "true",
