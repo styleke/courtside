@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-12T09:06:01.008Z",
+  "generatedAt": "2026-10-12T09:41:35.807Z",
   "automaticSourceSync": false,
   "schedulerRunning": false,
   "configuredChannels": [
@@ -12,22 +12,22 @@
       "automationEnabled": true,
       "status": "ok",
       "intervalMinutes": 30,
-      "lastAttemptAt": "2026-10-12T09:06:00.099Z",
+      "lastAttemptAt": "2026-10-12T09:41:34.059Z",
       "sourceName": "Baseline Today / Wikipedia contributors",
       "scope": "既有中网女单与上海男单对阵的完赛补全；不提供逐分直播、不发现日期、不更新排名或双打",
       "upstreamUpdateCadence": "daily",
-      "lastSuccessAt": "2026-10-12T09:06:00.864Z",
-      "lastCheckAt": "2026-10-12T09:06:00.864Z",
+      "lastSuccessAt": "2026-10-12T09:41:35.696Z",
+      "lastCheckAt": "2026-10-12T09:41:35.696Z",
       "etag": null,
-      "matchedKnownMatches": 76,
-      "appliedMatches": 3,
+      "matchedKnownMatches": 78,
+      "appliedMatches": 2,
       "unresolvedConflicts": 0,
       "message": "已校验已收录单打赛果",
-      "datasetFingerprint": "5807e9fe4606191755b6527e7f1a632c5a3feb46c4ce7921b0c3dfc5ea9cb8cd",
-      "sourceGeneratedAt": "2026-10-12T09:06:00.581Z",
+      "datasetFingerprint": "e7f45cec3cd7ee7805948931cb667ffb574771a8e6cbab5dc8dd71416d0be71f",
+      "sourceGeneratedAt": "2026-10-12T09:41:35.531Z",
       "execution": {
         "event": "workflow_dispatch",
-        "runId": "38227675329",
+        "runId": "38231499463",
         "workflow": "Check tennis data",
         "ref": "refs/heads/main"
       }
