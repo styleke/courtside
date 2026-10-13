@@ -69,7 +69,8 @@ export function inspectRankingPages(pages,tour,current,{today=new Date().toISOSt
  if(rankingDate===old?.rankingDate&&rows.some(r=>r.playerId&&old.rows.some(o=>o.playerId===r.playerId&&(o.rank!==r.rank||o.points!==r.points))))problems.push('same-issue-conflict');
  return {tour,rankingDate,requestedDate,rows,problems:[...new Set(problems)],eligibleForEditorialReview:problems.length===0,publicDataWritten:false,automaticPublication:false,independentlyVerified:false,sourcePage:'https://'+tour.toLowerCase()+'.balldontlie.io/'};
 }
-export async function reviewFreeRankings(current,{apiKey,freeConfirmed,fetcher=fetch,sleep=ms=>new Promise(r=>setTimeout(r,ms)),now=()=>Date.now()}={}){
+export async function reviewFreeRankings(current,{apiKey,freeConfirmed,requestedDate=null,fetcher=fetch,sleep=ms=>new Promise(r=>setTimeout(r,ms)),now=()=>Date.now()}={}){
+ if(requestedDate!==null&&!day(requestedDate))throw Error('invalid-requested-date');
  const report={startedAt:new Date(now()).toISOString(),source:'BALLDONTLIE Free',mode:'read-only',publicDataWritten:false,automaticPublication:false,requests:[],tours:[],errors:[]};
  if(freeConfirmed!==true||typeof apiKey!=='string'||apiKey.length<8||apiKey.length>512||/[\r\n]/.test(apiKey))return {...report,status:'not-configured',reason:'Free-only account confirmation and repository secret are required',finishedAt:new Date(now()).toISOString()};
  let requestCount=0;
@@ -79,7 +80,7 @@ export async function reviewFreeRankings(current,{apiKey,freeConfirmed,fetcher=f
    for(let page=0;page<2;page++){
     if(requestCount>=4)throw Error('request-limit');
     if(requestCount)await sleep(15000);
-    const url=rankingURL(tour,cursor);requestCount++;
+    const url=rankingURL(tour,cursor,{date:requestedDate});requestCount++;
     let response;
     try{response=await fetcher(url,{headers:{Authorization:apiKey,Accept:'application/json','User-Agent':'CourtsideFreeRankingReview/1.0'},redirect:'error',signal:AbortSignal.timeout(15000)});}catch{throw Error('source-network-error');}
     const entry={url,status:response.status,observedAt:new Date(now()).toISOString()};report.requests.push(entry);
@@ -99,7 +100,7 @@ export async function reviewFreeRankings(current,{apiKey,freeConfirmed,fetcher=f
     if(!Number.isSafeInteger(next)||next<0||cursors.has(next))throw Error('invalid-pagination');
     cursors.add(next);cursor=next;
    }
-   report.tours.push(inspectRankingPages(pages,tour,current,{today:new Date(now()).toISOString().slice(0,10)}));
+   report.tours.push(inspectRankingPages(pages,tour,current,{today:new Date(now()).toISOString().slice(0,10),requestedDate}));
   }catch(e){
    const code=String(e.message);const allowed=/^(?:source-(?:network-error|http-\d{3}|not-json|size-limit|json-invalid)|invalid-(?:ranking-envelope|ranking-row|rank-movement|pagination)|request-limit)$/;
    report.errors.push({tour,code:allowed.test(code)?code:'review-failed'});
