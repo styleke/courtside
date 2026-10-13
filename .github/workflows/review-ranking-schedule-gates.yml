@@ -1,0 +1,90 @@
+name: Review post-clock data intake
+on:
+  push:
+    branches: ['review/ranking-schedule-gates-20261013']
+permissions:
+  contents: read
+  actions: read
+jobs:
+  review:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Preserve exact code and run full regressions
+        shell: bash
+        run: |
+          mkdir -p phase2/intake-check
+          git rev-parse HEAD > phase2/intake-check/commit.txt
+          git archive --format=tar.gz HEAD -o phase2/intake-check/source.tar.gz
+          npm test | tee phase2/intake-check/tests.txt
+          git diff --exit-code
+      - name: Check free ranking candidates with the already confirmed Free account
+        env:
+          BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
+          COURTSIDE_BDL_FREE_CONFIRMED: 'true'
+        run: node scripts/review-free-rankings.mjs
+      - name: Inspect current and next-day fixtures without publication
+        if: always()
+        run: node scripts/stage-fixture-discovery.mjs
+      - name: Verify actual periodic evidence and both served data endpoints
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import {writeFile,readFile} from 'node:fs/promises';
+          import {externalClockEvidence} from './services/clock-evidence.mjs';
+          import {projectChannelRun,WATCHED} from './services/operation-health.mjs';
+          import assert from 'node:assert/strict';
+          const root='https://api.github.com/repos/styleke/courtside';
+          async function get(url,github=false){
+            const r=await fetch(url,{headers:github?{Authorization:'Bearer '+process.env.GH_TOKEN,Accept:'application/vnd.github+json'}:{Accept:'application/json'},redirect:'error',signal:AbortSignal.timeout(20000)});
+            if(!r.ok)throw Error('http-'+r.status);
+            const text=await r.text();if(Buffer.byteLength(text)>5000000)throw Error('size-limit');return JSON.parse(text);
+          }
+          const all=await get(root+'/actions/workflows/380406288/runs?branch=main&per_page=20',true);
+          const runs=all.workflow_runs.filter(r=>r.event==='workflow_dispatch'&&r.display_title?.startsWith('Courtside clock v1 | cloudflare-cron | ')&&Date.now()-Date.parse(r.created_at)<4*3600000).slice(0,6);
+          const observed=[];
+          for(const r of runs){
+            const {jobs}=await get(root+'/actions/runs/'+r.id+'/jobs',true);
+            const evidence=externalClockEvidence(r,jobs);
+            observed.push({runId:r.id,createdAt:r.created_at,evidence,channels:WATCHED.map(t=>{const p=projectChannelRun(r,jobs,t);return {id:t.id,success:p?.status==='completed'&&p?.conclusion==='success',jobs:p?.jobEvidence};})});
+          }
+          const independentSlots=new Set(observed.filter(r=>r.evidence&&r.channels.every(c=>c.success)).map(r=>r.evidence.slotAt));
+          const sites=[];
+          for(const origin of ['https://styleke.github.io/courtside','https://courtside-tennis.pages.dev']){
+            try{
+              const data=await get(origin+'/data/content.json'),status=await get(origin+'/data/status.json');
+              const job=status.jobs?.find(j=>j.channel==='knownSinglesResults');
+              sites.push({origin,revision:data.meta.revision,rankings:data.rankings.map(r=>({tour:r.tour,rankingDate:r.rankingDate,rows:r.rows.length})),knownSingles:job,error:null});
+            }catch(e){sites.push({origin,error:String(e.message)});}
+          }
+          const report={checkedAt:new Date().toISOString(),observed,independentSuccessfulSlots:independentSlots.size,sites,providerAuthenticated:false,fullCoverage:false,publicDataWritten:false};
+          await writeFile('phase2/intake-check/clock-and-sites.json',JSON.stringify(report,null,2));
+          console.log(JSON.stringify({independentSuccessfulSlots:independentSlots.size,sites}));
+          assert.ok(independentSlots.size>=2,'Two distinct live periodic slots are required');
+          assert.ok(sites.every(s=>!s.error&&s.knownSingles?.status==='ok'),'Both served endpoints must be healthy');
+          JS
+      - name: Preserve data and every collection permission
+        if: always()
+        run: git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: post-clock-intake-check
+          path: |
+            phase2/intake-check
+            phase2/free-ranking-review
+            phase2/discovery
+          retention-days: 1
