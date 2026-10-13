@@ -47,7 +47,7 @@ test('official parser publishes sourceDate and expectedMatches for the runtime c
  const {parseOfficialDay,applyOfficialDays}=await import('../adapters/official-day.mjs');
  const d=readData();
  // Keep this synthetic parser contract isolated from any real reviewed coverage on the same date.
- d.matches=d.matches.filter(m=>m.tournamentId!=='shanghai-2026'||R.matchDate(m)!=='2026-10-13');
+ d.matches=d.matches.filter(m=>m.tournamentId!=='shanghai-2026'||m.localDate!=='2026-10-13');
  d.meta.scheduleCoverage=(d.meta.scheduleCoverage||[]).filter(r=>!(r.tournamentId==='shanghai-2026'&&r.date==='2026-10-13'));
  const ps=['carlos-alcaraz','zizou-bergs'].map(id=>d.players.find(p=>p.id===id));
  const person=p=>`<div class="name"><a href="/en/players/${p.id}/${p.externalIds?.atp||(p.id==='carlos-alcaraz'?'a0e2':'bh09')}">${p.enName}</a></div>`;
