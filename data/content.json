@@ -1,11 +1,11 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "revision": 25,
+    "revision": 26,
     "mode": "reviewed",
     "demoDate": "2026-10-10",
     "asOfDate": "2026-10-11",
-    "updatedAt": "2026-10-13T03:10:49.975Z",
+    "updatedAt": "2026-10-13T11:17:00Z",
     "dataVerifiedAt": "2026-10-10T03:50:28Z",
     "refreshMode": "verified-snapshot",
     "note": "赛程、排名与资料分别保留来源和更新时间。",
@@ -13,7 +13,7 @@
       "atpRankTop": 100,
       "wtaRankTop": 100,
       "matchDateStart": "2026-10-05",
-      "matchDateEnd": "2026-10-12",
+      "matchDateEnd": "2026-10-14",
       "rankEffectiveDate": "2026-10-05",
       "h2hMatches": 5,
       "rankEnrichedPlayers": 200,
@@ -25,9 +25,10 @@
       "ATP官方排名页面本轮返回403；榜单采用同一期公开排名表并与第二来源交叉核对。",
       "WTA数值PDF的解析与图像版本不一致，本轮排除，采用公开榜单并对照官方可见前50。",
       "晋级对阵由已核实赛果与签位关联；未公布日期不归入今天。",
-      "2026-10-10：WTA/ATP每日OP PDF的解析文本与缓存截图日期不一致，日程以赛事HTML、已交叉核对的发布信息为准；自动采集不得通过版本校验失败的PDF。"
+      "2026-10-10：WTA/ATP每日OP PDF的解析文本与缓存截图日期不一致，日程以赛事HTML、已交叉核对的发布信息为准；自动采集不得通过版本校验失败的PDF。",
+      "2026-10-13：上海大师赛 10 月 13 日官方赛程 HTML 与 10 月 14 日官方 Order of Play PDF 已人工核对；10 月 14 日只录入官方 PDF 列出的 4 场单打及 2 场双打，following 场次不推算时间。"
     ],
-    "updateScope": "WTA单打2026-10-12完整前100；ATP、比赛赛程及赛果保持不变",
+    "updateScope": "新增上海大师赛 2026-10-13 官方赛程及已公布赛果、2026-10-14 官方全天赛程；其他赛事与排名保持不变",
     "uiVersion": "0.9",
     "enrichmentVerifiedAt": "2026-10-10T03:50:28Z",
     "contentPatchedAt": "2026-10-11T07:11:26.583Z",
@@ -42,7 +43,7 @@
         "rankings-top100",
         "event-broadcasters"
       ],
-      "scheduleLastCheckedAt": "2026-10-10T06:16:42Z",
+      "scheduleLastCheckedAt": "2026-10-13T11:17:00Z",
       "rankingLastCheckedAt": "2026-10-10T06:16:42Z",
       "resultsLastCheckedAt": "2026-10-10T06:16:42Z",
       "drawsLastCheckedAt": "2026-10-10T03:50:28Z",
@@ -60,7 +61,7 @@
     },
     "sourceChecks": {
       "shanghai-2026": {
-        "schedule": "2026-10-11T10:31:39.681Z",
+        "schedule": "2026-10-13T11:17:00Z",
         "results": "2026-10-11T10:31:39.681Z",
         "draws": "2026-10-11T09:31:03.998Z"
       },
@@ -135,6 +136,41 @@
         ],
         "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule",
         "checkedAt": "2026-10-11T10:31:39.681Z",
+        "method": "editorial-source-review"
+      },
+      {
+        "tournamentId": "shanghai-2026",
+        "date": "2026-10-13",
+        "sourceDate": "2026-10-13",
+        "expectedMatches": 7,
+        "matchIds": [
+          "sh-1013-deminaur",
+          "sh-1013-gea",
+          "sh-1013-zverev",
+          "sh-1013-hurkacz",
+          "sh-1013-polmans",
+          "sh-1013-arribage",
+          "sh-1013-miedler"
+        ],
+        "checkedAt": "2026-10-13T11:17:00Z",
+        "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+        "method": "editorial-source-review"
+      },
+      {
+        "tournamentId": "shanghai-2026",
+        "date": "2026-10-14",
+        "sourceDate": "2026-10-14",
+        "expectedMatches": 6,
+        "matchIds": [
+          "sh-1014-vandezandschulp",
+          "sh-1014-ruud",
+          "sh-1014-medvedev",
+          "sh-1014-paul",
+          "sh-1014-arribage",
+          "sh-1014-cabral"
+        ],
+        "checkedAt": "2026-10-13T11:17:00Z",
+        "sourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
         "method": "editorial-source-review"
       }
     ],
@@ -18958,6 +18994,636 @@
           "checkedAt": "2026-10-11T09:24:26.693Z",
           "sourceDate": "2026-10-12",
           "sourceSha256": "a480128b0dd2531e3a1bd61bc03453a5f597b94240eb73b145de0ce8eaffb800",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1013-deminaur",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "alex-de-minaur"
+        ],
+        [
+          "karen-khachanov"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R16",
+      "round": "第四轮",
+      "status": "finished",
+      "score": "6-3 6-4",
+      "winnerIds": [
+        "alex-de-minaur"
+      ],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-13",
+      "confirmedBeijingDate": "2026-10-13",
+      "timeKind": "exact",
+      "startAt": "2026-10-13T12:00+08:00",
+      "court": "中央球场",
+      "courtOrder": 1,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方赛程页已公布完赛比分。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        },
+        "results": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        }
+      },
+      "resultVerifiedAt": "2026-10-13T11:17:00Z"
+    },
+    {
+      "id": "sh-1013-gea",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "arthur-gea"
+        ],
+        [
+          "jakub-mensik"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R16",
+      "round": "第四轮",
+      "status": "finished",
+      "score": "7-6(4) 6-4",
+      "winnerIds": [
+        "arthur-gea"
+      ],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-13",
+      "confirmedBeijingDate": "2026-10-13",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "中央球场",
+      "courtOrder": 2,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方赛程页已公布完赛比分。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        },
+        "results": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        }
+      },
+      "resultVerifiedAt": "2026-10-13T11:17:00Z"
+    },
+    {
+      "id": "sh-1013-zverev",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "alexander-zverev"
+        ],
+        [
+          "alexander-bublik"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R16",
+      "round": "第四轮",
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-13",
+      "confirmedBeijingDate": "2026-10-13",
+      "timeKind": "notBefore",
+      "startAt": "2026-10-13T18:00+08:00",
+      "court": "中央球场",
+      "courtOrder": 3,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方标注不早于北京时间 18:00。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1013-hurkacz",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "hubert-hurkacz"
+        ],
+        [
+          "alejandro-davidovich-fokina"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R16",
+      "round": "第四轮",
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-13",
+      "confirmedBeijingDate": "2026-10-13",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "中央球场",
+      "courtOrder": 4,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方标注为前一场之后进行，不推算开赛时间。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1013-polmans",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "marc-polmans",
+          "jan-zielinski"
+        ],
+        [
+          "julian-cash",
+          "lloyd-glasspool"
+        ]
+      ],
+      "discipline": "双打",
+      "roundCode": "R16",
+      "round": "第二轮",
+      "status": "finished",
+      "score": "7-6(3) 4-6 [12-10]",
+      "winnerIds": [
+        "marc-polmans",
+        "jan-zielinski"
+      ],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-13",
+      "confirmedBeijingDate": "2026-10-13",
+      "timeKind": "exact",
+      "startAt": "2026-10-13T12:00+08:00",
+      "court": "三号球场",
+      "courtOrder": 1,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方赛程页已公布完赛比分。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        },
+        "results": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        }
+      },
+      "resultVerifiedAt": "2026-10-13T11:17:00Z"
+    },
+    {
+      "id": "sh-1013-arribage",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "theo-arribage",
+          "albano-olivetti"
+        ],
+        [
+          "ivan-liutarevich",
+          "daniil-medvedev"
+        ]
+      ],
+      "discipline": "双打",
+      "roundCode": "R16",
+      "round": "第二轮",
+      "status": "finished",
+      "score": "W/O",
+      "winnerIds": [
+        "theo-arribage",
+        "albano-olivetti"
+      ],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-13",
+      "confirmedBeijingDate": "2026-10-13",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "三号球场",
+      "courtOrder": 2,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方赛程页记录该场以退赛/弃权方式结束，未伪造逐盘比分。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        },
+        "results": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        }
+      },
+      "resultVerifiedAt": "2026-10-13T11:17:00Z"
+    },
+    {
+      "id": "sh-1013-miedler",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "lucas-miedler",
+          "neil-oberleitner"
+        ],
+        [
+          "austin-krajicek",
+          "nikola-mektic"
+        ]
+      ],
+      "discipline": "双打",
+      "roundCode": "R16",
+      "round": "第二轮",
+      "status": "finished",
+      "score": "6-3 6-4",
+      "winnerIds": [
+        "lucas-miedler",
+        "neil-oberleitner"
+      ],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-13",
+      "confirmedBeijingDate": "2026-10-13",
+      "timeKind": "notBefore",
+      "startAt": "2026-10-13T15:00+08:00",
+      "court": "三号球场",
+      "courtOrder": 3,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方赛程页已公布完赛比分。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        },
+        "results": {
+          "primaryUrl": "https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-source-review"
+        }
+      },
+      "resultVerifiedAt": "2026-10-13T11:17:00Z"
+    },
+    {
+      "id": "sh-1014-vandezandschulp",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "botic-van-de-zandschulp"
+        ],
+        [
+          "rafael-jodar"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R16",
+      "round": "第四轮",
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "exact",
+      "startAt": "2026-10-14T12:00+08:00",
+      "court": "中央球场",
+      "courtOrder": 1,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方 Order of Play：中央球场 12:00 开始。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1014-ruud",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "casper-ruud"
+        ],
+        [
+          "felix-auger-aliassime"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R16",
+      "round": "第四轮",
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "中央球场",
+      "courtOrder": 2,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方标注为前一场之后进行，不推算开赛时间。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1014-medvedev",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "daniil-medvedev"
+        ],
+        [
+          "stefanos-tsitsipas"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R16",
+      "round": "第四轮",
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "notBefore",
+      "startAt": "2026-10-14T18:00+08:00",
+      "court": "中央球场",
+      "courtOrder": 3,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方标注不早于北京时间 18:00。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1014-paul",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "tommy-paul"
+        ],
+        [
+          "zizou-bergs"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R16",
+      "round": "第四轮",
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "中央球场",
+      "courtOrder": 4,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方标注为前一场之后进行，不推算开赛时间。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1014-arribage",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "theo-arribage",
+          "albano-olivetti"
+        ],
+        [
+          "kevin-krawietz",
+          "tim-puetz"
+        ]
+      ],
+      "discipline": "双打",
+      "roundCode": "QF",
+      "round": "四分之一决赛",
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "exact",
+      "startAt": "2026-10-14T15:00+08:00",
+      "court": "三号球场",
+      "courtOrder": 1,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方 Order of Play：三号球场 15:00 开始。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-source-review"
+        }
+      }
+    },
+    {
+      "id": "sh-1014-cabral",
+      "tournamentId": "shanghai-2026",
+      "sides": [
+        [
+          "francisco-cabral",
+          "jj-tracy"
+        ],
+        [
+          "robert-galloway",
+          "andre-goransson"
+        ]
+      ],
+      "discipline": "双打",
+      "roundCode": "QF",
+      "round": "四分之一决赛",
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "sourceName": "上海大师赛官方每日赛程",
+      "verifiedAt": "2026-10-13T11:17:00Z",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "三号球场",
+      "courtOrder": 2,
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+      "scheduleVerifiedAt": "2026-10-13T11:17:00Z",
+      "session": null,
+      "reason": "官方标注为前一场之后进行，不推算开赛时间。",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
+          "checkedAt": "2026-10-13T11:17:00Z",
+          "sourceDate": "2026-10-14",
           "method": "editorial-source-review"
         }
       }
