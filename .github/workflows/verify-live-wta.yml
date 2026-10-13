@@ -1,0 +1,53 @@
+name: Verify live WTA release
+on:
+  push:
+    branches: ['review/data-intake-20261013']
+    paths: ['.github/workflows/verify-live-wta.yml']
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.event.repository.private == false && github.actor == 'styleke'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: 529e636e0be4fe82d272659575324afe7d5820e7
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - name: Bounded wait for the exact shared public data publication
+        run: |
+          node --input-type=module <<'NODE'
+          import {readFile} from 'node:fs/promises';
+          import {setTimeout as sleep} from 'node:timers/promises';
+          import {isDeepStrictEqual} from 'node:util';
+          import Runtime from './public/runtime.js';
+          const expected=Runtime.publicData(JSON.parse(await readFile('data/content.json')));
+          let matched=false;
+          for(let n=0;n<8;n++){
+            const r=await fetch('https://styleke.github.io/courtside/data/content.json?accept='+process.env.GITHUB_RUN_ID+'-'+n,{redirect:'error',signal:AbortSignal.timeout(10000)});
+            if(r.ok&&isDeepStrictEqual(await r.json(),expected)){matched=true;break;}
+            await sleep(10000);
+          }
+          if(!matched)throw Error('Exact reviewed snapshot not published within the bounded wait');
+          console.log('Exact revision 25 public sporting data verified; no website writes performed.');
+          NODE
+      - name: Verify actual branded desktop and mobile interactions
+        run: |
+          BASE_URL=https://courtside-tennis.pages.dev/ REPORT_DIR=phase2/wta-live/issue node scripts/browser-wta-issue.mjs
+          BASE_URL=https://courtside-tennis.pages.dev/ REPORT_DIR=phase2/wta-live/profile node scripts/browser-profile-acceptance.mjs
+      - name: No data, source permission or UI mutation
+        if: always()
+        run: git diff --exit-code -- data config public
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: courtside-wta-live-acceptance
+          path: phase2/wta-live
+          retention-days: 1
