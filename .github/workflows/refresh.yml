@@ -54,3 +54,20 @@ jobs:
     uses: ./.github/workflows/stage-fixture-discovery.yml
     permissions:
       contents: read
+  rankings:
+    # Two bounded read-only checks daily, at 08:11 and 20:11 Beijing time.
+    # This channel never writes public data; existing results and discovery are independent.
+    needs: provenance
+    if: >-
+      github.event.repository.private == false &&
+      github.run_attempt == 1 &&
+      vars.COURTSIDE_FREE_RANKING_REVIEW_DISABLED != 'true' &&
+      inputs.clock_source == 'cloudflare-cron' &&
+      (contains(inputs.clock_scheduled_at, 'T00:11:') || contains(inputs.clock_scheduled_at, 'T12:11:'))
+    uses: ./.github/workflows/free-rankings-review.yml
+    with:
+      free_plan_confirmed: true
+    secrets:
+      BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
+    permissions:
+      contents: read

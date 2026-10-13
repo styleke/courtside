@@ -9,6 +9,27 @@ export function rankingURL(tour,cursor=null,{date=null}={}){
  const u=new URL('https://api.balldontlie.io/'+tour.toLowerCase()+'/v1/rankings');
  u.searchParams.set('per_page','100');if(date!==null){if(!day(date))throw Error('invalid-requested-date');u.searchParams.set('date',date);}if(cursor!==null)u.searchParams.set('cursor',String(cursor));return u.href;
 }
+/** A previously reviewed provider ID may resolve a country-label disagreement,
+ * but only for the exact officially reviewed issue and exact reviewed values.
+ * This does not update a player's representation or approve future issues.
+ */
+function reviewedCountryIdentity(p,row,players,old,tour,names){
+ if(tour!=='WTA'||old?.rankingDate!==row.ranking_date)return null;
+ const evidence=old.evidenceReview,official='https://www.wtatennis.com/rankings/singles';
+ if(evidence?.state!=='official-reviewed'||evidence.rankingDate!==row.ranking_date||
+    evidence.sourceUrl!==official||evidence.rowCount!==100||!Array.isArray(evidence.reviewedRows)||
+    evidence.reviewedRows.length!==100||!Array.isArray(evidence.countryDisagreements))return null;
+ const linked=players.filter(q=>q.tour===tour&&String(q.externalIds?.balldontlie)===String(p.id));
+ if(linked.length!==1)return null;
+ const q=linked[0];
+ if(q.countryBasis!=='official-tour-representation'||q.countrySourceUrl!==official||
+    ![q.enName,...(q.aliases||[])].some(n=>typeof n==='string'&&n.trim().includes(' ')&&names.includes(norm(n))))return null;
+ const reviewed=evidence.reviewedRows.filter(x=>Array.isArray(x)&&x[1]===q.id);
+ if(reviewed.length!==1||reviewed[0][0]!==row.rank||reviewed[0][2]!==row.points||reviewed[0][3]!==row.movement)return null;
+ const approved=evidence.countryDisagreements.filter(x=>x.playerId===q.id&&x.providerPlayerId===p.id&&
+  x.providerCountry===p.country_code&&x.officialCountry===q.country);
+ return approved.length===1?q:null;
+}
 export function inspectRankingPages(pages,tour,current,{today=new Date().toISOString().slice(0,10),requestedDate=null}={}){
  if(!TOURS.includes(tour)||!day(today)||(requestedDate!==null&&!day(requestedDate)))throw Error('invalid-review-scope');
  const problems=[],rows=[],seenPlayers=new Set(),seenRanks=new Set();
@@ -24,10 +45,13 @@ export function inspectRankingPages(pages,tour,current,{today=new Date().toISOSt
    if(seenRanks.has(r.rank)||seenPlayers.has(p.id))problems.push('duplicate-ranking-row');seenRanks.add(r.rank);seenPlayers.add(p.id);
    const names=[p.full_name,typeof p.first_name==='string'&&typeof p.last_name==='string'?p.first_name+' '+p.last_name:''].filter(n=>n.trim().includes(' ')).map(norm);
    const found=players.filter(q=>q.tour===tour&&q.country===p.country_code&&[q.enName,...(q.aliases||[])].some(n=>typeof n==='string'&&n.trim().includes(' ')&&names.includes(norm(n))));
-   const match=found.length===1?found[0]:null;
+   const reviewed=reviewedCountryIdentity(p,r,players,old,tour,names);
+   const match=found.length===1?found[0]:found.length===0?reviewed:null;
    const linked=match?.externalIds?.balldontlie;
-   const valid=match&&(linked==null||String(linked)===String(p.id));
-   rows.push({rank:r.rank,points:r.points,change:r.movement??null,rankingDate:r.ranking_date,providerPlayerId:p.id,enName:p.full_name,country:p.country_code,playerId:valid?match.id:null,identityStatus:valid?'full-name-country':'needs-review'});
+   const assigned=players.filter(q=>q.tour===tour&&String(q.externalIds?.balldontlie)===String(p.id));
+   const valid=match&&(linked==null||String(linked)===String(p.id))&&
+    (assigned.length===0||(assigned.length===1&&assigned[0]===match));
+   rows.push({rank:r.rank,points:r.points,change:r.movement??null,rankingDate:r.ranking_date,providerPlayerId:p.id,enName:p.full_name,country:p.country_code,playerId:valid?match.id:null,identityStatus:valid?(match===reviewed?'reviewed-id-country-disagreement':'full-name-country'):'needs-review',...(valid&&match===reviewed?{officialCountry:match.country,countryEvidenceDate:old.rankingDate}:{})});
   }
  }
  rows.sort((a,b)=>a.rank-b.rank);
