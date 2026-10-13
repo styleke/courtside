@@ -91,3 +91,13 @@ Disposition: all 11 are classified as a coherent issue-date mismatch; none is ap
 ### Fixture event mapping correction — 2026-10-13
 
 The staging adapter previously mapped WTA Beijing source labels but did not map WTA Wuhan labels. The current calendar has Wuhan running 12–18 October, while China Open ended on 11 October; WTA's official match-notes page lists the Dongfeng Voyah Wuhan Open for 12–18 October. This could leave current Wuhan candidates flagged as requiring an event mapping even though the event exists in the public tournament registry. The adapter now maps `WTA Wuhan, China Women Singles` and `WTA Wuhan, China Women Doubles` to `wuhan-2026`. This is a candidate-classification fix only; it does not add, alter or publish matches. Independent day coverage for Wuhan is still absent, so `fullCoverageVerified` remains false and `canPublish` remains false. Official calendar reference: https://www.wtatennis.com/match-notes . Regression test added to ensure a Wuhan candidate resolves to the active tournament without opening the publication gate.
+
+### Official schedule coverage check — 2026-10-13
+
+Checked the official tournament surfaces for the next two dates before considering any public schedule change:
+
+- Shanghai Masters: the official tournament site confirms the event is active and publishes October 13 news/highlights, but its day-specific schedule endpoint timed out in this review environment. The linked ATP Tour schedule and results pages returned HTTP 403 to the review browser. This is an access limitation, not evidence that the schedule is unavailable.
+- Wuhan Open: the official WTA order-of-play page confirms the event dates (October 12–18) and exposes the October 13 day selector, but its match list remained in a dynamic “Loading Order Of Play” state in this review. The official scores page likewise did not expose a complete match list to this reader.
+- Public secondary order-of-play pages list October 13 and 14 Shanghai matches, but they are not a substitute for an independently captured official full-day schedule when establishing completeness.
+
+The public snapshot's independent schedule coverage currently ends on October 12 for Shanghai; there is no independent full-day coverage record for October 13–14 Shanghai or Wuhan. Therefore, do not infer completeness from vendor candidate counts, do not treat an empty response as no matches, and do not promote these dates into the public snapshot. Next acceptable evidence is a readable official order of play/draw plus a row-level reconciliation (including doubles and completed results) or a second independent authoritative source with clear date and event scope. No public schedule/results were changed in this check.
