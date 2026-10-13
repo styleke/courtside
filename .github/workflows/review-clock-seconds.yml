@@ -1,0 +1,48 @@
+name: Review real clock seconds
+on:
+  push:
+    branches: ['review/clock-seconds-20261013']
+permissions:
+  contents: read
+jobs:
+  verify:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 6
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: 6d60d82a71e3faf71e6a86e9b5d4f8de28a4ab49
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Test the exact candidate, including real timestamp regressions
+        shell: bash
+        run: |
+          mkdir -p phase2/clock-seconds-review
+          npm test | tee phase2/clock-seconds-review/tests.txt
+          npm run build | tee phase2/clock-seconds-review/build.txt
+          python3 - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          path='data/automation-status.json'
+          original=subprocess.check_output(['git','show','HEAD:'+path])
+          before=json.loads(original);after=json.loads(Path(path).read_bytes())
+          before.pop('generatedAt',None);after.pop('generatedAt',None)
+          assert before==after,'Unexpected status change beyond generatedAt'
+          Path(path).write_bytes(original)
+          report={'testedCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'fullTestsPassed':True,'buildPassed':True,'published':False,'liveCronAcceptance':False}
+          Path('phase2/clock-seconds-review/report.json').write_text(json.dumps(report,indent=2))
+          print(json.dumps(report))
+          PY
+          git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: courtside-clock-seconds-reviewed
+          path: phase2/clock-seconds-review
+          retention-days: 1
