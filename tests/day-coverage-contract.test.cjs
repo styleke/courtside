@@ -46,6 +46,9 @@ test('a future check timestamp is stale rather than a freshness workaround',()=>
 test('official parser publishes sourceDate and expectedMatches for the runtime contract',async()=>{
  const {parseOfficialDay,applyOfficialDays}=await import('../adapters/official-day.mjs');
  const d=readData();
+ // Keep this synthetic parser contract isolated from any real reviewed coverage on the same date.
+ d.matches=d.matches.filter(m=>m.tournamentId!=='shanghai-2026'||R.matchDate(m)!=='2026-10-13');
+ d.meta.scheduleCoverage=(d.meta.scheduleCoverage||[]).filter(r=>!(r.tournamentId==='shanghai-2026'&&r.date==='2026-10-13'));
  const ps=['carlos-alcaraz','zizou-bergs'].map(id=>d.players.find(p=>p.id===id));
  const person=p=>`<div class="name"><a href="/en/players/${p.id}/${p.externalIds?.atp||(p.id==='carlos-alcaraz'?'a0e2':'bh09')}">${p.enName}</a></div>`;
  const html=`<div class="atp_scheduled"><div class="header"><div class="title">Tuesday, October 13, 2026</div></div><div class="schedule"><div class="location">Stadium Court</div><div class="match-item"><div class="round">R16</div><div class="match-time">Not Before 18:00</div><div class="match-player">${person(ps[0])}</div><div class="match-state">VS</div><div class="match-opponent">${person(ps[1])}</div></div></div></div>`;
