@@ -56,3 +56,12 @@ candidates is therefore not evidence of no matches. Unknown events/players,
 vendor-estimated times and missing per-set results are not promoted. The next
 publication gate remains source and identity/coverage verification, not a clock
 repair or a paid-source upgrade.
+
+
+## ATP discrepancy investigation — 2026-10-13
+
+The first cross-check changes the diagnosis of the eleven ATP differences, but does not authorize publication. The BDL response labels its issue `2026-10-05`, while its values for the named players match the following-week/current ATP table rather than the independently cross-checked October 5 table. For example, the BDL response gives Alcaraz 5,560 points, Auger-Aliassime rank 5, Medvedev rank 6, and Djokovic rank 8; October 5 reference tables list Alcaraz at 5,260, Auger-Aliassime rank 6, Medvedev rank 5, and Djokovic rank 11. The October 5 values are independently corroborated by L'Équipe's dated ranking report and TennisLive's October 5 snapshot; the later values appear in October 12 ranking coverage. References: https://www.lequipe.fr/Tennis/atp/epreuve-simple-messieurs/page-classement-individuel/general ; https://www.tennislive.net/atp/ranking/ ; https://en.tennistemple.com/rankings/atp
+
+Working conclusion: treat this as a provider issue-date/data-version mismatch, not eleven independent errors in the website's October 5 ranking. Keep the public ATP snapshot unchanged; keep the BDL ATP candidate blocked; do not rewrite its issue date or map it onto October 5. A future change should require the provider to return a genuinely date-matched ATP snapshot or an independent authoritative source for the same issue. The public ATP ranking date remains October 5 until that gate passes.
+
+The fixture-discovery gate also remains closed: the prior 131 October 13 candidates and zero October 14 candidates were not accompanied by independent full-day coverage evidence. This is insufficient to certify completeness or publish new fixtures. Continue with free sources only; no new services, paid endpoints, or automatic fixture publication.
