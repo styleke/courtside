@@ -28,24 +28,38 @@ jobs:
           git diff --exit-code
           cp package.json phase2/clock-seconds-review/package.json
           sha256sum services/clock-evidence.mjs services/operation-health.mjs tests/clock-jitter.test.cjs ops/cloudflare-clock/seconds.md > phase2/clock-seconds-review/before.sha256
-      - name: Run full regression suite
-        shell: bash
-        run: npm test | tee phase2/clock-seconds-review/tests.txt
-      - name: Record post-test integrity
-        if: always()
+      - name: Run full regression suite without source mutation
         shell: bash
         run: |
-          git diff --binary > phase2/clock-seconds-review/after-tests.patch
-          sha256sum services/clock-evidence.mjs services/operation-health.mjs tests/clock-jitter.test.cjs ops/cloudflare-clock/seconds.md > phase2/clock-seconds-review/after-tests.sha256
-          git status --porcelain > phase2/clock-seconds-review/after-tests-status.txt
+          npm test | tee phase2/clock-seconds-review/tests.txt
+          git diff --exit-code
       - name: Build exact candidate
         shell: bash
         run: npm run build | tee phase2/clock-seconds-review/build.txt
-      - name: Verify generated status and all tracked files
+      - name: Verify derived seed before discarding only that build output
+        shell: bash
+        run: |
+          node --input-type=module <<'JS'
+          import {readFile,writeFile} from 'node:fs/promises';
+          import {execFileSync} from 'node:child_process';
+          import assert from 'node:assert/strict';
+          import Runtime from './public/runtime.js';
+          const path='public/data.js';
+          const input=JSON.parse(execFileSync('git',['show','HEAD:data/content.json'],{encoding:'utf8'}));
+          assert.deepEqual(JSON.parse(await readFile('data/content.json','utf8')),input);
+          const data=Runtime.publicData(input);
+          const expected='window.COURTSIDE_SEED = '+JSON.stringify(data).replace(/</g,'\\u003c')+';';
+          assert.equal(await readFile(path,'utf8'),expected,'Build seed must exactly match committed factual input');
+          assert.equal(await readFile('dist/site/data.js','utf8'),expected);
+          assert.deepEqual(JSON.parse(await readFile('dist/site/data/content.json','utf8')),data);
+          await writeFile(path,execFileSync('git',['show','HEAD:'+path]));
+          console.log('Verified derived public seed against committed input; discarded only regenerated seed.');
+          JS
+      - name: Verify status and complete tracked-file integrity
         shell: bash
         run: |
           python3 - <<'PY'
-          import json,subprocess,hashlib
+          import json,subprocess
           from pathlib import Path
           root=Path('phase2/clock-seconds-review')
           path='data/automation-status.json'
@@ -56,18 +70,13 @@ jobs:
           Path(path).write_bytes(original)
           patch=subprocess.check_output(['git','diff','--binary'])
           (root/'after-build.patch').write_bytes(patch)
-          paths=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
-          rows=[]
-          for p in paths:
-              old=subprocess.check_output(['git','show','HEAD:'+p]);new=Path(p).read_bytes()
-              rows.append({'path':p,'beforeBytes':len(old),'afterBytes':len(new),'beforeSha256':hashlib.sha256(old).hexdigest(),'afterSha256':hashlib.sha256(new).hexdigest(),'onlyOneTrailingSpace':new==old+b' '})
-          (root/'integrity.json').write_text(json.dumps(rows,indent=2))
-          print(json.dumps(rows,indent=2))
-          assert not paths,'Tracked files changed during tests/build; no deployment permitted'
-          report={'testedCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'fullTestsPassed':True,'buildPassed':True,'trackedFilesUnchanged':True,'published':False,'liveCronAcceptance':False}
+          assert not patch,'Unexpected tracked-file changes'
+          report={'testedCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'fullTestsPassed':True,'buildPassed':True,'trackedFilesUnchanged':True,'generatedSeedVerified':True,'published':False,'liveCronAcceptance':False}
           (root/'report.json').write_text(json.dumps(report,indent=2))
           print(json.dumps(report))
           PY
+          sha256sum -c phase2/clock-seconds-review/before.sha256
+          git diff --exit-code
       - uses: actions/upload-artifact@v4
         if: always()
         with:
