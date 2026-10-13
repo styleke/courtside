@@ -101,3 +101,30 @@ Checked the official tournament surfaces for the next two dates before consideri
 - Public secondary order-of-play pages list October 13 and 14 Shanghai matches, but they are not a substitute for an independently captured official full-day schedule when establishing completeness.
 
 The public snapshot's independent schedule coverage currently ends on October 12 for Shanghai; there is no independent full-day coverage record for October 13–14 Shanghai or Wuhan. Therefore, do not infer completeness from vendor candidate counts, do not treat an empty response as no matches, and do not promote these dates into the public snapshot. Next acceptable evidence is a readable official order of play/draw plus a row-level reconciliation (including doubles and completed results) or a second independent authoritative source with clear date and event scope. No public schedule/results were changed in this check.
+
+
+### Follow-up fixture candidate audit — 2026-10-13 11:11 UTC
+
+The latest staging-only fixture discovery run (workflow run
+[38388489108](https://github.com/styleke/courtside/actions/runs/38388489108))
+made three free SportScore requests for source dates October 12, 13 and 14.
+The October 13 Beijing-day view contained 131 candidates; the October 14 view
+contained zero. Neither date passed independent full-day coverage, and zero
+October 14 candidates is not evidence of an empty tennis schedule.
+
+The newly added Wuhan event mapping is active in staging: the report classifies
+17 WTA Wuhan singles candidates under `wuhan-2026`. This confirms event mapping,
+not match verification. Across the October 13 candidate set, 111/131 identities
+remain unresolved and zero candidates are publishable. Wuhan/Shanghai examples
+still include placeholder or unmapped names, canceled rows, missing per-set
+results, and invalid final totals. One candidate with Mirra Andreeva lists
+`R32P10` as the opponent and remains blocked. These vendor rows must not be
+treated as an authoritative order of play or a complete results feed.
+
+The same clock run checked the existing known-singles results channel against
+the baseline source: 82 known matches matched, zero were applied, and 94 source
+rows remained unresolved. The channel reports `ok` for that bounded check only;
+it does not mean the schedule or all results are current. The run completed its
+build/deploy verification, but no new fixture or score was published from this
+candidate audit. Continue to require independently verified day coverage,
+resolved identities and per-set results before any fixture/result publication.
