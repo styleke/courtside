@@ -1,0 +1,27 @@
+name: Temporary Shanghai schedule validation
+on:
+  push:
+    branches: [review/shanghai-official-oop-oct13-14]
+    paths:
+      - 'data/content.json'
+      - 'tests/**'
+      - 'scripts/build.mjs'
+      - '.github/workflows/temporary-shanghai-validation.yml'
+permissions:
+  contents: read
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Run full test suite
+        run: npm test
+      - name: Build and validate public data
+        run: npm run build
