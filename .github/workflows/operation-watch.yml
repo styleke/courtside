@@ -2,11 +2,11 @@ name: Watch Courtside data operation
 on:
   push:
     branches: [main]
-    paths: ['.github/workflows/operation-watch.yml','services/operation-health.mjs','scripts/check-operation-health.mjs','tests/operation-health.test.cjs']
+    paths: ['.github/workflows/operation-watch.yml','services/operation-health.mjs','services/clock-evidence.mjs','scripts/check-clock-trigger.mjs','tests/clock-evidence.test.cjs','scripts/check-operation-health.mjs','tests/operation-health.test.cjs']
   schedule:
-    - cron: '11 * * * *'
+    - cron: '23 * * * *'
   workflow_run:
-    workflows: ['Check tennis data','Sync known singles results','Stage tennis fixture discovery']
+    workflows: ['Check tennis data']
     types: [completed]
   workflow_dispatch:
 permissions:
@@ -32,7 +32,7 @@ jobs:
         with:
           node-version: '22'
           package-manager-cache: false
-      - run: node --test tests/operation-health.test.cjs
+      - run: node --test tests/operation-health.test.cjs tests/clock-evidence.test.cjs
       - name: Inspect real runs and publication; recover only within a bounded cooldown
         env:
           GH_TOKEN: ${{ github.token }}

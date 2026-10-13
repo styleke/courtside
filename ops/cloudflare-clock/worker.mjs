@@ -117,7 +117,7 @@ export async function runTick(controller, env, {fetcher = fetch, now = Date.now}
     if (latest && at - Date.parse(latest.created_at) < 25 * MINUTE) {
       return {...report, latestRunId: latest.id, outcome: 'skipped', code: 'recent-run'};
     }
-    const dispatch = await request(DISPATCH, 'POST', {ref: 'main'});
+    const dispatch = await request(DISPATCH, 'POST', {ref: 'main', inputs: {clock_source: 'cloudflare-cron', clock_scheduled_at: report.scheduledAt}});
     await dispatch.body?.cancel();
     if (dispatch.status !== 204) fail('unexpected-dispatch-response');
     return {...report, outcome: 'accepted', code: 'dispatch-accepted-not-publication'};

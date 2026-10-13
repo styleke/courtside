@@ -1,18 +1,46 @@
 name: Check tennis data
+run-name: ${{ inputs.clock_source == 'cloudflare-cron' && format('Courtside clock v1 | cloudflare-cron | {0}', inputs.clock_scheduled_at) || format('Check tennis data ({0})', github.event_name) }}
 on:
   push:
     branches: [main]
     paths: ['.github/workflows/refresh.yml']
-  schedule:
-    - cron: '11,41 * * * *'
+  # The existing Cloudflare clock is the sole half-hour scheduler.
+  # Manual dispatch and bounded watchdog recovery remain available.
   workflow_dispatch:
+    inputs:
+      clock_source:
+        description: 'Origin declaration; leave empty for manual runs. Not a provider signature.'
+        type: string
+        required: false
+        default: ''
+      clock_scheduled_at:
+        description: 'Cloudflare scheduledTime as UTC ISO; leave empty for manual runs.'
+        type: string
+        required: false
+        default: ''
 permissions:
   contents: read
 concurrency:
   group: courtside-refresh
   cancel-in-progress: false
 jobs:
+  provenance:
+    name: Validate trigger provenance
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 3
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: node --test tests/clock-evidence.test.cjs tests/cloudflare-clock.test.cjs
+      - run: node scripts/check-clock-trigger.mjs
   results:
+    needs: provenance
     if: github.event.repository.private == false
     uses: ./.github/workflows/sync-known-results.yml
     permissions:
@@ -21,6 +49,7 @@ jobs:
       id-token: write
       actions: write
   discovery:
+    needs: provenance
     if: github.event.repository.private == false
     uses: ./.github/workflows/stage-fixture-discovery.yml
     permissions:

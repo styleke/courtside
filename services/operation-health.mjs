@@ -1,3 +1,4 @@
+import {externalClockEvidence} from './clock-evidence.mjs';
 /** Execution evidence is distinct from source freshness and full data coverage. */
 export const ORCHESTRATOR='refresh.yml';
 export const WATCHED=Object.freeze([
@@ -14,13 +15,18 @@ export function projectChannelRun(run,jobs,target){
  const selected=groups.flat();
  const complete=run.status==='completed';
  const conclusion=!complete?null:!checked?'failure':selected.every(j=>j.status==='completed'&&j.conclusion==='success')?'success':selected.some(j=>j.conclusion==='failure')?'failure':'skipped';
- return {...run,status:complete?'completed':run.status,conclusion,channel:target.id,orchestrator:ORCHESTRATOR,jobEvidence:checked?selected.map(j=>({id:j.id,name:j.name,status:j.status,conclusion:j.conclusion})):[],jobEvidenceComplete:checked};
+ return {...run,status:complete?'completed':run.status,conclusion,channel:target.id,orchestrator:ORCHESTRATOR,jobEvidence:checked?selected.map(j=>({id:j.id,name:j.name,status:j.status,conclusion:j.conclusion})):[],jobEvidenceComplete:checked,externalClock:externalClockEvidence(run,jobs)};
 }
-export function inspectOperation(target,workflow,runs,scheduledRuns,feed,{now=Date.now(),requireScheduledEvidence=false}={}){
+export function inspectOperation(target,workflow,runs,scheduledRuns,feed,{now=Date.now(),requireScheduledEvidence=false,requirePeriodicEvidence=false}={}){
  if(!WATCHED.some(x=>x.file===target.file))throw Error('Unapproved workflow');
  const eligible=xs=>[...new Map((xs||[]).filter(r=>r.head_branch==='main'&&instant(r.created_at)!==null&&Date.parse(r.created_at)<=now+300000).map(r=>[r.id,r])).values()].sort((a,b)=>Date.parse(b.created_at)-Date.parse(a.created_at));
  const all=eligible(runs),scheduled=eligible(scheduledRuns).filter(r=>r.event==='schedule');
  const latest=all[0]||null,successes=scheduled.filter(r=>r.status==='completed'&&r.conclusion==='success'&&now-Date.parse(r.created_at)<=4*3600000);
+ const external=[...new Map(all.filter(r=>r.channel===target.id&&r.jobEvidenceComplete&&
+  r.status==='completed'&&r.conclusion==='success'&&r.externalClock?.runId===r.id&&
+  r.externalClock.correlation==='validated-dispatch-metadata'&&
+  now-Date.parse(r.created_at)<=4*3600000).map(r=>[r.externalClock.scheduledAt,r])).values()];
+ const hasPeriodicEvidence=successes.length>=2||external.length>=2;
  const problems=[],age=latest?(now-Date.parse(latest.created_at))/60000:Infinity;
  if(workflow?.state!=='active')problems.push('workflow-not-active');
  if(!latest)problems.push('no-run-record');
@@ -28,6 +34,7 @@ export function inspectOperation(target,workflow,runs,scheduledRuns,feed,{now=Da
  else if(!['success','neutral'].includes(latest.conclusion))problems.push('last-run-unsuccessful');
  if(age>90)problems.push('execution-overdue');
  if(requireScheduledEvidence&&successes.length<2)problems.push('scheduled-delivery-unverified');
+ if(requirePeriodicEvidence&&!hasPeriodicEvidence)problems.push('periodic-delivery-unverified');
  const job=feed?.jobs?.find(j=>j.channel===target.id)||null;
  if(target.publishes&&latest?.status==='completed'&&latest.conclusion==='success'){
   if(!job||job.status!=='ok')problems.push('published-channel-not-ok');
@@ -38,9 +45,13 @@ export function inspectOperation(target,workflow,runs,scheduledRuns,feed,{now=Da
   if(upstream!==null&&now-upstream>36*3600000)problems.push('upstream-export-old');
  }
  const scheduledReady=successes.length>=2&&problems.length===0;
+ const periodicReady=hasPeriodicEvidence&&problems.length===0;
  const lastManual=all.find(r=>r.event==='workflow_dispatch'),recentManual=lastManual&&now-Date.parse(lastManual.created_at)<6*3600000;
  const recoverable=workflow?.state==='active'&&(!latest||latest.status==='completed')&&age>120&&!recentManual;
- return {channel:target.id,label:target.label,workflow:target.file,state:problems.length?'attention':scheduledReady?'scheduled-verified':'awaiting-scheduled-evidence',problems:[...new Set(problems)],scheduledVerified:scheduledReady,successfulScheduledRunsObserved:successes.length,latestRun:latest?{id:latest.id,event:latest.event,status:latest.status,conclusion:latest.conclusion,startedAt:latest.created_at,url:latest.html_url,jobEvidence:latest.jobEvidence||[]}:null,sourceCheckedAt:job?.lastCheckAt||null,sourceGeneratedAt:job?.sourceGeneratedAt||null,recoveryEligible:recoverable,fullCoverage:false};
+ return {channel:target.id,label:target.label,workflow:target.file,state:problems.length?'attention':requirePeriodicEvidence&&periodicReady?'periodic-verified':scheduledReady?'scheduled-verified':'awaiting-scheduled-evidence',problems:[...new Set(problems)],scheduledVerified:scheduledReady,successfulScheduledRunsObserved:successes.length,
+ periodicDeliveryVerified:periodicReady,successfulExternalClockRunsObserved:external.length,
+ externalClockEvidence:external.map(r=>r.externalClock),providerAuthenticated:false,
+ executionHealthy:!problems.some(p=>['workflow-not-active','no-run-record','run-stuck','last-run-unsuccessful','execution-overdue'].includes(p)),latestRun:latest?{id:latest.id,event:latest.event,status:latest.status,conclusion:latest.conclusion,startedAt:latest.created_at,url:latest.html_url,jobEvidence:latest.jobEvidence||[]}:null,sourceCheckedAt:job?.lastCheckAt||null,sourceGeneratedAt:job?.sourceGeneratedAt||null,recoveryEligible:recoverable,fullCoverage:false};
 }
 export function notificationAction(issues,report,signature){
  const issue=(issues||[]).find(i=>i.user?.login==='github-actions[bot]'&&i.title==='Courtside 数据更新检查'&&i.body?.includes('<!-- courtside-operation-watch:v1 '));
