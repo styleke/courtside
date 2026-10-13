@@ -34,7 +34,7 @@ jobs:
           const bytes=await readFile('data/content.json'),current=JSON.parse(bytes),actualRequests=[],seen=new Set();
           const key=process.env.BDL_API_KEY,issueDate='2026-10-05';
           const allowed=new Set(['https://api.balldontlie.io/atp/v1/rankings','https://api.balldontlie.io/wta/v1/rankings']);
-          const result=await reviewFreeRankings(current,{apiKey:key,freeConfirmed:true,fetcher:async(url,options)=>{
+          const result=await reviewFreeRankings(current,{apiKey:key,freeConfirmed:true,requestedDate:issueDate,fetcher:async(url,options)=>{
             const u=new URL(url);assert.ok(allowed.has(u.origin+u.pathname));assert.equal(u.searchParams.get('per_page'),'100');
             assert.ok(!u.searchParams.has('cursor')&&!seen.has(u.pathname)&&actualRequests.length<2);
             seen.add(u.pathname);u.searchParams.set('date',issueDate);actualRequests.push(u.href);
