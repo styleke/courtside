@@ -1,0 +1,62 @@
+name: Review dated official schedules
+on:
+  push:
+    branches: ['review/official-days-20261013-evening']
+permissions:
+  contents: read
+jobs:
+  review:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Preserve exact source and inspect fixed public official documents
+        shell: bash
+        run: |
+          mkdir -p phase2/official-days
+          git archive --format=tar.gz HEAD -o phase2/official-days/source.tar.gz
+          node --input-type=module <<'JS'
+          import {writeFile} from 'node:fs/promises';
+          import {createHash} from 'node:crypto';
+          const root='phase2/official-days/';
+          const inputs=[
+            ['shanghai-13.html','https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=9'],
+            ['shanghai-14.html','https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=10'],
+            ['shanghai-draw.html','https://en.rolexshanghaimasters.com/en/scores/draw'],
+            ['shanghai-op.pdf','https://www.protennislive.com/posting/2026/5014/op.pdf'],
+            ['wuhan-op.pdf','https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf'],
+            ['wuhan-draw.pdf','https://wtafiles.wtatennis.com/pdf/draws/2026/1075/MDS.pdf'],
+            ['wuhan-notes.pdf','https://wtafiles.wtatennis.com/pdf/matchnotes/2026/1075_2.pdf']
+          ];
+          const report={commit:process.env.GITHUB_SHA,checkedAt:new Date().toISOString(),publicDataWritten:false,requests:[]};
+          for(const [file,url] of inputs){
+            const row={file,url};report.requests.push(row);
+            try{
+              const r=await fetch(url,{headers:{'User-Agent':'CourtsideEditorialReview/1.0','Accept':file.endsWith('.pdf')?'application/pdf':'text/html'},redirect:'error',signal:AbortSignal.timeout(18000)});
+              row.status=r.status;row.contentType=r.headers.get('content-type');
+              if(!r.ok){await r.body?.cancel();continue;}
+              const reader=r.body.getReader(),parts=[];let bytes=0;
+              for(;;){const {done,value}=await reader.read();if(done)break;bytes+=value.length;if(bytes>5000000){await reader.cancel();throw Error('size-limit');}parts.push(Buffer.from(value));}
+              const body=Buffer.concat(parts);row.bytes=bytes;row.sha256=createHash('sha256').update(body).digest('hex');
+              await writeFile(root+file,body);
+            }catch(e){row.error=e.name==='TimeoutError'?'timeout':'fetch-failed';}
+          }
+          await writeFile(root+'capture.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          JS
+      - name: Verify no public data or source permissions changed
+        run: git diff --exit-code
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: official-days-evening-evidence
+          path: phase2/official-days
+          retention-days: 1
