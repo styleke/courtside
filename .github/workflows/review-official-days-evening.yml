@@ -8,113 +8,79 @@ jobs:
   review:
     if: github.event.repository.private == false
     runs-on: ubuntu-latest
-    timeout-minutes: 6
-    permissions:
-      contents: write
-    env:
-      PYTHONDONTWRITEBYTECODE: '1'
+    timeout-minutes: 5
     steps:
       - uses: actions/checkout@v6
         with:
-          ref: db0235c692382f874f0cc0647711616f93e69550
+          ref: 8bc1cc16932f415be695ab2194c05aee60582580
           persist-credentials: false
       - uses: actions/setup-node@v6
         with:
           node-version: '22'
           package-manager-cache: false
-      - name: Apply the fixed reviewed patch without publishing
-        env:
-          GH_TOKEN: ${{ github.token }}
+      - name: Check published data and branded page code without changing anything
         shell: bash
         run: |
-          mkdir -p phase2/wuhan-review
-          gh api repos/styleke/courtside/git/blobs/6a0c13b898bc5e445747cb9f8dec93606f424f73 > "$RUNNER_TEMP/patch-blob.json"
-          python3 - <<'PY'
-          import os,json,base64,gzip,hashlib,subprocess
-          from pathlib import Path
-          blob=json.loads((Path(os.environ['RUNNER_TEMP'])/'patch-blob.json').read_text())
-          raw=base64.b64decode(blob['content'])
-          assert len(raw)==7169
-          assert hashlib.sha256(raw).hexdigest()=='0610ab6ac15b4bdefd69eff6759eb9f59553789b62ddd3a55cc8c03346c97c08'
-          patch=gzip.decompress(raw)
-          assert len(patch)==25190
-          assert hashlib.sha256(patch).hexdigest()=='0a0b85958a7da48fceb57c8601adb95fb5cd2f655fed3a05200326b5467f93aa'
-          path=Path('phase2/wuhan-review/review.patch');path.write_bytes(patch)
-          subprocess.run(['git','apply','--check','--unidiff-zero',str(path)],check=True)
-          subprocess.run(['git','apply','--unidiff-zero',str(path)],check=True)
-          paths=['config/reviews/wuhan-20261013-evening.json','scripts/apply-wuhan-evening-review.mjs','tests/wuhan-evening-review.test.cjs','public/core.js','public/app.js']
-          subprocess.run(['git','add','-N','--',*paths],check=True)
-          actual=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
-          assert sorted(actual)==sorted(paths),(actual,paths)
-          subprocess.run(['git','diff','--check'],check=True)
-          Path('phase2/wuhan-review/paths.json').write_text(json.dumps(paths+['data/content.json']))
-          PY
-      - name: Apply only the reviewed Wuhan additions and test the complete site
-        shell: bash
-        run: |
-          node scripts/apply-wuhan-evening-review.mjs | tee phase2/wuhan-review/applied.json
-          npm test | tee phase2/wuhan-review/tests.txt
-          npm run build | tee phase2/wuhan-review/build.txt
-      - name: Verify all older records and derived build output
-        shell: bash
-        run: |
+          mkdir -p phase2/wuhan-publication
           node --input-type=module <<'JS'
-          import fs from 'node:fs/promises';
-          import {execFileSync} from 'node:child_process';
+          import {readFile,writeFile} from 'node:fs/promises';
+          import {createHash} from 'node:crypto';
           import assert from 'node:assert/strict';
-          import Runtime from './public/runtime.js';
           import Core from './public/core.js';
-          const before=JSON.parse(execFileSync('git',['show','HEAD:data/content.json'],{encoding:'utf8'}));
-          const data=JSON.parse(await fs.readFile('data/content.json','utf8'));
-          assert.deepEqual(data.rankings,before.rankings);
-          assert.deepEqual(data.tournaments,before.tournaments);
-          assert.deepEqual(data.players.slice(0,before.players.length),before.players);
-          assert.deepEqual(data.matches.slice(0,before.matches.length),before.matches);
-          assert.equal(data.matches.length-before.matches.length,23);
-          const tomorrow=data.matches.filter(m=>m.tournamentId==='wuhan-2026'&&Core.matchDate(m)==='2026-10-14');
-          assert.equal(tomorrow.length,20);assert.equal(tomorrow.filter(m=>m.discipline==='单打').length,14);
-          assert.equal(data.matches.filter(m=>m.tournamentId==='wuhan-2026'&&m.status==='finished').length,3);
-          const publicData=Runtime.publicData(data);
-          const seed='window.COURTSIDE_SEED = '+JSON.stringify(publicData).replace(/</g,'\\u003c')+';';
-          assert.equal(await fs.readFile('public/data.js','utf8'),seed);
-          assert.equal(await fs.readFile('dist/site/data.js','utf8'),seed);
-          assert.deepEqual(JSON.parse(await fs.readFile('dist/site/data/content.json','utf8')),publicData);
-          await fs.writeFile('public/data.js',execFileSync('git',['show','HEAD:public/data.js']));
-          const statusBytes=execFileSync('git',['show','HEAD:data/automation-status.json']);
-          const a=JSON.parse(statusBytes),b=JSON.parse(await fs.readFile('data/automation-status.json','utf8'));
-          delete a.generatedAt;delete b.generatedAt;assert.deepEqual(a,b);
-          await fs.writeFile('data/automation-status.json',statusBytes);
-          const tests=await fs.readFile('phase2/wuhan-review/tests.txt','utf8');
-          assert.match(tests,/# pass 568\b/);assert.match(tests,/# fail 0\b/);
-          console.log(JSON.stringify({addedMatches:23,addedProfiles:data.players.length-before.players.length,wuhanTomorrow:20,wuhanTodayResults:3,rankingsUnchanged:true,revision:data.meta.revision}));
+          import Runtime from './public/runtime.js';
+          const expected=JSON.parse(await readFile('data/content.json','utf8'));
+          const expectedPublic=Runtime.publicData(expected);
+          const origin='https://courtside-tennis.pages.dev';
+          const report={commit:'8bc1cc16932f415be695ab2194c05aee60582580',startedAt:new Date().toISOString(),requests:0,attempts:[],verified:false,fullAutomaticCoverage:false};
+          const hash=t=>createHash('sha256').update(t).digest('hex');
+          const coreHash=hash(await readFile('public/core.js'));
+          const appHash=hash(await readFile('public/app.js'));
+          async function read(url){
+            if(++report.requests>24)throw Error('request-limit');
+            const r=await fetch(url,{redirect:'error',signal:AbortSignal.timeout(10000)});
+            if(!r.ok){await r.body?.cancel();throw Error('http-'+r.status);}
+            const reader=r.body.getReader(),parts=[];let bytes=0;
+            for(;;){const {done,value}=await reader.read();if(done)break;bytes+=value.length;if(bytes>2000000){await reader.cancel();throw Error('size-limit');}parts.push(Buffer.from(value));}
+            return Buffer.concat(parts).toString('utf8');
+          }
+          for(let attempt=0;attempt<6;attempt++){
+            try{
+              const q='?publication='+process.env.GITHUB_RUN_ID+'-'+attempt;
+              const [config,core,app,body]=await Promise.all([
+                read(origin+'/site-config.js'+q),read(origin+'/core.js'+q),read(origin+'/app.js'+q),
+                read('https://styleke.github.io/courtside/data/content.json'+q)
+              ]);
+              assert.match(config,/publicDataOrigin:'github-pages'/);
+              assert.equal(hash(core),coreHash,'Branded core code must match release');
+              assert.equal(hash(app),appHash,'Branded app code must match release');
+              const data=JSON.parse(body);
+              assert.ok(data.meta.revision>=27);assert.deepEqual(data.rankings,expectedPublic.rankings);
+              const ms=data.matches.filter(m=>m.tournamentId==='wuhan-2026');
+              const tomorrow=ms.filter(m=>Core.matchDate(m)==='2026-10-14');
+              assert.equal(tomorrow.length,20);assert.equal(tomorrow.filter(m=>m.discipline==='单打').length,14);
+              assert.equal(ms.filter(m=>Core.matchDate(m)==='2026-10-13'&&m.status==='finished').length,3);
+              for(const id of ['karolina-muchova','nikola-bartunkova']){
+                const m=tomorrow.find(m=>m.discipline==='单打'&&m.sides.flat().includes(id));
+                assert.equal(m.startAt,null);assert.equal(m.timeKind,'following');assert.equal(m.courtOrder,2);assert.equal(Core.followed(m,data),true);
+              }
+              assert.equal(tomorrow.filter(m=>m.afterRest).length,4);
+              const waiting=tomorrow.find(m=>m.afterRest&&m.timeKind==='dateOnly');assert.equal(waiting.court,null);assert.equal(waiting.startAt,null);
+              const coverage=data.meta.scheduleCoverage.filter(r=>r.tournamentId==='wuhan-2026');
+              assert.equal(coverage.length,1);assert.equal(coverage[0].sourceDate,'2026-10-14');assert.equal(coverage[0].expectedMatches,20);
+              report.attempts.push({attempt:attempt+1,success:true});
+              Object.assign(report,{verified:true,verifiedAt:new Date().toISOString(),revision:data.meta.revision,wuhanTomorrow:20,wuhanSingles:14,wuhanDoubles:6,wuhanTodayVerifiedResults:3,followedPlayersVerified:true,restConditionsVerified:true,officialPartialCoveragePreserved:true,brandedCoreHash:coreHash,brandedAppHash:appHash,rankingsUnchanged:true});
+              break;
+            }catch(e){report.attempts.push({attempt:attempt+1,success:false,error:String(e.message).slice(0,180)});if(attempt<5)await new Promise(r=>setTimeout(r,20000));}
+          }
+          await writeFile('phase2/wuhan-publication/report.json',JSON.stringify(report,null,2));console.log(JSON.stringify(report,null,2));
+          assert.equal(report.verified,true,'Live publication not verified');
           JS
-      - name: Save tested Git objects only; no branch update or deployment
-        env:
-          GH_TOKEN: ${{ github.token }}
-        shell: bash
-        run: |
-          python3 - <<'PY'
-          import json,base64,subprocess
-          from pathlib import Path
-          root=Path('phase2/wuhan-review');paths=json.loads((root/'paths.json').read_text())
-          actual=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
-          assert sorted(actual)==sorted(paths),(actual,paths)
-          subprocess.run(['git','diff','--check'],check=True)
-          entries=[]
-          for path in paths:
-              content=Path(path).read_bytes();assert len(content)<1000000
-              body=json.dumps({'content':base64.b64encode(content).decode(),'encoding':'base64'})
-              result=json.loads(subprocess.check_output(['gh','api','--method','POST','repos/styleke/courtside/git/blobs','--input','-'],input=body,text=True))
-              expected=subprocess.check_output(['git','hash-object',path],text=True).strip()
-              assert result['sha']==expected
-              entries.append({'path':path,'mode':'100644','type':'blob','sha':expected})
-          data=json.loads(Path('data/content.json').read_text())
-          report={'sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'sourceContentBlob':subprocess.check_output(['git','rev-parse','HEAD:data/content.json'],text=True).strip(),'baseTree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'entries':entries,'testsPassed':568,'buildPassed':True,'rankingsUnchanged':True,'olderMatchesUnchanged':True,'revision':data['meta']['revision'],'published':False}
-          (root/'tested-entries.json').write_text(json.dumps(report,indent=2));print(json.dumps(report,indent=2))
-          PY
+      - name: No data, configuration or workflow writes
+        if: always()
+        run: git diff --exit-code
       - uses: actions/upload-artifact@v4
         if: always()
         with:
-          name: verified-wuhan-evening-candidate
-          path: phase2/wuhan-review
+          name: wuhan-publication-verification
+          path: phase2/wuhan-publication
           retention-days: 1
