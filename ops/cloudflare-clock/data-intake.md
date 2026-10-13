@@ -65,3 +65,25 @@ The first cross-check changes the diagnosis of the eleven ATP differences, but d
 Working conclusion: treat this as a provider issue-date/data-version mismatch, not eleven independent errors in the website's October 5 ranking. Keep the public ATP snapshot unchanged; keep the BDL ATP candidate blocked; do not rewrite its issue date or map it onto October 5. A future change should require the provider to return a genuinely date-matched ATP snapshot or an independent authoritative source for the same issue. The public ATP ranking date remains October 5 until that gate passes.
 
 The fixture-discovery gate also remains closed: the prior 131 October 13 candidates and zero October 14 candidates were not accompanied by independent full-day coverage evidence. This is insufficient to certify completeness or publish new fixtures. Continue with free sources only; no new services, paid endpoints, or automatic fixture publication.
+
+### Row-level ATP comparison — 11 discrepancies
+
+The 11 rows have now been compared as a set against the dated October 5 table and the October 12 table. The BDL candidate's rank/points pair agrees with the October 12 table for each named player, while the public snapshot's pair agrees with the October 5 table:
+
+| Player | Public Oct 5 | BDL candidate labelled Oct 5 | Oct 12 cross-check |
+|---|---:|---:|---:|
+| Carlos Alcaraz | #3 / 5,260 | #3 / 5,560 | #3 / 5,560 |
+| Felix Auger-Aliassime | #6 / 3,890 | #5 / 3,890 | #5 / 3,890 |
+| Daniil Medvedev | #5 / 4,010 | #6 / 3,860 | #6 / 3,860 |
+| Novak Djokovic | #11 / 3,180 | #8 / 3,480 | #8 / 3,480 |
+| Alex de Minaur | #9 / 3,300 | #9 / 3,430 | #9 / 3,430 |
+| Frances Tiafoe | #8 / 3,380 | #10 / 3,380 | #10 / 3,380 |
+| Arthur Fils | #10 / 3,275 | #11 / 3,275 | #11 / 3,275 |
+| Jiri Lehecka | #19 / 2,310 | #16 / 2,440 | #16 / 2,440 |
+| Learner Tien | #16 / 2,395 | #17 / 2,395 | #17 / 2,395 |
+| Tommy Paul | #17 / 2,375 | #18 / 2,375 | #18 / 2,375 |
+| Brandon Nakashima | #18 / 2,335 | #19 / 2,335 | #19 / 2,335 |
+
+The October 5 comparison is supported by Eurosport's dated October 5 ranking report; the October 12 comparison is supported by TennisTemple's table explicitly marked updated 12.10.2026. These are secondary public references, not an ATP-origin signed snapshot, so this establishes a strong date/version-mismatch diagnosis but does not validate BDL as a reliable source for either issue. Sources: https://www.eurosport.fr/tennis/classement-atp-du-5-octobre-2026-fils-en-perd-une-place-au-classement-atp-medvedev-cinquieme_sto23342879/story.shtml ; https://en.tennistemple.com/rankings/atp
+
+Disposition: all 11 are classified as a coherent issue-date mismatch; none is approved as an isolated website correction. Keep the public October 5 values unchanged and keep this provider candidate blocked. A future code change should make the review fail closed when a requested issue date is not honored; before changing the adapter, identify its actual workflow entry point and add regression tests for a mislabeled but internally consistent snapshot. No production data was changed by this comparison.
