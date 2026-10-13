@@ -24,7 +24,7 @@ jobs:
         with:
           node-version: '22'
           package-manager-cache: false
-      - name: Reuse only the two actual captured source artifacts
+      - name: Reuse the exact captured official and Free API evidence
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
@@ -32,28 +32,30 @@ jobs:
           gh api repos/styleke/courtside/actions/artifacts/11786065526/zip > phase2/wta-stage/api.zip
           gh api repos/styleke/courtside/actions/artifacts/11786450594/zip > phase2/wta-stage/official.zip
           python3 - <<'PY'
-          import json,zipfile,hashlib,importlib.util,subprocess
+          import json,zipfile,hashlib,importlib.util
           from pathlib import Path
           out=Path('phase2/wta-stage')
           for name,expected in [('api.zip','03be3a1a85002225c53c5685fcaeee8e42e4b4ec5a2a5efdc4d89cfb9ff72826'),('official.zip','7ca65c818a95b24a439fcd10a8a586599ebae3102141ddaeebe325cec77c1c44')]:
               assert hashlib.sha256((out/name).read_bytes()).hexdigest()==expected,name
           with zipfile.ZipFile(out/'api.zip') as z: candidate=json.loads(z.read('free-ranking-review/report.json'))
-          with zipfile.ZipFile(out/'official.zip') as z:
-              report=json.loads(z.read('report.json'));html=z.read('wta.html')
+          with zipfile.ZipFile(out/'official.zip') as z: report=json.loads(z.read('report.json'));html=z.read('wta.html')
           digest=hashlib.sha256(html).hexdigest()
           assert digest==report['sha256']=='ade49d2a82cce16986b72e46d335aaf90bf51dfb5575f8cb14bc99666dc83d08'
           assert report['status']==200 and report['afterCount']==100 and report['beforeDate']==report['afterDate']=='2026-10-12' and not report.get('error')
           spec=importlib.util.spec_from_file_location('parser','scripts/apply-ranking-evidence.py');m=importlib.util.module_from_spec(spec);spec.loader.exec_module(m)
           p=m.Rows();p.feed(html.decode());assert p.dates==['2026-10-12'] and len(p.rows)==100
           official={'tour':'WTA','rankingDate':p.dates[0],'observedAt':report['finishedAt'],'sourceUrl':report['url'],'sourceSha256':digest,'rows':p.rows}
-          (out/'candidate.json').write_text(json.dumps(candidate));(out/'official.json').write_text(json.dumps(official))
-          (out/'before.json').write_bytes(Path('data/content.json').read_bytes())
+          (out/'candidate.json').write_text(json.dumps(candidate));(out/'official.json').write_text(json.dumps(official));(out/'before.json').write_bytes(Path('data/content.json').read_bytes())
           f=Path('tests/profile-completeness.test.cjs');s=f.read_text()
           old="test('new reviewed ranks and names do not change the ATP/WTA singles tables',()=>{assert.equal(d.rankings.length,2);for(const table of d.rankings){assert.equal(table.rows.length,100);assert.equal(table.rankingDate,'2026-10-05');}assert.deepEqual(R.validate(d),[]);});"
           new="test('profile enrichment preserves complete independently dated singles tables',()=>{assert.deepEqual(d.rankings.map(t=>t.tour).sort(),['ATP','WTA']);for(const table of d.rankings){assert.equal(table.rows.length,100);assert.deepEqual(table.rows.map(r=>r.rank),Array.from({length:100},(_,i)=>i+1));assert.ok(C.validDate(table.rankingDate));for(const row of table.rows){const p=d.players.find(p=>p.id===row.playerId);assert.equal(p.tour,table.tour);assert.equal(p.rankDate,table.rankingDate);assert.equal(p.rank,row.rank);assert.equal(p.points,row.points);}}assert.deepEqual(R.validate(d),[]);});"
           assert s.count(old)==1;f.write_text(s.replace(old,new))
+          f=Path('scripts/browser-wta-issue.mjs');s=f.read_text()
+          old="assert.equal(await page.locator('#rank-body .player-age').count(),100);ok('missing new-player ages stay explicit while all 100 age labels remain present');"
+          new="const ages=await page.evaluate(d=>d.rankings.find(t=>t.tour==='WTA').rows.map(r=>({id:r.playerId,age:window.CourtAge.of(d.players.find(p=>p.id===r.playerId))})),served); for(const a of ages){const tag=page.locator('#rank-body [data-player-age=\\\"'+a.id+'\\\"]');assert.equal(await tag.count(),a.age===null?0:1);if(a.age!==null)assert.equal(await tag.innerText(),a.age+' 岁');}ok('every sourced age is correct and the two new unknown ages are not invented');"
+          assert s.count(old)==1;f.write_text(s.replace(old,new))
           PY
-      - name: Import one complete issue and test every regression
+      - name: Import and verify the entire suite and exact isolated scope
         run: |
           node scripts/import-reviewed-wta.mjs phase2/wta-stage/candidate.json phase2/wta-stage/official.json --write | tee phase2/wta-stage/import.json
           npm test | tee phase2/wta-stage/tests.txt
@@ -80,7 +82,7 @@ jobs:
           git diff --exit-code -- config public data/automation-status.json
       - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
       - run: npx playwright install --with-deps chromium
-      - name: Real staged desktop and mobile browser acceptance
+      - name: Real staged browser acceptance
         run: |
           python3 -m http.server 8765 --directory dist/site > phase2/wta-stage/server.txt 2>&1 &
           PID=$!
@@ -88,39 +90,37 @@ jobs:
           for i in 1 2 3 4 5; do curl --fail --silent http://127.0.0.1:8765/ > /dev/null && break || sleep 1; done
           BASE_URL=http://127.0.0.1:8765/ REPORT_DIR=phase2/wta-stage/wta-browser node scripts/browser-wta-issue.mjs
           BASE_URL=http://127.0.0.1:8765/ REPORT_DIR=phase2/wta-stage/profile-browser node scripts/browser-profile-acceptance.mjs
-      - name: Record passed evidence and store tested objects only; never update a ref
+      - name: Save tested objects without ref updates or deployment
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           python3 - <<'PY'
-          import json,subprocess,base64,hashlib
+          import json,subprocess,base64
           from pathlib import Path
-          out=Path('phase2/wta-stage');w=json.loads((out/'wta-browser/report.json').read_text());p=json.loads((out/'profile-browser/report.json').read_text())
-          assert w['passed'] and p['passed']
+          out=Path('phase2/wta-stage');w=json.loads((out/'wta-browser/report.json').read_text());p=json.loads((out/'profile-browser/report.json').read_text());assert w['passed'] and p['passed']
           receipt=json.loads((out/'import.json').read_text())
           doc='''# WTA October 12 whole-issue admission
 
-          A finite complete issue was independently reviewed and staged. This is not continuous ranking or schedule automation. Existing website, Free account, source permissions, and all no-payment guards are unchanged.
+          Finite complete WTA issue; not continuous ranking or schedule automation. The existing website, Free account and source permissions remain unchanged.
 
-          Free API review: Actions run 38338198007, two requests total. WTA returned 2026-10-12 at 2026-10-13T02:43:14.052Z, 33176 bytes, SHA-256 04500cd4f167893db1ababf03cba943d37c8d203a599dd9fce3d07fcc7b84649. ATP still returned the disputed October 5 issue and was not imported.
+          Free API review: Actions run 38338198007, two free ranking requests total. WTA returned 2026-10-12 at 2026-10-13T02:43:14.052Z, 33176 bytes, SHA-256 04500cd4f167893db1ababf03cba943d37c8d203a599dd9fce3d07fcc7b84649. ATP remained the disputed October 5 issue and was not imported.
 
-          Primary review: Actions run 38338493176, https://www.wtatennis.com/rankings/singles . Ordinary page controls loaded 50 then 100 rows; issue date stayed 2026-10-12. Capture completed 2026-10-13T02:47:03.223Z. Rendered HTML SHA-256 ade49d2a82cce16986b72e46d335aaf90bf51dfb5575f8cb14bc99666dc83d08. All 100 names, ranks, points and signed movements match the API. This finite read does not activate recurring official-site crawling.
+          Primary review: Actions run 38338493176, https://www.wtatennis.com/rankings/singles . Ordinary page controls loaded 50 then 100 rows with issue date 2026-10-12 unchanged. Capture completed 2026-10-13T02:47:03.223Z. HTML SHA-256 ade49d2a82cce16986b72e46d335aaf90bf51dfb5575f8cb14bc99666dc83d08. All 100 full names, ranks, points and signed movements agree with the API. This finite read does not activate recurring official-site crawling.
 
-          Anna Blinkova and Alina Charaeva retain their existing identities and current official FRA/ARM representation; the API RUS labels do not overwrite them. Leolia Jeanjean and Oksana Selekhmeteva are added using official WTA IDs 320313 and 329199, with missing ages/photos untranslated names left unguessed and no automatic follow. Solana Sierra, Simona Waltert and Emma Raducanu leave the top 100: prior values are historical, current rank/points unknown rather than stale or invented.
+          Anna Blinkova and Alina Charaeva retain their existing identities and official FRA/ARM representation rather than being overwritten by the API's RUS labels. Leolia Jeanjean and Oksana Selekhmeteva are added with WTA IDs 320313 and 329199. Missing translated names, ages, photos and playing styles are not invented; neither is automatically followed. Solana Sierra, Simona Waltert and Emma Raducanu leave the top 100: old ranks/points are historical and current values are unknown, not an invented lower position.
 
-          The full WTA issue and its player ranking fields update together. ATP, all 11 ATP review marks, match schedules/results/H2H, doubles, photos, preferences, global sporting freshness and collection permissions are preserved by exact comparisons. No secret is downloaded or written to a report; no paid endpoint, trial, upgrade or payment method is used.
+          The entire WTA issue and player ranking fields update together. Exact comparisons preserve ATP, all 11 ATP review marks, matches/schedules/results/H2H, doubles, photographs, preferences, global sporting freshness and collection permissions. No key was downloaded or added to a report; no paid endpoint, trial, upgrade or payment method was used.
 
-          The importer has no network or scheduler, requires explicit local evidence and a newer complete agreed issue, and rejects ambiguity before writing. 29 synthetic regression cases cover incompleteness, identity conflicts, issue dates, evidence age, numeric disagreement and isolation. The old profile test now checks both complete independently dated tables and every player's matching date/rank/points instead of freezing both dates to October 5. Full test suite: 516 passed; build succeeded.
+          Importer: local evidence, no network or scheduler, explicit write, full matching newer issue and stable identities required. 29 synthetic regressions cover ambiguity, duplicates, numeric disagreement, dates, freshness and isolation. The old profile test now verifies two complete independently dated tables and every matching player date/rank/points instead of freezing both to October 5. Full suite: 516 passed; build succeeded. Staging initially caught an incorrect test assumption that unknown ages would have visible labels; the revised check verifies every known age and absence of invented ages without modifying the frontend.
 
-          Continued automatic ranking publication, a trustworthy current ATP issue, and complete new-day schedule ingestion remain unaccepted. The latest existing discovery artifact had 131 October 13 candidates and zero October 14 candidates without independent complete-day evidence; neither count was treated as a complete schedule. Deployment, recurring Cron evidence, and the seven-day trial are separate gates.
+          Ongoing automatic ranking publication, a trustworthy current ATP issue and complete new-day schedule ingestion remain unaccepted. The existing fixture artifact contained 131 October 13 candidates and zero October 14 candidates, without independent complete-day evidence. Neither count was promoted to a complete schedule. Deployment, two real Cron successes and the seven-day trial are separate gates.
           '''
-          doc+='\nStaged browser acceptance: '+str(len(w['checks']))+' whole-issue checks and '+str(len(p['checks']))+' existing profile/navigation checks, real Chromium, no network or time mocks. Mobile is emulated, not a physical WeChat session. Completed '+w['finishedAt']+' / '+p['finishedAt']+'.\n'
+          doc+='\nStaged browser acceptance: '+str(len(w['checks']))+' issue checks and '+str(len(p['checks']))+' existing profile/navigation checks, real Chromium with no network/time mocks. Mobile is emulated, not physical WeChat. Completed '+w['finishedAt']+' / '+p['finishedAt']+'.\n'
           Path('docs/WTA_20261012_ADMISSION.md').write_text(doc)
           paths=['services/reviewed-wta.mjs','scripts/import-reviewed-wta.mjs','tests/reviewed-wta.test.cjs','tests/profile-completeness.test.cjs','scripts/browser-wta-issue.mjs','docs/WTA_20261012_ADMISSION.md','data/content.json']
           entries=[]
           for path in paths:
-              raw=Path(path).read_bytes();assert len(raw)<2000000
-              sha=subprocess.check_output(['git','hash-object',path],text=True).strip()
+              raw=Path(path).read_bytes();assert len(raw)<2000000;sha=subprocess.check_output(['git','hash-object',path],text=True).strip()
               body=json.dumps({'content':base64.b64encode(raw).decode(),'encoding':'base64'})
               r=json.loads(subprocess.check_output(['gh','api','--method','POST','repos/styleke/courtside/git/blobs','--input','-'],input=body,text=True));assert r['sha']==sha
               entries.append({'path':path,'mode':'100644','type':'blob','sha':sha})
