@@ -1,0 +1,50 @@
+name: Review next data intake
+on:
+  push:
+    branches: ['review/data-intake-20261013']
+    paths: ['.github/workflows/review-data-intake.yml']
+permissions:
+  contents: read
+concurrency:
+  group: courtside-free-ranking-review
+  cancel-in-progress: false
+jobs:
+  review:
+    if: github.event.repository.private == false && github.actor == 'styleke'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: e027e562026e86b65ebd8882bb6fae861f2d3364
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Preserve exact public source for offline implementation
+        run: |
+          mkdir -p phase2/intake-review
+          git rev-parse HEAD > phase2/intake-review/source-commit.txt
+          git ls-tree -r HEAD > phase2/intake-review/source-manifest.txt
+          git archive --format=zip HEAD > phase2/intake-review/source.zip
+      - name: Test existing admission guards
+        run: node --test tests/free-ranking-review.test.cjs tests/clock-evidence.test.cjs
+      - name: One finite new-week review on the previously confirmed Free account
+        env:
+          BDL_API_KEY: ${{ secrets.BDL_API_KEY }}
+          COURTSIDE_BDL_FREE_CONFIRMED: 'true'
+        run: node scripts/review-free-rankings.mjs
+      - name: No data changes or automatic permission changes
+        if: always()
+        run: git diff --exit-code -- data public config
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: courtside-next-intake-review
+          path: |
+            phase2/intake-review
+            phase2/free-ranking-review/report.json
+          retention-days: 1
