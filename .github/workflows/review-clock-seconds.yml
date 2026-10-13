@@ -20,26 +20,54 @@ jobs:
         with:
           node-version: '22'
           package-manager-cache: false
-      - name: Test the exact candidate, including real timestamp regressions
+      - name: Capture exact candidate before tests
         shell: bash
         run: |
           mkdir -p phase2/clock-seconds-review
-          npm test | tee phase2/clock-seconds-review/tests.txt
-          npm run build | tee phase2/clock-seconds-review/build.txt
+          git rev-parse HEAD > phase2/clock-seconds-review/commit.txt
+          git diff --exit-code
+          cp package.json phase2/clock-seconds-review/package.json
+          sha256sum services/clock-evidence.mjs services/operation-health.mjs tests/clock-jitter.test.cjs ops/cloudflare-clock/seconds.md > phase2/clock-seconds-review/before.sha256
+      - name: Run full regression suite
+        shell: bash
+        run: npm test | tee phase2/clock-seconds-review/tests.txt
+      - name: Record post-test integrity
+        if: always()
+        shell: bash
+        run: |
+          git diff --binary > phase2/clock-seconds-review/after-tests.patch
+          sha256sum services/clock-evidence.mjs services/operation-health.mjs tests/clock-jitter.test.cjs ops/cloudflare-clock/seconds.md > phase2/clock-seconds-review/after-tests.sha256
+          git status --porcelain > phase2/clock-seconds-review/after-tests-status.txt
+      - name: Build exact candidate
+        shell: bash
+        run: npm run build | tee phase2/clock-seconds-review/build.txt
+      - name: Verify generated status and all tracked files
+        shell: bash
+        run: |
           python3 - <<'PY'
-          import json,subprocess
+          import json,subprocess,hashlib
           from pathlib import Path
+          root=Path('phase2/clock-seconds-review')
           path='data/automation-status.json'
           original=subprocess.check_output(['git','show','HEAD:'+path])
           before=json.loads(original);after=json.loads(Path(path).read_bytes())
           before.pop('generatedAt',None);after.pop('generatedAt',None)
           assert before==after,'Unexpected status change beyond generatedAt'
           Path(path).write_bytes(original)
-          report={'testedCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'fullTestsPassed':True,'buildPassed':True,'published':False,'liveCronAcceptance':False}
-          Path('phase2/clock-seconds-review/report.json').write_text(json.dumps(report,indent=2))
+          patch=subprocess.check_output(['git','diff','--binary'])
+          (root/'after-build.patch').write_bytes(patch)
+          paths=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
+          rows=[]
+          for p in paths:
+              old=subprocess.check_output(['git','show','HEAD:'+p]);new=Path(p).read_bytes()
+              rows.append({'path':p,'beforeBytes':len(old),'afterBytes':len(new),'beforeSha256':hashlib.sha256(old).hexdigest(),'afterSha256':hashlib.sha256(new).hexdigest(),'onlyOneTrailingSpace':new==old+b' '})
+          (root/'integrity.json').write_text(json.dumps(rows,indent=2))
+          print(json.dumps(rows,indent=2))
+          assert not paths,'Tracked files changed during tests/build; no deployment permitted'
+          report={'testedCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'fullTestsPassed':True,'buildPassed':True,'trackedFilesUnchanged':True,'published':False,'liveCronAcceptance':False}
+          (root/'report.json').write_text(json.dumps(report,indent=2))
           print(json.dumps(report))
           PY
-          git diff --exit-code
       - uses: actions/upload-artifact@v4
         if: always()
         with:
