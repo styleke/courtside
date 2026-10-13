@@ -1,11 +1,11 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "revision": 26,
+    "revision": 27,
     "mode": "reviewed",
     "demoDate": "2026-10-10",
     "asOfDate": "2026-10-11",
-    "updatedAt": "2026-10-13T11:17:00Z",
+    "updatedAt": "2026-10-13T12:41:00.678Z",
     "dataVerifiedAt": "2026-10-10T03:50:28Z",
     "refreshMode": "verified-snapshot",
     "note": "赛程、排名与资料分别保留来源和更新时间。",
@@ -28,7 +28,7 @@
       "2026-10-10：WTA/ATP每日OP PDF的解析文本与缓存截图日期不一致，日程以赛事HTML、已交叉核对的发布信息为准；自动采集不得通过版本校验失败的PDF。",
       "2026-10-13：上海大师赛 10 月 13 日官方赛程 HTML 与 10 月 14 日官方 Order of Play PDF 已人工核对；10 月 14 日只录入官方 PDF 列出的 4 场单打及 2 场双打，following 场次不推算时间。"
     ],
-    "updateScope": "新增上海大师赛 2026-10-13 官方赛程及已公布赛果、2026-10-14 官方全天赛程；其他赛事与排名保持不变",
+    "updateScope": "武汉10月14日官方20场赛程及10月13日3场官方赛果；未声明武汉13日全天完整",
     "uiVersion": "0.9",
     "enrichmentVerifiedAt": "2026-10-10T03:50:28Z",
     "contentPatchedAt": "2026-10-11T07:11:26.583Z",
@@ -75,6 +75,10 @@
       },
       "WTA": {
         "rankings": "2026-10-13T02:47:03.223Z"
+      },
+      "wuhan-2026": {
+        "schedule": "2026-10-13T12:41:00.678Z",
+        "results": "2026-10-13T12:41:00.678Z"
       }
     },
     "scheduleCoverage": [
@@ -172,17 +176,51 @@
         "checkedAt": "2026-10-13T11:17:00Z",
         "sourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
         "method": "editorial-source-review"
+      },
+      {
+        "tournamentId": "wuhan-2026",
+        "date": "2026-10-14",
+        "sourceDate": "2026-10-14",
+        "expectedMatches": 20,
+        "matchIds": [
+          "wh-reviewed-dbfa6569a5b47590",
+          "wh-reviewed-705fecc2ef6807c3",
+          "wh-reviewed-72cbed8abd8ee023",
+          "wh-reviewed-fea612ac719cf838",
+          "wh-reviewed-180857f3cf973e47",
+          "wh-reviewed-8f3ad3cf0f9e9363",
+          "wh-reviewed-ba6cf60abe1efef6",
+          "wh-reviewed-05acdab88cbcabe2",
+          "wh-reviewed-1330e4853e0c52a9",
+          "wh-reviewed-caf2ae754f205cba",
+          "wh-reviewed-b4ddec40892552d7",
+          "wh-reviewed-c4c3366c1bae4b22",
+          "wh-reviewed-43e14fb5aee70469",
+          "wh-reviewed-0c78ecfc3bb2ea8e",
+          "wh-reviewed-84ee6a95ea645739",
+          "wh-reviewed-a613f66eefdefacf",
+          "wh-reviewed-5522e41e4a2d8386",
+          "wh-reviewed-34fa6b2719c7af50",
+          "wh-reviewed-3738e4973475faf4",
+          "wh-reviewed-2f70954f6e8d3549"
+        ],
+        "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+        "checkedAt": "2026-10-13T12:41:00.678Z",
+        "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2",
+        "method": "editorial-pdf-render-and-text"
       }
     ],
     "coverageTrackedTournamentIds": [
       "beijing-wta-2026",
-      "shanghai-2026"
+      "shanghai-2026",
+      "wuhan-2026"
     ],
     "appliedReviews": [
       "2026-10-11-finals-review",
       "2026-10-11-next-day-and-results",
       "2026-10-11-player-completeness",
-      "2026-10-11-official-ranking-review"
+      "2026-10-11-official-ranking-review",
+      "2026-10-13-wuhan-official-evening"
     ],
     "birthdatesUpdatedAt": "2026-10-11T11:52:28.279Z",
     "openResultsLicense": {
@@ -11463,6 +11501,266 @@
       "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "pointsCheckedAt": "2026-10-13T02:47:03.223Z"
+    },
+    {
+      "id": "hanyu-guo",
+      "enName": "Hanyu Guo",
+      "country": "CHN",
+      "name": "郭涵煜",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "countryCheckedAt": "2026-10-13T12:41:00.678Z",
+      "countryBasis": "official-tour-representation"
+    },
+    {
+      "id": "han-shi",
+      "enName": "Han Shi",
+      "country": "CHN",
+      "name": "石晗",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "countryCheckedAt": "2026-10-13T12:41:00.678Z",
+      "countryBasis": "official-tour-representation"
+    },
+    {
+      "id": "anna-danilina",
+      "enName": "Anna Danilina",
+      "country": "KAZ",
+      "name": "Anna Danilina",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "countryCheckedAt": "2026-10-13T12:41:00.678Z",
+      "countryBasis": "official-tour-representation"
+    },
+    {
+      "id": "tereza-mihalikova",
+      "enName": "Tereza Mihalikova",
+      "country": "SVK",
+      "name": "Tereza Mihalikova",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "countryCheckedAt": "2026-10-13T12:41:00.678Z",
+      "countryBasis": "official-tour-representation"
+    },
+    {
+      "id": "olivia-nicholls",
+      "enName": "Olivia Nicholls",
+      "country": "GBR",
+      "name": "Olivia Nicholls",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "countryCheckedAt": "2026-10-13T12:41:00.678Z",
+      "countryBasis": "official-tour-representation"
+    },
+    {
+      "id": "mariia-kozyreva",
+      "enName": "Mariia Kozyreva",
+      "country": null,
+      "name": "Mariia Kozyreva",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": null,
+      "countryCheckedAt": null,
+      "countryBasis": null
+    },
+    {
+      "id": "shuko-aoyama",
+      "enName": "Shuko Aoyama",
+      "country": "JPN",
+      "name": "Shuko Aoyama",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "countryCheckedAt": "2026-10-13T12:41:00.678Z",
+      "countryBasis": "official-tour-representation"
+    },
+    {
+      "id": "en-shuo-liang",
+      "enName": "En-Shuo Liang",
+      "country": "TPE",
+      "name": "En-Shuo Liang",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "countryCheckedAt": "2026-10-13T12:41:00.678Z",
+      "countryBasis": "official-tour-representation"
+    },
+    {
+      "id": "xinyu-jiang",
+      "enName": "Xinyu Jiang",
+      "country": "CHN",
+      "name": "蒋欣玗",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "countryCheckedAt": "2026-10-13T12:41:00.678Z",
+      "countryBasis": "official-tour-representation"
+    },
+    {
+      "id": "nicole-melichar-martinez",
+      "enName": "Nicole Melichar-Martinez",
+      "country": "USA",
+      "name": "Nicole Melichar-Martinez",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "countryCheckedAt": "2026-10-13T12:41:00.678Z",
+      "countryBasis": "official-tour-representation"
+    },
+    {
+      "id": "su-wei-hsieh",
+      "enName": "Su-Wei Hsieh",
+      "country": "TPE",
+      "name": "谢淑薇",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "countryCheckedAt": "2026-10-13T12:41:00.678Z",
+      "countryBasis": "official-tour-representation"
+    },
+    {
+      "id": "sofia-kenin",
+      "enName": "Sofia Kenin",
+      "country": "USA",
+      "name": "Sofia Kenin",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "countryCheckedAt": "2026-10-13T12:41:00.678Z",
+      "countryBasis": "official-tour-representation"
+    },
+    {
+      "id": "irina-khromacheva",
+      "enName": "Irina Khromacheva",
+      "country": null,
+      "name": "Irina Khromacheva",
+      "tour": "WTA",
+      "rank": null,
+      "points": null,
+      "age": null,
+      "dateOfBirth": null,
+      "followed": false,
+      "prospect": false,
+      "demo": false,
+      "aliases": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "countrySourceUrl": null,
+      "countryCheckedAt": null,
+      "countryBasis": null
     }
   ],
   "tournaments": [
@@ -19627,6 +19925,1037 @@
           "method": "editorial-source-review"
         }
       }
+    },
+    {
+      "id": "wh-reviewed-dbfa6569a5b47590",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "magdalena-frech"
+        ],
+        [
+          "iga-swiatek"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "exact",
+      "startAt": "2026-10-14T11:00:00+08:00",
+      "court": "中央球场",
+      "courtOrder": 1,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-705fecc2ef6807c3",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "karolina-muchova"
+        ],
+        [
+          "caty-mcnally"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "中央球场",
+      "courtOrder": 2,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-72cbed8abd8ee023",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "jelena-ostapenko"
+        ],
+        [
+          "jessica-pegula"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "中央球场",
+      "courtOrder": 3,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-fea612ac719cf838",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "aryna-sabalenka"
+        ],
+        [
+          "ann-li"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "notBefore",
+      "startAt": "2026-10-14T19:00:00+08:00",
+      "court": "中央球场",
+      "courtOrder": 4,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-180857f3cf973e47",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "han-shi"
+        ],
+        [
+          "leylah-fernandez"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "中央球场",
+      "courtOrder": 5,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-8f3ad3cf0f9e9363",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "elina-svitolina"
+        ],
+        [
+          "liudmila-samsonova"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "exact",
+      "startAt": "2026-10-14T11:00:00+08:00",
+      "court": "一号球场",
+      "courtOrder": 1,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-ba6cf60abe1efef6",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "jasmine-paolini"
+        ],
+        [
+          "nikola-bartunkova"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "一号球场",
+      "courtOrder": 2,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-05acdab88cbcabe2",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "katie-volynets"
+        ],
+        [
+          "hanyu-guo"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "一号球场",
+      "courtOrder": 3,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-1330e4853e0c52a9",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "ashlyn-krueger"
+        ],
+        [
+          "lanlana-tararudee"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "notBefore",
+      "startAt": "2026-10-14T15:30:00+08:00",
+      "court": "一号球场",
+      "courtOrder": 4,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-caf2ae754f205cba",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "anhelina-kalinina",
+          "dayana-yastremska"
+        ],
+        [
+          "anna-danilina",
+          "zhang-shuai"
+        ]
+      ],
+      "discipline": "双打",
+      "roundCode": "R16",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "一号球场",
+      "courtOrder": 5,
+      "afterRest": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-b4ddec40892552d7",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "sonay-kartal"
+        ],
+        [
+          "belinda-bencic"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "exact",
+      "startAt": "2026-10-14T11:00:00+08:00",
+      "court": "二号球场",
+      "courtOrder": 1,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-c4c3366c1bae4b22",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "iva-jovic"
+        ],
+        [
+          "dayana-yastremska"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "二号球场",
+      "courtOrder": 2,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-43e14fb5aee70469",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "janice-tjen"
+        ],
+        [
+          "daria-snigur"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "二号球场",
+      "courtOrder": 3,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-0c78ecfc3bb2ea8e",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "sara-errani",
+          "jasmine-paolini"
+        ],
+        [
+          "tereza-mihalikova",
+          "olivia-nicholls"
+        ]
+      ],
+      "discipline": "双打",
+      "roundCode": "R16",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "notBefore",
+      "startAt": "2026-10-14T15:00:00+08:00",
+      "court": "二号球场",
+      "courtOrder": 4,
+      "afterRest": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-84ee6a95ea645739",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "marie-bouzkova"
+        ],
+        [
+          "maja-chwalinska"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "exact",
+      "startAt": "2026-10-14T11:00:00+08:00",
+      "court": "三号球场",
+      "courtOrder": 1,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-a613f66eefdefacf",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "yulia-putintseva"
+        ],
+        [
+          "diana-shnaider"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R32",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "following",
+      "startAt": null,
+      "court": "三号球场",
+      "courtOrder": 2,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-5522e41e4a2d8386",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "nikola-bartunkova",
+          "maja-chwalinska"
+        ],
+        [
+          "elise-mertens",
+          "diana-shnaider"
+        ]
+      ],
+      "discipline": "双打",
+      "roundCode": "R32",
+      "round": "第一轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "notBefore",
+      "startAt": "2026-10-14T15:00:00+08:00",
+      "court": "三号球场",
+      "courtOrder": 3,
+      "afterRest": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-34fa6b2719c7af50",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "mariia-kozyreva",
+          "peyton-stearns"
+        ],
+        [
+          "shuko-aoyama",
+          "en-shuo-liang"
+        ]
+      ],
+      "discipline": "双打",
+      "roundCode": "R32",
+      "round": "第一轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "exact",
+      "startAt": "2026-10-14T11:00:00+08:00",
+      "court": "四号球场",
+      "courtOrder": 1,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-3738e4973475faf4",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "xinyu-jiang",
+          "xiyu-wang"
+        ],
+        [
+          "cristina-bucsa",
+          "nicole-melichar-martinez"
+        ]
+      ],
+      "discipline": "双打",
+      "roundCode": "R32",
+      "round": "第一轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "notBefore",
+      "startAt": "2026-10-14T15:30:00+08:00",
+      "court": "四号球场",
+      "courtOrder": 2,
+      "afterRest": false,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-2f70954f6e8d3549",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "su-wei-hsieh",
+          "jelena-ostapenko"
+        ],
+        [
+          "sofia-kenin",
+          "irina-khromacheva"
+        ]
+      ],
+      "discipline": "双打",
+      "roundCode": "R16",
+      "round": "第二轮",
+      "localDate": "2026-10-14",
+      "confirmedBeijingDate": "2026-10-14",
+      "timeKind": "dateOnly",
+      "startAt": null,
+      "court": null,
+      "courtOrder": null,
+      "afterRest": true,
+      "status": "scheduled",
+      "score": null,
+      "winnerIds": [],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": true,
+      "scheduleSourceUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://wtafiles.wtatennis.com/pdf/draws/2026/1075/OP.pdf",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-14",
+          "method": "editorial-pdf-render-and-text",
+          "sourceSha256": "43d47f566b837817dcd7044029fa9db69f7f680784afb1b1c1f22428f395a6d2"
+        }
+      }
+    },
+    {
+      "id": "wh-reviewed-b12b01177e649522",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "hanyu-guo"
+        ],
+        [
+          "sorana-cirstea"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R64",
+      "round": "第一轮",
+      "localDate": "2026-10-13",
+      "confirmedBeijingDate": "2026-10-13",
+      "timeKind": "dateOnly",
+      "startAt": null,
+      "court": null,
+      "courtOrder": null,
+      "afterRest": false,
+      "status": "finished",
+      "score": "1-6 7-6(6) 7-5",
+      "winnerIds": [
+        "hanyu-guo"
+      ],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": false,
+      "scheduleSourceUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-official-result-review"
+        },
+        "results": {
+          "primaryUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-official-result-review"
+        }
+      },
+      "resultsVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "resultVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "resultSourceUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan"
+    },
+    {
+      "id": "wh-reviewed-1a442a62b9c49d17",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "katie-volynets"
+        ],
+        [
+          "kimberly-birrell"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R64",
+      "round": "第一轮",
+      "localDate": "2026-10-13",
+      "confirmedBeijingDate": "2026-10-13",
+      "timeKind": "dateOnly",
+      "startAt": null,
+      "court": null,
+      "courtOrder": null,
+      "afterRest": false,
+      "status": "finished",
+      "score": "6-7(1) 7-6(3) 6-3",
+      "winnerIds": [
+        "katie-volynets"
+      ],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": false,
+      "scheduleSourceUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-official-result-review"
+        },
+        "results": {
+          "primaryUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-official-result-review"
+        }
+      },
+      "resultsVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "resultVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "resultSourceUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan"
+    },
+    {
+      "id": "wh-reviewed-2f3045e9005c7331",
+      "tournamentId": "wuhan-2026",
+      "sides": [
+        [
+          "yulia-putintseva"
+        ],
+        [
+          "zeynep-sonmez"
+        ]
+      ],
+      "discipline": "单打",
+      "roundCode": "R64",
+      "round": "第一轮",
+      "localDate": "2026-10-13",
+      "confirmedBeijingDate": "2026-10-13",
+      "timeKind": "dateOnly",
+      "startAt": null,
+      "court": null,
+      "courtOrder": null,
+      "afterRest": false,
+      "status": "finished",
+      "score": "6-7(1) 6-3 7-5",
+      "winnerIds": [
+        "yulia-putintseva"
+      ],
+      "scoreOrder": "winner-first",
+      "demo": false,
+      "editorPick": false,
+      "watchLinks": [],
+      "sourceUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+      "verifiedAt": "2026-10-13T12:41:00.678Z",
+      "scheduleConfirmed": false,
+      "scheduleSourceUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+      "scheduleVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "fieldSources": {
+        "schedule": {
+          "primaryUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-official-result-review"
+        },
+        "results": {
+          "primaryUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan",
+          "checkedAt": "2026-10-13T12:41:00.678Z",
+          "sourceDate": "2026-10-13",
+          "method": "editorial-official-result-review"
+        }
+      },
+      "resultsVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "resultVerifiedAt": "2026-10-13T12:41:00.678Z",
+      "resultSourceUrl": "https://www.wtatennis.com/news/4591364/hanyu-guo-upset-carries-deeper-meaning-liudmila-samsonova-yulia-putintseva-win-thrillers-in-wuhan"
     }
   ],
   "tickets": [

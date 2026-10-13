@@ -10,7 +10,7 @@ function day(instant,zone=BJ){return parts(instant,zone)?.date||null;}
 function clock(instant,zone=BJ){return parts(instant,zone)?.time||'待公布';}
 function addDays(s,n){if(!validDate(s))return s;const d=new Date(s+'T12:00:00Z');d.setUTCDate(d.getUTCDate()+n);return d.toISOString().slice(0,10);}
 function matchDate(m){return m.startAt?day(m.startAt):m.confirmedBeijingDate||null;}
-function timeLabel(m){if(m.timeKind==='following')return'前场结束后';if(!m.startAt)return'时间待公布';return(m.timeKind==='notBefore'?'不早于 ':'')+clock(m.startAt);}
+function timeLabel(m){if(m.afterRest===true){if(m.timeKind==='notBefore'&&m.startAt)return '不早于 '+clock(m.startAt)+' · 休息后';return m.timeKind==='dateOnly'?'休息后 · 时间待公布':'适当休息后';}if(m.timeKind==='following')return'前场结束后';if(!m.startAt)return'时间待公布';return(m.timeKind==='notBefore'?'不早于 ':'')+clock(m.startAt);}
 function safeURL(s){try{const u=new URL(s);return ['https:','http:'].includes(u.protocol)&&!u.username&&!u.password?u.href:null;}catch{return null;}}
 function followed(m,d){return m.sides.flat().some(id=>d.players.find(p=>p.id===id)?.followed);}
 function matchName(m,d){return m.sides.map(side=>side.map(id=>d.players.find(p=>p.id===id)?.name||'待定球员').join(' / ')).join(' vs ');}
