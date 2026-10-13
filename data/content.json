@@ -1,11 +1,11 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "revision": 24,
+    "revision": 25,
     "mode": "reviewed",
     "demoDate": "2026-10-10",
     "asOfDate": "2026-10-11",
-    "updatedAt": "2026-10-12T14:41:55.275Z",
+    "updatedAt": "2026-10-13T03:10:49.975Z",
     "dataVerifiedAt": "2026-10-10T03:50:28Z",
     "refreshMode": "verified-snapshot",
     "note": "赛程、排名与资料分别保留来源和更新时间。",
@@ -27,7 +27,7 @@
       "晋级对阵由已核实赛果与签位关联；未公布日期不归入今天。",
       "2026-10-10：WTA/ATP每日OP PDF的解析文本与缓存截图日期不一致，日程以赛事HTML、已交叉核对的发布信息为准；自动采集不得通过版本校验失败的PDF。"
     ],
-    "updateScope": "已收录单打赛果自动补全，不更新赛程或排名",
+    "updateScope": "WTA单打2026-10-12完整前100；ATP、比赛赛程及赛果保持不变",
     "uiVersion": "0.9",
     "enrichmentVerifiedAt": "2026-10-10T03:50:28Z",
     "contentPatchedAt": "2026-10-11T07:11:26.583Z",
@@ -73,7 +73,7 @@
         "rankings": "2026-10-10T06:16:42Z"
       },
       "WTA": {
-        "rankings": "2026-10-11T13:04:59.217Z"
+        "rankings": "2026-10-13T02:47:03.223Z"
       }
     },
     "scheduleCoverage": [
@@ -917,11 +917,11 @@
       "tour": "WTA",
       "country": "KAZ",
       "rank": 1,
-      "points": 9901,
+      "points": 9696,
       "age": 27,
       "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -930,7 +930,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -943,7 +943,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q42055714$6DB02528-4519-4E91-9F64-210F9D5EDC20"
-      ]
+      ],
+      "externalIds": {
+        "wta": "324166",
+        "balldontlie": 5
+      }
     },
     {
       "id": "aryna-sabalenka",
@@ -956,11 +960,11 @@
       "tour": "WTA",
       "country": "BLR",
       "rank": 2,
-      "points": 7810,
+      "points": 7550,
       "age": 28,
       "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -969,7 +973,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -982,7 +986,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q23448791$19F7C54B-6863-4C39-A5FA-2DA4CC8E4FCC"
-      ]
+      ],
+      "externalIds": {
+        "wta": "320760",
+        "balldontlie": 1
+      }
     },
     {
       "id": "jessica-pegula",
@@ -994,12 +1002,12 @@
       ],
       "tour": "WTA",
       "country": "USA",
-      "rank": 3,
-      "points": 7265,
+      "rank": 4,
+      "points": 6225,
       "age": 32,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1008,7 +1016,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1021,7 +1029,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q24159$F631C580-2B50-4D01-944C-D164BEC44E9D"
-      ]
+      ],
+      "externalIds": {
+        "wta": "316956",
+        "balldontlie": 6
+      }
     },
     {
       "id": "coco-gauff",
@@ -1033,12 +1045,12 @@
       ],
       "tour": "WTA",
       "country": "USA",
-      "rank": 4,
-      "points": 7244,
+      "rank": 5,
+      "points": 5974,
       "age": 22,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1047,7 +1059,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1060,7 +1072,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q39263365$73f4a546-4bb7-d276-45f1-7dcadd3053a5"
-      ]
+      ],
+      "externalIds": {
+        "wta": "328560",
+        "balldontlie": 3
+      }
     },
     {
       "id": "mirra-andreeva",
@@ -1078,12 +1094,12 @@
       ],
       "tour": "WTA",
       "country": "RUS",
-      "rank": 5,
-      "points": 5841,
+      "rank": 3,
+      "points": 6371,
       "age": 19,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 2,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": true,
@@ -1094,7 +1110,7 @@
       "verifiedAt": "2026-10-09T09:30:50Z",
       "reasonSourceUrl": "https://www.chinaopen.com/cn/contents/281/1652.html",
       "reasonShort": "19 岁 · 中网四强",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "following",
       "favorite": false,
@@ -1113,7 +1129,11 @@
         "Q114402278$dac432b0-a857-4a20-bb61-58009f050c15"
       ],
       "birthCorroboratingUrl": "https://www.wtatennis.com/players/331809/mirra-andreeva",
-      "birthReviewedOn": "2026-10-11"
+      "birthReviewedOn": "2026-10-11",
+      "externalIds": {
+        "wta": "331809",
+        "balldontlie": 8
+      }
     },
     {
       "id": "linda-noskova",
@@ -1125,12 +1145,12 @@
       ],
       "tour": "WTA",
       "country": "CZE",
-      "rank": 6,
-      "points": 5328,
+      "rank": 8,
+      "points": 4679,
       "age": 21,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -2,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1139,7 +1159,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1152,7 +1172,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q106354932$ead5f650-46ac-92ad-a879-89acfc1fac47"
-      ]
+      ],
+      "externalIds": {
+        "wta": "329668",
+        "balldontlie": 13
+      }
     },
     {
       "id": "elina-svitolina",
@@ -1164,12 +1188,12 @@
       ],
       "tour": "WTA",
       "country": "UKR",
-      "rank": 7,
-      "points": 4809,
+      "rank": 6,
+      "points": 5024,
       "age": 32,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1178,7 +1202,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1191,7 +1215,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q270249$0C166CE0-BD05-4B8D-8FAD-1A51B569616A"
-      ]
+      ],
+      "externalIds": {
+        "wta": "316738",
+        "balldontlie": 12
+      }
     },
     {
       "id": "karolina-muchova",
@@ -1203,12 +1231,12 @@
       ],
       "tour": "WTA",
       "country": "CZE",
-      "rank": 8,
-      "points": 4683,
+      "rank": 7,
+      "points": 4773,
       "age": 30,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": true,
@@ -1217,7 +1245,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "following",
       "favorite": false,
@@ -1235,7 +1263,11 @@
         "Q23661750$B3B6FCEF-874F-4B50-A837-CFD782832144"
       ],
       "birthCorroboratingUrl": "https://www.wtatennis.com/players/322191/karolina-muchova",
-      "birthReviewedOn": "2026-10-11"
+      "birthReviewedOn": "2026-10-11",
+      "externalIds": {
+        "wta": "322191",
+        "balldontlie": 19
+      }
     },
     {
       "id": "iga-swiatek",
@@ -1248,11 +1280,11 @@
       "tour": "WTA",
       "country": "POL",
       "rank": 9,
-      "points": 4119,
+      "points": 3999,
       "age": 25,
       "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1261,7 +1293,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1274,7 +1306,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q26840238$596ad8f8-42aa-3788-7299-e8ac2839995b"
-      ]
+      ],
+      "externalIds": {
+        "wta": "326408",
+        "balldontlie": 2
+      }
     },
     {
       "id": "marta-kostyuk",
@@ -1287,11 +1323,11 @@
       "tour": "WTA",
       "country": "UKR",
       "rank": 10,
-      "points": 4040,
+      "points": 3910,
       "age": 24,
       "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1300,7 +1336,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1313,7 +1349,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q28535267$dbb257ff-4a8c-4c2d-b928-cf11bf8d46f1"
-      ]
+      ],
+      "externalIds": {
+        "wta": "326482",
+        "balldontlie": 20
+      }
     },
     {
       "id": "amanda-anisimova",
@@ -1325,12 +1365,12 @@
       ],
       "tour": "WTA",
       "country": "USA",
-      "rank": 11,
-      "points": 3363,
+      "rank": 17,
+      "points": 2363,
       "age": 25,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -6,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1339,7 +1379,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1352,7 +1392,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q24456716$1BF7B991-DF08-43F8-A6E6-36F245F7C335"
-      ]
+      ],
+      "externalIds": {
+        "wta": "326384",
+        "balldontlie": 4
+      }
     },
     {
       "id": "belinda-bencic",
@@ -1365,11 +1409,11 @@
       "tour": "WTA",
       "country": "SUI",
       "rank": 12,
-      "points": 2925,
+      "points": 2760,
       "age": 29,
       "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1378,7 +1422,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1391,7 +1435,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q509903$CB9C3701-111A-482A-B6F4-D078AD32F811"
-      ]
+      ],
+      "externalIds": {
+        "wta": "319001",
+        "balldontlie": 10
+      }
     },
     {
       "id": "iva-jovic",
@@ -1403,12 +1451,12 @@
       ],
       "tour": "WTA",
       "country": "USA",
-      "rank": 13,
-      "points": 2841,
+      "rank": 11,
+      "points": 2860,
       "age": 18,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 2,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1419,7 +1467,7 @@
       "verifiedAt": "2026-10-09T09:30:50Z",
       "reasonSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "reasonShort": "官方榜单显示 18 岁、世界第 13",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1432,7 +1480,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q122216464$a4794c30-4b75-ec65-46c5-96291fcc4278"
-      ]
+      ],
+      "externalIds": {
+        "wta": "332285",
+        "balldontlie": 70
+      }
     },
     {
       "id": "diana-shnaider",
@@ -1444,12 +1496,12 @@
       ],
       "tour": "WTA",
       "country": "RUS",
-      "rank": 14,
-      "points": 2588,
+      "rank": 13,
+      "points": 2643,
       "age": 22,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1458,7 +1510,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1475,7 +1527,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q107183075$6be5d540-4849-4a80-23e0-87687d1c985a"
-      ]
+      ],
+      "externalIds": {
+        "wta": "330482",
+        "balldontlie": 63
+      }
     },
     {
       "id": "victoria-mboko",
@@ -1488,11 +1544,11 @@
       "tour": "WTA",
       "country": "CAN",
       "rank": 15,
-      "points": 2521,
+      "points": 2502,
       "age": 20,
       "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1501,7 +1557,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1514,7 +1570,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q110718470$96a6f521-4c29-7f77-9e3f-1eb9e3ecba94"
-      ]
+      ],
+      "externalIds": {
+        "wta": "331006",
+        "balldontlie": 17
+      }
     },
     {
       "id": "sorana-cirstea",
@@ -1527,11 +1587,11 @@
       "tour": "WTA",
       "country": "ROU",
       "rank": 16,
-      "points": 2464,
+      "points": 2424,
       "age": 36,
       "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1540,7 +1600,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1553,7 +1613,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q230242$DE6EE484-E78B-43ED-9AF7-C3F9DEE7DBEB"
-      ]
+      ],
+      "externalIds": {
+        "wta": "312469",
+        "balldontlie": 81
+      }
     },
     {
       "id": "naomi-osaka",
@@ -1565,12 +1629,12 @@
       ],
       "tour": "WTA",
       "country": "JPN",
-      "rank": 17,
-      "points": 2296,
+      "rank": 18,
+      "points": 2351,
       "age": 28,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1579,7 +1643,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1592,7 +1656,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q17466583$A1A9D4AD-93D5-4CE7-9DA0-D836E15148F2"
-      ]
+      ],
+      "externalIds": {
+        "wta": "319998",
+        "balldontlie": 16
+      }
     },
     {
       "id": "alexandra-eala",
@@ -1604,12 +1672,12 @@
       ],
       "tour": "WTA",
       "country": "PHI",
-      "rank": 18,
-      "points": 2276,
+      "rank": 19,
+      "points": 2241,
       "age": 21,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1618,7 +1686,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1631,7 +1699,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q67088022$df016ac7-824b-4d6a-a395-b4ec503e4200"
-      ]
+      ],
+      "externalIds": {
+        "wta": "330332",
+        "balldontlie": 89
+      }
     },
     {
       "id": "elise-mertens",
@@ -1643,12 +1715,12 @@
       ],
       "tour": "WTA",
       "country": "BEL",
-      "rank": 19,
-      "points": 2165,
+      "rank": 14,
+      "points": 2540,
       "age": 30,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 5,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1657,7 +1729,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1674,7 +1746,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q17381675$94f00843-4b8c-6e1f-eeb3-e183e32235f9"
-      ]
+      ],
+      "externalIds": {
+        "wta": "317964",
+        "balldontlie": 61
+      }
     },
     {
       "id": "jasmine-paolini",
@@ -1686,12 +1762,12 @@
       ],
       "tour": "WTA",
       "country": "ITA",
-      "rank": 20,
-      "points": 2122,
+      "rank": 33,
+      "points": 1528,
       "age": 30,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -13,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1700,7 +1776,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1717,7 +1793,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q19973674$cd411cc9-4a87-1509-23ca-7583d6de07c2"
-      ]
+      ],
+      "externalIds": {
+        "wta": "319280",
+        "balldontlie": 7
+      }
     },
     {
       "id": "maja-chwalinska",
@@ -1729,12 +1809,12 @@
       ],
       "tour": "WTA",
       "country": "POL",
-      "rank": 21,
-      "points": 2082,
+      "rank": 22,
+      "points": 2043,
       "age": 24,
-      "rankChange": 4,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1743,7 +1823,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1756,7 +1836,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q28672411$fdcc12a3-4989-0287-605f-8c221fc4d3c7"
-      ]
+      ],
+      "externalIds": {
+        "wta": "325639",
+        "balldontlie": 95
+      }
     },
     {
       "id": "anna-kalinskaya",
@@ -1768,12 +1852,12 @@
       ],
       "tour": "WTA",
       "country": "RUS",
-      "rank": 22,
+      "rank": 21,
       "points": 2043,
       "age": 27,
-      "rankChange": -1,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1782,7 +1866,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1795,7 +1879,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q20088944$247762e5-4250-fc10-a741-bcd8a3da19c3"
-      ]
+      ],
+      "externalIds": {
+        "wta": "323942",
+        "balldontlie": 73
+      }
     },
     {
       "id": "madison-keys",
@@ -1807,12 +1895,12 @@
       ],
       "tour": "WTA",
       "country": "USA",
-      "rank": 23,
-      "points": 2029,
+      "rank": 20,
+      "points": 2110,
       "age": 31,
-      "rankChange": -1,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 3,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1821,7 +1909,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1834,7 +1922,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q34403$6D73B0C2-9E30-4205-8904-38DC49C3BE1C"
-      ]
+      ],
+      "externalIds": {
+        "wta": "316959",
+        "balldontlie": 9
+      }
     },
     {
       "id": "emma-navarro",
@@ -1846,12 +1938,12 @@
       ],
       "tour": "WTA",
       "country": "USA",
-      "rank": 24,
-      "points": 2024,
+      "rank": 27,
+      "points": 1809,
       "age": 25,
-      "rankChange": -1,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -3,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1860,7 +1952,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1873,7 +1965,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q62675797$59DED870-ED8C-4017-A451-79087F07346C"
-      ]
+      ],
+      "externalIds": {
+        "wta": "325410",
+        "balldontlie": 15
+      }
     },
     {
       "id": "anastasia-potapova",
@@ -1885,12 +1981,12 @@
       ],
       "tour": "WTA",
       "country": "AUT",
-      "rank": 25,
-      "points": 1926,
+      "rank": 26,
+      "points": 1816,
       "age": 25,
       "rankChange": -1,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1899,7 +1995,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1912,7 +2008,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q24955766$714A4117-8AF5-4DFF-8DF2-793E63213C73"
-      ]
+      ],
+      "externalIds": {
+        "wta": "325601",
+        "balldontlie": 172
+      }
     },
     {
       "id": "leylah-fernandez",
@@ -1924,12 +2024,12 @@
       ],
       "tour": "WTA",
       "country": "CAN",
-      "rank": 26,
-      "points": 1894,
+      "rank": 25,
+      "points": 1839,
       "age": 24,
-      "rankChange": 5,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1938,7 +2038,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1951,7 +2051,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q50329570$d53e5af2-49ea-a42c-9af3-950290770a94"
-      ]
+      ],
+      "externalIds": {
+        "wta": "326735",
+        "balldontlie": 62
+      }
     },
     {
       "id": "marie-bouzkova",
@@ -1963,12 +2067,12 @@
       ],
       "tour": "WTA",
       "country": "CZE",
-      "rank": 27,
-      "points": 1873,
+      "rank": 28,
+      "points": 1763,
       "age": 28,
       "rankChange": -1,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -1977,7 +2081,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -1990,7 +2094,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q18003204$D98DA79A-E122-4E4C-83E6-D8000BF1DFC9"
-      ]
+      ],
+      "externalIds": {
+        "wta": "320983",
+        "balldontlie": 85
+      }
     },
     {
       "id": "ekaterina-alexandrova",
@@ -2002,12 +2110,12 @@
       ],
       "tour": "WTA",
       "country": "RUS",
-      "rank": 28,
-      "points": 1811,
+      "rank": 24,
+      "points": 1906,
       "age": 31,
-      "rankChange": -1,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 4,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2016,7 +2124,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2029,7 +2137,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q23719121$6a3c33f7-40b3-cebb-eb77-6ceb8c5f998a"
-      ]
+      ],
+      "externalIds": {
+        "wta": "319007",
+        "balldontlie": 11
+      }
     },
     {
       "id": "sara-bejlek",
@@ -2041,12 +2153,12 @@
       ],
       "tour": "WTA",
       "country": "CZE",
-      "rank": 29,
-      "points": 1710,
+      "rank": 30,
+      "points": 1650,
       "age": 20,
       "rankChange": -1,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2055,7 +2167,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2068,7 +2180,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q107640117$3904e6ca-e83f-46a8-bfcc-56932e18a55f"
-      ]
+      ],
+      "externalIds": {
+        "wta": "330375",
+        "balldontlie": 202
+      }
     },
     {
       "id": "ann-li",
@@ -2080,12 +2196,12 @@
       ],
       "tour": "WTA",
       "country": "USA",
-      "rank": 30,
-      "points": 1573,
+      "rank": 31,
+      "points": 1648,
       "age": 26,
       "rankChange": -1,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2094,7 +2210,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2107,7 +2223,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q39074494$2003294C-1755-41D0-98B5-BD024993A4FB"
-      ]
+      ],
+      "externalIds": {
+        "wta": "326096",
+        "balldontlie": 78
+      }
     },
     {
       "id": "diane-parry",
@@ -2119,12 +2239,12 @@
       ],
       "tour": "WTA",
       "country": "FRA",
-      "rank": 31,
-      "points": 1551,
+      "rank": 32,
+      "points": 1541,
       "age": 24,
       "rankChange": -1,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2133,7 +2253,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2146,7 +2266,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q30082774$081f9e40-48ea-4f25-2934-729e53d60d2e"
-      ]
+      ],
+      "externalIds": {
+        "wta": "327077",
+        "balldontlie": 407
+      }
     },
     {
       "id": "jelena-ostapenko",
@@ -2158,12 +2282,12 @@
       ],
       "tour": "WTA",
       "country": "LAT",
-      "rank": 32,
-      "points": 1481,
+      "rank": 34,
+      "points": 1527,
       "age": 29,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -2,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2172,7 +2296,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2185,7 +2309,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q5551564$8FE5BB0B-1B49-4508-B3C9-979333D5F880"
-      ]
+      ],
+      "externalIds": {
+        "wta": "319939",
+        "balldontlie": 64
+      }
     },
     {
       "id": "maria-sakkari",
@@ -2197,12 +2325,12 @@
       ],
       "tour": "WTA",
       "country": "GRE",
-      "rank": 33,
-      "points": 1462,
+      "rank": 35,
+      "points": 1492,
       "age": 31,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -2,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2211,7 +2339,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2224,7 +2352,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q6761562$4A2B7B8E-CCC6-49EE-B2C5-AC6886588D6E"
-      ]
+      ],
+      "externalIds": {
+        "wta": "318312",
+        "balldontlie": 159
+      }
     },
     {
       "id": "nikola-bartunkova",
@@ -2238,12 +2370,12 @@
       ],
       "tour": "WTA",
       "country": "CZE",
-      "rank": 34,
-      "points": 1352,
+      "rank": 29,
+      "points": 1661,
       "age": 20,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 5,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": true,
@@ -2254,7 +2386,7 @@
       "verifiedAt": "2026-10-09T09:30:50Z",
       "reasonSourceUrl": "https://www.chinaopen.com/cn/contents/281/1652.html",
       "reasonShort": "20 岁 · 首次闯入 WTA 1000 四强",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "following",
       "favorite": false,
@@ -2272,7 +2404,11 @@
         "Q106522281$e73410ee-4c15-defc-b3e5-c068d1380f21"
       ],
       "birthCorroboratingUrl": "https://www.wtatennis.com/players/330364/name",
-      "birthReviewedOn": "2026-10-11"
+      "birthReviewedOn": "2026-10-11",
+      "externalIds": {
+        "wta": "330364",
+        "balldontlie": 626634
+      }
     },
     {
       "id": "cristina-bucsa",
@@ -2284,12 +2420,12 @@
       ],
       "tour": "WTA",
       "country": "ESP",
-      "rank": 35,
-      "points": 1349,
+      "rank": 38,
+      "points": 1294,
       "age": 28,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -3,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2298,7 +2434,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2311,7 +2447,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q56702741$4B5F5847-067D-429C-A0F5-54968D597B64"
-      ]
+      ],
+      "externalIds": {
+        "wta": "321158",
+        "balldontlie": 168
+      }
     },
     {
       "id": "peyton-stearns",
@@ -2323,12 +2463,12 @@
       ],
       "tour": "WTA",
       "country": "USA",
-      "rank": 36,
+      "rank": 37,
       "points": 1316,
       "age": 25,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2337,7 +2477,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2350,7 +2490,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q106293259$83B4BF51-DB74-4806-A182-E4BC3984ECA3"
-      ]
+      ],
+      "externalIds": {
+        "wta": "327573",
+        "balldontlie": 272
+      }
     },
     {
       "id": "talia-gibson",
@@ -2362,12 +2506,12 @@
       ],
       "tour": "WTA",
       "country": "AUS",
-      "rank": 37,
-      "points": 1301,
+      "rank": 41,
+      "points": 1273,
       "age": 22,
-      "rankChange": 26,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -4,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2376,7 +2520,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2389,7 +2533,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q110523703$20a30f8d-4dab-8411-9169-4d3a49dfa136"
-      ]
+      ],
+      "externalIds": {
+        "wta": "329393",
+        "balldontlie": 153
+      }
     },
     {
       "id": "xinyu-wang",
@@ -2402,12 +2550,12 @@
       ],
       "tour": "WTA",
       "country": "CHN",
-      "rank": 38,
+      "rank": 39,
       "points": 1288,
       "age": 25,
-      "rankChange": 2,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2416,7 +2564,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2429,7 +2577,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q44465805$0293E1AB-404D-44DE-8426-816E9DE4F953"
-      ]
+      ],
+      "externalIds": {
+        "wta": "326376",
+        "balldontlie": 83
+      }
     },
     {
       "id": "liudmila-samsonova",
@@ -2441,12 +2593,12 @@
       ],
       "tour": "WTA",
       "country": "RUS",
-      "rank": 39,
-      "points": 1284,
+      "rank": 43,
+      "points": 1229,
       "age": 27,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -4,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2455,7 +2607,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2468,7 +2620,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q26416429$1835EFA9-10EE-484D-82C6-36723A024501"
-      ]
+      ],
+      "externalIds": {
+        "wta": "322222",
+        "balldontlie": 18
+      }
     },
     {
       "id": "donna-vekic",
@@ -2480,12 +2636,12 @@
       ],
       "tour": "WTA",
       "country": "CRO",
-      "rank": 40,
-      "points": 1278,
+      "rank": 36,
+      "points": 1325,
       "age": 30,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 4,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2494,7 +2650,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2507,7 +2663,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q648854$9863B832-63A7-46AA-8C7B-31E94675BAAE"
-      ]
+      ],
+      "externalIds": {
+        "wta": "318516",
+        "balldontlie": 235
+      }
     },
     {
       "id": "kimberly-birrell",
@@ -2519,12 +2679,12 @@
       ],
       "tour": "WTA",
       "country": "AUS",
-      "rank": 41,
-      "points": 1255,
+      "rank": 40,
+      "points": 1280,
       "age": 28,
-      "rankChange": 19,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2533,7 +2693,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2546,7 +2706,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q15635268$77d9b5fe-45c9-5329-6930-46136d825d1a"
-      ]
+      ],
+      "externalIds": {
+        "wta": "320728",
+        "balldontlie": 103
+      }
     },
     {
       "id": "hailey-baptiste",
@@ -2558,12 +2722,12 @@
       ],
       "tour": "WTA",
       "country": "USA",
-      "rank": 42,
-      "points": 1230,
+      "rank": 45,
+      "points": 1155,
       "age": 24,
       "rankChange": -3,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2572,7 +2736,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2585,7 +2749,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q58628835$54f55fe8-485d-c2cb-bebb-d342934f8467"
-      ]
+      ],
+      "externalIds": {
+        "wta": "327101",
+        "balldontlie": 169
+      }
     },
     {
       "id": "barbora-krejcikova",
@@ -2597,12 +2765,12 @@
       ],
       "tour": "WTA",
       "country": "CZE",
-      "rank": 43,
-      "points": 1198,
+      "rank": 46,
+      "points": 1134,
       "age": 30,
-      "rankChange": 1,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -3,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2611,7 +2779,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2624,7 +2792,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q11052500$CF3AA767-54C6-47B3-9871-6696C79E0D74"
-      ]
+      ],
+      "externalIds": {
+        "wta": "318314",
+        "balldontlie": 263
+      }
     },
     {
       "id": "clara-tauson",
@@ -2636,12 +2808,12 @@
       ],
       "tour": "WTA",
       "country": "DEN",
-      "rank": 44,
-      "points": 1184,
+      "rank": 53,
+      "points": 1065,
       "age": 23,
-      "rankChange": -3,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -9,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2650,7 +2822,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2663,7 +2835,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q42675013$1f3ac9f4-43df-4159-3c1c-f571842da3ec"
-      ]
+      ],
+      "externalIds": {
+        "wta": "327793",
+        "balldontlie": 14
+      }
     },
     {
       "id": "yuliia-starodubtseva",
@@ -2675,12 +2851,12 @@
       ],
       "tour": "WTA",
       "country": "UKR",
-      "rank": 45,
+      "rank": 44,
       "points": 1165,
       "age": 26,
-      "rankChange": -3,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 1,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2689,7 +2865,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2700,7 +2876,11 @@
       "birthCheckedAt": "2026-10-11T09:14:10.750Z",
       "birthCorroboratingUrl": "https://www.wtatennis.com/players/325338/yuliia-starodubtseva",
       "birthVerification": "official-cross-check",
-      "birthReviewedOn": "2026-10-11"
+      "birthReviewedOn": "2026-10-11",
+      "externalIds": {
+        "wta": "325338",
+        "balldontlie": 101
+      }
     },
     {
       "id": "daria-snigur",
@@ -2712,12 +2892,12 @@
       ],
       "tour": "WTA",
       "country": "UKR",
-      "rank": 46,
-      "points": 1163,
+      "rank": 42,
+      "points": 1254,
       "age": 24,
-      "rankChange": -3,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 4,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2726,7 +2906,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2739,7 +2919,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q65553008$b0e31135-3d52-426a-b225-58d23c489aab"
-      ]
+      ],
+      "externalIds": {
+        "wta": "327845",
+        "balldontlie": 116
+      }
     },
     {
       "id": "oleksandra-oliynykova",
@@ -2751,12 +2935,12 @@
       ],
       "tour": "WTA",
       "country": "UKR",
-      "rank": 47,
-      "points": 1126,
+      "rank": 51,
+      "points": 1082,
       "age": 25,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -4,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2765,7 +2949,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2778,7 +2962,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q105711730$a71af709-41ef-1b48-f5a0-38d3ad08dd37"
-      ]
+      ],
+      "externalIds": {
+        "wta": "327182",
+        "balldontlie": 21156
+      }
     },
     {
       "id": "magdalena-frech",
@@ -2790,12 +2978,12 @@
       ],
       "tour": "WTA",
       "country": "POL",
-      "rank": 48,
-      "points": 1120,
+      "rank": 56,
+      "points": 1045,
       "age": 28,
-      "rankChange": -3,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -8,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2804,7 +2992,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2817,7 +3005,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q10636559$1C4870D3-3EDE-401D-9C3C-AB75AC2A88B3"
-      ]
+      ],
+      "externalIds": {
+        "wta": "320277",
+        "balldontlie": 222
+      }
     },
     {
       "id": "janice-tjen",
@@ -2829,12 +3021,12 @@
       ],
       "tour": "WTA",
       "country": "INA",
-      "rank": 49,
-      "points": 1120,
+      "rank": 47,
+      "points": 1125,
       "age": 24,
-      "rankChange": -3,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 2,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2843,7 +3035,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2856,7 +3048,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q126454806$6cdcd7c7-4df8-f735-7837-9a8a4bd34173"
-      ]
+      ],
+      "externalIds": {
+        "wta": "328818",
+        "balldontlie": 21122
+      }
     },
     {
       "id": "anhelina-kalinina",
@@ -2868,12 +3064,12 @@
       ],
       "tour": "WTA",
       "country": "UKR",
-      "rank": 50,
-      "points": 1112,
+      "rank": 48,
+      "points": 1107,
       "age": 29,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 2,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2882,7 +3078,7 @@
       "demo": false,
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "verifiedAt": "2026-10-09T09:30:50Z",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "followTier": "none",
       "favorite": false,
@@ -2895,7 +3091,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q15642606$8d224201-44b0-fb36-95f8-ebffdd2c1798"
-      ]
+      ],
+      "externalIds": {
+        "wta": "320567",
+        "balldontlie": 96
+      }
     },
     {
       "id": "qinwen-zheng",
@@ -2908,12 +3108,12 @@
       ],
       "tour": "WTA",
       "country": "CHN",
-      "rank": 54,
-      "points": 1083,
+      "rank": 23,
+      "points": 2018,
       "age": 24,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": 31,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2927,7 +3127,7 @@
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "birthDate": "2002-10-08",
       "profileCheckedAt": "2026-10-10T06:16:42Z",
@@ -2939,7 +3139,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q62096129$0666A787-48E7-4D47-8558-832108D7127F"
-      ]
+      ],
+      "externalIds": {
+        "wta": "328120",
+        "balldontlie": 65
+      }
     },
     {
       "id": "zhang-shuai",
@@ -2952,12 +3156,12 @@
       ],
       "tour": "WTA",
       "country": "CHN",
-      "rank": 57,
-      "points": 1055,
+      "rank": 81,
+      "points": 895,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -24,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -2969,7 +3173,7 @@
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "doublesRank": 7,
       "doublesRankDate": "2026-10-05",
@@ -2983,7 +3187,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q197291$0BD1700B-A0C6-42CC-A990-8824906A90B4"
-      ]
+      ],
+      "externalIds": {
+        "wta": "311779",
+        "balldontlie": 207
+      }
     },
     {
       "id": "katerina-siniakova",
@@ -2995,12 +3203,12 @@
       ],
       "tour": "WTA",
       "country": "CZE",
-      "rank": 55,
-      "points": 1075,
+      "rank": 87,
+      "points": 855,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankChange": -32,
+      "rankDate": "2026-10-12",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "style": null,
       "followed": false,
@@ -3012,7 +3220,7 @@
       "followTier": "none",
       "favorite": false,
       "nicknames": [],
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "doublesRank": 1,
       "doublesRankDate": "2026-10-05",
@@ -3026,7 +3234,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q3720044$1AF027DB-1D73-4E76-BE90-AD09820B5BE2"
-      ]
+      ],
+      "externalIds": {
+        "wta": "320301",
+        "balldontlie": 86
+      }
     },
     {
       "id": "kristina-mladenovic",
@@ -7423,11 +7635,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "CZE",
-      "rank": 51,
-      "points": 1106,
+      "rank": 49,
+      "points": 1105,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 2,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7439,9 +7651,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1992-03-21",
       "birthPrecision": "day",
@@ -7451,7 +7663,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q289365$8F1D6947-5C84-46F0-AFF9-F2F2AEF27EE6"
-      ]
+      ],
+      "externalIds": {
+        "wta": "313974",
+        "balldontlie": 197
+      }
     },
     {
       "id": "mayar-sherif",
@@ -7461,10 +7677,10 @@
       "tour": "WTA",
       "country": "EGY",
       "rank": 52,
-      "points": 1105,
+      "points": 1077,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 0,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7476,9 +7692,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1996-05-05",
       "birthPrecision": "day",
@@ -7488,7 +7704,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q19577829$F97EB5C9-CCBA-4D42-A455-F7B5FD3FD0F7"
-      ]
+      ],
+      "externalIds": {
+        "wta": "318711",
+        "balldontlie": 493
+      }
     },
     {
       "id": "tamara-korpatsch",
@@ -7497,11 +7717,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "GER",
-      "rank": 53,
-      "points": 1091,
+      "rank": 50,
+      "points": 1086,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 3,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7513,9 +7733,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1995-05-12",
       "birthPrecision": "day",
@@ -7525,7 +7745,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q19924597$0a03a3e9-48f1-1b79-dcd1-c461d6c402d9"
-      ]
+      ],
+      "externalIds": {
+        "wta": "319571",
+        "balldontlie": 129
+      }
     },
     {
       "id": "katie-boulter",
@@ -7534,11 +7758,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "GBR",
-      "rank": 56,
+      "rank": 54,
       "points": 1062,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 2,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7550,9 +7774,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1996-08-01",
       "birthPrecision": "day",
@@ -7562,7 +7786,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q16979848$27D8DBDC-D324-4FB4-A998-887DBC9F5E21"
-      ]
+      ],
+      "externalIds": {
+        "wta": "319125",
+        "balldontlie": 259
+      }
     },
     {
       "id": "zeynep-sonmez",
@@ -7571,11 +7799,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "TUR",
-      "rank": 58,
-      "points": 1052,
+      "rank": 59,
+      "points": 1022,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": -1,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7587,9 +7815,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2002-04-30",
       "birthPrecision": "day",
@@ -7599,7 +7827,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q65599731$c639153e-5862-46c2-aaf4-b8eed11ce349"
-      ]
+      ],
+      "externalIds": {
+        "wta": "326907",
+        "balldontlie": 91
+      }
     },
     {
       "id": "paula-badosa",
@@ -7608,11 +7840,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "ESP",
-      "rank": 59,
-      "points": 1052,
+      "rank": 58,
+      "points": 1023,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 1,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7624,9 +7856,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1997-11-15",
       "birthPrecision": "day",
@@ -7636,7 +7868,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q19560013$4131a2fb-42fc-a569-5eba-64f75a3da8ab"
-      ]
+      ],
+      "externalIds": {
+        "wta": "320124",
+        "balldontlie": 66
+      }
     },
     {
       "id": "jaqueline-cristian",
@@ -7645,11 +7881,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "ROU",
-      "rank": 60,
-      "points": 1051,
+      "rank": 61,
+      "points": 1016,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": -1,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7661,9 +7897,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1998-06-05",
       "birthPrecision": "day",
@@ -7673,7 +7909,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q20676333$8B1D5DCC-C7EA-479F-B144-5CF385788CFB"
-      ]
+      ],
+      "externalIds": {
+        "wta": "320319",
+        "balldontlie": 77
+      }
     },
     {
       "id": "lilli-tagger",
@@ -7682,11 +7922,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "AUT",
-      "rank": 61,
-      "points": 1045,
+      "rank": 55,
+      "points": 1054,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 6,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7698,9 +7938,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2008-02-17",
       "birthPrecision": "day",
@@ -7710,7 +7950,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q128688561$0914d35e-4598-1e46-922e-00cf6cad7744"
-      ]
+      ],
+      "externalIds": {
+        "wta": "332150",
+        "balldontlie": 650772
+      }
     },
     {
       "id": "elena-gabriela-ruse",
@@ -7719,11 +7963,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "ROU",
-      "rank": 62,
+      "rank": 57,
       "points": 1033,
       "age": null,
-      "rankChange": 4,
-      "rankDate": "2026-10-05",
+      "rankChange": 5,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7735,9 +7979,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1997-11-06",
       "birthPrecision": "day",
@@ -7747,7 +7991,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q20745254$2187C2E8-503D-4CFD-AE55-67D9720C3154"
-      ]
+      ],
+      "externalIds": {
+        "wta": "320408",
+        "balldontlie": 156
+      }
     },
     {
       "id": "lanlana-tararudee",
@@ -7756,11 +8004,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "THA",
-      "rank": 63,
-      "points": 1032,
+      "rank": 60,
+      "points": 1022,
       "age": null,
-      "rankChange": -1,
-      "rankDate": "2026-10-05",
+      "rankChange": 3,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7772,9 +8020,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2004-07-07",
       "birthPrecision": "day",
@@ -7784,7 +8032,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q113162452$39282f88-470e-b6ce-546a-382bf527992b"
-      ]
+      ],
+      "externalIds": {
+        "wta": "329651",
+        "balldontlie": 132
+      }
     },
     {
       "id": "anna-bondar",
@@ -7793,11 +8045,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "HUN",
-      "rank": 64,
-      "points": 1029,
+      "rank": 66,
+      "points": 974,
       "age": null,
-      "rankChange": 5,
-      "rankDate": "2026-10-05",
+      "rankChange": -2,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7809,9 +8061,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1997-05-27",
       "birthPrecision": "day",
@@ -7821,7 +8073,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q19281715$95215F7E-08C2-420D-B1A7-F2737B33185F"
-      ]
+      ],
+      "externalIds": {
+        "wta": "322942",
+        "balldontlie": 111
+      }
     },
     {
       "id": "tereza-valentova",
@@ -7830,11 +8086,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "CZE",
-      "rank": 65,
-      "points": 1014,
+      "rank": 62,
+      "points": 1004,
       "age": null,
-      "rankChange": -4,
-      "rankDate": "2026-10-05",
+      "rankChange": 3,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7846,9 +8102,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2007-02-20",
       "birthPrecision": "day",
@@ -7858,7 +8114,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q113218343$40b67c09-484f-326b-a6b2-ab39a3e89e53"
-      ]
+      ],
+      "externalIds": {
+        "wta": "330808",
+        "balldontlie": 255
+      }
     },
     {
       "id": "camila-osorio",
@@ -7867,11 +8127,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "COL",
-      "rank": 66,
-      "points": 993,
+      "rank": 67,
+      "points": 963,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": -1,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7883,9 +8143,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-12-22",
       "birthPrecision": "day",
@@ -7895,7 +8155,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q29052147$A7F81646-C66E-41C0-971E-2DB2BA553E5B"
-      ]
+      ],
+      "externalIds": {
+        "wta": "325898",
+        "balldontlie": 194
+      }
     },
     {
       "id": "viktorija-golubic",
@@ -7904,11 +8168,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "SUI",
-      "rank": 67,
-      "points": 993,
+      "rank": 72,
+      "points": 938,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": -5,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7920,9 +8184,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1992-10-16",
       "birthPrecision": "day",
@@ -7932,7 +8196,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q7929924$EAE3233A-8BBF-48F6-BA0C-635705B453D6"
-      ]
+      ],
+      "externalIds": {
+        "wta": "316296",
+        "balldontlie": 268
+      }
     },
     {
       "id": "maria-timofeeva",
@@ -7941,11 +8209,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "UZB",
-      "rank": 68,
-      "points": 989,
+      "rank": 63,
+      "points": 997,
       "age": null,
-      "rankChange": 20,
-      "rankDate": "2026-10-05",
+      "rankChange": 5,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7957,9 +8225,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2003-11-18",
       "birthPrecision": "day",
@@ -7969,7 +8237,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q106367605$a4ae1653-2ddc-418c-9720-bf80372a21dd"
-      ]
+      ],
+      "externalIds": {
+        "wta": "328896",
+        "balldontlie": 330
+      }
     },
     {
       "id": "alina-korneeva",
@@ -7978,11 +8250,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "RUS",
-      "rank": 69,
-      "points": 988,
+      "rank": 74,
+      "points": 913,
       "age": null,
-      "rankChange": 13,
-      "rankDate": "2026-10-05",
+      "rankChange": -5,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -7994,9 +8266,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2007-06-23",
       "birthPrecision": "day",
@@ -8006,7 +8278,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q116447696$bf9ed161-42b1-2900-e4d5-b51536577996"
-      ]
+      ],
+      "externalIds": {
+        "wta": "331330",
+        "balldontlie": 22606
+      }
     },
     {
       "id": "alycia-parks",
@@ -8015,11 +8291,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "USA",
-      "rank": 70,
+      "rank": 64,
       "points": 985,
       "age": null,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
+      "rankChange": 6,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8031,9 +8307,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2000-12-31",
       "birthPrecision": "day",
@@ -8043,7 +8319,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q105745525$a6aab240-4b3b-d7cb-2f9c-38cbc1477ccb"
-      ]
+      ],
+      "externalIds": {
+        "wta": "326007",
+        "balldontlie": 191
+      }
     },
     {
       "id": "elisabetta-cocciaretto",
@@ -8052,11 +8332,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "ITA",
-      "rank": 71,
-      "points": 985,
+      "rank": 65,
+      "points": 975,
       "age": null,
-      "rankChange": -4,
-      "rankDate": "2026-10-05",
+      "rankChange": 6,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8068,9 +8348,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-01-25",
       "birthPrecision": "day",
@@ -8080,7 +8360,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q48528654$AC2EEB9F-4335-4473-A208-43E234F999D7"
-      ]
+      ],
+      "externalIds": {
+        "wta": "327909",
+        "balldontlie": 112
+      }
     },
     {
       "id": "caty-mcnally",
@@ -8089,11 +8373,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "USA",
-      "rank": 72,
-      "points": 983,
+      "rank": 70,
+      "points": 958,
       "age": null,
-      "rankChange": -4,
-      "rankDate": "2026-10-05",
+      "rankChange": 2,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8105,9 +8389,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-11-20",
       "birthPrecision": "day",
@@ -8117,7 +8401,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q27537235$E8ED664B-B917-41CB-BB71-D524D575349C"
-      ]
+      ],
+      "externalIds": {
+        "wta": "325725",
+        "balldontlie": 165
+      }
     },
     {
       "id": "ashlyn-krueger",
@@ -8126,11 +8414,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "USA",
-      "rank": 73,
-      "points": 945,
+      "rank": 68,
+      "points": 962,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 5,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8142,9 +8430,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2004-05-07",
       "birthPrecision": "day",
@@ -8154,7 +8442,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q105825572$93b01701-49e5-6e19-c7e1-dd47ee3e08a5"
-      ]
+      ],
+      "externalIds": {
+        "wta": "329409",
+        "balldontlie": 201
+      }
     },
     {
       "id": "katie-volynets",
@@ -8163,11 +8455,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "USA",
-      "rank": 74,
-      "points": 935,
+      "rank": 88,
+      "points": 851,
       "age": null,
-      "rankChange": 4,
-      "rankDate": "2026-10-05",
+      "rankChange": -14,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8179,9 +8471,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-12-31",
       "birthPrecision": "day",
@@ -8191,7 +8483,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q61889608$0edcc757-696e-450f-988f-13d7830678b3"
-      ]
+      ],
+      "externalIds": {
+        "wta": "327391",
+        "balldontlie": 218
+      }
     },
     {
       "id": "maya-joint",
@@ -8200,11 +8496,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "AUS",
-      "rank": 75,
-      "points": 934,
+      "rank": 92,
+      "points": 824,
       "age": null,
-      "rankChange": 24,
-      "rankDate": "2026-10-05",
+      "rankChange": -17,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8216,9 +8512,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2006-04-16",
       "birthPrecision": "day",
@@ -8228,7 +8524,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q123615700$d2b47803-21ac-4ef2-b5da-eac2bcfe7d98"
-      ]
+      ],
+      "externalIds": {
+        "wta": "330544",
+        "balldontlie": 72
+      }
     },
     {
       "id": "kamilla-rakhimova",
@@ -8237,11 +8537,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "UZB",
-      "rank": 76,
-      "points": 929,
+      "rank": 69,
+      "points": 959,
       "age": null,
-      "rankChange": 1,
-      "rankDate": "2026-10-05",
+      "rankChange": 7,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8253,9 +8553,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-08-28",
       "birthPrecision": "day",
@@ -8265,7 +8565,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q65769637$a5d46a7d-899a-4643-8a84-48bcb0258cd1"
-      ]
+      ],
+      "externalIds": {
+        "wta": "325936",
+        "balldontlie": 224
+      }
     },
     {
       "id": "mccartney-kessler",
@@ -8274,11 +8578,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "USA",
-      "rank": 77,
-      "points": 925,
+      "rank": 95,
+      "points": 805,
       "age": null,
-      "rankChange": -5,
-      "rankDate": "2026-10-05",
+      "rankChange": -18,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8290,9 +8594,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1999-07-08",
       "birthPrecision": "day",
@@ -8302,7 +8606,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q121770120$b8e9284c-42d3-e952-2a07-b938714b8869"
-      ]
+      ],
+      "externalIds": {
+        "wta": "326678",
+        "balldontlie": 76
+      }
     },
     {
       "id": "kaitlin-quevedo",
@@ -8311,11 +8619,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "ESP",
-      "rank": 78,
-      "points": 920,
+      "rank": 76,
+      "points": 908,
       "age": null,
-      "rankChange": -5,
-      "rankDate": "2026-10-05",
+      "rankChange": 2,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8327,9 +8635,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2006-02-13",
       "birthPrecision": "day",
@@ -8339,7 +8647,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q121826235$873b3511-483a-b58d-303d-2e310d55444e"
-      ]
+      ],
+      "externalIds": {
+        "wta": "331742",
+        "balldontlie": 657987
+      }
     },
     {
       "id": "panna-udvardy",
@@ -8348,11 +8660,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "HUN",
-      "rank": 79,
-      "points": 919,
+      "rank": 80,
+      "points": 899,
       "age": null,
-      "rankChange": -5,
-      "rankDate": "2026-10-05",
+      "rankChange": -1,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8364,9 +8676,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1998-09-28",
       "birthPrecision": "day",
@@ -8376,7 +8688,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q28815694$E6E315B3-711D-4475-A4C1-743662F3062E"
-      ]
+      ],
+      "externalIds": {
+        "wta": "325956",
+        "balldontlie": 275
+      }
     },
     {
       "id": "magda-linette",
@@ -8385,11 +8701,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "POL",
-      "rank": 80,
-      "points": 916,
+      "rank": 77,
+      "points": 907,
       "age": null,
-      "rankChange": -5,
-      "rankDate": "2026-10-05",
+      "rankChange": 3,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8401,9 +8717,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1992-02-12",
       "birthPrecision": "day",
@@ -8413,7 +8729,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q722311$924A5DFE-F90C-4F47-BDC1-B9244ACA2AB9"
-      ]
+      ],
+      "externalIds": {
+        "wta": "315130",
+        "balldontlie": 138
+      }
     },
     {
       "id": "petra-marcinko",
@@ -8422,11 +8742,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "CRO",
-      "rank": 81,
-      "points": 915,
+      "rank": 78,
+      "points": 905,
       "age": null,
-      "rankChange": -5,
-      "rankDate": "2026-10-05",
+      "rankChange": 3,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8438,9 +8758,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2005-12-04",
       "birthPrecision": "day",
@@ -8450,7 +8770,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q110156289$76b9ce27-a211-49e4-b083-8be973b4c7ab"
-      ]
+      ],
+      "externalIds": {
+        "wta": "330799",
+        "balldontlie": 273
+      }
     },
     {
       "id": "yulia-putintseva",
@@ -8459,11 +8783,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "KAZ",
-      "rank": 82,
+      "rank": 79,
       "points": 904,
       "age": null,
-      "rankChange": -3,
-      "rankDate": "2026-10-05",
+      "rankChange": 3,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8475,9 +8799,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1995-01-07",
       "birthPrecision": "day",
@@ -8487,7 +8811,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q2429984$309F53EF-8FA5-4D5D-A5A4-C6F23564F806"
-      ]
+      ],
+      "externalIds": {
+        "wta": "317683",
+        "balldontlie": 151
+      }
     },
     {
       "id": "antonia-ruzic",
@@ -8496,11 +8824,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "CRO",
-      "rank": 83,
-      "points": 894,
+      "rank": 93,
+      "points": 823,
       "age": null,
-      "rankChange": -3,
-      "rankDate": "2026-10-05",
+      "rankChange": -10,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8512,9 +8840,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2003-01-20",
       "birthPrecision": "day",
@@ -8524,7 +8852,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q84599634$438d8f57-0006-4bef-a62b-1e5912bafac3"
-      ]
+      ],
+      "externalIds": {
+        "wta": "329505",
+        "balldontlie": 133
+      }
     },
     {
       "id": "tatjana-maria",
@@ -8533,11 +8865,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "GER",
-      "rank": 84,
-      "points": 894,
+      "rank": 71,
+      "points": 945,
       "age": null,
-      "rankChange": -3,
-      "rankDate": "2026-10-05",
+      "rankChange": 13,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8549,9 +8881,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1987-08-08",
       "birthPrecision": "day",
@@ -8561,7 +8893,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "q57942$70DB46BC-E8F8-4960-A805-F3C11310936F"
-      ]
+      ],
+      "externalIds": {
+        "wta": "310440",
+        "balldontlie": 82
+      }
     },
     {
       "id": "xiyu-wang",
@@ -8570,11 +8906,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "CHN",
-      "rank": 85,
-      "points": 889,
+      "rank": 91,
+      "points": 835,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": -6,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8586,9 +8922,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2001-03-28",
       "birthPrecision": "day",
@@ -8598,7 +8934,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q41799108$2440B5E6-2778-46C0-A546-A23362295075"
-      ]
+      ],
+      "externalIds": {
+        "wta": "326160",
+        "balldontlie": 485
+      }
     },
     {
       "id": "hanne-vandewinkel",
@@ -8607,11 +8947,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "BEL",
-      "rank": 86,
-      "points": 887,
+      "rank": 84,
+      "points": 866,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 2,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8623,9 +8963,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2004-05-21",
       "birthPrecision": "day",
@@ -8635,7 +8975,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q113780001$41362e3f-47df-fe67-cfb9-1a846cc3d3f2"
-      ]
+      ],
+      "externalIds": {
+        "wta": "331102",
+        "balldontlie": 659901
+      }
     },
     {
       "id": "daria-kasatkina",
@@ -8644,11 +8988,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "AUS",
-      "rank": 87,
-      "points": 883,
+      "rank": 82,
+      "points": 884,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 5,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8660,9 +9004,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1997-05-07",
       "birthPrecision": "day",
@@ -8672,7 +9016,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q17144642$c296c115-4ceb-7ec1-2d54-bceb6ead82a8"
-      ]
+      ],
+      "externalIds": {
+        "wta": "322082",
+        "balldontlie": 88
+      }
     },
     {
       "id": "darja-vidmanova",
@@ -8681,11 +9029,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "CZE",
-      "rank": 88,
-      "points": 877,
+      "rank": 90,
+      "points": 838,
       "age": null,
       "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8697,9 +9045,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2003-01-09",
       "birthPrecision": "day",
@@ -8709,7 +9057,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q98278358$246380c3-5ff1-49ea-93f4-387150954a26"
-      ]
+      ],
+      "externalIds": {
+        "wta": "329057",
+        "balldontlie": 625862
+      }
     },
     {
       "id": "anna-blinkova",
@@ -8718,11 +9070,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "FRA",
-      "rank": 89,
-      "points": 875,
+      "rank": 73,
+      "points": 921,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 16,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8734,9 +9086,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1998-09-10",
       "birthPrecision": "day",
@@ -8747,11 +9099,12 @@
       "birthStatementIds": [
         "Q20676027$d2536f43-465d-71f3-e458-b49bec4947b5"
       ],
-      "countrySourceUrl": "https://www.wtatennis.com/players/324267/anna-blinkova",
-      "countryCheckedAt": "2026-10-11T13:04:59.217Z",
+      "countrySourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "countryCheckedAt": "2026-10-13T02:47:03.223Z",
       "countryBasis": "official-tour-representation",
       "externalIds": {
-        "wta": "324267"
+        "wta": "324267",
+        "balldontlie": 154
       }
     },
     {
@@ -8761,11 +9114,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "THA",
-      "rank": 90,
+      "rank": 83,
       "points": 868,
       "age": null,
-      "rankChange": -1,
-      "rankDate": "2026-10-05",
+      "rankChange": 7,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8777,9 +9130,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2002-07-10",
       "birthPrecision": "day",
@@ -8789,7 +9142,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q61559705$AEEF2C45-842A-4313-B2BA-215890D1CC74"
-      ]
+      ],
+      "externalIds": {
+        "wta": "326929",
+        "balldontlie": 181
+      }
     },
     {
       "id": "taylah-preston",
@@ -8798,11 +9155,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "AUS",
-      "rank": 91,
-      "points": 848,
+      "rank": 86,
+      "points": 858,
       "age": null,
-      "rankChange": 3,
-      "rankDate": "2026-10-05",
+      "rankChange": 5,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8814,9 +9171,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2005-10-27",
       "birthPrecision": "day",
@@ -8826,7 +9183,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q110418366$596e4955-f973-4709-8d46-67e3cc32c01f"
-      ]
+      ],
+      "externalIds": {
+        "wta": "330291",
+        "balldontlie": 128
+      }
     },
     {
       "id": "taylor-townsend",
@@ -8835,11 +9196,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "USA",
-      "rank": 92,
+      "rank": 89,
       "points": 843,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 3,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8851,9 +9212,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1996-04-16",
       "birthPrecision": "day",
@@ -8863,7 +9224,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q766964$F0C9D57F-6884-4859-BC42-215B6CE1F7EB"
-      ]
+      ],
+      "externalIds": {
+        "wta": "318609",
+        "balldontlie": 119
+      }
     },
     {
       "id": "solana-sierra",
@@ -8872,11 +9237,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "ARG",
-      "rank": 93,
-      "points": 830,
+      "rank": null,
+      "points": null,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": null,
+      "rankDate": null,
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8888,10 +9253,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
-      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
-      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "rankCheckedAt": null,
+      "rankSourceUrl": null,
+      "pointsCheckedAt": null,
+      "pointsSourceUrl": null,
       "dateOfBirth": "2004-06-17",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q111324826#P569",
@@ -8900,7 +9265,19 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q111324826$3454e562-44d8-bc02-7bb0-b48548e55598"
-      ]
+      ],
+      "previousSinglesRanking": {
+        "rank": 93,
+        "points": 830,
+        "rankingDate": "2026-10-05",
+        "sourceUrl": "https://www.wtatennis.com/rankings/singles"
+      },
+      "singlesRankingCoverage": {
+        "state": "not-in-published-top100",
+        "rankingDate": "2026-10-12",
+        "sourceUrl": "https://www.wtatennis.com/rankings/singles",
+        "checkedAt": "2026-10-13T02:47:03.223Z"
+      }
     },
     {
       "id": "renata-zarazua",
@@ -8909,11 +9286,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "MEX",
-      "rank": 94,
-      "points": 819,
+      "rank": 85,
+      "points": 862,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": 9,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8925,9 +9302,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1997-09-30",
       "birthPrecision": "day",
@@ -8937,7 +9314,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q18636254$8A08B6BF-378C-4111-9F71-065D500095E0"
-      ]
+      ],
+      "externalIds": {
+        "wta": "320716",
+        "balldontlie": 219
+      }
     },
     {
       "id": "sinja-kraus",
@@ -8946,11 +9327,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "AUT",
-      "rank": 95,
-      "points": 817,
+      "rank": 75,
+      "points": 910,
       "age": null,
-      "rankChange": 0,
-      "rankDate": "2026-10-05",
+      "rankChange": 20,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8962,9 +9343,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2002-04-29",
       "birthPrecision": "day",
@@ -8974,7 +9355,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q57192958$A0A69B8F-ED0F-4C54-9E5C-87EF0CB24B0D"
-      ]
+      ],
+      "externalIds": {
+        "wta": "327061",
+        "balldontlie": 311
+      }
     },
     {
       "id": "jessica-bouzas-maneiro",
@@ -8983,11 +9368,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "ESP",
-      "rank": 96,
-      "points": 809,
+      "rank": 99,
+      "points": 750,
       "age": null,
       "rankChange": -3,
-      "rankDate": "2026-10-05",
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -8999,9 +9384,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2002-09-24",
       "birthPrecision": "day",
@@ -9011,7 +9396,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q96069911$6b96d719-4760-8a6f-b302-8c1474a570ca"
-      ]
+      ],
+      "externalIds": {
+        "wta": "328139",
+        "balldontlie": 80
+      }
     },
     {
       "id": "claire-liu",
@@ -9020,11 +9409,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "USA",
-      "rank": 97,
-      "points": 790,
+      "rank": 96,
+      "points": 789,
       "age": null,
-      "rankChange": -1,
-      "rankDate": "2026-10-05",
+      "rankChange": 1,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -9036,9 +9425,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "2000-05-25",
       "birthPrecision": "day",
@@ -9048,7 +9437,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q20898017$f3426941-4f4f-1adb-8e5d-f2a7cd9b8de8"
-      ]
+      ],
+      "externalIds": {
+        "wta": "323966",
+        "balldontlie": 98486
+      }
     },
     {
       "id": "simona-waltert",
@@ -9057,11 +9450,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "SUI",
-      "rank": 98,
-      "points": 790,
+      "rank": null,
+      "points": null,
       "age": null,
-      "rankChange": -1,
-      "rankDate": "2026-10-05",
+      "rankChange": null,
+      "rankDate": null,
       "style": null,
       "followed": false,
       "favorite": false,
@@ -9073,10 +9466,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
-      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
-      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "rankCheckedAt": null,
+      "rankSourceUrl": null,
+      "pointsCheckedAt": null,
+      "pointsSourceUrl": null,
       "dateOfBirth": "2000-12-13",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q33011749#P569",
@@ -9085,7 +9478,19 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q33011749$B4917EBA-836D-43A9-A624-2696D206E768"
-      ]
+      ],
+      "previousSinglesRanking": {
+        "rank": 98,
+        "points": 790,
+        "rankingDate": "2026-10-05",
+        "sourceUrl": "https://www.wtatennis.com/rankings/singles"
+      },
+      "singlesRankingCoverage": {
+        "state": "not-in-published-top100",
+        "rankingDate": "2026-10-12",
+        "sourceUrl": "https://www.wtatennis.com/rankings/singles",
+        "checkedAt": "2026-10-13T02:47:03.223Z"
+      }
     },
     {
       "id": "julia-grabher",
@@ -9094,11 +9499,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "AUT",
-      "rank": 99,
-      "points": 787,
+      "rank": 97,
+      "points": 760,
       "age": null,
-      "rankChange": 12,
-      "rankDate": "2026-10-05",
+      "rankChange": 2,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -9110,9 +9515,9 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
       "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z",
       "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
       "dateOfBirth": "1996-07-02",
       "birthPrecision": "day",
@@ -9122,7 +9527,11 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q18972370$010a63ea-4e0a-f313-d90e-c223cac08633"
-      ]
+      ],
+      "externalIds": {
+        "wta": "320316",
+        "balldontlie": 21158
+      }
     },
     {
       "id": "emma-raducanu",
@@ -9131,11 +9540,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "GBR",
-      "rank": 100,
-      "points": 785,
+      "rank": null,
+      "points": null,
       "age": null,
-      "rankChange": -2,
-      "rankDate": "2026-10-05",
+      "rankChange": null,
+      "rankDate": null,
       "style": null,
       "followed": false,
       "favorite": false,
@@ -9147,10 +9556,10 @@
       "verifiedAt": "2026-10-10T03:50:28Z",
       "nicknames": [],
       "careerStatus": "active",
-      "rankCheckedAt": "2026-10-11T13:04:59.217Z",
-      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
-      "pointsCheckedAt": "2026-10-11T13:04:59.217Z",
-      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "rankCheckedAt": null,
+      "rankSourceUrl": null,
+      "pointsCheckedAt": null,
+      "pointsSourceUrl": null,
       "dateOfBirth": "2002-11-13",
       "birthPrecision": "day",
       "birthSourceUrl": "https://www.wikidata.org/wiki/Q64849968#P569",
@@ -9159,7 +9568,19 @@
       "birthVerification": "structured-source",
       "birthStatementIds": [
         "Q64849968$4CA87625-4938-49FC-AC93-2E4B881832B6"
-      ]
+      ],
+      "previousSinglesRanking": {
+        "rank": 100,
+        "points": 785,
+        "rankingDate": "2026-10-05",
+        "sourceUrl": "https://www.wtatennis.com/rankings/singles"
+      },
+      "singlesRankingCoverage": {
+        "state": "not-in-published-top100",
+        "rankingDate": "2026-10-12",
+        "sourceUrl": "https://www.wtatennis.com/rankings/singles",
+        "checkedAt": "2026-10-13T02:47:03.223Z"
+      }
     },
     {
       "id": "xinran-sun",
@@ -9195,11 +9616,11 @@
       "aliases": [],
       "tour": "WTA",
       "country": "ARM",
-      "rank": null,
-      "points": null,
+      "rank": 98,
+      "points": 759,
       "age": null,
-      "rankChange": null,
-      "rankDate": null,
+      "rankChange": 20,
+      "rankDate": "2026-10-12",
       "style": null,
       "followed": false,
       "favorite": false,
@@ -9220,8 +9641,17 @@
       "birthStatementIds": [
         "Q71126317$0812bc65-f243-47fa-a9f9-794344379232"
       ],
-      "countrySourceUrl": "https://www.wtatennis.com/players/329198/name",
-      "countryCheckedAt": "2026-10-11T09:40:50Z"
+      "countrySourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "countryCheckedAt": "2026-10-13T02:47:03.223Z",
+      "externalIds": {
+        "wta": "329198",
+        "balldontlie": 629445
+      },
+      "countryBasis": "official-tour-representation",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z"
     },
     {
       "id": "polina-kudermetova",
@@ -10933,6 +11363,70 @@
       "doublesRankSourceUrl": "https://www.tennis.com/players-rankings/atp-doubles",
       "doublesRankBasis": "observed-snapshot",
       "doublesRankSourceSha256": "17e77592630f2ece34a87b42e5ae5539a02d29af4ebe6c90ef9b90f3c642c00f"
+    },
+    {
+      "id": "wta-320313",
+      "name": "Leolia Jeanjean",
+      "enName": "Leolia Jeanjean",
+      "aliases": [],
+      "tour": "WTA",
+      "country": "FRA",
+      "followed": false,
+      "favorite": false,
+      "followTier": "none",
+      "prospect": false,
+      "careerStatus": "active",
+      "demo": false,
+      "nicknames": [],
+      "age": null,
+      "dateOfBirth": null,
+      "style": null,
+      "sourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "verifiedAt": "2026-10-13T02:47:03.223Z",
+      "externalIds": {
+        "wta": "320313",
+        "balldontlie": 160
+      },
+      "rank": 94,
+      "points": 816,
+      "rankChange": 15,
+      "rankDate": "2026-10-12",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z"
+    },
+    {
+      "id": "wta-329199",
+      "name": "Oksana Selekhmeteva",
+      "enName": "Oksana Selekhmeteva",
+      "aliases": [],
+      "tour": "WTA",
+      "country": "ESP",
+      "followed": false,
+      "favorite": false,
+      "followTier": "none",
+      "prospect": false,
+      "careerStatus": "active",
+      "demo": false,
+      "nicknames": [],
+      "age": null,
+      "dateOfBirth": null,
+      "style": null,
+      "sourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "verifiedAt": "2026-10-13T02:47:03.223Z",
+      "externalIds": {
+        "wta": "329199",
+        "balldontlie": 241
+      },
+      "rank": 100,
+      "points": 743,
+      "rankChange": 1,
+      "rankDate": "2026-10-12",
+      "rankSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "rankCheckedAt": "2026-10-13T02:47:03.223Z",
+      "pointsSourceUrl": "https://www.wtatennis.com/rankings/singles",
+      "pointsCheckedAt": "2026-10-13T02:47:03.223Z"
     }
   ],
   "tournaments": [
@@ -20185,1229 +20679,1239 @@
     },
     {
       "tour": "WTA",
-      "rankingDate": "2026-10-05",
-      "verifiedAt": "2026-10-11T13:04:59.217Z",
+      "rankingDate": "2026-10-12",
+      "verifiedAt": "2026-10-13T02:47:03.223Z",
       "sourceUrl": "https://www.wtatennis.com/rankings/singles",
       "sourceName": "WTA 官方单打榜单",
       "officialUrl": "https://www.wtatennis.com/rankings/singles",
-      "crossCheckUrl": "https://www.wtatennis.com/rankings/singles",
+      "crossCheckUrl": "https://wta.balldontlie.io/",
       "rows": [
         {
           "rank": 1,
           "playerId": "elena-rybakina",
-          "points": 9901,
+          "points": 9696,
           "change": 0
         },
         {
           "rank": 2,
           "playerId": "aryna-sabalenka",
-          "points": 7810,
+          "points": 7550,
           "change": 0
         },
         {
           "rank": 3,
-          "playerId": "jessica-pegula",
-          "points": 7265,
-          "change": 0
+          "playerId": "mirra-andreeva",
+          "points": 6371,
+          "change": 2
         },
         {
           "rank": 4,
-          "playerId": "coco-gauff",
-          "points": 7244,
-          "change": 0
+          "playerId": "jessica-pegula",
+          "points": 6225,
+          "change": -1
         },
         {
           "rank": 5,
-          "playerId": "mirra-andreeva",
-          "points": 5841,
-          "change": 0
+          "playerId": "coco-gauff",
+          "points": 5974,
+          "change": -1
         },
         {
           "rank": 6,
-          "playerId": "linda-noskova",
-          "points": 5328,
-          "change": 0
+          "playerId": "elina-svitolina",
+          "points": 5024,
+          "change": 1
         },
         {
           "rank": 7,
-          "playerId": "elina-svitolina",
-          "points": 4809,
-          "change": 0
+          "playerId": "karolina-muchova",
+          "points": 4773,
+          "change": 1
         },
         {
           "rank": 8,
-          "playerId": "karolina-muchova",
-          "points": 4683,
-          "change": 0
+          "playerId": "linda-noskova",
+          "points": 4679,
+          "change": -2
         },
         {
           "rank": 9,
           "playerId": "iga-swiatek",
-          "points": 4119,
+          "points": 3999,
           "change": 0
         },
         {
           "rank": 10,
           "playerId": "marta-kostyuk",
-          "points": 4040,
+          "points": 3910,
           "change": 0
         },
         {
           "rank": 11,
-          "playerId": "amanda-anisimova",
-          "points": 3363,
-          "change": 0
+          "playerId": "iva-jovic",
+          "points": 2860,
+          "change": 2
         },
         {
           "rank": 12,
           "playerId": "belinda-bencic",
-          "points": 2925,
+          "points": 2760,
           "change": 0
         },
         {
           "rank": 13,
-          "playerId": "iva-jovic",
-          "points": 2841,
-          "change": 0
+          "playerId": "diana-shnaider",
+          "points": 2643,
+          "change": 1
         },
         {
           "rank": 14,
-          "playerId": "diana-shnaider",
-          "points": 2588,
-          "change": 0
+          "playerId": "elise-mertens",
+          "points": 2540,
+          "change": 5
         },
         {
           "rank": 15,
           "playerId": "victoria-mboko",
-          "points": 2521,
+          "points": 2502,
           "change": 0
         },
         {
           "rank": 16,
           "playerId": "sorana-cirstea",
-          "points": 2464,
+          "points": 2424,
           "change": 0
         },
         {
           "rank": 17,
-          "playerId": "naomi-osaka",
-          "points": 2296,
-          "change": 0
+          "playerId": "amanda-anisimova",
+          "points": 2363,
+          "change": -6
         },
         {
           "rank": 18,
-          "playerId": "alexandra-eala",
-          "points": 2276,
-          "change": 0
+          "playerId": "naomi-osaka",
+          "points": 2351,
+          "change": -1
         },
         {
           "rank": 19,
-          "playerId": "elise-mertens",
-          "points": 2165,
-          "change": 0
+          "playerId": "alexandra-eala",
+          "points": 2241,
+          "change": -1
         },
         {
           "rank": 20,
-          "playerId": "jasmine-paolini",
-          "points": 2122,
-          "change": 0
+          "playerId": "madison-keys",
+          "points": 2110,
+          "change": 3
         },
         {
           "rank": 21,
-          "playerId": "maja-chwalinska",
-          "points": 2082,
-          "change": 4
+          "playerId": "anna-kalinskaya",
+          "points": 2043,
+          "change": 1
         },
         {
           "rank": 22,
-          "playerId": "anna-kalinskaya",
+          "playerId": "maja-chwalinska",
           "points": 2043,
           "change": -1
         },
         {
           "rank": 23,
-          "playerId": "madison-keys",
-          "points": 2029,
-          "change": -1
+          "playerId": "qinwen-zheng",
+          "points": 2018,
+          "change": 31
         },
         {
           "rank": 24,
-          "playerId": "emma-navarro",
-          "points": 2024,
-          "change": -1
+          "playerId": "ekaterina-alexandrova",
+          "points": 1906,
+          "change": 4
         },
         {
           "rank": 25,
-          "playerId": "anastasia-potapova",
-          "points": 1926,
-          "change": -1
+          "playerId": "leylah-fernandez",
+          "points": 1839,
+          "change": 1
         },
         {
           "rank": 26,
-          "playerId": "leylah-fernandez",
-          "points": 1894,
-          "change": 5
-        },
-        {
-          "rank": 27,
-          "playerId": "marie-bouzkova",
-          "points": 1873,
+          "playerId": "anastasia-potapova",
+          "points": 1816,
           "change": -1
         },
         {
+          "rank": 27,
+          "playerId": "emma-navarro",
+          "points": 1809,
+          "change": -3
+        },
+        {
           "rank": 28,
-          "playerId": "ekaterina-alexandrova",
-          "points": 1811,
+          "playerId": "marie-bouzkova",
+          "points": 1763,
           "change": -1
         },
         {
           "rank": 29,
-          "playerId": "sara-bejlek",
-          "points": 1710,
-          "change": -1
+          "playerId": "nikola-bartunkova",
+          "points": 1661,
+          "change": 5
         },
         {
           "rank": 30,
-          "playerId": "ann-li",
-          "points": 1573,
+          "playerId": "sara-bejlek",
+          "points": 1650,
           "change": -1
         },
         {
           "rank": 31,
-          "playerId": "diane-parry",
-          "points": 1551,
+          "playerId": "ann-li",
+          "points": 1648,
           "change": -1
         },
         {
           "rank": 32,
-          "playerId": "jelena-ostapenko",
-          "points": 1481,
-          "change": 0
+          "playerId": "diane-parry",
+          "points": 1541,
+          "change": -1
         },
         {
           "rank": 33,
-          "playerId": "maria-sakkari",
-          "points": 1462,
-          "change": 0
+          "playerId": "jasmine-paolini",
+          "points": 1528,
+          "change": -13
         },
         {
           "rank": 34,
-          "playerId": "nikola-bartunkova",
-          "points": 1352,
-          "change": 0
+          "playerId": "jelena-ostapenko",
+          "points": 1527,
+          "change": -2
         },
         {
           "rank": 35,
-          "playerId": "cristina-bucsa",
-          "points": 1349,
-          "change": 0
+          "playerId": "maria-sakkari",
+          "points": 1492,
+          "change": -2
         },
         {
           "rank": 36,
-          "playerId": "peyton-stearns",
-          "points": 1316,
-          "change": 0
+          "playerId": "donna-vekic",
+          "points": 1325,
+          "change": 4
         },
         {
           "rank": 37,
-          "playerId": "talia-gibson",
-          "points": 1301,
-          "change": 26
+          "playerId": "peyton-stearns",
+          "points": 1316,
+          "change": -1
         },
         {
           "rank": 38,
-          "playerId": "xinyu-wang",
-          "points": 1288,
-          "change": 2
+          "playerId": "cristina-bucsa",
+          "points": 1294,
+          "change": -3
         },
         {
           "rank": 39,
-          "playerId": "liudmila-samsonova",
-          "points": 1284,
-          "change": -2
+          "playerId": "xinyu-wang",
+          "points": 1288,
+          "change": -1
         },
         {
           "rank": 40,
-          "playerId": "donna-vekic",
-          "points": 1278,
-          "change": -2
-        },
-        {
-          "rank": 41,
           "playerId": "kimberly-birrell",
-          "points": 1255,
-          "change": 19
-        },
-        {
-          "rank": 42,
-          "playerId": "hailey-baptiste",
-          "points": 1230,
-          "change": -3
-        },
-        {
-          "rank": 43,
-          "playerId": "barbora-krejcikova",
-          "points": 1198,
+          "points": 1280,
           "change": 1
         },
         {
+          "rank": 41,
+          "playerId": "talia-gibson",
+          "points": 1273,
+          "change": -4
+        },
+        {
+          "rank": 42,
+          "playerId": "daria-snigur",
+          "points": 1254,
+          "change": 4
+        },
+        {
+          "rank": 43,
+          "playerId": "liudmila-samsonova",
+          "points": 1229,
+          "change": -4
+        },
+        {
           "rank": 44,
-          "playerId": "clara-tauson",
-          "points": 1184,
-          "change": -3
+          "playerId": "yuliia-starodubtseva",
+          "points": 1165,
+          "change": 1
         },
         {
           "rank": 45,
-          "playerId": "yuliia-starodubtseva",
-          "points": 1165,
+          "playerId": "hailey-baptiste",
+          "points": 1155,
           "change": -3
         },
         {
           "rank": 46,
-          "playerId": "daria-snigur",
-          "points": 1163,
+          "playerId": "barbora-krejcikova",
+          "points": 1134,
           "change": -3
         },
         {
           "rank": 47,
-          "playerId": "oleksandra-oliynykova",
-          "points": 1126,
-          "change": 0
+          "playerId": "janice-tjen",
+          "points": 1125,
+          "change": 2
         },
         {
           "rank": 48,
-          "playerId": "magdalena-frech",
-          "points": 1120,
-          "change": -3
+          "playerId": "anhelina-kalinina",
+          "points": 1107,
+          "change": 2
         },
         {
           "rank": 49,
-          "playerId": "janice-tjen",
-          "points": 1120,
-          "change": -3
+          "playerId": "karolina-pliskova",
+          "points": 1105,
+          "change": 2
         },
         {
           "rank": 50,
-          "playerId": "anhelina-kalinina",
-          "points": 1112,
-          "change": -2
+          "playerId": "tamara-korpatsch",
+          "points": 1086,
+          "change": 3
         },
         {
           "rank": 51,
-          "playerId": "karolina-pliskova",
-          "points": 1106,
-          "change": -2
+          "playerId": "oleksandra-oliynykova",
+          "points": 1082,
+          "change": -4
         },
         {
           "rank": 52,
           "playerId": "mayar-sherif",
-          "points": 1105,
-          "change": -2
+          "points": 1077,
+          "change": 0
         },
         {
           "rank": 53,
-          "playerId": "tamara-korpatsch",
-          "points": 1091,
-          "change": -2
+          "playerId": "clara-tauson",
+          "points": 1065,
+          "change": -9
         },
         {
           "rank": 54,
-          "playerId": "qinwen-zheng",
-          "points": 1083,
-          "change": -2
+          "playerId": "katie-boulter",
+          "points": 1062,
+          "change": 2
         },
         {
           "rank": 55,
-          "playerId": "katerina-siniakova",
-          "points": 1075,
-          "change": -2
+          "playerId": "lilli-tagger",
+          "points": 1054,
+          "change": 6
         },
         {
           "rank": 56,
-          "playerId": "katie-boulter",
-          "points": 1062,
-          "change": -2
+          "playerId": "magdalena-frech",
+          "points": 1045,
+          "change": -8
         },
         {
           "rank": 57,
-          "playerId": "zhang-shuai",
-          "points": 1055,
-          "change": -2
-        },
-        {
-          "rank": 58,
-          "playerId": "zeynep-sonmez",
-          "points": 1052,
-          "change": -2
-        },
-        {
-          "rank": 59,
-          "playerId": "paula-badosa",
-          "points": 1052,
-          "change": -2
-        },
-        {
-          "rank": 60,
-          "playerId": "jaqueline-cristian",
-          "points": 1051,
-          "change": -2
-        },
-        {
-          "rank": 61,
-          "playerId": "lilli-tagger",
-          "points": 1045,
-          "change": -2
-        },
-        {
-          "rank": 62,
           "playerId": "elena-gabriela-ruse",
           "points": 1033,
-          "change": 4
-        },
-        {
-          "rank": 63,
-          "playerId": "lanlana-tararudee",
-          "points": 1032,
-          "change": -1
-        },
-        {
-          "rank": 64,
-          "playerId": "anna-bondar",
-          "points": 1029,
           "change": 5
         },
         {
-          "rank": 65,
+          "rank": 58,
+          "playerId": "paula-badosa",
+          "points": 1023,
+          "change": 1
+        },
+        {
+          "rank": 59,
+          "playerId": "zeynep-sonmez",
+          "points": 1022,
+          "change": -1
+        },
+        {
+          "rank": 60,
+          "playerId": "lanlana-tararudee",
+          "points": 1022,
+          "change": 3
+        },
+        {
+          "rank": 61,
+          "playerId": "jaqueline-cristian",
+          "points": 1016,
+          "change": -1
+        },
+        {
+          "rank": 62,
           "playerId": "tereza-valentova",
-          "points": 1014,
-          "change": -4
+          "points": 1004,
+          "change": 3
+        },
+        {
+          "rank": 63,
+          "playerId": "maria-timofeeva",
+          "points": 997,
+          "change": 5
+        },
+        {
+          "rank": 64,
+          "playerId": "alycia-parks",
+          "points": 985,
+          "change": 6
+        },
+        {
+          "rank": 65,
+          "playerId": "elisabetta-cocciaretto",
+          "points": 975,
+          "change": 6
         },
         {
           "rank": 66,
-          "playerId": "camila-osorio",
-          "points": 993,
+          "playerId": "anna-bondar",
+          "points": 974,
           "change": -2
         },
         {
           "rank": 67,
-          "playerId": "viktorija-golubic",
-          "points": 993,
-          "change": -2
+          "playerId": "camila-osorio",
+          "points": 963,
+          "change": -1
         },
         {
           "rank": 68,
-          "playerId": "maria-timofeeva",
-          "points": 989,
-          "change": 20
+          "playerId": "ashlyn-krueger",
+          "points": 962,
+          "change": 5
         },
         {
           "rank": 69,
-          "playerId": "alina-korneeva",
-          "points": 988,
-          "change": 13
+          "playerId": "kamilla-rakhimova",
+          "points": 959,
+          "change": 7
         },
         {
           "rank": 70,
-          "playerId": "alycia-parks",
-          "points": 985,
-          "change": 0
+          "playerId": "caty-mcnally",
+          "points": 958,
+          "change": 2
         },
         {
           "rank": 71,
-          "playerId": "elisabetta-cocciaretto",
-          "points": 985,
-          "change": -4
+          "playerId": "tatjana-maria",
+          "points": 945,
+          "change": 13
         },
         {
           "rank": 72,
-          "playerId": "caty-mcnally",
-          "points": 983,
-          "change": -4
+          "playerId": "viktorija-golubic",
+          "points": 938,
+          "change": -5
         },
         {
           "rank": 73,
-          "playerId": "ashlyn-krueger",
-          "points": 945,
-          "change": -2
+          "playerId": "anna-blinkova",
+          "points": 921,
+          "change": 16
         },
         {
           "rank": 74,
-          "playerId": "katie-volynets",
-          "points": 935,
-          "change": 4
+          "playerId": "alina-korneeva",
+          "points": 913,
+          "change": -5
         },
         {
           "rank": 75,
-          "playerId": "maya-joint",
-          "points": 934,
-          "change": 24
+          "playerId": "sinja-kraus",
+          "points": 910,
+          "change": 20
         },
         {
           "rank": 76,
-          "playerId": "kamilla-rakhimova",
-          "points": 929,
-          "change": 1
+          "playerId": "kaitlin-quevedo",
+          "points": 908,
+          "change": 2
         },
         {
           "rank": 77,
-          "playerId": "mccartney-kessler",
-          "points": 925,
-          "change": -5
-        },
-        {
-          "rank": 78,
-          "playerId": "kaitlin-quevedo",
-          "points": 920,
-          "change": -5
-        },
-        {
-          "rank": 79,
-          "playerId": "panna-udvardy",
-          "points": 919,
-          "change": -5
-        },
-        {
-          "rank": 80,
           "playerId": "magda-linette",
-          "points": 916,
-          "change": -5
-        },
-        {
-          "rank": 81,
-          "playerId": "petra-marcinko",
-          "points": 915,
-          "change": -5
-        },
-        {
-          "rank": 82,
-          "playerId": "yulia-putintseva",
-          "points": 904,
-          "change": -3
-        },
-        {
-          "rank": 83,
-          "playerId": "antonia-ruzic",
-          "points": 894,
-          "change": -3
-        },
-        {
-          "rank": 84,
-          "playerId": "tatjana-maria",
-          "points": 894,
-          "change": -3
-        },
-        {
-          "rank": 85,
-          "playerId": "xiyu-wang",
-          "points": 889,
-          "change": -2
-        },
-        {
-          "rank": 86,
-          "playerId": "hanne-vandewinkel",
-          "points": 887,
-          "change": -2
-        },
-        {
-          "rank": 87,
-          "playerId": "daria-kasatkina",
-          "points": 883,
-          "change": -2
-        },
-        {
-          "rank": 88,
-          "playerId": "darja-vidmanova",
-          "points": 877,
-          "change": -2
-        },
-        {
-          "rank": 89,
-          "playerId": "anna-blinkova",
-          "points": 875,
-          "change": -2
-        },
-        {
-          "rank": 90,
-          "playerId": "mananchaya-sawangkaew",
-          "points": 868,
-          "change": -1
-        },
-        {
-          "rank": 91,
-          "playerId": "taylah-preston",
-          "points": 848,
+          "points": 907,
           "change": 3
         },
         {
-          "rank": 92,
+          "rank": 78,
+          "playerId": "petra-marcinko",
+          "points": 905,
+          "change": 3
+        },
+        {
+          "rank": 79,
+          "playerId": "yulia-putintseva",
+          "points": 904,
+          "change": 3
+        },
+        {
+          "rank": 80,
+          "playerId": "panna-udvardy",
+          "points": 899,
+          "change": -1
+        },
+        {
+          "rank": 81,
+          "playerId": "zhang-shuai",
+          "points": 895,
+          "change": -24
+        },
+        {
+          "rank": 82,
+          "playerId": "daria-kasatkina",
+          "points": 884,
+          "change": 5
+        },
+        {
+          "rank": 83,
+          "playerId": "mananchaya-sawangkaew",
+          "points": 868,
+          "change": 7
+        },
+        {
+          "rank": 84,
+          "playerId": "hanne-vandewinkel",
+          "points": 866,
+          "change": 2
+        },
+        {
+          "rank": 85,
+          "playerId": "renata-zarazua",
+          "points": 862,
+          "change": 9
+        },
+        {
+          "rank": 86,
+          "playerId": "taylah-preston",
+          "points": 858,
+          "change": 5
+        },
+        {
+          "rank": 87,
+          "playerId": "katerina-siniakova",
+          "points": 855,
+          "change": -32
+        },
+        {
+          "rank": 88,
+          "playerId": "katie-volynets",
+          "points": 851,
+          "change": -14
+        },
+        {
+          "rank": 89,
           "playerId": "taylor-townsend",
           "points": 843,
+          "change": 3
+        },
+        {
+          "rank": 90,
+          "playerId": "darja-vidmanova",
+          "points": 838,
           "change": -2
+        },
+        {
+          "rank": 91,
+          "playerId": "xiyu-wang",
+          "points": 835,
+          "change": -6
+        },
+        {
+          "rank": 92,
+          "playerId": "maya-joint",
+          "points": 824,
+          "change": -17
         },
         {
           "rank": 93,
-          "playerId": "solana-sierra",
-          "points": 830,
-          "change": -2
+          "playerId": "antonia-ruzic",
+          "points": 823,
+          "change": -10
         },
         {
           "rank": 94,
-          "playerId": "renata-zarazua",
-          "points": 819,
-          "change": -2
+          "playerId": "wta-320313",
+          "points": 816,
+          "change": 15
         },
         {
           "rank": 95,
-          "playerId": "sinja-kraus",
-          "points": 817,
-          "change": 0
+          "playerId": "mccartney-kessler",
+          "points": 805,
+          "change": -18
         },
         {
           "rank": 96,
-          "playerId": "jessica-bouzas-maneiro",
-          "points": 809,
-          "change": -3
+          "playerId": "claire-liu",
+          "points": 789,
+          "change": 1
         },
         {
           "rank": 97,
-          "playerId": "claire-liu",
-          "points": 790,
-          "change": -1
+          "playerId": "julia-grabher",
+          "points": 760,
+          "change": 2
         },
         {
           "rank": 98,
-          "playerId": "simona-waltert",
-          "points": 790,
-          "change": -1
+          "playerId": "alina-charaeva",
+          "points": 759,
+          "change": 20
         },
         {
           "rank": 99,
-          "playerId": "julia-grabher",
-          "points": 787,
-          "change": 12
+          "playerId": "jessica-bouzas-maneiro",
+          "points": 750,
+          "change": -3
         },
         {
           "rank": 100,
-          "playerId": "emma-raducanu",
-          "points": 785,
-          "change": -2
+          "playerId": "wta-329199",
+          "points": 743,
+          "change": 1
         }
       ],
-      "previousRankSource": {
-        "sourceUrl": "https://tenniscompanion.org/rankings/womens/",
-        "sourceName": "TennisCompanion 单打榜单",
-        "verifiedAt": "2026-10-10T06:16:42Z"
-      },
       "evidenceReview": {
         "state": "official-reviewed",
-        "rankingDate": "2026-10-05",
-        "checkedAt": "2026-10-11T13:04:59.217Z",
+        "rankingDate": "2026-10-12",
+        "checkedAt": "2026-10-13T02:47:03.223Z",
         "sourceUrl": "https://www.wtatennis.com/rankings/singles",
         "rowCount": 100,
         "reviewedRows": [
           [
             1,
             "elena-rybakina",
-            9901,
+            9696,
             0
           ],
           [
             2,
             "aryna-sabalenka",
-            7810,
+            7550,
             0
           ],
           [
             3,
-            "jessica-pegula",
-            7265,
-            0
+            "mirra-andreeva",
+            6371,
+            2
           ],
           [
             4,
-            "coco-gauff",
-            7244,
-            0
+            "jessica-pegula",
+            6225,
+            -1
           ],
           [
             5,
-            "mirra-andreeva",
-            5841,
-            0
+            "coco-gauff",
+            5974,
+            -1
           ],
           [
             6,
-            "linda-noskova",
-            5328,
-            0
+            "elina-svitolina",
+            5024,
+            1
           ],
           [
             7,
-            "elina-svitolina",
-            4809,
-            0
+            "karolina-muchova",
+            4773,
+            1
           ],
           [
             8,
-            "karolina-muchova",
-            4683,
-            0
+            "linda-noskova",
+            4679,
+            -2
           ],
           [
             9,
             "iga-swiatek",
-            4119,
+            3999,
             0
           ],
           [
             10,
             "marta-kostyuk",
-            4040,
+            3910,
             0
           ],
           [
             11,
-            "amanda-anisimova",
-            3363,
-            0
+            "iva-jovic",
+            2860,
+            2
           ],
           [
             12,
             "belinda-bencic",
-            2925,
+            2760,
             0
           ],
           [
             13,
-            "iva-jovic",
-            2841,
-            0
+            "diana-shnaider",
+            2643,
+            1
           ],
           [
             14,
-            "diana-shnaider",
-            2588,
-            0
+            "elise-mertens",
+            2540,
+            5
           ],
           [
             15,
             "victoria-mboko",
-            2521,
+            2502,
             0
           ],
           [
             16,
             "sorana-cirstea",
-            2464,
+            2424,
             0
           ],
           [
             17,
-            "naomi-osaka",
-            2296,
-            0
+            "amanda-anisimova",
+            2363,
+            -6
           ],
           [
             18,
-            "alexandra-eala",
-            2276,
-            0
+            "naomi-osaka",
+            2351,
+            -1
           ],
           [
             19,
-            "elise-mertens",
-            2165,
-            0
+            "alexandra-eala",
+            2241,
+            -1
           ],
           [
             20,
-            "jasmine-paolini",
-            2122,
-            0
+            "madison-keys",
+            2110,
+            3
           ],
           [
             21,
-            "maja-chwalinska",
-            2082,
-            4
+            "anna-kalinskaya",
+            2043,
+            1
           ],
           [
             22,
-            "anna-kalinskaya",
+            "maja-chwalinska",
             2043,
             -1
           ],
           [
             23,
-            "madison-keys",
-            2029,
-            -1
+            "qinwen-zheng",
+            2018,
+            31
           ],
           [
             24,
-            "emma-navarro",
-            2024,
-            -1
+            "ekaterina-alexandrova",
+            1906,
+            4
           ],
           [
             25,
-            "anastasia-potapova",
-            1926,
-            -1
+            "leylah-fernandez",
+            1839,
+            1
           ],
           [
             26,
-            "leylah-fernandez",
-            1894,
-            5
-          ],
-          [
-            27,
-            "marie-bouzkova",
-            1873,
+            "anastasia-potapova",
+            1816,
             -1
           ],
           [
+            27,
+            "emma-navarro",
+            1809,
+            -3
+          ],
+          [
             28,
-            "ekaterina-alexandrova",
-            1811,
+            "marie-bouzkova",
+            1763,
             -1
           ],
           [
             29,
-            "sara-bejlek",
-            1710,
-            -1
+            "nikola-bartunkova",
+            1661,
+            5
           ],
           [
             30,
-            "ann-li",
-            1573,
+            "sara-bejlek",
+            1650,
             -1
           ],
           [
             31,
-            "diane-parry",
-            1551,
+            "ann-li",
+            1648,
             -1
           ],
           [
             32,
-            "jelena-ostapenko",
-            1481,
-            0
+            "diane-parry",
+            1541,
+            -1
           ],
           [
             33,
-            "maria-sakkari",
-            1462,
-            0
+            "jasmine-paolini",
+            1528,
+            -13
           ],
           [
             34,
-            "nikola-bartunkova",
-            1352,
-            0
+            "jelena-ostapenko",
+            1527,
+            -2
           ],
           [
             35,
-            "cristina-bucsa",
-            1349,
-            0
+            "maria-sakkari",
+            1492,
+            -2
           ],
           [
             36,
-            "peyton-stearns",
-            1316,
-            0
+            "donna-vekic",
+            1325,
+            4
           ],
           [
             37,
-            "talia-gibson",
-            1301,
-            26
+            "peyton-stearns",
+            1316,
+            -1
           ],
           [
             38,
-            "xinyu-wang",
-            1288,
-            2
+            "cristina-bucsa",
+            1294,
+            -3
           ],
           [
             39,
-            "liudmila-samsonova",
-            1284,
-            -2
+            "xinyu-wang",
+            1288,
+            -1
           ],
           [
             40,
-            "donna-vekic",
-            1278,
-            -2
-          ],
-          [
-            41,
             "kimberly-birrell",
-            1255,
-            19
-          ],
-          [
-            42,
-            "hailey-baptiste",
-            1230,
-            -3
-          ],
-          [
-            43,
-            "barbora-krejcikova",
-            1198,
+            1280,
             1
           ],
           [
+            41,
+            "talia-gibson",
+            1273,
+            -4
+          ],
+          [
+            42,
+            "daria-snigur",
+            1254,
+            4
+          ],
+          [
+            43,
+            "liudmila-samsonova",
+            1229,
+            -4
+          ],
+          [
             44,
-            "clara-tauson",
-            1184,
-            -3
+            "yuliia-starodubtseva",
+            1165,
+            1
           ],
           [
             45,
-            "yuliia-starodubtseva",
-            1165,
+            "hailey-baptiste",
+            1155,
             -3
           ],
           [
             46,
-            "daria-snigur",
-            1163,
+            "barbora-krejcikova",
+            1134,
             -3
           ],
           [
             47,
-            "oleksandra-oliynykova",
-            1126,
-            0
+            "janice-tjen",
+            1125,
+            2
           ],
           [
             48,
-            "magdalena-frech",
-            1120,
-            -3
+            "anhelina-kalinina",
+            1107,
+            2
           ],
           [
             49,
-            "janice-tjen",
-            1120,
-            -3
+            "karolina-pliskova",
+            1105,
+            2
           ],
           [
             50,
-            "anhelina-kalinina",
-            1112,
-            -2
+            "tamara-korpatsch",
+            1086,
+            3
           ],
           [
             51,
-            "karolina-pliskova",
-            1106,
-            -2
+            "oleksandra-oliynykova",
+            1082,
+            -4
           ],
           [
             52,
             "mayar-sherif",
-            1105,
-            -2
+            1077,
+            0
           ],
           [
             53,
-            "tamara-korpatsch",
-            1091,
-            -2
+            "clara-tauson",
+            1065,
+            -9
           ],
           [
             54,
-            "qinwen-zheng",
-            1083,
-            -2
+            "katie-boulter",
+            1062,
+            2
           ],
           [
             55,
-            "katerina-siniakova",
-            1075,
-            -2
+            "lilli-tagger",
+            1054,
+            6
           ],
           [
             56,
-            "katie-boulter",
-            1062,
-            -2
+            "magdalena-frech",
+            1045,
+            -8
           ],
           [
             57,
-            "zhang-shuai",
-            1055,
-            -2
-          ],
-          [
-            58,
-            "zeynep-sonmez",
-            1052,
-            -2
-          ],
-          [
-            59,
-            "paula-badosa",
-            1052,
-            -2
-          ],
-          [
-            60,
-            "jaqueline-cristian",
-            1051,
-            -2
-          ],
-          [
-            61,
-            "lilli-tagger",
-            1045,
-            -2
-          ],
-          [
-            62,
             "elena-gabriela-ruse",
             1033,
-            4
-          ],
-          [
-            63,
-            "lanlana-tararudee",
-            1032,
-            -1
-          ],
-          [
-            64,
-            "anna-bondar",
-            1029,
             5
           ],
           [
-            65,
+            58,
+            "paula-badosa",
+            1023,
+            1
+          ],
+          [
+            59,
+            "zeynep-sonmez",
+            1022,
+            -1
+          ],
+          [
+            60,
+            "lanlana-tararudee",
+            1022,
+            3
+          ],
+          [
+            61,
+            "jaqueline-cristian",
+            1016,
+            -1
+          ],
+          [
+            62,
             "tereza-valentova",
-            1014,
-            -4
+            1004,
+            3
+          ],
+          [
+            63,
+            "maria-timofeeva",
+            997,
+            5
+          ],
+          [
+            64,
+            "alycia-parks",
+            985,
+            6
+          ],
+          [
+            65,
+            "elisabetta-cocciaretto",
+            975,
+            6
           ],
           [
             66,
-            "camila-osorio",
-            993,
+            "anna-bondar",
+            974,
             -2
           ],
           [
             67,
-            "viktorija-golubic",
-            993,
-            -2
+            "camila-osorio",
+            963,
+            -1
           ],
           [
             68,
-            "maria-timofeeva",
-            989,
-            20
+            "ashlyn-krueger",
+            962,
+            5
           ],
           [
             69,
-            "alina-korneeva",
-            988,
-            13
+            "kamilla-rakhimova",
+            959,
+            7
           ],
           [
             70,
-            "alycia-parks",
-            985,
-            0
+            "caty-mcnally",
+            958,
+            2
           ],
           [
             71,
-            "elisabetta-cocciaretto",
-            985,
-            -4
+            "tatjana-maria",
+            945,
+            13
           ],
           [
             72,
-            "caty-mcnally",
-            983,
-            -4
+            "viktorija-golubic",
+            938,
+            -5
           ],
           [
             73,
-            "ashlyn-krueger",
-            945,
-            -2
+            "anna-blinkova",
+            921,
+            16
           ],
           [
             74,
-            "katie-volynets",
-            935,
-            4
+            "alina-korneeva",
+            913,
+            -5
           ],
           [
             75,
-            "maya-joint",
-            934,
-            24
+            "sinja-kraus",
+            910,
+            20
           ],
           [
             76,
-            "kamilla-rakhimova",
-            929,
-            1
+            "kaitlin-quevedo",
+            908,
+            2
           ],
           [
             77,
-            "mccartney-kessler",
-            925,
-            -5
-          ],
-          [
-            78,
-            "kaitlin-quevedo",
-            920,
-            -5
-          ],
-          [
-            79,
-            "panna-udvardy",
-            919,
-            -5
-          ],
-          [
-            80,
             "magda-linette",
-            916,
-            -5
-          ],
-          [
-            81,
-            "petra-marcinko",
-            915,
-            -5
-          ],
-          [
-            82,
-            "yulia-putintseva",
-            904,
-            -3
-          ],
-          [
-            83,
-            "antonia-ruzic",
-            894,
-            -3
-          ],
-          [
-            84,
-            "tatjana-maria",
-            894,
-            -3
-          ],
-          [
-            85,
-            "xiyu-wang",
-            889,
-            -2
-          ],
-          [
-            86,
-            "hanne-vandewinkel",
-            887,
-            -2
-          ],
-          [
-            87,
-            "daria-kasatkina",
-            883,
-            -2
-          ],
-          [
-            88,
-            "darja-vidmanova",
-            877,
-            -2
-          ],
-          [
-            89,
-            "anna-blinkova",
-            875,
-            -2
-          ],
-          [
-            90,
-            "mananchaya-sawangkaew",
-            868,
-            -1
-          ],
-          [
-            91,
-            "taylah-preston",
-            848,
+            907,
             3
           ],
           [
-            92,
+            78,
+            "petra-marcinko",
+            905,
+            3
+          ],
+          [
+            79,
+            "yulia-putintseva",
+            904,
+            3
+          ],
+          [
+            80,
+            "panna-udvardy",
+            899,
+            -1
+          ],
+          [
+            81,
+            "zhang-shuai",
+            895,
+            -24
+          ],
+          [
+            82,
+            "daria-kasatkina",
+            884,
+            5
+          ],
+          [
+            83,
+            "mananchaya-sawangkaew",
+            868,
+            7
+          ],
+          [
+            84,
+            "hanne-vandewinkel",
+            866,
+            2
+          ],
+          [
+            85,
+            "renata-zarazua",
+            862,
+            9
+          ],
+          [
+            86,
+            "taylah-preston",
+            858,
+            5
+          ],
+          [
+            87,
+            "katerina-siniakova",
+            855,
+            -32
+          ],
+          [
+            88,
+            "katie-volynets",
+            851,
+            -14
+          ],
+          [
+            89,
             "taylor-townsend",
             843,
+            3
+          ],
+          [
+            90,
+            "darja-vidmanova",
+            838,
             -2
+          ],
+          [
+            91,
+            "xiyu-wang",
+            835,
+            -6
+          ],
+          [
+            92,
+            "maya-joint",
+            824,
+            -17
           ],
           [
             93,
-            "solana-sierra",
-            830,
-            -2
+            "antonia-ruzic",
+            823,
+            -10
           ],
           [
             94,
-            "renata-zarazua",
-            819,
-            -2
+            "wta-320313",
+            816,
+            15
           ],
           [
             95,
-            "sinja-kraus",
-            817,
-            0
+            "mccartney-kessler",
+            805,
+            -18
           ],
           [
             96,
-            "jessica-bouzas-maneiro",
-            809,
-            -3
+            "claire-liu",
+            789,
+            1
           ],
           [
             97,
-            "claire-liu",
-            790,
-            -1
+            "julia-grabher",
+            760,
+            2
           ],
           [
             98,
-            "simona-waltert",
-            790,
-            -1
+            "alina-charaeva",
+            759,
+            20
           ],
           [
             99,
-            "julia-grabher",
-            787,
-            12
+            "jessica-bouzas-maneiro",
+            750,
+            -3
           ],
           [
             100,
-            "emma-raducanu",
-            785,
-            -2
+            "wta-329199",
+            743,
+            1
           ]
         ],
-        "sourceSha256": "9ee10e1a1df99b2a353fa3eb3f760dd7e61d896e1377600f53574063722a27a7",
-        "note": "本期完整前100的姓名、代表国家、名次、积分及周变化已逐项对照 WTA 官方页面。页面明确对应2026年10月5日；另一个接口仍返回9月28日，未用于替换本期榜单。此为本期核对，不代表实时或自动更新。"
+        "sourceSha256": "ade49d2a82cce16986b72e46d335aaf90bf51dfb5575f8cb14bc99666dc83d08",
+        "candidateSha256": "04500cd4f167893db1ababf03cba943d37c8d203a599dd9fce3d07fcc7b84649",
+        "countryDisagreements": [
+          {
+            "playerId": "anna-blinkova",
+            "providerPlayerId": 154,
+            "providerCountry": "RUS",
+            "officialCountry": "FRA"
+          },
+          {
+            "playerId": "alina-charaeva",
+            "providerPlayerId": 629445,
+            "providerCountry": "RUS",
+            "officialCountry": "ARM"
+          }
+        ],
+        "note": "本期完整前100已逐项对照WTA官方页面与免费数据接口；名次、积分及周变化一致。代表国家按官方页面保留，不用接口旧标签覆盖。此为本期核对，不代表实时或自动更新。"
       }
     }
   ],
