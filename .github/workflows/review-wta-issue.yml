@@ -1,0 +1,71 @@
+name: Verify new WTA issue
+on:
+  push:
+    branches: ['review/data-intake-20261013']
+    paths: ['.github/workflows/review-wta-issue.yml']
+permissions:
+  contents: read
+jobs:
+  review:
+    if: github.event.repository.private == false && github.actor == 'styleke'
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: e027e562026e86b65ebd8882bb6fae861f2d3364
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - run: npm install --no-save --ignore-scripts --package-lock=false playwright@1.64.0
+      - run: npx playwright install --with-deps chromium
+      - name: Read one new official issue with normal page controls; no recurring crawler
+        run: |
+          mkdir -p phase2/official-new-issue
+          node --input-type=module <<'NODE'
+          import {chromium} from 'playwright';
+          import {writeFile} from 'node:fs/promises';
+          import {createHash} from 'node:crypto';
+          const out='phase2/official-new-issue',url='https://www.wtatennis.com/rankings/singles';
+          const report={url,startedAt:new Date().toISOString(),publicDataWritten:false,recurringCrawlEnabled:false};
+          const browser=await chromium.launch();
+          try {
+            const p=await browser.newPage({viewport:{width:1440,height:1050}});
+            const r=await p.goto(url,{waitUntil:'domcontentloaded',timeout:30000});
+            report.status=r.status();if(r.status()!==200)throw Error('official-http-'+r.status());
+            await p.locator('.js-player-item-favourite').first().waitFor({timeout:20000});
+            const settings=p.locator('#onetrust-pc-btn-handler');
+            if(await settings.isVisible()){
+              await settings.click();await p.locator('#onetrust-pc-sdk').waitFor({state:'visible'});
+              const optional=p.locator('#ot-group-id-OSSTA_BG');if(await optional.isVisible())await optional.uncheck();
+              await p.locator('.save-preference-btn-handler').click();await p.locator('#onetrust-pc-sdk').waitFor({state:'hidden'});
+            }
+            report.beforeCount=await p.locator('.js-player-item-favourite').count();
+            report.beforeDate=await p.locator('section.js-rankings').getAttribute('data-date');
+            const more=p.locator('.js-load-more');
+            if(report.beforeCount<100 && await more.isVisible()){
+              await more.scrollIntoViewIfNeeded();await more.click({timeout:10000});
+              await p.waitForFunction(()=>document.querySelectorAll('.js-player-item-favourite').length>=100,{},{timeout:25000});
+            }
+            report.afterCount=await p.locator('.js-player-item-favourite').count();
+            report.afterDate=await p.locator('section.js-rankings').getAttribute('data-date');
+            const html=await p.content();report.sha256=createHash('sha256').update(html).digest('hex');
+            await writeFile(out+'/wta.html',html);
+            report.rows=await p.locator('.js-player-item-favourite').evaluateAll(rows=>rows.map(r=>({text:r.innerText,attributes:Object.fromEntries([...r.attributes].filter(a=>a.name.startsWith('data-')).map(a=>[a.name,a.value])),links:[...r.querySelectorAll('a[href]')].map(a=>({text:a.innerText,href:a.getAttribute('href')}))})));
+            await p.screenshot({path:out+'/top.png'});
+            await p.locator('.js-player-item-favourite').last().scrollIntoViewIfNeeded();await p.screenshot({path:out+'/last.png'});
+            if(report.beforeDate!==report.afterDate||report.afterCount!==100)throw Error('incomplete-or-changing-issue');
+          } catch(e){report.error=String(e.message).slice(0,300);process.exitCode=1;}
+          finally{await browser.close();report.finishedAt=new Date().toISOString();await writeFile(out+'/report.json',JSON.stringify(report,null,2));console.log(JSON.stringify({...report,rows:report.rows?.length}));}
+          NODE
+      - name: Preserve factual data and source permissions
+        if: always()
+        run: git diff --exit-code -- data public config
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: courtside-wta-new-issue
+          path: phase2/official-new-issue
+          retention-days: 1
