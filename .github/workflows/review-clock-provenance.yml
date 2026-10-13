@@ -1,0 +1,85 @@
+name: Review external clock provenance
+on:
+  push:
+    branches: ['review/clock-provenance-20261013']
+permissions:
+  contents: read
+jobs:
+  review:
+    if: github.event.repository.private == false
+    runs-on: ubuntu-latest
+    timeout-minutes: 8
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: 54163dbcd9e7fd21f590724a4bf2766a7d36604a
+          persist-credentials: false
+      - uses: actions/setup-node@v6
+        with:
+          node-version: '22'
+          package-manager-cache: false
+      - name: Apply fixed, bounded patch without moving any branch
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          mkdir -p phase2/clock-monitor-review
+          gh api repos/styleke/courtside/git/blobs/4e7610839b775826d6894909ebdba0d5be34119b > "$RUNNER_TEMP/clock-blob.json"
+          python3 - <<'PY'
+          import os,json,base64,gzip,hashlib,subprocess
+          from pathlib import Path
+          blob=json.loads((Path(os.environ['RUNNER_TEMP'])/'clock-blob.json').read_text())
+          raw=base64.b64decode(blob['content'])
+          assert len(raw)==7955
+          assert hashlib.sha1(b'blob '+str(len(raw)).encode()+b'\0'+raw).hexdigest()=='4e7610839b775826d6894909ebdba0d5be34119b'
+          patch=gzip.decompress(raw)
+          assert len(patch)==26820
+          assert hashlib.sha256(patch).hexdigest()=='3e8b276e95b29311c154c5439bcfac5e629c98be11dc2941149ae881a3666382'
+          f=Path('phase2/clock-monitor-review/clock.patch');f.write_bytes(patch)
+          paths=['.github/workflows/operation-watch.yml','.github/workflows/refresh.yml','ops/cloudflare-clock/worker.mjs','ops/cloudflare-clock/monitoring.md','scripts/check-operation-health.mjs','scripts/check-clock-trigger.mjs','services/operation-health.mjs','services/clock-evidence.mjs','tests/cloudflare-clock.test.cjs','tests/clock-evidence.test.cjs','tests/v08.test.cjs']
+          subprocess.run(['git','apply','--check','--unidiff-zero',str(f)],check=True)
+          subprocess.run(['git','apply','--unidiff-zero',str(f)],check=True)
+          subprocess.run(['git','add','-N','--',*paths],check=True)
+          actual=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
+          assert sorted(actual)==sorted(paths),(actual,paths)
+          subprocess.run(['git','diff','--check'],check=True)
+          Path('phase2/clock-monitor-review/paths.json').write_text(json.dumps(paths))
+          PY
+      - name: Full tests and build on the exact production base
+        shell: bash
+        run: |
+          npm test | tee phase2/clock-monitor-review/tests.txt
+          npm run build | tee phase2/clock-monitor-review/build.txt
+          git diff --exit-code -- data config public ops/cloudflare-clock/wrangler.json
+      - name: Store only tested Git objects; no ref update or deployment
+        env:
+          GH_TOKEN: ${{ github.token }}
+        shell: bash
+        run: |
+          python3 - <<'PY'
+          import json,base64,subprocess
+          from pathlib import Path
+          root=Path('phase2/clock-monitor-review')
+          paths=json.loads((root/'paths.json').read_text())
+          assert len(paths)==11
+          entries=[]
+          for path in paths:
+              content=Path(path).read_bytes()
+              assert len(content)<50000
+              body=json.dumps({'content':base64.b64encode(content).decode(),'encoding':'base64'})
+              result=json.loads(subprocess.check_output(['gh','api','--method','POST','repos/styleke/courtside/git/blobs','--input','-'],input=body,text=True))
+              expected=subprocess.check_output(['git','hash-object',path],text=True).strip()
+              assert result['sha']==expected
+              entries.append({'path':path,'mode':'100644','type':'blob','sha':expected})
+          report={'branchChanged':False,'sourceCommit':subprocess.check_output(['git','rev-parse','HEAD'],text=True).strip(),'baseTree':subprocess.check_output(['git','rev-parse','HEAD^{tree}'],text=True).strip(),'entries':entries,'fullTestsPassed':True,'buildPassed':True,'factualDataChanged':False,'liveCronAcceptance':False}
+          (root/'tree-entries.json').write_text(json.dumps(report,indent=2))
+          print(json.dumps(report,indent=2))
+          PY
+      - uses: actions/upload-artifact@v4
+        if: always()
+        with:
+          name: clock-monitor-reviewed
+          path: phase2/clock-monitor-review
+          retention-days: 1
