@@ -146,3 +146,34 @@ renders a dynamic loading state in this review, so the five listed pairings
 must not be treated as full-day coverage or automatically added to the public
 schedule. Reconcile them against the official order of play and current draw
 before publication. No public fixture or result was changed.
+
+
+### Shanghai official schedule publication candidate — 2026-10-13
+
+The official tournament schedule is now readable for Tuesday October 13, and
+the official ATP/ProTennisLive order-of-play PDF is readable for Wednesday
+October 14. The PDF identifies the date explicitly, records its release on
+October 13, and lists six matches across Stadium Court and Show Court 3. It
+specifies 12:00 and 15:00 court starts, a Stadium Court match not before 18:00,
+and followed-by order; the site snapshot preserves those relative times rather
+than inventing start times.
+
+A review branch adds 7 official October 13 records (4 singles, 3 doubles,
+including the three published results) and 6 official October 14 scheduled
+records (4 singles, 2 doubles). The October 13 results are transcribed only
+where the official schedule displays them; the doubles walkover remains
+`W/O`, not a fabricated set score. All player IDs resolve to existing registry
+entries. Coverage metadata records 7 and 6 expected matches respectively,
+with official source URLs and review timestamps.
+
+This is a review branch, not yet a production publication. Before merging,
+run the full project test suite and production build, inspect the rendered
+schedule, and confirm coverage checks accept both days. Wuhan remains blocked:
+its official order-of-play list still does not render completely in this review
+environment. No new paid sources or services are involved.
+
+Sources:
+- October 13 official schedule HTML:
+  https://en.rolexshanghaimasters.com/en/scores/schedule?dayToDisplay=11
+- October 14 official order of play:
+  https://www.protennislive.com/posting/2026/5014/op.pdf
