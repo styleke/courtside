@@ -9,6 +9,8 @@ jobs:
     if: github.event.repository.private == false
     runs-on: ubuntu-latest
     timeout-minutes: 8
+    env:
+      PYTHONDONTWRITEBYTECODE: '1'
     permissions:
       contents: write
     steps:
