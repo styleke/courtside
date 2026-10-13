@@ -6,7 +6,9 @@ const EVENT_MAP={
  'ATP Shanghai, China Men Singles':['shanghai-2026','ATP','单打'],
  'ATP Shanghai, China Men Doubles':['shanghai-2026','ATP','双打'],
  'WTA Beijing, China Women Singles':['beijing-wta-2026','WTA','单打'],
- 'WTA Beijing, China Women Doubles':['beijing-wta-2026','WTA','双打']
+ 'WTA Beijing, China Women Doubles':['beijing-wta-2026','WTA','双打'],
+ 'WTA Wuhan, China Women Singles':['wuhan-2026','WTA','单打'],
+ 'WTA Wuhan, China Women Doubles':['wuhan-2026','WTA','双打']
 };
 export function utcDatesForDay(day){if(!Age.validDay(day))throw Error('Invalid Beijing date');return [Core.addDays(day,-1),day];}
 export function findIdentity(name,players){const key=norm(name);if(!key)return null;const found=players.filter(p=>[p.enName,...(p.aliases||[]).filter(x=>/[A-Za-z].*\s.*[A-Za-z]/.test(x))].some(x=>norm(x)===key));return found.length===1?found[0].id:null;}
