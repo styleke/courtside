@@ -128,3 +128,21 @@ it does not mean the schedule or all results are current. The run completed its
 build/deploy verification, but no new fixture or score was published from this
 candidate audit. Continue to require independently verified day coverage,
 resolved identities and per-set results before any fixture/result publication.
+
+
+### Official Wuhan day-two cross-check — 2026-10-13
+
+A direct official WTA source is now readable: the Day 2 match-notes PDF
+(https://wtafiles.wtatennis.com/pdf/matchnotes/2026/1075_2.pdf). It is explicitly
+labelled Tuesday, October 13 and independently names at least these singles
+matchups: Katerina Siniakova–Liudmila Samsonova, Guo Hanyu–Sorana Cirstea,
+Maria Sakkari–Marta Kostyuk, Ashlyn Krueger–Zhang Shuai, and Mia Pohankova–Wang
+Xiyu. This is useful identity/date evidence for those five pairings.
+
+Important boundary: WTA match notes are player/media notes, not a complete
+order of play. They do not establish all courts, start times, doubles matches,
+withdrawals or the complete daily field. The official order-of-play page still
+renders a dynamic loading state in this review, so the five listed pairings
+must not be treated as full-day coverage or automatically added to the public
+schedule. Reconcile them against the official order of play and current draw
+before publication. No public fixture or result was changed.
