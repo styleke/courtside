@@ -52,6 +52,19 @@ jobs:
         run: |
           npm test | tee phase2/clock-monitor-review/tests.txt
           npm run build | tee phase2/clock-monitor-review/build.txt
+          python3 - <<'PY'
+          import json,subprocess
+          from pathlib import Path
+          path='data/automation-status.json'
+          original=subprocess.check_output(['git','show','HEAD:'+path])
+          before=json.loads(original)
+          after=json.loads(Path(path).read_bytes())
+          before.pop('generatedAt',None)
+          after.pop('generatedAt',None)
+          assert before==after,'Unexpected channel or factual status mutation'
+          Path(path).write_bytes(original)
+          print('Only the generated status timestamp was discarded; channel evidence is unchanged.')
+          PY
           git diff --exit-code -- data config public ops/cloudflare-clock/wrangler.json
       - name: Store only tested Git objects; no ref update or deployment
         env:
@@ -64,6 +77,8 @@ jobs:
           root=Path('phase2/clock-monitor-review')
           paths=json.loads((root/'paths.json').read_text())
           assert len(paths)==11
+          actual=subprocess.check_output(['git','diff','--name-only'],text=True).splitlines()
+          assert sorted(actual)==sorted(paths),(actual,paths)
           entries=[]
           for path in paths:
               content=Path(path).read_bytes()
