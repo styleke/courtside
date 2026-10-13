@@ -24,8 +24,8 @@ export function inspectOperation(target,workflow,runs,scheduledRuns,feed,{now=Da
  const latest=all[0]||null,successes=scheduled.filter(r=>r.status==='completed'&&r.conclusion==='success'&&now-Date.parse(r.created_at)<=4*3600000);
  const external=[...new Map(all.filter(r=>r.channel===target.id&&r.jobEvidenceComplete&&
   r.status==='completed'&&r.conclusion==='success'&&r.externalClock?.runId===r.id&&
-  r.externalClock.correlation==='validated-dispatch-metadata'&&
-  now-Date.parse(r.created_at)<=4*3600000).map(r=>[r.externalClock.scheduledAt,r])).values()];
+  r.externalClock.correlation==='validated-dispatch-metadata'&&typeof r.externalClock.slotAt==='string'&&
+  now-Date.parse(r.created_at)<=4*3600000).map(r=>[r.externalClock.slotAt,r])).values()];
  const hasPeriodicEvidence=successes.length>=2||external.length>=2;
  const problems=[],age=latest?(now-Date.parse(latest.created_at))/60000:Infinity;
  if(workflow?.state!=='active')problems.push('workflow-not-active');
