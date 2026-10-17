@@ -1,11 +1,11 @@
 {
   "meta": {
     "schemaVersion": 1,
-    "revision": 29,
+    "revision": 30,
     "mode": "reviewed",
     "demoDate": "2026-10-10",
     "asOfDate": "2026-10-11",
-    "updatedAt": "2026-10-13T15:41:51.836Z",
+    "updatedAt": "2026-10-17T06:41:36.040Z",
     "dataVerifiedAt": "2026-10-10T03:50:28Z",
     "refreshMode": "verified-snapshot",
     "note": "赛程、排名与资料分别保留来源和更新时间。",
@@ -19708,16 +19708,18 @@
       "discipline": "单打",
       "roundCode": "R16",
       "round": "第四轮",
-      "status": "scheduled",
-      "score": null,
-      "winnerIds": [],
+      "status": "finished",
+      "score": "6-7 6-4 6-2",
+      "winnerIds": [
+        "rafael-jodar"
+      ],
       "scoreOrder": "winner-first",
       "demo": false,
       "editorPick": false,
       "watchLinks": [],
       "sourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
       "sourceName": "上海大师赛官方每日赛程",
-      "verifiedAt": "2026-10-13T11:17:00Z",
+      "verifiedAt": "2026-10-17T06:41:36.040Z",
       "localDate": "2026-10-14",
       "confirmedBeijingDate": "2026-10-14",
       "timeKind": "exact",
@@ -19735,8 +19737,24 @@
           "checkedAt": "2026-10-13T11:17:00Z",
           "sourceDate": "2026-10-14",
           "method": "editorial-source-review"
+        },
+        "results": {
+          "provider": "baseline-today",
+          "providerMatchId": 96781,
+          "primaryUrl": "https://en.wikipedia.org/wiki/2026_Rolex_Shanghai_Masters_%E2%80%93_Singles",
+          "compiledBy": "https://baseline-today.vercel.app/data",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "attribution": "Match results from Wikipedia draw pages by Wikipedia contributors (https://www.wikipedia.org), licensed CC BY-SA 4.0. Compiled by Baseline Today (https://baseline-today.vercel.app/data); this file is shared under the same license, CC BY-SA 4.0. The source column links each result's draw page.",
+          "checkedAt": "2026-10-17T06:41:36.040Z",
+          "sourceGeneratedAt": "2026-10-17T06:41:35.654Z",
+          "tieBreakDetail": "partial",
+          "method": "licensed-export"
         }
-      }
+      },
+      "resultSourceUrl": "https://en.wikipedia.org/wiki/2026_Rolex_Shanghai_Masters_%E2%80%93_Singles",
+      "resultVerifiedAt": "2026-10-17T06:41:36.040Z",
+      "resultsVerifiedAt": "2026-10-17T06:41:36.040Z"
     },
     {
       "id": "sh-1014-ruud",
@@ -19796,16 +19814,18 @@
       "discipline": "单打",
       "roundCode": "R16",
       "round": "第四轮",
-      "status": "scheduled",
-      "score": null,
-      "winnerIds": [],
+      "status": "finished",
+      "score": "6-4 7-5",
+      "winnerIds": [
+        "daniil-medvedev"
+      ],
       "scoreOrder": "winner-first",
       "demo": false,
       "editorPick": false,
       "watchLinks": [],
       "sourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
       "sourceName": "上海大师赛官方每日赛程",
-      "verifiedAt": "2026-10-13T11:17:00Z",
+      "verifiedAt": "2026-10-17T06:41:36.040Z",
       "localDate": "2026-10-14",
       "confirmedBeijingDate": "2026-10-14",
       "timeKind": "notBefore",
@@ -19823,8 +19843,24 @@
           "checkedAt": "2026-10-13T11:17:00Z",
           "sourceDate": "2026-10-14",
           "method": "editorial-source-review"
+        },
+        "results": {
+          "provider": "baseline-today",
+          "providerMatchId": 96429,
+          "primaryUrl": "https://en.wikipedia.org/wiki/2026_Rolex_Shanghai_Masters_%E2%80%93_Singles",
+          "compiledBy": "https://baseline-today.vercel.app/data",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "attribution": "Match results from Wikipedia draw pages by Wikipedia contributors (https://www.wikipedia.org), licensed CC BY-SA 4.0. Compiled by Baseline Today (https://baseline-today.vercel.app/data); this file is shared under the same license, CC BY-SA 4.0. The source column links each result's draw page.",
+          "checkedAt": "2026-10-17T06:41:36.040Z",
+          "sourceGeneratedAt": "2026-10-17T06:41:35.654Z",
+          "tieBreakDetail": "complete",
+          "method": "licensed-export"
         }
-      }
+      },
+      "resultSourceUrl": "https://en.wikipedia.org/wiki/2026_Rolex_Shanghai_Masters_%E2%80%93_Singles",
+      "resultVerifiedAt": "2026-10-17T06:41:36.040Z",
+      "resultsVerifiedAt": "2026-10-17T06:41:36.040Z"
     },
     {
       "id": "sh-1014-paul",
@@ -19840,16 +19876,18 @@
       "discipline": "单打",
       "roundCode": "R16",
       "round": "第四轮",
-      "status": "scheduled",
-      "score": null,
-      "winnerIds": [],
+      "status": "finished",
+      "score": "7-6 6-4",
+      "winnerIds": [
+        "tommy-paul"
+      ],
       "scoreOrder": "winner-first",
       "demo": false,
       "editorPick": false,
       "watchLinks": [],
       "sourceUrl": "https://www.protennislive.com/posting/2026/5014/op.pdf",
       "sourceName": "上海大师赛官方每日赛程",
-      "verifiedAt": "2026-10-13T11:17:00Z",
+      "verifiedAt": "2026-10-17T06:41:36.040Z",
       "localDate": "2026-10-14",
       "confirmedBeijingDate": "2026-10-14",
       "timeKind": "following",
@@ -19867,8 +19905,24 @@
           "checkedAt": "2026-10-13T11:17:00Z",
           "sourceDate": "2026-10-14",
           "method": "editorial-source-review"
+        },
+        "results": {
+          "provider": "baseline-today",
+          "providerMatchId": 97231,
+          "primaryUrl": "https://en.wikipedia.org/wiki/2026_Rolex_Shanghai_Masters_%E2%80%93_Singles",
+          "compiledBy": "https://baseline-today.vercel.app/data",
+          "license": "CC BY-SA 4.0",
+          "licenseUrl": "https://creativecommons.org/licenses/by-sa/4.0/",
+          "attribution": "Match results from Wikipedia draw pages by Wikipedia contributors (https://www.wikipedia.org), licensed CC BY-SA 4.0. Compiled by Baseline Today (https://baseline-today.vercel.app/data); this file is shared under the same license, CC BY-SA 4.0. The source column links each result's draw page.",
+          "checkedAt": "2026-10-17T06:41:36.040Z",
+          "sourceGeneratedAt": "2026-10-17T06:41:35.654Z",
+          "tieBreakDetail": "partial",
+          "method": "licensed-export"
         }
-      }
+      },
+      "resultSourceUrl": "https://en.wikipedia.org/wiki/2026_Rolex_Shanghai_Masters_%E2%80%93_Singles",
+      "resultVerifiedAt": "2026-10-17T06:41:36.040Z",
+      "resultsVerifiedAt": "2026-10-17T06:41:36.040Z"
     },
     {
       "id": "sh-1014-arribage",
