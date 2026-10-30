@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-30T22:11:34.527Z",
+  "generatedAt": "2026-10-30T22:41:38.202Z",
   "automaticSourceSync": false,
   "schedulerRunning": false,
   "configuredChannels": [],
@@ -10,7 +10,7 @@
       "automationEnabled": true,
       "status": "not-configured",
       "intervalMinutes": 30,
-      "lastAttemptAt": "2026-10-30T22:11:34.514Z",
+      "lastAttemptAt": "2026-10-30T22:41:38.191Z",
       "sourceName": "Baseline Today / Wikipedia contributors",
       "scope": "既有中网女单与上海男单对阵的完赛补全；不提供逐分直播、不发现日期、不更新排名或双打",
       "upstreamUpdateCadence": "daily",
@@ -25,7 +25,7 @@
       "sourceGeneratedAt": "2026-10-17T06:41:35.654Z",
       "execution": {
         "event": "workflow_dispatch",
-        "runId": "41136409793",
+        "runId": "41139750448",
         "workflow": "Check tennis data",
         "ref": "refs/heads/main"
       }
